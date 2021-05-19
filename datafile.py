@@ -1,9 +1,11 @@
 import pandas as pd
 import os 
-Data = pd.read_excel(os.getcwd()+'''\Model_v4.xlsx''', 'Python')
-Data_ECS = pd.read_excel(os.getcwd()+'''\Model_v4.xlsx''', 'Expected Clean Sheets')
-Data_EG = pd.read_excel(os.getcwd()+'''\Model_v4.xlsx''', 'Expected Goals')
-Data_EW = pd.read_excel(os.getcwd()+'''\Model_v4.xlsx''', 'Expected Wins')
+
+APP_ROOT = os.path.dirname(os.path.abspath('__file__'))
+Data = pd.read_excel(os.path.join(APP_ROOT, 'Model_v4.xlsx'), 'Python')
+Data_ECS = pd.read_excel(os.path.join(APP_ROOT, 'Model_v4.xlsx'), 'Expected Clean Sheets')
+Data_EG = pd.read_excel(os.path.join(APP_ROOT, 'Model_v4.xlsx'), 'Expected Goals')
+Data_EW = pd.read_excel(os.path.join(APP_ROOT, 'Model_v4.xlsx'), 'Expected Wins')
 
 # Create lists with variables:
 Data = Data.dropna()

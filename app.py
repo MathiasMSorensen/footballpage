@@ -25,6 +25,7 @@ app = Flask(__name__,template_folder="templates")
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
+APP_ROOT = os.path.dirname(os.path.abspath('__file__'))
 db.init_app(app)
 migrate = Migrate(app, db)
 
