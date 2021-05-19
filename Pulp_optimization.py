@@ -130,11 +130,11 @@ def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions,
     
         Budget = Budget-TotalCost 
         
-        return  Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, sum(Squad_xPoints)
+        
 
     else:
         print("""System crashed""")
         
-        return  0, 0, 0, 0, 0, 0, 0, 0, 0
+    return  Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, sum(Squad_xPoints)
 
 
