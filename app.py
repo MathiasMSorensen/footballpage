@@ -30,9 +30,6 @@ app.config['SECRET_KEY'] = "hello"
 db.init_app(app)
 migrate = Migrate(app, db)
 
-with app.app_context():
-    db.create_all()
-
 Bootstrap(app)
 
 ExcludePlayers = [] 
