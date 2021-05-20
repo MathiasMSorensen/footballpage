@@ -127,7 +127,7 @@ def Viewlist():
         form.Player10.choices = [('Please Select'),"---"]+sorted(Names)
         form.Player11.choices = [('Please Select'),"---"]+sorted(Names)
              
-    return render_template("Viewlist.html", form=form)
+    return render_template("ViewList.html", form=form)
 
 @app.route("/login/",methods=["POST","GET"])
 def login():
