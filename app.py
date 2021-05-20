@@ -23,7 +23,7 @@ from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Pos
 app = Flask(__name__,template_folder="templates")
 
 # for evelopment app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgressql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
 
