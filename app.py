@@ -22,10 +22,11 @@ from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Pos
 
 app = Flask(__name__,template_folder="templates")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+# for evelopment app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
-APP_ROOT = os.path.dirname(os.path.abspath('__file__'))
+
 db.init_app(app)
 migrate = Migrate(app, db)
 
@@ -398,7 +399,7 @@ def dashboard():
     found_user = users6.query.filter_by(username=username).first()
     print(found_user.Player1)
     
-    if found_user.Player1!='':
+    if found_user.Player11!='':
         Squad=[]   
         Budget = found_user.Budget
         Squad.append(found_user.Player1)
