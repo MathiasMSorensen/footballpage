@@ -22,8 +22,8 @@ from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Pos
 
 app = Flask(__name__,template_folder="templates")
 
-# for evelopment app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
 
@@ -215,18 +215,35 @@ def optimization():
         Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
                                                              Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,1,Budget, Names, xPoints)
         
-        
-        if 'Please Select' in ExcludePlayers:
-            ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
-        if 'Please Select' in ExcludeTeam:
-            ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
-        
-        print(nShare)
-        return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
-                                                    Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
-                                                    Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
-                                                    nShare = nShare, Expected_points = Expected_points)   
+        if Squad != 0:
 
+            if 'Please Select' in ExcludePlayers:
+                ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
+            if 'Please Select' in ExcludeTeam:
+                ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
+            
+            print(nShare)
+            return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
+                                                        Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
+                                                        Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
+                                                        nShare = nShare, Expected_points = Expected_points)   
+        else:
+            error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
+            Squad=['Edit your team']
+            Squad_Position = ['']
+            Squad_Team = ['']
+            Squad_xPoints = ['']
+            Squad_Captain = ['']
+            labels = 7 * ['']
+            values = 7 * [0]
+            nShare = 0
+            Budget = 0
+            TransferCost = 0
+            Expected_points = 0
+            return render_template('fail.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
+                                            Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
+                                            nShare = nShare, Budget = Budget,error_statement=error_statement
+                                            )
     else:
         
         return redirect(url_for('teamselected'))
@@ -413,17 +430,35 @@ def dashboard():
    
         Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, Squad, xPointsTotal, 
                                                                                             Positions, [], Squad, [], 0, Budget, Names, xPoints)
-        
-        index = np.where(np.in1d(Names, Squad))[0] 
-        Team_help = [Teams[i] for i in index]
-        Labels, Values = np.unique(Team_help, return_counts=True)
-        labels = 7 * [None]
-        values = 7 * [None]
-        print(len(Labels))
-        for i in range(len(Labels)):
-            labels[i] = Labels[i].tolist()
-            values[i] = Values[i].tolist()
-        
+        if Squad != 0:
+            index = np.where(np.in1d(Names, Squad))[0] 
+            Team_help = [Teams[i] for i in index]
+            Labels, Values = np.unique(Team_help, return_counts=True)
+            labels = 7 * [None]
+            values = 7 * [None]
+            print(len(Labels))
+            for i in range(len(Labels)):
+                labels[i] = Labels[i].tolist()
+                values[i] = Values[i].tolist()
+
+        else:
+            error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
+            Squad=['Edit your team']
+            Squad_Position = ['']
+            Squad_Team = ['']
+            Squad_xPoints = ['']
+            Squad_Captain = ['']
+            labels = 7 * ['']
+            values = 7 * [0]
+            nShare = 0
+            Budget = 0
+            TransferCost = 0
+            Expected_points = 0
+            return render_template('fail.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
+                                            Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
+                                            nShare = nShare, Budget = Budget,error_statement=error_statement
+                                            )
+
     else:
         Squad=['No team yet, edit your team']
         Squad_Position = ['']
