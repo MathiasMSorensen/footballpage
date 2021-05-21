@@ -1,0 +1,84 @@
+{% extends "layoutbase.html" %}
+
+{% block title %} FAQ {% endblock %} 
+
+<link rel="stylesheet" href="{{url_for('.static/assets', filename='style.css')}}">
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <!-- [ collapse ] start -->
+                    <div class="col-sm-12">
+                        <h5 class="mb-3">FAQ</h5>
+                        <hr>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0"><a href="#!" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Using your algorithm, will everyone end up with the same team?</a></h5>
+                                </div>
+                                <div id="collapseOne" class=" card-body collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    No, they will not. 
+                                    <br>
+                                    The reason being, that we are solving an optimization problem with the constraint that you are having different teams and budgets. 
+                                    <br>
+                                    Only teams with same team and budget will get the same team advised BUT, as you are able to set your own constraints, you are not likely to get similar team as your friends. 
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0"><a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How does the optimization work</a></h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse card-body" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    Good question, go to "how it works" on the sidebar. 
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0"><a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Does statitistics really matter in fantasy football?</a></h5>
+                                </div>
+                                <div id="collapseThree" class="card-body collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    We both managed to win our league, using this algorithm, so the short answer is yes. 
+                                    <br>Football is a game with a lot of randomness, and the amount of randomness makes it unlikely that you will win the first round you are using this algorithm. 
+                                    <br>This algorithm gives you a starting point for making more acdurate decisions, that are less biased and with less errors than normal. Further, as the season pass by, you will see that as the sample size increases (games), the expected points will go towards the sampled one (highest possible). 
+                                    <br>Anyone can get lucky in any given week, but statistics tend to win over time (cf. stock market, bookmakers, etc). 
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0"><a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">How many rounds are you modelling over?</a></h5>
+                                </div>
+                                <div id="collapseFour" class="collapse card-body" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                    We are modelling for the next 6 rounds, but we are weigthing the first coming rounds higher than the last ones. The reason being that future rounds has more uncertainty to it (injuries, etc.)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ collapse ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

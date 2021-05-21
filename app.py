@@ -15,6 +15,7 @@ import time
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
 from models import db, users6
+from lookup import myDict 
 from Pulp_optimization import Pulp_optimization
 from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Positions,xPoints,xPoints2, xPoints3,xPoints4, xPoints5,xPoints6, xPointsTotal, TotalPoints, Transfer, Cost, xGrowth,Names, TotalPoints, Cost, Positions,Teams, xPoints, Transfer 
 # USe env\Scripts\Activate.ps1 to activate venv
@@ -22,8 +23,8 @@ from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Pos
 
 app = Flask(__name__,template_folder="templates")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
 
@@ -436,11 +437,12 @@ def dashboard():
             Labels, Values = np.unique(Team_help, return_counts=True)
             labels = 7 * [None]
             values = 7 * [None]
+            
             print(len(Labels))
             for i in range(len(Labels)):
-                labels[i] = Labels[i].tolist()
+                labels[i] = myDict[Labels[i].tolist()]
                 values[i] = Values[i].tolist()
-
+            
         else:
             error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
             Squad=['Edit your team']
@@ -471,6 +473,7 @@ def dashboard():
         Budget = 0
         TransferCost = 0
         Expected_points = 0
+
     return render_template('dashboard.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                                Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
                                                nShare = nShare, Budget = Budget
@@ -682,6 +685,26 @@ def AnalyzePlayers():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/Aboutus')
+@login_required
+def Aboutus():
+    return render_template('Aboutus.html')
+
+@app.route('/FAQ')
+@login_required
+def FAQ():
+    return render_template('FAQ.html')
+
+@app.route('/Authors')
+@login_required
+def Authors():
+    return render_template('Authors.html')
+
+@app.route('/Howitworks')
+@login_required
+def Howitworks():
+    return render_template('Howitworks.html')
 
 if __name__ == "__main__":
     db.create_all()

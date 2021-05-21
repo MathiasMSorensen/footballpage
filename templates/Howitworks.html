@@ -1,0 +1,76 @@
+{% extends "layoutbase.html" %}
+
+{% block title %} How it works {% endblock %} 
+
+<link rel="stylesheet" href="{{url_for('.static/assets', filename='style.css')}}">
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <!-- [ collapse ] start -->
+                    <div class="col-sm-12">
+                        <h5 class="mb-3">How it works</h5>
+                        <hr>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0"><a href="#!" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Non technical explanation</a></h5>
+                                </div>
+                                <div id="collapseOne" class=" card-body collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    The lineup optimizer uses latest projections on injuries, opponents status, expected goals, expected cards, etc. to identify which combination of players would produce the greatest production in fantasy points at the lowest cost.
+                                    <br><br>In other words, the Optimizer saves you time by eliminating hours of research each night looking up stats, news, player situations, and trends by using this data to create an optimal lineup.
+                                    <br><br>The projections we use in the Optimizer are constantly being updated; we then use those player and team projections to create the best possible lineup using the budget available for the given team.
+                                    <br><br>If you are not satisfied with the suggested team, you can select team that you want to avoid when optimizing the suggested lineup (i.e. assuming that you believe that Liverpool will most certaintly lose in the coming round, then you can exlude all Liverpool players from the optimzation).  
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0"><a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Technical explanation</a></h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse card-body" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    The lineup optimizer is using a three step approach descriped below. 
+                                    <br>
+                                    <br>
+                                    <li>We collect and predict prjections for all teams and players in the premier league. This projections will use historical data to predict future values for e.g., change for a win, a goal, etc. These projections is based on various machine learning algorithms (e.g. Random Forest, gradient boosted trees, Naural networks, etc.), to increase the accuracy of the models as much as possible. </li>
+                                    <br>    
+                                    <li>We transform the projected values, into projected points for the relevant player by using the rules defined on <holdet class="dk"></holdet>. As we are using expected points for the next 6 rounds, we will discount future values, to take into account the increased uncertainty for injuries, quarantine, etc. </li>
+                                    <br> 
+                                    <li>By editing current team and the relevant budget, we now have the optimization problem which is to optimize the excpected points in the coming round given the relevant constraints (budget, 11 players on the team, max 5 midfields, etc.). This problem is used by solving a mathematical optimziation problem. As this problem will have many local maximum, we need to search through all these local maximas to find the only global one. </li>
+                                    <br>
+                                    Notice, that you can define new constraints, by excluding teams and players from the optimization, which basically is similar to adding constraints to the optimization problem. 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ collapse ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+The lineup optimizer uses latest projections on injuries, opponents status, expected goals, expected cards, etc. to identify which combination of players would produce the greatest production in fantasy points at the lowest cost.
+In other words, the Optimizer saves you time by eliminating hours of research each night looking up stats, news, player situations, and trends by using this data to create an optimal lineup.
+The projections we use in the Optimizer are constantly being updated; we then use those player and team projections to create the best possible lineup using the budget available for the given team.
+  

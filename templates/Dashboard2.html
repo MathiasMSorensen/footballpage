@@ -20,10 +20,10 @@
                         <div class="col-md-6 col-xl-4">
                             <div class="card daily-sales">
                                 <div class="card-block">
-                                    <h6 class="mb-4">Updated Budget</h6>
+                                    <h6 class="mb-4">Unused Budget</h6>
                                     <div class="row d-flex align-items-center">
                                         <div class="col-9">
-                                            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>$ {{Budget}}</h3>
+                                            <h3 class="f-w-300 d-flex align-items-center m-b-0">$ {{Budget}}</h3>
                                         </div>
 
                                         <div class="col-3 text-right">
@@ -58,7 +58,7 @@
                         <div class="col-md-12 col-xl-4">
                             <div class="card yearly-sales">
                                 <div class="card-block">
-                                    <h6 class="mb-4">Expected Points</h6>
+                                    <h6 class="mb-4">Total Expected Points in coming round</h6>
                                     <div class="row d-flex align-items-center">
                                         <div class="col-9">
                                             <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>{{Expected_points}}</h3>
@@ -206,7 +206,7 @@
                         <!-- [ statistics year chart ] end -->
                        <div class="col-xl-8 col-md-6">
                            <form method="post" action="/Adjustoptimization">
-                               <input type="submit" class="btn btn-success" value="Run optimization with constraints"  btn-lg>
+                               <input type="submit" class="btn btn-success" value="Run lineup optimization with updated constraints"  btn-lg>
                            </form>   
                        </div>                    
                         <form action="/teamupdated" method="POST">
@@ -214,7 +214,7 @@
                            <input type="hidden" name="Name" value='{{ each }}'>
                         {% endfor %} 
     
-                           <input type="submit" class="btn btn-success" value="Save team to Dashboard" btn-lg>
+                           <input type="submit" class="btn btn-success" value="Save lineup to Dashboard" btn-lg>
                     </form> 
                 </div>
             </div>

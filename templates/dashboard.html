@@ -32,7 +32,7 @@
                                                   <th>Name</th>
                                                   <th>Position</th>
                                                   <th>Team</th>
-                                                  <th>Expected Points</th>
+                                                  <th>Points round 1</th>
                                               </tr>
                                               </thead>
                                               <tbody>
@@ -73,8 +73,8 @@
                                 <div class="card-block border-bottom">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-auto">
-                                            <h5 class="m-0">Budget</h5>
-                                            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>$ {{Budget}}</h3>
+                                            <h5 class="m-0">Unused Budget</h5>
+                                            <h3 class="f-w-300 d-flex align-items-center m-b-0"></i>$ {{Budget}}</h3>
                                         </div>
 
                                             <div class="col-3 text-right">
@@ -102,7 +102,7 @@
 
                         </div> 
                    </div>
-                    <input type="submit" class="btn btn-success" value="Edit Team" btn-lg>
+                    <input type="submit" class="btn btn-success" value="Run lineup optimizer" btn-lg>
                 </form> 
             </div>
         </div>
@@ -152,6 +152,7 @@ $(document).ready(function() {
         xkey: 'y',
         barSizeRatio: 0.70,
         barGap: 3,
+        xLabelMargin: 10,
         resize: true,
         responsive:true,
         ykeys: ['a'],
