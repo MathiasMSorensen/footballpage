@@ -20,7 +20,7 @@
                         <div class="col-xl-8 col-md-6">
                             <div class="card Recent-Users">
                                 <div class="card-header">
-                                    <h5>Current team</h5>
+                                    <h5>Suggested team for the coming round</h5>
                                 </div>
                                 <div class="card-block px-0 py-3">
                                     <div class="table-responsive">
@@ -32,7 +32,7 @@
                                                   <th>Name</th>
                                                   <th>Position</th>
                                                   <th>Team</th>
-                                                  <th>Points round 1</th>
+                                                  <th>Points coming round</th>
                                               </tr>
                                               </thead>
                                               <tbody>
@@ -93,8 +93,8 @@
                                             <i class="feather icon-map-pin f-30 text-c-blue"></i>
                                         </div>
                                         <div class="col">
-                                            <h3 class="f-w-300">26th April - Round 35</h3>
-                                            <span class="d-block text-uppercase">Last updated date</span>
+                                            <h3 class="f-w-300">22th May - Round 38</h3>
+                                            <span class="d-block text-uppercase">Model updated</span>
                                         </div>
                                     </div>
                                 </div>                                        
@@ -102,7 +102,7 @@
 
                         </div> 
                    </div>
-                    <input type="submit" class="btn btn-success" value="Run lineup optimizer" btn-lg>
+                    <input type="submit" class="btn btn-success" value="Set your team and Run lineup optimizer" btn-lg>
                 </form> 
             </div>
         </div>
@@ -154,6 +154,8 @@ $(document).ready(function() {
         barGap: 3,
         xLabelMargin: 10,
         resize: true,
+        ymax: 4,
+        ymin:0,
         responsive:true,
         ykeys: ['a'],
         labels: ['Count'],

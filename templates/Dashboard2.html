@@ -3,6 +3,10 @@
 {% block title %} Dashboard {% endblock %} 
 
 <link rel="stylesheet" href="{{url_for('.static/assets', filename='style.css')}}">
+input[type="checkbox"] {
+    vertical-align: middle;
+    }
+
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
@@ -76,42 +80,43 @@
                         <div class="col-xl-8 col-md-6">
                             <div class="card Recent-Users">
                                 <div class="card-header">
-                                    <h5>Updated team</h5>
-                                    
+                                    <h5>Updated team </h5>
+                                    <p class="m-0"><em>Checked players/teams is excluded from lineup optimizer</em></p>
                                 </div>
                                 <div class="card-block px-0 py-3">
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                           <thead>
                                             <tr>
-                                              <th scope="col">#</th>
-                                              <th scope="col">Name</th>
-                                              <th scope="col">Position</th>
+                                              <th scope="col">Player</th>
                                               <th scope="col">Team</th>
-                                              <th scope="col">Expected points</th>
+                                              <th scope="col">Position</th>
+                                              <th scope="col">Points in coming round</th>
                                             </tr>
                                           </thead>
                                             <tbody>
                                               {% set count = namespace(value=1) %}
                                                   {% for each in Squad %}                    
                                                 <tr class="unread">
-                                                      <td>
-                                                      <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" name="mycheckbox" class="form-check-input" value={{ count.value }}>
-                                                        <label class="form-check-label" for="customCheck1"> {{ count.value }} </label>
-                                                      </div>
+
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" name="mycheckbox" class="form-check-input" value={{ count.value }}>    
+                                                            <input type="hidden" name="Name" value='{{ each }}'>
+                                                            {{ each }}
+                                                            <p class="m-0">{{ Squad_Captain[count.value-1] }}</p>
+                                                        
                                                     </td>
                                                     <td>
-                                                        <input type="hidden" name="Name" value='{{ each }}'>
-                                                        <h6 class="mb-1">{{ each }}</h6>
-                                                        <p class="m-0">{{ Squad_Captain[count.value-1] }}</p>
-                                                    </td>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" name="mycheckboxteam" class="form-check-input" value={{ count.value }}>    
+                                                            <input type="hidden" name="Team" value='{{ Squad_Team[count.value-1] }}'>
+                                                            {{ Squad_Team[count.value-1] }}                                      
+                                                        </div>
+                                                    </td> 
                                                     <td>
                                                         <h6 class="mb-1">{{ Squad_Position[count.value-1] }}</h6>                                                    
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="mb-1">{{ Squad_Team[count.value-1] }}</h6>                                                    
-                                                    </td>                                                    
+                                                    </td>                                                   
                                                     <td>
                                                         <h6 class="mb-1">{{ Squad_xPoints[count.value-1] }}</h6>                                                    
                                                     </td>   
@@ -130,7 +135,7 @@
                         <div class="col-xl-4 col-md-6">
                             <div class="card Recent-Users">
                                       <div class="card-header">
-                                          <h5>Excluded players</h5>
+                                          <h5>Excluded Players</h5>
                                           
                                       </div>
                                       <div class="card-block px-0 py-3">
@@ -139,7 +144,7 @@
                                                 <thead>
                                                   <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Player</th>
 
                                                   </tr>
                                                 </thead>
@@ -176,7 +181,7 @@
                                                 <thead>
                                                   <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Team</th>
 
                                                   </tr>
                                                 </thead>
@@ -203,6 +208,7 @@
                                       </div>
                                   </div>
                         </div>
+                        
                         <!-- [ statistics year chart ] end -->
                        <div class="col-xl-8 col-md-6">
                            <form method="post" action="/Adjustoptimization">
@@ -213,7 +219,7 @@
                          {% for each in Squad %}
                            <input type="hidden" name="Name" value='{{ each }}'>
                         {% endfor %} 
-    
+                        <input type="hidden" name="Budget" value='{{ Budget }}'>
                            <input type="submit" class="btn btn-success" value="Save lineup to Dashboard" btn-lg>
                     </form> 
                 </div>

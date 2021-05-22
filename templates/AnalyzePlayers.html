@@ -148,10 +148,13 @@ $(document).ready(function() {
         ],
         xkey: 'y',
         redraw: true,
+        parseTime: false,
         resize: true,
         ykeys: ['a', 'b'],
         hideHover: 'auto',
         responsive:true,
+        ymax: 300000,
+        ymin:0,
         labels: [{{ Name1|tojson }}, 'Average'],
         lineColors: ['#1de9b6', '#A389D4']
     });
@@ -191,10 +194,13 @@ $(document).ready(function() {
         ],
         xkey: 'y',
         redraw: true,
+        parseTime: false,
         resize: true,
         ykeys: ['a', 'b'],
         hideHover: 'auto',
         responsive:true,
+        ymax: 300000,
+        ymin:0,
         labels: [{{ Name2|tojson }}, 'Average'],
         lineColors: ['#1de9b6', '#A389D4']
     });

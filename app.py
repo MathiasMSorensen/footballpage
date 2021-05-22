@@ -23,8 +23,8 @@ from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Pos
 
 app = Flask(__name__,template_folder="templates")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
 
@@ -168,51 +168,44 @@ def signup():
 def optimization():
     if request.method == 'POST':
     
+        
+        Budget = request.form.get("Budget")
+        Player1 = request.form.get("Player1")
+        Player2 = request.form.get("Player2")
+        Player3 = request.form.get("Player3")
+        Player4 = request.form.get("Player4")
+        Player5 = request.form.get("Player5")
+        Player6 = request.form.get("Player6")
+        Player7 = request.form.get("Player7")
+        Player8 = request.form.get("Player8")
+        Player9 = request.form.get("Player9")
+        Player10 = request.form.get("Player10")
+        Player11 = request.form.get("Player11")
+
+
         username = session["user"]
         found_user = users6.query.filter_by(username=username).first()
-        Budget = found_user.Budget
-        Player1 = found_user.Player1
-        Player2 = found_user.Player2
-        Player3 = found_user.Player3
-        Player4 = found_user.Player4
-        Player5 = found_user.Player5
-        Player6 = found_user.Player6
-        Player7 = found_user.Player7
-        Player8 = found_user.Player8
-        Player9 = found_user.Player9
-        Player10 = found_user.Player10
-        Player11 = found_user.Player11
+
+        found_user.Budget = Budget
+        found_user.Player1 = Player1
+        found_user.Player2 = Player2
+        found_user.Player3 = Player3
+        found_user.Player4 = Player4
+        found_user.Player5 = Player5
+        found_user.Player6 = Player6
+        found_user.Player7 = Player7
+        found_user.Player8 = Player8
+        found_user.Player9 = Player9
+        found_user.Player10 = Player10
+        found_user.Player11 = Player11
+        db.session.commit()   
         
         PlayerList = list([Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11])
         
-        del Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11
-                  
-        Player1EX = request.form.get("Player1EX")
-        Player2EX = request.form.get("Player2EX")
-        Player3EX = request.form.get("Player3EX")
-        Player4EX = request.form.get("Player4EX")
-        Player5EX = request.form.get("Player5EX")
-        ExcludePlayers = [Player1EX, Player2EX, Player3EX, Player4EX, Player5EX] 
-        
-        del Player1EX, Player2EX, Player3EX, Player4EX, Player5EX
-        Player1IN = request.form.get("Player1IN")
-        Player2IN = request.form.get("Player2IN")
-        Player3IN = request.form.get("Player3IN")
-        Player4IN = request.form.get("Player4IN")
-        Player5IN = request.form.get("Player5IN")  
-        
-        IncludePlayers = [Player1IN, Player2IN, Player3IN, Player4IN, Player5IN] 
-        del Player1IN, Player2IN, Player3IN, Player4IN, Player5IN
-        
-        Team1EX = request.form.get('Team1EX')
-        Team2EX = request.form.get('Team2EX')
-        Team3EX = request.form.get('Team3EX')
-        Team4EX = request.form.get('Team4EX')    
-        Team5EX = request.form.get('Team5EX')
-        ExcludeTeam = [Team1EX, Team2EX, Team3EX, Team4EX, Team5EX] 
-        
-        del Team1EX, Team2EX, Team3EX, Team4EX, Team5EX
-        
+        ExcludePlayers = [] 
+        IncludePlayers = [] 
+        ExcludeTeam = [] 
+           
         Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
                                                              Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,1,Budget, Names, xPoints)
         
@@ -223,6 +216,7 @@ def optimization():
             if 'Please Select' in ExcludeTeam:
                 ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
             
+
             print(nShare)
             return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                                         Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
@@ -247,16 +241,17 @@ def optimization():
                                             )
     else:
         
-        return redirect(url_for('teamselected'))
+        return redirect(url_for('Viewlist'))
     
 @app.route("/teamupdated", methods=["POST"])
 def teamupdated():
     
     Squad = request.form.getlist("Name")
-    
+    Budget = request.form.getlist("Budget")
     username = session["user"]
     found_user = users6.query.filter_by(username=username).first()
-    
+    found_user.Budget = found_user.Budget
+    found_user.Player1 = Squad[0]
     found_user.Player1 = Squad[0]
     found_user.Player2 = Squad[1]
     found_user.Player3 = Squad[2]
@@ -275,20 +270,21 @@ def teamupdated():
 @app.route("/Adjustoptimization", methods=["POST"])
 def sure():
     if request.method == 'POST':    
-        print(request.form.getlist("mycheckbox"))
-        print(request.form.getlist("Name"))
-        print(request.form.getlist("mycheckboxExcludePLayer"))
-        print(request.form.getlist("ExcludedPlayers"))
-        print(request.form.getlist("mycheckboxExcludedTeams"))
-        print(request.form.getlist("ExcludedTeams"))
+      
+        print(request.form.getlist("mycheckboxteam"))
+
         
         included = request.form.getlist("mycheckbox")
+        includedTeams = request.form.getlist("mycheckboxteam")
         suggested_players = request.form.getlist("Name")
+        suggested_teams = request.form.getlist("Team")
         excludedP = request.form.getlist("mycheckboxExcludePLayer")
         excludedPlayers = request.form.getlist("ExcludedPlayers")
         excludedT = request.form.getlist("mycheckboxExcludedTeams")
         excludedTeams = request.form.getlist("ExcludedTeams")
         
+        print(suggested_teams)
+
         ExcludePlayers=[]
         IncludePlayers=[]
         ExcludeTeam=[]
@@ -296,9 +292,11 @@ def sure():
         for i in range(len(suggested_players)):
             if str(i+1) in included:
                 ExcludePlayers.append(suggested_players[i]) 
-            else:
-                IncludePlayers.append(suggested_players[i]) 
-                
+
+        for i in range(len(suggested_teams)):
+            if str(i+1) in includedTeams:
+                ExcludeTeam.append(suggested_teams[i]) 
+
         print(range(len(excludedPlayers)))    
         for i in range(len(excludedPlayers)):
             if str(i+1) in excludedP:
@@ -435,9 +433,13 @@ def dashboard():
             index = np.where(np.in1d(Names, Squad))[0] 
             Team_help = [Teams[i] for i in index]
             Labels, Values = np.unique(Team_help, return_counts=True)
+            count_sort_ind = np.argsort(-Values)
+            Labels = Labels[count_sort_ind]
+            Values = Values[count_sort_ind]
             labels = 7 * [None]
             values = 7 * [None]
             
+
             print(len(Labels))
             for i in range(len(Labels)):
                 labels[i] = myDict[Labels[i].tolist()]
@@ -653,22 +655,23 @@ def AnalyzePlayers():
         print(request.form.get("Player1"))
         
     form = Form()
-    form.Player1.choices = [("Please Select"),"---"]+sorted(Names)
-    form.Player2.choices = [("Please Select"),"---"]+sorted(Names)
+    form.Player1.choices = [Names[Player1_index],"---"]+sorted(Names)
+    form.Player2.choices = [Names[Player2_index],"---"]+sorted(Names)
     
     labels = ['1','2','3','4','5','6']
-    values1 = [xPoints[Player1_index],xPoints2[Player1_index],xPoints3[Player1_index],
-               xPoints4[Player1_index],xPoints5[Player1_index],xPoints6[Player1_index]]
+    discount = 0.7
+    values1 = [xPoints[Player1_index],xPoints2[Player1_index]/discount,xPoints3[Player1_index]/discount**2,
+               xPoints4[Player1_index]/discount**3,xPoints5[Player1_index]/discount**4,xPoints6[Player1_index]/discount**5]
     
-    values2 = [xPoints[Player2_index],xPoints2[Player2_index],xPoints3[Player2_index],
-               xPoints4[Player2_index],xPoints5[Player2_index],xPoints6[Player2_index]]
-
+    values2 = [xPoints[Player2_index],xPoints2[Player2_index]/discount,xPoints3[Player2_index]/discount**2,
+               xPoints4[Player2_index]/discount**3,xPoints5[Player2_index]/discount**4,xPoints6[Player2_index]/discount**5]
+    
     average = [np.mean(np.array(xPoints)[np.array(xPoints)>0]).tolist(),
-               np.mean(np.array(xPoints2)[np.array(xPoints2)>0]).tolist(),
-               np.mean(np.array(xPoints3)[np.array(xPoints3)>0]).tolist(),
-               np.mean(np.array(xPoints4)[np.array(xPoints4)>0]).tolist(),
-               np.mean(np.array(xPoints5)[np.array(xPoints5)>0]).tolist(),
-               np.mean(np.array(xPoints6)[np.array(xPoints6)>0]).tolist()]
+               (np.mean(np.array(xPoints2)[np.array(xPoints2)>0])/discount).tolist(),
+               (np.mean(np.array(xPoints2)[np.array(xPoints2)>0])/(discount**2)).tolist(),
+               (np.mean(np.array(xPoints2)[np.array(xPoints2)>0])/(discount**3)).tolist(),
+               (np.mean(np.array(xPoints2)[np.array(xPoints2)>0])/(discount**4)).tolist(),
+               (np.mean(np.array(xPoints2)[np.array(xPoints2)>0])/(discount**5)).tolist()]
     
     Name1 = Names[Player1_index]
     Name2 = Names[Player2_index]
