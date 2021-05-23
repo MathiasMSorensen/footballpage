@@ -22,11 +22,15 @@ from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Pos
 # os.chdir('C:/Users/hk1maso/Footballpage')
 
 #to do: 
-## Gør det tydeligt hvad budget er (i.e. at det er total værdi + bank)
+## bankrente
+## Adams comments
+## Make included players possible
+## Sort dropdown such that it  looks at defenders, midfields,etc.
+
 app = Flask(__name__,template_folder="templates")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
 
@@ -184,46 +188,65 @@ def optimization():
         Player10 = request.form.get("Player10")
         Player11 = request.form.get("Player11")
 
-
-        username = session["user"]
-        found_user = users6.query.filter_by(username=username).first()
-
-        found_user.Budget = Budget
-        found_user.Player1 = Player1
-        found_user.Player2 = Player2
-        found_user.Player3 = Player3
-        found_user.Player4 = Player4
-        found_user.Player5 = Player5
-        found_user.Player6 = Player6
-        found_user.Player7 = Player7
-        found_user.Player8 = Player8
-        found_user.Player9 = Player9
-        found_user.Player10 = Player10
-        found_user.Player11 = Player11
-        db.session.commit()   
-        
         PlayerList = list([Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11])
-        
-        ExcludePlayers = [] 
-        IncludePlayers = [] 
-        ExcludeTeam = [] 
-           
-        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
-                                                             Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,1,Budget, Names, xPoints)
-        
-        if Squad != 0:
 
-            if 'Please Select' in ExcludePlayers:
-                ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
-            if 'Please Select' in ExcludeTeam:
-                ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
+        if 'Please Select'  not in PlayerList and  len(set(PlayerList))==11:
+            username = session["user"]
+            found_user = users6.query.filter_by(username=username).first()
+
+            found_user.Budget = Budget
+            found_user.Player1 = Player1
+            found_user.Player2 = Player2
+            found_user.Player3 = Player3
+            found_user.Player4 = Player4
+            found_user.Player5 = Player5
+            found_user.Player6 = Player6
+            found_user.Player7 = Player7
+            found_user.Player8 = Player8
+            found_user.Player9 = Player9
+            found_user.Player10 = Player10
+            found_user.Player11 = Player11
+            db.session.commit()   
             
+            
+            
+            ExcludePlayers = [] 
+            IncludePlayers = [] 
+            ExcludeTeam = [] 
+            
+            Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
+                                                                Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,1,Budget, Names, xPoints)
+            
+            if Squad != 0:
 
-            print(nShare)
-            return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
-                                                        Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
-                                                        Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
-                                                        nShare = nShare, Expected_points = Expected_points)   
+                if 'Please Select' in ExcludePlayers:
+                    ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
+                if 'Please Select' in ExcludeTeam:
+                    ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
+                
+
+                print(nShare)
+                return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
+                                                            Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
+                                                            Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
+                                                            nShare = nShare, Expected_points = Expected_points)   
+            else:
+                error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
+                Squad=['Edit your team']
+                Squad_Position = ['']
+                Squad_Team = ['']
+                Squad_xPoints = ['']
+                Squad_Captain = ['']
+                labels = 7 * ['']
+                values = 7 * [0]
+                nShare = 0
+                Budget = 0
+                TransferCost = 0
+                Expected_points = 0
+                return render_template('fail.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
+                                                Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
+                                                nShare = nShare, Budget = Budget,error_statement=error_statement)
+         
         else:
             error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
             Squad=['Edit your team']
@@ -239,8 +262,7 @@ def optimization():
             Expected_points = 0
             return render_template('fail.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                             Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
-                                            nShare = nShare, Budget = Budget,error_statement=error_statement
-                                            )
+                                            nShare = nShare, Budget = Budget,error_statement=error_statement)
     else:
         
         return redirect(url_for('Viewlist'))

@@ -135,7 +135,7 @@ input[type="checkbox"] {
                         <div class="col-xl-4 col-md-6">
                             <div class="card Recent-Users">
                                       <div class="card-header">
-                                          <h5>Excluded Players</h5>
+                                          <h5>Players excluded from lineup optimizer</h5>
                                           
                                       </div>
                                       <div class="card-block px-0 py-3">
@@ -151,20 +151,20 @@ input[type="checkbox"] {
                                                   <tbody>
                                                     {% set count = namespace(value=1) %}
                                                         {% for each in ExcludePlayers %}          
-                                                                <tr>
+                                                            <tr>
 
-                                                                  <td>
-                                                                  <div class="custom-control custom-checkbox">
-                                                                      <input type="checkbox" name="mycheckboxExcludePLayer" class="form-check-input" value={{ count.value }}  checked>
-                                                                      <label class="form-check-label" for="customCheck1"> {{ count.value }} </label>
-                                                                  </div>
+                                                                <td>
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" name="mycheckboxExcludePLayer" class="form-check-input" value={{ count.value }}  checked>
+                                                                        <label class="form-check-label" for="customCheck1"> {{ count.value }} </label>
+                                                                    </div>
                                                                 </td>
-                                                                  <td> <input type="hidden" name="ExcludedPlayers" value='{{ each }}'> {{ each }} </td>
-                                                                    {% set count.value = count.value + 1 %}
-                                                              {% endfor %} 
+                                                                <td> <input type="hidden" name="ExcludedPlayers" value='{{ each }}'> {{ each }} </td>
+                                                            {% set count.value = count.value + 1 %}
+                                                        {% endfor %} 
                                                               
-                                                      </tr>
-                  
+                                                            </tr>
+
                                                   </tbody>
                                               </table>
                                           </div>
@@ -172,7 +172,7 @@ input[type="checkbox"] {
                                   </div>
                             <div class="card Recent-Users">
                                       <div class="card-header">
-                                          <h5>Excluded Teams</h5>
+                                          <h5>Teams excluded from lineup optimizer</h5>
                                           
                                       </div>
                                       <div class="card-block px-0 py-3">
