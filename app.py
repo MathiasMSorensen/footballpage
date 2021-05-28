@@ -24,7 +24,7 @@ from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Pos
 #to do: 
 ## bankrente
 ## Adams comments
-## Make included players possible
+## Make included players possible   
 ## Sort dropdown such that it  looks at defenders, midfields,etc.
 
 app = Flask(__name__,template_folder="templates")
@@ -166,6 +166,11 @@ def signup():
                          Player7 = '',Player8 = '', Player9 = '', Player10 = '', Player11 = '')
         db.session.add(new_user)
         db.session.commit()
+        
+        session.permanent = True
+        session["user"] = new_user
+        login_user(new_user)
+
         return redirect(url_for('dashboard'))
     
     return render_template('signup.html', form=form)
@@ -208,13 +213,17 @@ def optimization():
             found_user.Player11 = Player11
             db.session.commit()   
             
-            
+            form = Form()
+        
+            form.Player1IN.choices = [("Please Select"),"---"]+sorted(Names)
+            form.Player2IN.choices = [("Please Select"),"---"]+sorted(Names)
+            form.Player3IN.choices = [("Please Select"),"---"]+sorted(Names)
             
             ExcludePlayers = [] 
             IncludePlayers = [] 
             ExcludeTeam = [] 
             
-            Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
+            Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
                                                                 Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,1,Budget, Names, xPoints)
             
             if Squad != 0:
@@ -223,13 +232,14 @@ def optimization():
                     ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
                 if 'Please Select' in ExcludeTeam:
                     ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
-                
 
-                print(nShare)
                 return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                                             Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
                                                             Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
-                                                            nShare = nShare, Expected_points = Expected_points)   
+                                                            nShare = nShare, Expected_points = Expected_points,buy_list=buy_list, sell_list=sell_list,
+                                                            buy_list_position=buy_list_position, buy_list_team=buy_list_team, buy_list_xPoints=buy_list_xPoints, 
+                                                            sell_list_team=sell_list_team, sell_list_position=sell_list_position, sell_list_xPoints=sell_list_xPoints,
+                                                            form = form)   
             else:
                 error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
                 Squad=['Edit your team']
@@ -332,6 +342,32 @@ def sure():
             if str(i+1) in excludedT:
                 ExcludeTeam.append(excludedTeams[i]) 
         
+        Player1_IN = request.form.get("Player1IN")
+        Player2_IN = request.form.get("Player2IN")
+        Player3_IN = request.form.get("Player3IN")
+
+        form = Form()
+        
+        
+
+        if Player1_IN != "Please Select":
+            IncludePlayers.append(Player1_IN)
+            form.Player1IN.choices = [(Player1_IN),"None"]+sorted(Names)
+        else:
+            form.Player1IN.choices = [("Please Select"),"None"]+sorted(Names)
+
+        if Player2_IN != "Please Select":
+            IncludePlayers.append(Player2_IN)
+            form.Player2IN.choices = [(Player2_IN),"None"]+sorted(Names)
+        else:
+            form.Player2IN.choices = [("Please Select"),"None"]+sorted(Names)
+
+        if Player3_IN != "Please Select":
+            IncludePlayers.append(Player3_IN)
+            form.Player3IN.choices = [(Player3_IN),"None"]+sorted(Names)
+        else:
+            form.Player3IN.choices = [("Please Select"),"None"]+sorted(Names)
+
         print(ExcludePlayers)
         print(IncludePlayers)
         print(ExcludeTeam)
@@ -353,22 +389,19 @@ def sure():
         
         PlayerList = list([Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11])
         
-        print(PlayerList)
+        
 
-        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
+        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
                                                          Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,2, Budget, Names, xPoints)
-        
-        print(ExcludePlayers)
-        print(IncludePlayers)
-        print(ExcludeTeam)
-        
-        
-        
+
         return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                                     Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
                                                     Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
-                                                    nShare = nShare, Expected_points = Expected_points)   
-
+                                                    nShare = nShare, Expected_points = Expected_points,buy_list=buy_list, sell_list=sell_list,
+                                                    buy_list_position = buy_list_position, buy_list_team=buy_list_team, buy_list_xPoints=buy_list_xPoints, 
+                                                    sell_list_team=sell_list_team, sell_list_position=sell_list_position, sell_list_xPoints=sell_list_xPoints,
+                                                    form = form) 
+                                                    
     
 @app.route("/teamselected",methods=["POST","GET"])
 def teamselected():
@@ -451,7 +484,7 @@ def dashboard():
         Squad.append(found_user.Player10)
         Squad.append(found_user.Player11)
    
-        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, Squad, xPointsTotal, 
+        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, Squad, xPointsTotal, 
                                                                                             Positions, [], Squad, [], 0, Budget, Names, xPoints)
         if Squad != 0:
             index = np.where(np.in1d(Names, Squad))[0] 
@@ -527,7 +560,7 @@ def top100():
         Squad.append(found_user.Player10)
         Squad.append(found_user.Player11)
    
-        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, Squad, xPointsTotal, 
+        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, Squad, xPointsTotal, 
                                                                                             Positions, [], Squad, [], 0, Budget, Names, xPoints)
         
         Transfer = list(np.where(np.isin(list(Data['Name']), Squad),0,np.array(Value)*0.01)) #Value*0,01 if on team    
@@ -576,7 +609,7 @@ def top100growth():
         Squad.append(found_user.Player10)
         Squad.append(found_user.Player11)
    
-        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points = Pulp_optimization(Teams, N, Data, Value, Squad, xPointsTotal, 
+        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, sell_list, buy_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, Squad, xPointsTotal, 
                                                                                             Positions, [], Squad, [], 0, Budget, Names, xPoints)
         
         Transfer = list(np.where(np.isin(list(Data['Name']), Squad),0,np.array(Value)*0.01)) #Value*0,01 if on team    

@@ -98,20 +98,56 @@ def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions,
         print('\nExpected points in this round = {}'.format(ExpPoints))
         print('\nTransfer cost = {} \nTotal cost = {} \nBudget = {} \nShare = {}% \nBank = {}'.format(TransferCost,TotalCost, Budget, round(TotalCost/Budget*100,1),  Budget-TotalCost))
         
+        sell_list = []
+        sell_list_team = []
+        sell_list_position=[]
+        sell_list_xPoints=[]
         print('\nSell:')
         Old_players = PlayerList
         for i in range(N):
             if Names[i] not in Squad:
                 if Names[i] in Old_players:
-                    print(Names[i], i)
-        
+                    sell_list.append(Names[i])
+                    sell_list_team.append(Teams[i])
+                    sell_list_position.append(Positions[i])
+                    sell_list_xPoints.append(round(xPoints[i]))
+
+        ## Sort
+        GK_index = [i for i, x in enumerate(sell_list_position) if x == "Goalkeeper"]
+        DEF_index = [i for i, x in enumerate(sell_list_position) if x == "Defense"]
+        MID_index = [i for i, x in enumerate(sell_list_position) if x == "Midfield"]
+        STR_index = [i for i, x in enumerate(sell_list_position) if x == "Striker"]
+
+        sell_list = [sell_list[i] for i in GK_index]+[sell_list[i] for i in DEF_index]+[sell_list[i] for i in MID_index]+[sell_list[i] for i in STR_index]
+        sell_list_team = [sell_list_team[i] for i in GK_index]+[sell_list_team[i] for i in DEF_index]+[sell_list_team[i] for i in MID_index]+[sell_list_team[i] for i in STR_index]
+        sell_list_position = [sell_list_position[i] for i in GK_index]+[sell_list_position[i] for i in DEF_index]+[sell_list_position[i] for i in MID_index]+[sell_list_position[i] for i in STR_index]
+        sell_list_xPoints = [sell_list_xPoints[i] for i in GK_index]+[sell_list_xPoints[i] for i in DEF_index]+[sell_list_xPoints[i] for i in MID_index]+[sell_list_xPoints[i] for i in STR_index]
+
+        buy_list = []
+        buy_list_team = []
+        buy_list_position=[]
+        buy_list_xPoints=[]
         print('\nBuy:')
         Old_players = PlayerList
         for i in range(N):
             if Names[i] in Squad:
                 if Names[i] not in Old_players:
-                    print(Names[i], i)
-        
+                    buy_list.append(Names[i])
+                    buy_list_team.append(Teams[i])
+                    buy_list_position.append(Positions[i])
+                    buy_list_xPoints.append(round(xPoints[i]))
+           
+        ## Sort
+        GK_index = [i for i, x in enumerate(buy_list_position) if x == "Goalkeeper"]
+        DEF_index = [i for i, x in enumerate(buy_list_position) if x == "Defense"]
+        MID_index = [i for i, x in enumerate(buy_list_position) if x == "Midfield"]
+        STR_index = [i for i, x in enumerate(buy_list_position) if x == "Striker"]
+
+        buy_list = [buy_list[i] for i in GK_index]+[buy_list[i] for i in DEF_index]+[buy_list[i] for i in MID_index]+[buy_list[i] for i in STR_index]
+        buy_list_team = [buy_list_team[i] for i in GK_index]+[buy_list_team[i] for i in DEF_index]+[buy_list_team[i] for i in MID_index]+[buy_list_team[i] for i in STR_index]
+        buy_list_position = [buy_list_position[i] for i in GK_index]+[buy_list_position[i] for i in DEF_index]+[buy_list_position[i] for i in MID_index]+[buy_list_position[i] for i in STR_index]
+        buy_list_xPoints = [buy_list_xPoints[i] for i in GK_index]+[buy_list_xPoints[i] for i in DEF_index]+[buy_list_xPoints[i] for i in MID_index]+[buy_list_xPoints[i] for i in STR_index]
+
         ## Sort
         GK_index = [i for i, x in enumerate(Squad_Position) if x == "Goalkeeper"]
         DEF_index = [i for i, x in enumerate(Squad_Position) if x == "Defense"]
@@ -130,8 +166,6 @@ def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions,
     
         Budget = Budget-TotalCost 
         
-        
-
     else:
         print("""System crashed""")
         
@@ -144,7 +178,13 @@ def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions,
         TransferCost = 0 
         nShare = 0 
         Squad_xPoints = [0,2] 
-
-    return  Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, sum(Squad_xPoints)
-
+        sell_list = 0
+        buy_list = 0
+        buy_list_position = 0
+        buy_list_team, buy_list_xPoints = 0
+        sell_list_team, sell_list_position = 0
+        sell_list_xPoints = 0
+        
+    return  Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, sum(Squad_xPoints), buy_list, sell_list,  buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints
+ 
 

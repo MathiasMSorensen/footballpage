@@ -3,6 +3,18 @@
 {% block title %} Dashboard {% endblock %} 
 
 <link rel="stylesheet" href="{{url_for('.static/assets', filename='style.css')}}">
+<style>
+    form {
+    width:100%;
+    height:100px;
+    margin:auto;
+    position:relative;
+    }
+     input {
+    width:100%;
+    height: 20px;
+     }
+</style> 
 input[type="checkbox"] {
     vertical-align: middle;
     }
@@ -75,7 +87,86 @@ input[type="checkbox"] {
                             </div>
                         </div>
                         <!--[ year  sales section ] end-->
-
+                        <div class="col-xl-8 col-md-12 m-b-30">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Players To Sell</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Players To Buy</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points in coming round</th>
+                                                <th class="text-right"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in sell_list %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_team[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_position[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_xPoints[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-right"><i class="fas fa-circle text-c-red f-10"></i></td>
+                                            </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Player</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points in coming round</th>
+                                                <th class="text-right"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in buy_list %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_team[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_position[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_xPoints[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-right"><i class="fas fa-circle text-c-green f-10"></i></td>
+                                            </tr>                                               
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <!--[ Recent Users ] start-->
                         <div class="col-xl-8 col-md-6">
                             <div class="card Recent-Users">
@@ -124,103 +215,139 @@ input[type="checkbox"] {
                                                        {% endfor %} 
                                                         
                                                 </tr>
-            
+
                                             </tbody>
                                         </table>
+                                        <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                        <form action="/teamupdated" method="POST"></form>
+                                        <input type="submit" class="btn btn-primary" value="Save lineup to Dashboard" btn-lg>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
                         <!-- [ statistics year chart ] start -->
                         <div class="col-xl-4 col-md-6">
                             <div class="card Recent-Users">
-                                      <div class="card-header">
-                                          <h5>Players excluded from lineup optimizer</h5>
-                                          
-                                      </div>
-                                      <div class="card-block px-0 py-3">
-                                          <div class="table-responsive">
-                                              <table class="table table-hover">
+                                <div class="card-header">
+                                    <h5>Players excluded from lineup optimizer</h5>
+                                </div>
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
                                                 <thead>
-                                                  <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Player</th>
-
-                                                  </tr>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Player</th>
+                                                    </tr>
                                                 </thead>
-                                                  <tbody>
-                                                    {% set count = namespace(value=1) %}
-                                                        {% for each in ExcludePlayers %}          
-                                                            <tr>
-
-                                                                <td>
-                                                                    <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" name="mycheckboxExcludePLayer" class="form-check-input" value={{ count.value }}  checked>
-                                                                        <label class="form-check-label" for="customCheck1"> {{ count.value }} </label>
-                                                                    </div>
-                                                                </td>
-                                                                <td> <input type="hidden" name="ExcludedPlayers" value='{{ each }}'> {{ each }} </td>
-                                                            {% set count.value = count.value + 1 %}
-                                                        {% endfor %} 
-                                                              
-                                                            </tr>
-
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                      </div>
-                                  </div>
-                            <div class="card Recent-Users">
-                                      <div class="card-header">
-                                          <h5>Teams excluded from lineup optimizer</h5>
-                                          
-                                      </div>
-                                      <div class="card-block px-0 py-3">
-                                          <div class="table-responsive">
-                                              <table class="table table-hover">
-                                                <thead>
-                                                  <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Team</th>
-
-                                                  </tr>
-                                                </thead>
-                                                  <tbody>
-                                                    {% set count = namespace(value=1) %}
-                                                          {% for each in ExcludeTeam %}
-                                                                <tr>
-
-                                                                  <td>
-                                                                  <div class="custom-control custom-checkbox">
-                                                                      <input type="checkbox" name="mycheckboxExcludedTeams" class="form-check-input" value={{ count.value }}  checked>
-                                                                      <label class="form-check-label" for="customCheck1"> {{ count.value }} </label>
-                                                                  </div>
-                                                                </td>
-                                                                  <td> <input type="hidden" name="ExcludedTeams" value='{{ each }}'> {{ each }} </td>
-                                                                    {% set count.value = count.value + 1 %}
-                                                              {% endfor %} 
-                                                              
-                                                      </tr>
-                  
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                      </div>
-                                  </div>
-                        </div>
+                                                <tbody>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in ExcludePlayers %}          
+                                                    <tr>
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="mycheckboxExcludePLayer" class="form-check-input" value={{ count.value }}  checked>
+                                                                <label class="form-check-label" for="customCheck1"> {{ count.value }} </label>
+                                                            </div>
+                                                        </td>
+                                                        <td> <input type="hidden" name="ExcludedPlayers" value='{{ each }}'> {{ each }} </td>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                         
+                                <div class="card Recent-Users">
+                                    <div class="card-header">
+                                        <h5>Teams excluded from lineup optimizer</h5>
+                                    </div>
+                                        <div class="card-block px-0 py-3">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Team</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% set count = namespace(value=1) %}
+                                                        {% for each in ExcludeTeam %}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxExcludedTeams" class="form-check-input" value={{ count.value }}  checked>
+                                                                    <label class="form-check-label" for="customCheck1"> {{ count.value }} </label>
+                                                                </div>
+                                                            </td>
+                                                            <td> <input type="hidden" name="ExcludedTeams" value='{{ each }}'> {{ each }} </td>
+                                                        {% set count.value = count.value + 1 %}
+                                                        {% endfor %} 
+                                                        </tr>   
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>                    
+                                <div class="card Recent-Users">
+                                    <div class="card-header">
+                                        <h5>Force players in future lineup</h5>
+                                    </div>
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <label class="form-check-label" for="customCheck1"> Player1 </label>
+                                                        </td>
+                                                        <td> 
+                                                            <div class="form-group" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                                {{ form.Player1IN(class="form-control")}}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label class="form-check-label" for="customCheck1"> Player2 </label>
+                                                        </td>
+                                                        <td> 
+                                                            <div class="form-group" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                                {{ form.Player2IN(class="form-control")}}
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label class="form-check-label" for="customCheck1"> Player3 </label>
+                                                        </td>
+                                                        <td> 
+                                                            <div class="form-group" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                                {{ form.Player3IN(class="form-control")}}
+                                                            </div>
+                                                        </td>
+                                                    </tr> 
+                                                    </div>
+                                                </div>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- [ statistics year chart ] end -->
                        <div class="col-xl-8 col-md-6">
                            <form method="post" action="/Adjustoptimization">
-                               <input type="submit" class="btn btn-success" value="Run lineup optimization with updated constraints"  btn-lg>
                            </form>   
                        </div>                    
-                        <form action="/teamupdated" method="POST">
                          {% for each in Squad %}
                            <input type="hidden" name="Name" value='{{ each }}'>
                         {% endfor %} 
                         <input type="hidden" name="Budget" value='{{ Budget }}'>
-                           <input type="submit" class="btn btn-success" value="Save lineup to Dashboard" btn-lg>
                     </form> 
                 </div>
             </div>
@@ -230,4 +357,6 @@ input[type="checkbox"] {
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+  
+{% endblock javascripts %}     
