@@ -7,11 +7,10 @@ from wtforms.validators import InputRequired, Length
 from flask_wtf import FlaskForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_migrate import Migrate
-from models import db, users6
+from db import db, users6, Data, Data_ECS, Data_EG, Data_EW, N, Value, xPoints2, xPoints3, \
+    xPoints4, xPoints5, xPoints6, xPointsTotal, Names, Positions, Teams, xPoints
 from lookup import myDict
 from Pulp_optimization import Pulp_optimization
-from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Value, xPoints2, xPoints3, \
-    xPoints4, xPoints5, xPoints6, xPointsTotal, Names, Positions, Teams, xPoints
 
 # USe env\Scripts\Activate.ps1 to activate venv
 # os.chdir('C:/Users/hk1maso/Footballpage')
