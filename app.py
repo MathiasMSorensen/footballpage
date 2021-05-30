@@ -1,12 +1,12 @@
 import numpy as np
 from flask import Flask, redirect, url_for, render_template, request, session
-from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-from flask_bootstrap import Bootstrap
+from flask_login import login_user, login_required, logout_user, current_user
 from wtforms import SelectField, StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Length
 from flask_wtf import FlaskForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_migrate import Migrate
+
+from configure_app import configure_app
 from db import db, users6, Data, Data_ECS, Data_EG, Data_EW, N, Value, xPoints2, xPoints3, \
     xPoints4, xPoints5, xPoints6, xPointsTotal, Names, Positions, Teams, xPoints
 from lookup import myDict
@@ -23,28 +23,11 @@ from Pulp_optimization import Pulp_optimization
 
 app = Flask(__name__, template_folder="templates")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config[
-    'SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = "hello"
-
-db.init_app(app)
-migrate = Migrate(app, db)
-
-Bootstrap(app)
+# Setting
+configure_app(app)
 
 ExcludePlayers = []
 IncludePlayers = []
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
-
-
-@login_manager.user_loader
-def load_user(found_user_id):
-    return users6.query.get(int(found_user_id))
 
 
 class LoginForm(FlaskForm):
