@@ -1,0 +1,236 @@
+{% extends "layoutbase.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+{% block stylesheets %}
+<link rel="stylesheet" href="/static/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="/static/assets/css/soccerfield.min.css" />		
+<link rel="stylesheet" type="text/css" href="/static/assets/css/soccerfield.default.min.css" />	
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="container">
+ <div class="row">
+        <div class="card Recent-Users">
+            <div class="card-header">
+                <h5>Select your current team</h5>
+            </div>
+            <div class="col-sm-10">
+              {{ form.csrf_token}}  
+              <div class="container">
+                <h1>Bootstrap Table</h1>
+                
+                <p>A table with third party integration  extension Filter control extension Data export</a> pour exporter</p>
+                
+                <div id="toolbar">
+                    <select class="form-control">
+                        <option value="">Export Basic</option>
+                        <option value="all">Export All</option>
+                        <option value="selected">Export Selected</option>
+                    </select>
+                </div>
+                
+                <table id="table" 
+                       data-toggle="table"
+                       data-search="true"
+                       data-filter-control="true" 
+                       data-show-export="true"
+                       data-click-to-select="true"
+                       data-toolbar="#toolbar"
+                       class="table-responsive">
+                  <thead>
+                    <tr>
+                      <th data-field="state" data-checkbox="true"></th>
+                      <th data-field="prenom" data-filter-control="input" data-sortable="true">First Name</th>
+                      <th data-field="date" data-filter-control="select" data-sortable="true">Date</th>
+                      <th data-field="examen" data-filter-control="select" data-sortable="true">Examination</th>
+                      <th data-field="note" data-sortable="true">Note</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+                      <td>Jitender</td>
+                      <td>01/09/2015</td>
+                      <td>Français</td>
+                      <td>12/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="1" name="btSelectItem" type="checkbox"></td>
+                      <td>Jahid</td>
+                      <td>05/09/2015</td>
+                      <td>Philosophie</td>
+                      <td>8/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="2" name="btSelectItem" type="checkbox"></td>
+                      <td>Valentin</td>
+                      <td>05/09/2015</td>
+                      <td>Philosophie</td>
+                      <td>4/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="3" name="btSelectItem" type="checkbox"></td>
+                      <td>Milton</td>
+                      <td>05/09/2015</td>
+                      <td>Philosophie</td>
+                      <td>10/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="4" name="btSelectItem" type="checkbox"></td>
+                      <td>Gonesh</td>
+                      <td>01/09/2015</td>
+                      <td>Français</td>
+                      <td>14/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="5" name="btSelectItem" type="checkbox"></td>
+                      <td>Valérie</td>
+                      <td>07/09/2015</td>
+                      <td>Mathématiques</td>
+                      <td>19/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="6" name="btSelectItem" type="checkbox"></td>
+                      <td>Valentin</td>
+                      <td>01/09/2015</td>
+                      <td>Français</td>
+                      <td>11/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="7" name="btSelectItem" type="checkbox"></td>
+                      <td>Eric</td>
+                      <td>01/10/2015</td>
+                      <td>Philosophie</td>
+                      <td>8/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="8" name="btSelectItem" type="checkbox"></td>
+                      <td>Valentin</td>
+                      <td>07/09/2015</td>
+                      <td>Mathématiques</td>
+                      <td>14/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="9" name="btSelectItem" type="checkbox"></td>
+                      <td>Valérie</td>
+                      <td>01/10/2015</td>
+                      <td>Philosophie</td>
+                      <td>12/20</td>
+                    </tr>
+                    <tr>
+                      <td class="bs-checkbox "><input data-index="10" name="btSelectItem" type="checkbox"></td>
+                      <td>Eric</td>
+                      <td>07/09/2015</td>
+                      <td>Mathématiques</td>
+                      <td>14/20</td>
+                    </tr>
+                    <tr>
+                    <td class="bs-checkbox "><input data-index="11" name="btSelectItem" type="checkbox"></td>
+                      <td>Valentin</td>
+                      <td>01/10/2015</td>
+                      <td>Philosophie</td>
+                      <td>10/20</td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+              </form>
+<br/>
+            <form action="/optimization" method="POST"> 
+              <input type="submit" class="btn btn-primary" value="Submit team and run lineup optimzier" btn-lg>
+            </form> 
+            </div>
+            <br/>
+      <div class="col-sm">
+        <div class="card">
+          <div class="card-header">
+              <h5>Soccerfield</h5>
+          </div>
+            <body>
+              <br/>
+              <div id="soccerfield">
+              </div>
+              <br/>
+            </body>
+          </div>
+        </div> 
+      </div> 
+  </div> 
+</div> 
+{% endblock %}
+{% block javascripts %}
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
+	
+<script src="/static/assets/js/jquery.min.js"></script>
+<script src="/static/assets/js/jquery.soccerfield.min.js"></script>
+<script type="text/javascript">
+    //Soccer players data. Could be set as a variable or loaded from server
+    var data = [
+        {name: 'Gianluigi Buffon', position: 'C_GK'},
+        {name: 'Leonardo Bonucci', position: 'LC_B'},
+        {name: 'Giorgio Chiellini', position: 'C_B'},
+        {name: 'Andrea Barzagli', position: 'RC_B'},
+        {name: 'Daniele De Rossi', position: 'C_DM'},
+        {name: 'Alessandro Florenzi', position: 'L_M'},                
+        {name: 'Emanuele Giaccherini', position: 'LC_M'},
+        {name: 'Marco Parolo', position: 'RC_M'},
+        {name: 'Antonio Candreva', position: 'R_M'},
+        {name: 'Éder', position: 'LC_F'},
+        {name: 'Lionel Messi', position: 'RC_F'},
+    ];
+    $(document).ready(function () {
+        var options =  {
+    field: {
+        width: "960px",
+        height: "600px",
+        img: '/static/assets/images/fifa_soccer_field_1.png',
+        startHidden: false,
+        animate: true,
+        fadeTime: 0,
+        autoReveal:true,
+        onReveal: function () {
+
+        }
+    },
+    players: {
+        font_size: 16,
+        reveal: true,
+        sim: false,
+        timeout: 0,
+        fadeTime: 2000,
+        img: '/static/assets/images/soccer-player.png'
+    }
+};
+$("#soccerfield").soccerfield(data,options);
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+      $('#Player1').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player1.label.text }}",
+          allowClear: true
+      });
+  });
+  </script>
+  <script>
+var $table = $('#table');
+$(function () {
+    $('#toolbar').find('select').change(function () {
+        $table.bootstrapTable('refreshOptions', {
+            exportDataType: $(this).val()
+        });
+    });
+})
+
+var trBoldBlue = $("table");
+
+$(trBoldBlue).on("click", "tr", function (){
+  $(this).toggleClass("bold-blue");
+});
+</script>
+{% endblock javascripts %}          

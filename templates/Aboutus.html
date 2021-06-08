@@ -1,0 +1,82 @@
+{% extends "layoutbase.html" %}
+
+{% block title %} About us {% endblock %} 
+
+<link rel="stylesheet" href="{{url_for('.static/assets', filename='style.css')}}">
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <!-- [ collapse ] start -->
+                    <div class="col-sm-12">
+                        <h5 class="mb-3">About</h5>
+                        <hr>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0"><a href="#!" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">About the Website</a></h5>
+                                </div>
+                                <div id="collapseOne" class=" card-body collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    FantasyAnalytics is a website made to optimize your fantasy football team, based on advanced analytical methods. It is a community for people who want to:
+                                    <br><br>   
+                                    <li>Improve performance of advanced analytics using statistics</li>
+                                        
+                                        <li>Spend less time on finding the right squad for the coming Round</li>
+                                        
+                                        <li>Learn how statistical methods can be used to solve everyday problems</li>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0"><a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How we are different</a></h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse card-body" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    We are not just displaying various tables of the statistical forecast, for the coming rounds as many others. We are actively putting your team together for the coming round, by taking all constraints into account, e.g. transfers, double rounds, etc. <br>
+                                    We calculate projections using the wisdom of the crowd, rather than wisdom from the individual. This means that we use various sources, to be able to project in the best possible way.                                    <br>
+                                    Unlike other sites we: 
+                                    <br><br>
+                                    <li>We have developed an algorithm, which will consider all relevant constraints, and set the most optimal team for you.</li> 
+                     
+                                        <li> We provide the calculated metrics individually and for the different team.</li> 
+                                      
+                                        <li>We provide graphics to make you able to compare players against each other. </li>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0"><a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Free of charge</a></h5>
+                                </div>
+                                <div id="collapseThree" class="card-body collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    We are making all these things, free of charge. We feel that by making this software free of charge, we remain fantasy football to be for everyone and that everyone is competing on an equal basis regardless of socioeconomic status, etc.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [ collapse ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

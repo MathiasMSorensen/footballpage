@@ -1,0 +1,122 @@
+{% extends "layoutbase.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<link rel="stylesheet" href="{{url_for('.static/assets', filename='style.css')}}">
+{% block stylesheets %}{% endblock stylesheets %}
+
+    
+{% block content %}
+
+    <div class="container">
+    <br/>
+    {{Team}}    
+    </div>
+    <div id="loading"></div>
+    <div id="content">
+
+    <div class="container">
+      <div class="row">
+        <form action="/optimization" method="POST">
+        <div class="card Recent-Users">
+            <div class="card-header">
+                <h5>Select players which needs to be in your lineup</h5>
+            </div>
+            <div class="card-block px-0 py-3">
+            <div class="col-sm">
+              <form action="/teamselected" method="POST">
+                {{ form.csrf_token}}  
+            <div class="form-group">
+        
+            <label for="email" name='Player1IN' placeholder="Select Player">Player1:</label>
+            {{ form.Player1IN(class="form-control")}}
+           </div>
+           <div class="form-group">
+            <label for="email" name='Player2IN' placeholder="Select Player">Player2:</label>
+            {{ form.Player2IN(class="form-control")}}
+           </div>
+           <div class="form-group">
+            <label for="email" name='Player3IN' placeholder="Select Player">Player3:</label>
+            {{ form.Player3IN(class="form-control")}} 
+           </div>
+           <div class="form-group">
+            <label for="email" name='Player4IN' placeholder="Select Player">Player4:</label>
+            {{ form.Player4IN(class="form-control")}} 
+           </div>
+              <div class="form-group">
+            <label for="email" name='Player5IN' placeholder="Select Player">Player5:</label>
+            {{ form.Player5IN(class="form-control")}} 
+           </div>
+        </div>
+        </div>
+        </div>
+        <div class="card Recent-Users">
+            <div class="card-header">
+                <h5>Select players which should not be part of your lineup</h5>
+            </div>
+            <div class="card-block px-0 py-3">
+            <div class="col-sm">
+
+            <div class="form-group">
+        
+            <label for="email" name='Player1EX' placeholder="Select Player">Player1:</label>
+            {{ form.Player1EX(class="form-control")}}
+           </div>
+           <div class="form-group">
+            <label for="email" name='Player2EX' placeholder="Select Player">Player2:</label>
+            {{ form.Player2EX(class="form-control")}}
+           </div>
+           <div class="form-group">
+            <label for="email" name='Player3EX' placeholder="Select Player">Player3:</label>
+            {{ form.Player3EX(class="form-control")}} 
+           </div>
+           <div class="form-group">
+            <label for="email" name='Player4EX' placeholder="Select Player">Player4:</label>
+            {{ form.Player4EX(class="form-control")}} 
+           </div>
+              <div class="form-group">
+            <label for="email" name='Player5EX' placeholder="Select Player">Player5:</label>
+            {{ form.Player5EX(class="form-control")}} 
+           </div>
+        </div>
+        </div>
+        </div>
+        <div class="card Recent-Users">
+            <div class="card-header">
+                <h5>Select teams which should not be part of your lineup</h5>
+            </div>
+            <div class="card-block px-0 py-3">
+        <div class="col-sm">
+
+              <div class="form-group">        
+                <label for="email" name='Team1EX' placeholder="Select Team">Team1:</label>
+                {{ form.Team1EX(class="form-control")}}
+               </div>
+               <div class="form-group">
+                <label for="email" name='Team2EX' placeholder="Select Team">Team2:</label>
+                {{ form.Team2EX(class="form-control")}}
+               </div>
+               <div class="form-group">
+                <label for="email" name='Team3EX' placeholder="Select Team">Team3:</label>
+                {{ form.Team3EX(class="form-control")}} 
+               </div>
+               <div class="form-group">
+                <label for="email" name='Team3EX' placeholder="Select Team">Team4:</label>
+                {{ form.Team4EX(class="form-control")}} 
+               </div>
+               <div class="form-group">
+                <label for="email" name='Team3EX' placeholder="Select Team">Team5:</label>
+                {{ form.Team5EX(class="form-control")}} 
+               </div>
+               <br/>
+               <input type="submit" class="btn btn-success" value="Input constraints and run lineup optimizer" btn-lg>
+              </form> 
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<script>
+
+</script>
+{% endblock %}

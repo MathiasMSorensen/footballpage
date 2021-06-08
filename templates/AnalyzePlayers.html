@@ -1,0 +1,212 @@
+{% extends "layoutbase.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="/static/assets/plugins/chart-morris/css/morris.css">
+
+{% endblock stylesheets %}
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <form action="/AnalyzePlayers" method="POST">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <!-- [ Morris Chart ] start -->
+
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Player1</h5>
+                            </div>                        
+                          <div class="form-group">
+                            <div class="card-block px-0 py-3">
+                              <div class="col-sm">
+                                  <label for="email" name='Select player to be analzyed'></label>  
+                                      {{ form.Player1(class="form-control")}}
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Player2</h5>
+                            </div>
+                          <div class="form-group">
+                              <div class="card-block px-0 py-3">
+                                  <div class="col-sm">
+                                      <label for="email" name='Select player to be analzyed'></label>
+                                          {{ form.Player2(class="form-control")}}
+                                   </div>
+                               </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>{{ Name1 }}</h5>
+                            </div>
+                            <div class="card-block">
+                                <div id="morris-line-smooth-chart" class="ChartShadow" style="height:300px"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>{{ Name2 }}</h5>
+                            </div>
+                            <div class="card-block">
+                                <div id="morris-line-smooth-chart1" class="ChartShadow" style="height:300px"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <br/>
+                        <div class="col-sm-12 mb-3">
+                        <input class="btn btn-primary" aria-expanded="false" type="submit" class="btn btn-success" value="Get Player Stats" btn-lg>
+                        </form>    
+                    </div>  
+                    
+                      <div class="col-sm-12 mb-3">
+                        <hr>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">How is the average calculated?</a>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Whyt is the curve declining across time?</button>
+                        <div class="row">
+                            <div class="col">
+                                <div class="collapse multi-collapse mt-2" id="multiCollapseExample1">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="mb-0">The average is based on the average expected points for the given round, for all players which is expected to get points within the given round (i.e. non active players not included)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="collapse multi-collapse mt-2" id="multiCollapseExample2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="mb-0">We are modelling for the next 6 rounds, but we are weigthing the first coming rounds higher than the last ones. The reason being that future rounds has more uncertainty to it (injuries, etc.)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                     
+                    <!-- [ Morris Chart ] end -->
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}     
+{% block javascripts %}
+    <script src="/static/assets/plugins/chart-morris/js/raphael.min.js"></script>
+    <script src="/static/assets/plugins/chart-morris/js/morris.min.js"></script>
+    <script> 'use strict';
+$(document).ready(function() {
+    setTimeout(function() {
+    Morris.Line({
+        element: 'morris-line-smooth-chart',
+        data: [{
+                y: {{ labels[0]|tojson }},
+                a: {{ values1[0]|tojson }},
+                b: {{ average[0]|tojson }}
+            },
+            {
+                y: {{ labels[1]|tojson }},
+                a: {{ values1[1]|tojson }},
+                b: {{ average[1]|tojson }}
+            },
+            {
+                y: {{ labels[2]|tojson }},
+                a: {{ values1[2]|tojson }},
+                b: {{ average[2]|tojson }}
+            },
+            {
+                y: {{ labels[3]|tojson }},
+                a: {{ values1[3]|tojson }},
+                b: {{ average[3]|tojson }}
+            },
+            {
+                 y: {{ labels[4]|tojson }},
+                a: {{ values1[4]|tojson }},
+                b: {{ average[4]|tojson }}
+            },
+            {
+                y: {{ labels[5]|tojson }},
+                a: {{ values1[5]|tojson }},
+                b: {{ average[5]|tojson }}
+            }
+        ],
+        xkey: 'y',
+        redraw: true,
+        parseTime: false,
+        resize: true,
+        ykeys: ['a', 'b'],
+        hideHover: 'auto',
+        responsive:true,
+        ymax: 150000,
+        ymin:0,
+        labels: [{{ Name1|tojson }}, 'Average'],
+        lineColors: ['#1de9b6', '#A389D4']
+    });
+    // [ line-smooth-chart ] end
+   Morris.Line({
+        element: 'morris-line-smooth-chart1',
+        data: [{
+                y: {{ labels[0]|tojson }},
+                a: {{ values2[0]|tojson }},
+                b: {{ average[0]|tojson }}
+            },
+            {
+                y: {{ labels[1]|tojson }},
+                a: {{ values2[1]|tojson }},
+                b: {{ average[1]|tojson }}
+            },
+            {
+                y: {{ labels[2]|tojson }},
+                a: {{ values2[2]|tojson }},
+                b: {{ average[2]|tojson }}
+            },
+            {
+                y: {{ labels[3]|tojson }},
+                a: {{ values2[3]|tojson }},
+                b: {{ average[3]|tojson }}
+            },
+            {
+                 y: {{ labels[4]|tojson }},
+                a: {{ values2[4]|tojson }},
+                b: {{ average[4]|tojson }}
+            },
+            {
+                y: {{ labels[5]|tojson }},
+                a: {{ values2[5]|tojson }},
+                b: {{ average[5]|tojson }}
+            }
+        ],
+        xkey: 'y',
+        redraw: true,
+        parseTime: false,
+        resize: true,
+        ykeys: ['a', 'b'],
+        hideHover: 'auto',
+        responsive:true,
+        ymax: 150000,
+        ymin:0,
+        labels: [{{ Name2|tojson }}, 'Average'],
+        lineColors: ['#1de9b6', '#A389D4']
+    });
+    // [ line-smooth-chart ] end    
+        }, 700);
+});
+</script>
+
+{% endblock javascripts %}          

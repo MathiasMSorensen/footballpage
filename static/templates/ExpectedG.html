@@ -1,0 +1,72 @@
+{% extends "layoutbase.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="/static/assets/plugins/chart-morris/css/morris.css">
+
+{% endblock stylesheets %}
+{% block content %}
+<form action="/Viewlist/">
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-xl-8 col-md-6">
+                            <div class="card Recent-Users">
+                                <div class="card-header">
+                                    <h5>Expected Goals</h5>
+                                </div>
+                                <div class="card-block px-0 py-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                          <tbody>
+                                                  <thead>
+                                                    <tr>
+                                                  <th>Team</th>
+                                                  <th>Game1</th>
+                                                  <th>Game2</th>
+                                                  <th>Game3</th>
+                                                  <th>Game4</th>
+                                                  <th>Game5</th>
+                                                  <th>Game6</th>                                                                                           
+                                                  <th>Avg</th>
+                                                  <th>Min</th>
+                                                  <th>Max</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody>
+                                              {% set count = namespace(value=1) %}
+                                              {% for each in Team1 %}
+                                                <tr>
+                                                  <td>{{ each }}</td>
+                                                  <td>{{ col1[count.value-1] }}</td>
+                                                  <td>{{ col2[count.value-1] }}</td>
+                                                  <td>{{ col3[count.value-1] }}</td>
+                                                  <td>{{ col4[count.value-1] }}</td>
+                                                  <td>{{ col5[count.value-1] }}</td>
+                                                  <td>{{ col6[count.value-1] }}</td>
+                                                  <td>{{ Avg[count.value-1] }}</td>
+                                                  <td>{{ Min[count.value-1] }}</td>
+                                                  <td>{{ Max[count.value-1] }}</td>
+                                                                                                    
+                                                  {% set count.value = count.value + 1 %}
+                                                  {% endfor %} 
+                                                </tr>
+                                                 </tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}  

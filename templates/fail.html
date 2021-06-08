@@ -1,0 +1,176 @@
+{% extends "layoutbase.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="/static/assets/plugins/chart-morris/css/morris.css">
+
+{% endblock stylesheets %}
+{% block content %}
+<form action="/Viewlist/">
+{% if error_statement %}  
+    <div class="alert alert-primary d-flex align-items-center" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+        <div>
+          {{ error_statement }}
+        </div>
+      </div>
+{% endif %}  
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+
+            <!-- [ breadcrumb ] end -->
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <!-- [ Main Content ] start -->
+                    <div class="row">
+                        <div class="col-xl-8 col-md-6">
+                            <div class="card Recent-Users">
+                                <div class="card-header">
+                                    <h5>Current team</h5>
+                                </div>
+                                <div class="card-block px-0 py-3">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                          <tbody>
+                                                  <thead>
+                                                    <tr>
+                                                  <th>#</th>
+                                                  <th>Name</th>
+                                                  <th>Position</th>
+                                                  <th>Team</th>
+                                                  <th>Expected Points</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody>
+                                
+                                              {% set count = namespace(value=1) %}
+                                              {% for each in Squad %}
+                                                <tr>
+                                                <td> {{ count.value }} </td>
+                                                          <td>
+                                                              <input type="hidden" name="Name" value='{{ each }}'>
+                                                              <h6 class="mb-1">{{ each }}</h6>
+                                                              <p class="m-0">{{ Squad_Captain[count.value-1] }}</p>
+                                                          </td>
+                                                  <td>{{ Squad_Position[count.value-1] }}</td>
+                                                  <td>{{ Squad_Team[count.value-1] }}</td>
+                                                  <td>{{ Squad_xPoints[count.value-1] }}</td>
+                                                  {% set count.value = count.value + 1 %}
+                                                  {% endfor %} 
+                                                </tr>
+                                                 </tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--[ Recent Users ] end--> 
+                        <div class="col-xl-4 col-md-6">
+                    <div class="card">
+                            <div class="card-header">
+                                <h5>Club allocation</h5>
+                            </div>
+                            <div class="card-block">
+                                <div id="morris-bar-chart" style="height:300px"></div>
+                            </div>
+                        </div>
+                            <div class="card">
+                                <div class="card-block border-bottom">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-auto">
+                                            <h5 class="m-0">Budget</h5>
+                                            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>$ {{Budget}}</h3>
+                                        </div>
+
+                                            <div class="col-3 text-right">
+                                                <p class="m-b-0">{{ nShare }}% used</p>
+                                            </div>
+                                    </div>
+                                        <div class="progress m-t-30" style="height: 7px;">
+                                            <div class="progress-bar progress-c-theme" role="progressbar" style="width: {{ nShare }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    
+                                </div>
+                            
+                            <div class="card-block">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-auto">
+                                            <i class="feather icon-map-pin f-30 text-c-blue"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="f-w-300">26th April - Round 35</h3>
+                                            <span class="d-block text-uppercase">Last updated date</span>
+                                        </div>
+                                    </div>
+                                </div>                                        
+                            </div>            
+
+                        </div> 
+                   </div>
+                    <input type="submit" class="btn btn-success" value="Edit Team" btn-lg>
+                </form> 
+            </div>
+        </div>
+    </div>
+{% endblock content %}     
+{% block javascripts %}
+    <script src="/static/assets/plugins/chart-morris/js/raphael.min.js"></script>
+    <script src="/static/assets/plugins/chart-morris/js/morris.min.js"></script>
+    <script> 'use strict';
+$(document).ready(function() {
+    setTimeout(function() {
+    // [ bar-simple ] chart start
+    Morris.Bar({
+        element: 'morris-bar-chart',
+        data: [{
+        
+                y: {{ labels[0]|tojson }},
+                a: {{ values[0]|tojson }},
+            },
+            {
+                y: {{ labels[1]|tojson }},
+                a: {{ values[1]|tojson }},
+
+            },
+            {
+                y: {{ labels[2]|tojson }},
+                a: {{ values[2]|tojson }},
+            },
+            {
+                y: {{ labels[3]|tojson }},
+                a: {{ values[3]|tojson }},
+            },            
+            {
+                y: {{ labels[4]|tojson }},
+                a: {{ values[4]|tojson }},
+            },            
+            {
+                y: {{ labels[5]|tojson }},
+                a: {{ values[5]|tojson }},
+            },            
+            {
+                y: {{ labels[6]|tojson }},
+                a: {{ values[6]|tojson }},
+            }
+            
+        ],
+        xkey: 'y',
+        barSizeRatio: 0.70,
+        barGap: 3,
+        resize: true,
+        responsive:true,
+        ykeys: ['a'],
+        labels: ['Count'],
+        barColors: ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#04a9f5"]
+    });
+    // [ bar-simple ] chart end
+        }, 700);
+});
+</script>
+
+{% endblock javascripts %}                                   

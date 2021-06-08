@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}
+Confirm team
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+
+
+<html>
+<br/><br/><br/>
+   <form action="/teamupdated" method="POST">
+     {% for each in Squad %}
+       <input type="hidden" name="Name" value='{{ each }}'>
+    {% endfor %} 
+    
+   <input type="submit" class="btn btn-success" value="Save team to Dashboard" btn-lg>
+    </form> 
+<form action="/Adjustoptimization" method="POST">
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+      <th scope="col">Position</th>
+      <th scope="col">Team</th>
+      <th scope="col">Expected points</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+      {% set count = namespace(value=1) %}
+      {% for each in Squad %}
+        <tr>
+          <td>
+          <div class="custom-control custom-checkbox">
+              <input type="checkbox" name="mycheckbox" class="custom-control-input" value={{ count.value }}  >
+              <label class="custom-control-label" for="customCheck1"> {{ count.value }} </label>
+          </div>
+        </td>
+          <td> <input type="hidden" name="Name" value='{{ each }}'> {{ each }} </td>
+          <td>{{ Squad_Captain[count.value-1] }}</td>
+          <td>{{ Squad_Position[count.value-1] }}</td>
+          <td>{{ Squad_Team[count.value-1] }}</td>
+          <td>{{ Squad_xPoints[count.value-1] }}</td>
+            {% set count.value = count.value + 1 %}
+      {% endfor %} 
+         
+    </tr>
+ 
+  </tbody>
+  
+  </table>
+ <div class="row">
+  <div class="table-responsive col-md-6">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% set count = namespace(value=1) %}
+      {% for each in ExcludePlayers %}
+        <tr>
+          <td>
+          <div class="custom-control custom-checkbox">
+              <input type="checkbox" name="mycheckboxExcludePLayer" class="custom-control-input" value={{ count.value }}  checked>
+              <label class="custom-control-label" for="customCheck1"> {{ count.value }} </label>
+          </div>
+        </td>
+          <td> <input type="hidden" name="ExcludedPlayers" value='{{ each }}'> {{ each }} </td>
+            {% set count.value = count.value + 1 %}
+      {% endfor %} 
+      </form>    
+    </tr>
+  </tbody>
+  </table> 
+  </div>
+  
+    <div class="table-responsive col-md-6">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ExcludedTeams</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% set count = namespace(value=1) %}
+      {% for each in ExcludeTeam %}
+        <tr>
+          <td>
+          <div class="custom-control custom-checkbox">
+              <input type="checkbox" name="mycheckboxExcludedTeams" class="custom-control-input" value={{ count.value }}  checked>
+              <label class="custom-control-label" for="customCheck1"> {{ count.value }} </label>
+          </div>
+        </td>
+          <td> <input type="hidden" name="ExcludedTeams" value='{{ each }}'> {{ each }} </td>
+            {% set count.value = count.value + 1 %}
+      {% endfor %} 
+      </form>    
+    </tr>
+  </tbody>
+  </table> 
+  </div>
+   <input type="submit" class="btn btn-success" value="Run optimization with constraints" btn-lg>
+
+         
+  </html>
+{% endblock %}
