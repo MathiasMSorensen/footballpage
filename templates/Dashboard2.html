@@ -219,8 +219,10 @@ input[type="checkbox"] {
                                             </tbody>
                                         </table>
                                         <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+
                                         </form>
                                     </div>                                   
+
                                 </div>
                             </div>
                         </div>
@@ -338,6 +340,7 @@ input[type="checkbox"] {
                             </div>
                         </div>
                         <!-- [ statistics year chart ] end -->
+
                         <form action="/teamupdated" method="POST">
                             {% for each in Squad %}
                               <input type="hidden" name="Name" value='{{ each }}'>
@@ -345,6 +348,8 @@ input[type="checkbox"] {
                            <input type="hidden" name="Budget" value='{{ Budget }}'>
                               <input type="submit" class="btn btn-primary" value="Save lineup to Dashboard" btn-lg>
                         </form>
+
+
                     </form> 
                 </div>
             </div>

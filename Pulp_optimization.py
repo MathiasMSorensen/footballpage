@@ -3,11 +3,18 @@ def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions,
     import numpy as np
     import pulp
 
+<<<<<<< HEAD
     # list(np.where(np.isin(list(Data['Name']), PlayerList),0,np.array(Value)*0))
     Transfer = np.zeros(N) #Value*0,01 if on team    
     TotalPoints = list(np.array(xPointsTotal)  - np.array(Transfer))
     Cost = list(np.array(Value) + np.array(Transfer)) # Value+transfer
     Budget = int(50000000)
+=======
+    Transfer = list(np.where(np.isin(list(Data['Name']), PlayerList),0,np.array(Value)*0.01)) #Value*0,01 if on team    
+    TotalPoints = list(np.array(xPointsTotal)  - np.array(Transfer))
+    Cost = list(np.array(Value) + np.array(Transfer)) # Value+transfer
+    Budget = int(Budget)
+>>>>>>> d6ca453dd9e10b1e7cc18b19cb5a8f00ad87adfc
     # Set up model:
     model = pulp.LpProblem("Constrained_maximisation", pulp.LpMaximize)
     
