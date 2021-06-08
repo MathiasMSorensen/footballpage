@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 myDict = {'Denmark': 'DEN',
           'Scotland': 'SCO',
           'Netherlands': 'NLD',
@@ -23,26 +22,3 @@ myDict = {'Denmark': 'DEN',
           'Portugal': 'POR',
           'Croatia': 'CRO',
           'Ukraine': 'UKR'}
-=======
-myDict = {'Arsenal': 'ARS',
-          'Aston Villa': 'AVL',
-          'Brighton and Hove': 'BRI',
-          'Burnley': 'BUR',
-          'Chelsea': 'CHE',
-          'Crystal Palace': 'CRY',
-          'Fulham': 'FUL',
-          'Leeds United': 'LEE',
-          'Leicester City': 'LEI',
-          'Liverpool': 'LIV',
-          'Manchester City': 'MCI',
-          'Manchester United': 'MUN',
-          'Newcastle United': 'NEW',
-          'Southampton': 'SOU',
-          'Sheffield United': 'SHU',
-          'Tottenham': 'TOT',
-          'West Bromwich': 'WBA',
-          'West Ham': 'WHA',
-          'Wolverhampton': 'WOL',
-          'Everton': 'EVE'}
-
->>>>>>> d6ca453dd9e10b1e7cc18b19cb5a8f00ad87adfc
