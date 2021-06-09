@@ -263,6 +263,8 @@ awayTeamCleanSheet = []
 
 
 ### trash 
+from soccerapi.api import ApiUnibet
+import pandas as pd
 api = ApiUnibet()
 
 url = 'https://www.unibet.com/betting/sports/filter/football/euro_2020/'

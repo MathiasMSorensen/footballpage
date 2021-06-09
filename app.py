@@ -24,8 +24,8 @@ from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Pos
 
 app = Flask(__name__,template_folder="templates")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
 
@@ -192,69 +192,69 @@ def signup():
 
 @app.route("/optimization",methods=["POST","GET"])
 def optimization():
-    if request.method == 'POST':
+#    if request.method == 'POST':
     
         
+    Budget = 0
+    # Player1 = request.form.get("Player1")
+    # Player2 = request.form.get("Player2")
+    # Player3 = request.form.get("Player3")
+    # Player4 = request.form.get("Player4")
+    # Player5 = request.form.get("Player5")
+    # Player6 = request.form.get("Player6")
+    # Player7 = request.form.get("Player7")
+    # Player8 = request.form.get("Player8")
+    # Player9 = request.form.get("Player9")
+    # Player10 = request.form.get("Player10")
+    # Player11 = request.form.get("Player11")
+
+    PlayerList = []
+
+    username = session["user"]
+    
+    form = Form()
+
+    form.Player1IN.choices = [("Please Select"),"---"]+sorted(Names)
+    form.Player2IN.choices = [("Please Select"),"---"]+sorted(Names)
+    form.Player3IN.choices = [("Please Select"),"---"]+sorted(Names)
+    
+    ExcludePlayers = [] 
+    IncludePlayers = [] 
+    ExcludeTeam = [] 
+        
+    Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
+                                                            Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,1,Budget, Names, xPoints)
+        
+    if Squad != 0:
+
+        if 'Please Select' in ExcludePlayers:
+            ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
+        if 'Please Select' in ExcludeTeam:
+            ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
+
+        return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
+                                                    Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
+                                                    Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
+                                                    nShare = nShare, Expected_points = Expected_points,buy_list=buy_list, sell_list=sell_list,
+                                                    buy_list_position=buy_list_position, buy_list_team=buy_list_team, buy_list_xPoints=buy_list_xPoints, 
+                                                    sell_list_team=sell_list_team, sell_list_position=sell_list_position, sell_list_xPoints=sell_list_xPoints,
+                                                    form = form)   
+    else:
+        error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
+        Squad=['Edit your team']
+        Squad_Position = ['']
+        Squad_Team = ['']
+        Squad_xPoints = ['']
+        Squad_Captain = ['']
+        labels = 7 * ['']
+        values = 7 * [0]
+        nShare = 0
         Budget = 0
-        # Player1 = request.form.get("Player1")
-        # Player2 = request.form.get("Player2")
-        # Player3 = request.form.get("Player3")
-        # Player4 = request.form.get("Player4")
-        # Player5 = request.form.get("Player5")
-        # Player6 = request.form.get("Player6")
-        # Player7 = request.form.get("Player7")
-        # Player8 = request.form.get("Player8")
-        # Player9 = request.form.get("Player9")
-        # Player10 = request.form.get("Player10")
-        # Player11 = request.form.get("Player11")
-
-        PlayerList = []
-
-        username = session["user"]
-        
-        form = Form()
-    
-        form.Player1IN.choices = [("Please Select"),"---"]+sorted(Names)
-        form.Player2IN.choices = [("Please Select"),"---"]+sorted(Names)
-        form.Player3IN.choices = [("Please Select"),"---"]+sorted(Names)
-        
-        ExcludePlayers = [] 
-        IncludePlayers = [] 
-        ExcludeTeam = [] 
-            
-        Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
-                                                                Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,1,Budget, Names, xPoints)
-            
-        if Squad != 0:
-
-            if 'Please Select' in ExcludePlayers:
-                ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
-            if 'Please Select' in ExcludeTeam:
-                ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
-
-            return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
-                                                        Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
-                                                        Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
-                                                        nShare = nShare, Expected_points = Expected_points,buy_list=buy_list, sell_list=sell_list,
-                                                        buy_list_position=buy_list_position, buy_list_team=buy_list_team, buy_list_xPoints=buy_list_xPoints, 
-                                                        sell_list_team=sell_list_team, sell_list_position=sell_list_position, sell_list_xPoints=sell_list_xPoints,
-                                                        form = form)   
-        else:
-            error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
-            Squad=['Edit your team']
-            Squad_Position = ['']
-            Squad_Team = ['']
-            Squad_xPoints = ['']
-            Squad_Captain = ['']
-            labels = 7 * ['']
-            values = 7 * [0]
-            nShare = 0
-            Budget = 0
-            TransferCost = 0
-            Expected_points = 0
-            return render_template('fail.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
-                                            Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
-                                            nShare = nShare, Budget = Budget,error_statement=error_statement)
+        TransferCost = 0
+        Expected_points = 0
+        return render_template('fail.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
+                                        Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
+                                        nShare = nShare, Budget = Budget,error_statement=error_statement)
          
     
 @app.route("/teamupdated", methods=["POST"])
@@ -673,8 +673,8 @@ def AnalyzePlayers():
         found_user = users6.query.filter_by(username=username).first()
         
         if found_user.Player1!='':
-            Player1_index = Names.index(found_user.Player1)
-            Player2_index = Names.index(found_user.Player2)
+            Player1_index = 1
+            Player2_index = 2
         else:
             Player1_index = 1
             Player2_index = 2
