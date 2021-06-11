@@ -652,7 +652,7 @@ def ExpectedG():
 @login_required
 def ExpectedW():
     
-    Team1 = list(Data_ECS['Team'])
+    Team1 = list(Data_EW['Team'])
     col1 = list(round(Data_EW['Win'],2))
     col2 = list(round(Data_EW['Win 2'],2))
     col3 = list(round(Data_EW['Win 3'],2))
