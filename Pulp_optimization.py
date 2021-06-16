@@ -178,12 +178,12 @@ def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions,
         TransferCost = 0 
         nShare = 0 
         Squad_xPoints = [0,2] 
-        sell_list = 0
-        buy_list = 0
-        buy_list_position = 0
-        buy_list_team, buy_list_xPoints = 0
-        sell_list_team, sell_list_position = 0
-        sell_list_xPoints = 0
+        sell_list = []
+        buy_list = []
+        buy_list_position = []
+        buy_list_team, buy_list_xPoints = [],[]
+        sell_list_team, sell_list_position = [],[]
+        sell_list_xPoints = []
         
     return  Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, sum(Squad_xPoints), buy_list, sell_list,  buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints
  
