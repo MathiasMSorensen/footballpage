@@ -146,7 +146,7 @@ def Viewlist():
 
         return render_template("ViewList.html", form=form)
 
-    return render_template("ViewList2.html", form=form, Names=Names, Teams=Teams, Value=Value, Positions=Positions)
+    return render_template("ViewList.html", form=form, Names=Names, Teams=Teams, Value=Value, Positions=Positions)
 
 @app.route("/login/", methods=["POST","GET"])
 def login():
@@ -192,70 +192,97 @@ def signup():
 
 @app.route("/optimization",methods=["POST","GET"])
 def optimization():
-#    if request.method == 'POST':
+    if request.method == 'POST':
     
         
-    Budget = 0
-    # Player1 = request.form.get("Player1")
-    # Player2 = request.form.get("Player2")
-    # Player3 = request.form.get("Player3")
-    # Player4 = request.form.get("Player4")
-    # Player5 = request.form.get("Player5")
-    # Player6 = request.form.get("Player6")
-    # Player7 = request.form.get("Player7")
-    # Player8 = request.form.get("Player8")
-    # Player9 = request.form.get("Player9")
-    # Player10 = request.form.get("Player10")
-    # Player11 = request.form.get("Player11")
+        Budget = request.form.get("Budget")
+        Player1 = request.form.get("Player1")
+        Player2 = request.form.get("Player2")
+        Player3 = request.form.get("Player3")
+        Player4 = request.form.get("Player4")
+        Player5 = request.form.get("Player5")
+        Player6 = request.form.get("Player6")
+        Player7 = request.form.get("Player7")
+        Player8 = request.form.get("Player8")
+        Player9 = request.form.get("Player9")
+        Player10 = request.form.get("Player10")
+        Player11 = request.form.get("Player11")
 
-    PlayerList = []
+        PlayerList = list(
+            [Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, Player11])
 
-    username = session["user"]
-    
-    form = Form()
+        if 'Please Select' not in PlayerList and len(set(PlayerList)) == 11:
+            username = session["user"]
+            found_user = users6.query.filter_by(username=username).first()
 
-    form.Player1IN.choices = [("Please Select"),"---"]+sorted(Names)
-    form.Player2IN.choices = [("Please Select"),"---"]+sorted(Names)
-    form.Player3IN.choices = [("Please Select"),"---"]+sorted(Names)
-    
-    ExcludePlayers = [] 
-    IncludePlayers = [] 
-    ExcludeTeam = [] 
+            found_user.Budget = Budget
+            found_user.Player1 = Player1
+            found_user.Player2 = Player2
+            found_user.Player3 = Player3
+            found_user.Player4 = Player4
+            found_user.Player5 = Player5
+            found_user.Player6 = Player6
+            found_user.Player7 = Player7
+            found_user.Player8 = Player8
+            found_user.Player9 = Player9
+            found_user.Player10 = Player10
+            found_user.Player11 = Player11
+            db.session.commit()
+
+            form = Form()
+
+            form.Player1IN.choices = [("Please Select"), "---"] + sorted(Names)
+            form.Player2IN.choices = [("Please Select"), "---"] + sorted(Names)
+            form.Player3IN.choices = [("Please Select"), "---"] + sorted(Names)
+
+            ExcludePlayers = []
+            IncludePlayers = []
+            ExcludeTeam = []
+
+            Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(
+                Teams, N, Data, Value, PlayerList, xPointsTotal,
+                Positions, ExcludePlayers, IncludePlayers, ExcludeTeam, 1, Budget, Names, xPoints)
+
         
-    Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
-                                                            Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,1,Budget, Names, xPoints)
-        
-    if Squad != 0:
+            if Squad != 0:
 
-        if 'Please Select' in ExcludePlayers:
-            ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
-        if 'Please Select' in ExcludeTeam:
-            ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
+                if 'Please Select' in ExcludePlayers:
+                    ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
+                if 'Please Select' in ExcludeTeam:
+                    ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
 
-        return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
+                New = []
+                for i in range(len(Squad)):
+                    if  Squad[i] in buy_list:
+                        New.append("New")
+                    else:
+                        New.append(0)
+
+                return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                                     Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
                                                     Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
                                                     nShare = nShare, Expected_points = Expected_points,buy_list=buy_list, sell_list=sell_list,
                                                     buy_list_position=buy_list_position, buy_list_team=buy_list_team, buy_list_xPoints=buy_list_xPoints, 
                                                     sell_list_team=sell_list_team, sell_list_position=sell_list_position, sell_list_xPoints=sell_list_xPoints,
-                                                    form = form)   
-    else:
-        error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
-        Squad=['Edit your team']
-        Squad_Position = ['']
-        Squad_Team = ['']
-        Squad_xPoints = ['']
-        Squad_Captain = ['']
-        labels = 7 * ['']
-        values = 7 * [0]
-        nShare = 0
-        Budget = 0
-        TransferCost = 0
-        Expected_points = 0
-        return render_template('fail.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
-                                        Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
-                                        nShare = nShare, Budget = Budget,error_statement=error_statement)
-         
+                                                    form = form, New = New)   
+            else:
+                error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
+                Squad=['Edit your team']
+                Squad_Position = ['']
+                Squad_Team = ['']
+                Squad_xPoints = ['']
+                Squad_Captain = ['']
+                labels = 7 * ['']
+                values = 7 * [0]
+                nShare = 0
+                Budget = 0
+                TransferCost = 0
+                Expected_points = 0
+                return render_template('fail.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
+                                                Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
+                                                nShare = nShare, Budget = Budget,error_statement=error_statement)
+        else:
+            return redirect(url_for('Viewlist'))
     
 @app.route("/teamupdated", methods=["POST"])
 def teamupdated():
@@ -376,70 +403,21 @@ def sure():
         Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, 
                                                          Positions, ExcludePlayers, IncludePlayers, ExcludeTeam,2, Budget, Names, xPoints)
 
+        New = []
+        for i in range(len(Squad)):
+            if  Squad[i] in buy_list:
+                New.append("New")
+            else:
+                New.append(0)
+
         return render_template("Dashboard2.html", Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                                     Squad_xPoints = Squad_xPoints, ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam,
                                                     Squad_Captain = Squad_Captain, Budget = Budget, TransferCost = TransferCost, 
                                                     nShare = nShare, Expected_points = Expected_points,buy_list=buy_list, sell_list=sell_list,
                                                     buy_list_position = buy_list_position, buy_list_team=buy_list_team, buy_list_xPoints=buy_list_xPoints, 
                                                     sell_list_team=sell_list_team, sell_list_position=sell_list_position, sell_list_xPoints=sell_list_xPoints,
-                                                    form = form) 
+                                                    form = form, New = New) 
                                                     
-    
-@app.route("/teamselected",methods=["POST","GET"])
-def teamselected():
-    
-    if request.method == "POST":
-        Budget = request.form.get("Budget")
-        Player1 = request.form.get("Player1")
-        Player2 = request.form.get("Player2")
-        Player3 = request.form.get("Player3")
-        Player4 = request.form.get("Player4")
-        Player5 = request.form.get("Player5")
-        Player6 = request.form.get("Player6")
-        Player7 = request.form.get("Player7")
-        Player8 = request.form.get("Player8")
-        Player9 = request.form.get("Player9")
-        Player10 = request.form.get("Player10")
-        Player11 = request.form.get("Player11")
-        
-        PlayerList = [Player1,Player2,Player3,Player4,Player5,Player6,Player7,Player8,Player9,Player10,Player11]
-        
-        username = session["user"]
-        found_user = users6.query.filter_by(username=username).first()
-        found_user.Budget = Budget
-        found_user.Player1 = Player1
-        found_user.Player2 = Player2
-        found_user.Player3 = Player3
-        found_user.Player4 = Player4
-        found_user.Player5 = Player5
-        found_user.Player6 = Player6
-        found_user.Player7 = Player7
-        found_user.Player8 = Player8
-        found_user.Player9 = Player9
-        found_user.Player10 = Player10
-        found_user.Player11 = Player11
-        db.session.commit()    
-      
-    form = Form()
-    form.Player1EX.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Player2EX.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Player3EX.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Player4EX.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Player5EX.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Player1IN.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Player2IN.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Player3IN.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Player4IN.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Player5IN.choices = [('Please Select'),"---"]+sorted(Names)
-    form.Team1EX.choices = [('Please Select'),"---"]+sorted(list(set(sorted(Teams))))
-    form.Team2EX.choices = [('Please Select'),"---"]+sorted(list(set(sorted(Teams))))
-    form.Team3EX.choices = [('Please Select'),"---"]+sorted(list(set(sorted(Teams))))
-    form.Team4EX.choices = [('Please Select'),"---"]+sorted(list(set(sorted(Teams))))
-    form.Team5EX.choices = [('Please Select'),"---"]+sorted(list(set(sorted(Teams))))
-    
-    
-    return render_template("teamselected.html",  form=form)
-
 @app.route('/dashboard2')
 def dashboard2():
     return render_template('dashboard2.html')
@@ -545,7 +523,7 @@ def top100():
         Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, buy_list, sell_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, Squad, xPointsTotal, 
                                                                                             Positions, [], Squad, [], 0, Budget, Names, xPoints)
         
-        Transfer = list(np.where(np.isin(list(Data['Name']), Squad),0,np.array(Value)*0.01)) #Value*0,01 if on team    
+        Transfer = list(np.where(np.isin(list(Data['Name']), Squad),0,0)) #Value*0,01 if on team    
     else:
         Transfer = list(np.where(np.isin(list(Data['Name']), ''),0,0)) #Value*0,01 if on team    
 
@@ -593,9 +571,8 @@ def top100growth():
    
         Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, Expected_points, sell_list, buy_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints = Pulp_optimization(Teams, N, Data, Value, Squad, xPointsTotal, 
                                                                                             Positions, [], Squad, [], 0, Budget, Names, xPoints)
-        
-        #Transfer = list(np.where(np.isin(list(Data['Name']), Squad),0,np.array(Value)*0.01)) #Value*0,01 if on team    
-        Transfer = list(np.where(np.isin(list(Data['Name']), ''),0,0)) #Value*0,01 if on team    
+          
+        Transfer = list(np.where(np.isin(list(Data['Name']), Squad),0,0)) #Value*0,01 if on team    
     else:
         Transfer = list(np.where(np.isin(list(Data['Name']), ''),0,0)) #Value*0,01 if on team    
 

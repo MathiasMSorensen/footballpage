@@ -87,87 +87,6 @@ input[type="checkbox"] {
                             </div>
                         </div>
                         <!--[ year  sales section ] end-->
-                        <div class="col-xl-8 col-md-12 m-b-30">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Players To Sell</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Players To Buy</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>                                              
-                                                <th>Player</th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Points in coming round</th>
-                                                <th class="text-right"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                {% set count = namespace(value=1) %}
-                                                {% for each in sell_list %} 
-                                                <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ sell_list_team[count.value-1] }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ sell_list_position[count.value-1] }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ sell_list_xPoints[count.value-1] }}</h6>
-                                                </td>
-                                                <td class="text-right"><i class="fas fa-circle text-c-red f-10"></i></td>
-                                            </tr>
-                                                {% set count.value = count.value + 1 %}
-                                                {% endfor %} 
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Player</th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Points in coming round</th>
-                                                <th class="text-right"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                {% set count = namespace(value=1) %}
-                                                {% for each in buy_list %} 
-                                                <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ buy_list_team[count.value-1] }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ buy_list_position[count.value-1] }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ buy_list_xPoints[count.value-1] }}</h6>
-                                                </td>
-                                                <td class="text-right"><i class="fas fa-circle text-c-green f-10"></i></td>
-                                            </tr>                                               
-                                                {% set count.value = count.value + 1 %}
-                                                {% endfor %} 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!--[ Recent Users ] start-->
                         <div class="col-xl-8 col-md-6">
                             <div class="card Recent-Users">
                                 <div class="card-header">
@@ -181,6 +100,7 @@ input[type="checkbox"] {
                                             <tr>
                                               <th scope="col">Player</th>
                                               <th scope="col">Team</th>
+                                              <th scope="col">New player</th>
                                               <th scope="col">Position</th>
                                               <th scope="col">Points in coming round</th>
                                             </tr>
@@ -204,13 +124,19 @@ input[type="checkbox"] {
                                                             <input type="hidden" name="Team" value='{{ Squad_Team[count.value-1] }}'>
                                                             {{ Squad_Team[count.value-1] }}                                      
                                                         </div>
-                                                    </td> 
+                                                    </td>
+                                                    {% if  New[count.value-1]  == "New"  %}
+                                                    <td class="align-middle"><i class="fas fa-circle text-c-green f-10"></i></td>
+                                                    {% else  %}      
+                                                    <td></td>
+                                                    {% endif  %}   
                                                     <td>
                                                         <h6 class="mb-1">{{ Squad_Position[count.value-1] }}</h6>                                                    
                                                     </td>                                                   
                                                     <td>
                                                         <h6 class="mb-1">{{ Squad_xPoints[count.value-1] }}</h6>                                                    
-                                                    </td>   
+                                                    </td>
+
                                                        {% set count.value = count.value + 1 %}
                                                        {% endfor %} 
                                                         
@@ -337,6 +263,92 @@ input[type="checkbox"] {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-8 col-md-6">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Players To Sell</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Players To Buy</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points in coming round</th>
+                                                <th class="text-right"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in sell_list %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_team[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_position[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_xPoints[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-right"><i class="fas fa-circle text-c-red f-10"></i></td>
+                                            </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Player</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points in coming round</th>
+                                                <th class="text-right"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in buy_list %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_team[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_position[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_xPoints[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-right"><i class="fas fa-circle text-c-green f-10"></i></td>
+                                            </tr>                                               
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                <!--[ Recent Users ] start-->
                             </div>
                         </div>
                         <!-- [ statistics year chart ] end -->
