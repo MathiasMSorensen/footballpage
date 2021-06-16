@@ -6,8 +6,8 @@ from flask_bootstrap import Bootstrap
 from datetime import timedelta
 import os
 import pandas as pd
-from wtforms import SelectField, StringField, PasswordField, BooleanField
-from wtforms.validators import InputRequired , Email, Length
+from wtforms import SelectField, StringField, PasswordField, BooleanField, IntegerField, validators
+from wtforms.validators import InputRequired , Email, Length, NumberRange
 from flask_wtf import FlaskForm
 import pulp
 import sys
@@ -57,8 +57,8 @@ class RegisterForm(FlaskForm):
         
 
 class Form(FlaskForm):
-    Budget = StringField('Budget', validators=[Length(max=50),InputRequired()])
-    Player1 = SelectField('Player1',choices=[])
+    Budget = IntegerField('How Many?', validators=[NumberRange(min=45000000, max=60000000, message='bla')])
+    Player1 = SelectField('Player1',choices=[], validators=[InputRequired()])
     Player2 = SelectField('Player2',choices=[])
     Player3 = SelectField('Player3',choices=[])
     Player4 = SelectField('Player4',choices=[])    

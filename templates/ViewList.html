@@ -6,6 +6,7 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+<body>
 <div class="container">
  <div class="row">
         <div class="card Recent-Users">
@@ -22,47 +23,47 @@
    </div>
       <div class="form-group">
 
-    <label for="email" name='Player1'>Player1:</label>
+    <label for="email" name='Player1'>Player1</label>
     {{ form.Player1(class="form-control")}}
    </div>
    <div class="form-group">
-    <label for="email" name='Player2'>Player2:</label>
+    <label for="email" name='Player2'>Player2</label>
     {{ form.Player2(class="form-control")}}
    </div>
    <div class="form-group">
-    <label for="email" name='Player3'>Player3:</label>
+    <label for="email" name='Player3'>Player3</label>
     {{ form.Player3(class="form-control")}} 
    </div>
    <div class="form-group">
-    <label for="email" name='Player4'>Player4:</label>
+    <label for="email" name='Player4'>Player4</label>
     {{ form.Player4(class="form-control")}} 
    </div>
    <div class="form-group">
-    <label for="email" name='Player5'>Player5:</label>
+    <label for="email" name='Player5'>Player5</label>
     {{ form.Player5(class="form-control")}} 
    </div>
    <div class="form-group">
-    <label for="email" name='Player6'>Player6:</label>
+    <label for="email" name='Player6'>Player6</label>
     {{ form.Player6(class="form-control")}} 
    </div>
    <div class="form-group">
-    <label for="email" name='Player7'>Player7:</label>
+    <label for="email" name='Player7'>Player7</label>
     {{ form.Player7(class="form-control")}} 
    </div>
    <div class="form-group">
-    <label for="email" name='Player8'>Player8:</label>
+    <label for="email" name='Player8'>Player8</label>
     {{ form.Player8(class="form-control")}} 
    </div>
    <div class="form-group">
-    <label for="email" name='Player9'>Player9:</label>
+    <label for="email" name='Player9'>Player9</label>
     {{ form.Player9(class="form-control")}} 
    </div>
    <div class="form-group">
-    <label for="email" name='Player10'>Player10:</label>
+    <label for="email" name='Player10'>Player10</label>
     {{ form.Player10(class="form-control")}} 
    </div>
    <div class="form-group">
-    <label for="email" name='Player11'>Player11:</label>
+    <label for="email" name='Player11'>Player11</label>
     {{ form.Player11(class="form-control")}} 
    </div>
     <br/>
@@ -74,7 +75,115 @@
  </div>
  
 </div> 
-<script>
 
-</script>
+
+
 {% endblock %}
+{% block javascripts %}
+<script>
+  $(document).ready(function() {
+      $('#Player1').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player1.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player2').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player2.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player3').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player3.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player4').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player4.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player5').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player5.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player6').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player6.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player7').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player7.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player8').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player8.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player9').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player9.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player10').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player10.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player11').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player11.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+{% endblock javascripts %}    

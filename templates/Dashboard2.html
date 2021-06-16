@@ -372,5 +372,38 @@ input[type="checkbox"] {
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
-  
-{% endblock javascripts %}     
+<script>
+  $(document).ready(function() {
+      $('#Player1IN').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player1IN.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player2IN').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player2IN.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player3IN').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player3IN.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+{% endblock javascripts %}    

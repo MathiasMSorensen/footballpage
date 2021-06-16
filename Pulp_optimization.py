@@ -61,7 +61,6 @@ def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions,
             model += players[i] == 0 
     
     # Solve problem:
-    model.solve()
     print(Budget)
     if model.solve()==1:
         print("all good")
