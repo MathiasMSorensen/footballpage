@@ -4,6 +4,7 @@ def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions,
     import pulp
 
     Transfer = list(np.where(np.isin(list(Data['Name']), PlayerList),0,np.array(Value)*0.01)) #Value*0,01 if on team    
+    
     TotalPoints = list(np.array(xPointsTotal)  - np.array(Transfer))
     Cost = list(np.array(Value) + np.array(Transfer)) # Value+transfer
     Budget = int(Budget)
@@ -38,7 +39,7 @@ def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions,
     
     # Club constraint
     for team in np.unique(Teams):
-        model += sum(players[i] for i in range(N) if Teams[i] == team) <= 4
+        model += sum(players[i] for i in range(N) if Teams[i] == team) <= 11
     
     # Captain constraint
     model += sum(captain) == 1

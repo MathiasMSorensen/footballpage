@@ -17,7 +17,7 @@ data = pd.DataFrame.from_dict(data)
 # Note, index 0 = Group stage 
 print(data)
 
-data1 = pd.DataFrame.from_dict(dict(data.iloc[0,0]))
+data1 = pd.DataFrame.from_dict(dict(data.iloc[3,0]))
 
 game_day = []
 home_team = []
