@@ -13,7 +13,9 @@ Data = Data.dropna()
 
 N = len(Data)
 Names = list(Data['Name'])
+
 Names2 = list(Data_names['player'])
+
 Teams = list(Data['Team'])
 Value = list(Data['Value'])
 Positions = list(Data['Position'])

@@ -17,15 +17,15 @@ from flask_migrate import Migrate
 from models import db, users6
 from lookup import myDict 
 from Pulp_optimization import Pulp_optimization
-from datafile import Data, Names2 Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Positions,xPoints,xPoints2, xPoints3,xPoints4, xPoints5,xPoints6, xPointsTotal, TotalPoints, Transfer, Cost, xGrowth,Names, TotalPoints, Cost, Positions,Teams, xPoints, Transfer 
+from datafile import Data, Names2, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Positions,xPoints,xPoints2, xPoints3,xPoints4, xPoints5,xPoints6, xPointsTotal, TotalPoints, Transfer, Cost, xGrowth,Names, TotalPoints, Cost, Positions,Teams, xPoints, Transfer 
 # USe env\Scripts\Activate.ps1 to activate venv
 # os.chdir('C:/Users/hk1maso/Footballpage')
 
 
 app = Flask(__name__,template_folder="templates")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
 
@@ -102,46 +102,46 @@ def Viewlist():
             print("""non empty""")
             print(found_user.Budget)
             form.Budget.data = found_user.Budget
-            form.Player1.choices = [(found_user.Player1),"---"]+sorted(Names)
-            form.Player2.choices = [(found_user.Player2),"---"]+sorted(Names)
-            form.Player3.choices = [(found_user.Player3),"---"]+sorted(Names)
-            form.Player4.choices = [(found_user.Player4),"---"]+sorted(Names)
-            form.Player5.choices = [(found_user.Player5),"---"]+sorted(Names)
-            form.Player6.choices = [(found_user.Player6),"---"]+sorted(Names)
-            form.Player7.choices = [(found_user.Player7),"---"]+sorted(Names)
-            form.Player8.choices = [(found_user.Player8),"---"]+sorted(Names)
-            form.Player9.choices = [(found_user.Player9),"---"]+sorted(Names)
-            form.Player10.choices = [(found_user.Player10),"---"]+sorted(Names)
-            form.Player11.choices = [(found_user.Player11),"---"]+sorted(Names)
+            form.Player1.choices = [(found_user.Player1),"---"]+sorted(Names2)
+            form.Player2.choices = [(found_user.Player2),"---"]+sorted(Names2)
+            form.Player3.choices = [(found_user.Player3),"---"]+sorted(Names2)
+            form.Player4.choices = [(found_user.Player4),"---"]+sorted(Names2)
+            form.Player5.choices = [(found_user.Player5),"---"]+sorted(Names2)
+            form.Player6.choices = [(found_user.Player6),"---"]+sorted(Names2)
+            form.Player7.choices = [(found_user.Player7),"---"]+sorted(Names2)
+            form.Player8.choices = [(found_user.Player8),"---"]+sorted(Names2)
+            form.Player9.choices = [(found_user.Player9),"---"]+sorted(Names2)
+            form.Player10.choices = [(found_user.Player10),"---"]+sorted(Names2)
+            form.Player11.choices = [(found_user.Player11),"---"]+sorted(Names2)
         
         else:
             print("""empty""")
             form = Form()
-            form.Player1.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player2.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player3.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player4.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player5.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player6.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player7.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player8.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player9.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player10.choices = [('Please Select'),"---"]+sorted(Names)
-            form.Player11.choices = [('Please Select'),"---"]+sorted(Names)
+            form.Player1.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player2.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player3.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player4.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player5.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player6.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player7.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player8.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player9.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player10.choices = [('Please Select'),"---"]+sorted(Names2)
+            form.Player11.choices = [('Please Select'),"---"]+sorted(Names2)
 
     elif request.method == 'POST':
         form.Budget.data = request.form.get("Budget")
-        form.Player1.choices = [(request.form.get("Player1")),"---"]+sorted(Names)
-        form.Player2.choices = [(request.form.get("Player2")),"---"]+sorted(Names)
-        form.Player3.choices = [(request.form.get("Player3")),"---"]+sorted(Names)
-        form.Player4.choices = [(request.form.get("Player4")),"---"]+sorted(Names)
-        form.Player5.choices = [(request.form.get("Player5")),"---"]+sorted(Names)
-        form.Player6.choices = [(request.form.get("Player6")),"---"]+sorted(Names)
-        form.Player7.choices = [(request.form.get("Player7")),"---"]+sorted(Names)
-        form.Player8.choices = [(request.form.get("Player8")),"---"]+sorted(Names)
-        form.Player9.choices = [(request.form.get("Player9")),"---"]+sorted(Names)
-        form.Player10.choices = [(request.form.get("Player10")),"---"]+sorted(Names)
-        form.Player11.choices = [(request.form.get("Player11")),"---"]+sorted(Names)
+        form.Player1.choices = [(request.form.get("Player1")),"---"]+sorted(Names2)
+        form.Player2.choices = [(request.form.get("Player2")),"---"]+sorted(Names2)
+        form.Player3.choices = [(request.form.get("Player3")),"---"]+sorted(Names2)
+        form.Player4.choices = [(request.form.get("Player4")),"---"]+sorted(Names2)
+        form.Player5.choices = [(request.form.get("Player5")),"---"]+sorted(Names2)
+        form.Player6.choices = [(request.form.get("Player6")),"---"]+sorted(Names2)
+        form.Player7.choices = [(request.form.get("Player7")),"---"]+sorted(Names2)
+        form.Player8.choices = [(request.form.get("Player8")),"---"]+sorted(Names2)
+        form.Player9.choices = [(request.form.get("Player9")),"---"]+sorted(Names2)
+        form.Player10.choices = [(request.form.get("Player10")),"---"]+sorted(Names2)
+        form.Player11.choices = [(request.form.get("Player11")),"---"]+sorted(Names2)
         print("TES")
 
         return render_template("ViewList.html", form=form)
