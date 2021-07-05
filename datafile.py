@@ -3,6 +3,7 @@ import os
 
 APP_ROOT = os.path.dirname(os.path.abspath('__file__'))
 Data = pd.read_excel(os.path.join(APP_ROOT, 'Model_v6.xlsx'), 'Python')
+Data_names = pd.read_csv(os.path.join(APP_ROOT, 'holdet2.csv'))
 Data_ECS = pd.read_excel(os.path.join(APP_ROOT, 'Model_v6.xlsx'), 'Expected Clean Sheets')
 Data_EG = pd.read_excel(os.path.join(APP_ROOT, 'Model_v6.xlsx'), 'Expected Goals')
 Data_EW = pd.read_excel(os.path.join(APP_ROOT, 'Model_v6.xlsx'), 'Expected Wins')
@@ -12,6 +13,7 @@ Data = Data.dropna()
 
 N = len(Data)
 Names = list(Data['Name'])
+Names2 = list(Data_names['player'])
 Teams = list(Data['Team'])
 Value = list(Data['Value'])
 Positions = list(Data['Position'])

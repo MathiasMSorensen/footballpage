@@ -17,7 +17,7 @@ from flask_migrate import Migrate
 from models import db, users6
 from lookup import myDict 
 from Pulp_optimization import Pulp_optimization
-from datafile import Data, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Positions,xPoints,xPoints2, xPoints3,xPoints4, xPoints5,xPoints6, xPointsTotal, TotalPoints, Transfer, Cost, xGrowth,Names, TotalPoints, Cost, Positions,Teams, xPoints, Transfer 
+from datafile import Data, Names2 Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Positions,xPoints,xPoints2, xPoints3,xPoints4, xPoints5,xPoints6, xPointsTotal, TotalPoints, Transfer, Cost, xGrowth,Names, TotalPoints, Cost, Positions,Teams, xPoints, Transfer 
 # USe env\Scripts\Activate.ps1 to activate venv
 # os.chdir('C:/Users/hk1maso/Footballpage')
 
