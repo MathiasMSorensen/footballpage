@@ -30,11 +30,12 @@
                                                     <tr>
                                                   <th>#</th>
                                                   <th>Name</th>
+                                                  <th>Team</th>
+                                                  <th>Cost</th>
+                                                  
                                                   <th>Points round 1</th>
                                                   <th>Total Points (disc.)</th>
-                                                  <th>Transfer cost</th>
-                                                  <th>points incl. transfer</th>
-                                                  <th>Point Growth <span>&#8595;</span></th>
+                                                  <th>Points/Cost<span>&#8595;</span></th>
                                               </tr>
                                               </thead>
                                               <tbody>
@@ -43,16 +44,12 @@
                                               {% for each in Name %}
                                                 <tr>
                                                 <td> {{ count.value }} </td>
-                                                          <td>
-                                                              <input type="hidden" name="Name" value='{{ each }}'>
-                                                              <h6 class="mb-1">{{ each }}</h6>
-                                                              <p class="m-0">{{ Team1[count.value-1] }}</p>
-                                                          </td>
+                                                <td> {{ each }} </td>
+                                                <td> {{ Team1[count.value-1] }} </td>
+                                                <td> {{ cost_players1[count.value-1] }} </td>
                                                   <td>{{ xPoints1[count.value-1] }}</td>
-                                                  <td>{{ xPointsTotal1[count.value-1] }}</td>
-                                                  <td>{{ Transfer1[count.value-1] }}</td>
                                                   <td>{{ TotalPoints1[count.value-1] }}</td>
-                                                  <td>{{ xGrowth1[count.value-1] }}%</td>                                                  
+                                                  <td>{{ xGrowth1[count.value-1] }}</td>                                                  
                                                   {% set count.value = count.value + 1 %}
                                                   {% endfor %} 
                                                 </tr>

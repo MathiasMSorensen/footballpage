@@ -3,7 +3,7 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
  
-class users6(UserMixin, db.Model):
+class users9(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100))
     password = db.Column(db.String(250))
@@ -20,8 +20,15 @@ class users6(UserMixin, db.Model):
     Player9 = db.Column(db.String(50))
     Player10 = db.Column(db.String(50))
     Player11 = db.Column(db.String(50))
-    
-    def __init__(self, username, password, email, Budget, Player1, Player2, Player3, Player4, Player5, Player6, Player7, Player8, Player9, Player10, Player11):
+    Player12 = db.Column(db.String(50))
+    Player13 = db.Column(db.String(50))
+    Player14 = db.Column(db.String(50))
+    Player15 = db.Column(db.String(50))
+
+    def __init__(self, username, password, email, Budget, Player1, Player2, Player3, \
+                 Player4, Player5, Player6, Player7, Player8, Player9, Player10, Player11, \
+                 Player12, Player13, Player14, Player15):
+
         self.username = username
         self.email = email
         self.password = password
@@ -37,3 +44,7 @@ class users6(UserMixin, db.Model):
         self.Player9 = Player9
         self.Player10 = Player10
         self.Player11 = Player11
+        self.Player11 = Player12
+        self.Player11 = Player13
+        self.Player11 = Player14
+        self.Player11 = Player15

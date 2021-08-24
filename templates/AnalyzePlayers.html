@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/static/assets/plugins/chart-morris/css/morris.css">
 
 {% endblock stylesheets %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
 {% block content %}
 
 <div class="pcoded-content">
@@ -153,7 +154,7 @@ $(document).ready(function() {
         ykeys: ['a', 'b'],
         hideHover: 'auto',
         responsive:true,
-        ymax: 150000,
+        ymax: 9,
         ymin:0,
         labels: [{{ Name1|tojson }}, 'Average'],
         lineColors: ['#1de9b6', '#A389D4']
@@ -199,7 +200,7 @@ $(document).ready(function() {
         ykeys: ['a', 'b'],
         hideHover: 'auto',
         responsive:true,
-        ymax: 150000,
+        ymax: 9,
         ymin:0,
         labels: [{{ Name2|tojson }}, 'Average'],
         lineColors: ['#1de9b6', '#A389D4']
@@ -212,7 +213,6 @@ $(document).ready(function() {
   $(document).ready(function() {
       $('#Player1').select2({  // init Select2 on form's name field
           placeholder: "{{ form.Player1.label.text }}",
-          allowClear: true,
           "width": "style"
       });
   });
@@ -221,7 +221,6 @@ $(document).ready(function() {
   $(document).ready(function() {
       $('#Player2').select2({  // init Select2 on form's name field
           placeholder: "{{ form.Player2.label.text }}",
-          allowClear: true,
           "width": "style"
       });
   });

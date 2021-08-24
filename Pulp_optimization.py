@@ -1,190 +1,179 @@
-def Pulp_optimization(Teams, N, Data, Value, PlayerList,xPointsTotal, Positions, ExcludePlayers, IncludePlayers, ExcludeTeam, timeout,Budget, Names, xPoints):
+def Pulp_optimization(Teams, N, Data, TranferIn, TranferOut ,TotalPoints, \
+                      Positions, ExcludePlayers, IncludePlayers, ExcludeTeam, \
+                      cash, Names, xPoints, n_transfers, squad_old_index, \
+                      sub_1_discount, sub_2_discount,sub_3_discount, sub_gk_discount, Budget_from_players):
     
-    import numpy as np
     import pulp
+    from pulp import lpSum
+    import numpy as np
+    import pandas as pd
+    from dictionaries import team_lookup_num, team_lookup_num_reverse
+    
+    Output_list = []
+    cost_squad_list = []
+    nShare_list = []
+    Budget_list = []
 
-    Transfer = list(np.where(np.isin(list(Data['Name']), PlayerList),0,np.array(Value)*0.01)) #Value*0,01 if on team    
-    
-    TotalPoints = list(np.array(xPointsTotal)  - np.array(Transfer))
-    Cost = list(np.array(Value) + np.array(Transfer)) # Value+transfer
-    Budget = int(Budget)
-    # Set up model:
-    model = pulp.LpProblem("Constrained_maximisation", pulp.LpMaximize)
-    
-    players = [
-        pulp.LpVariable("x{}".format(i), lowBound=0, upBound=1, cat='Integer') for i in range(N)
-    ]
-    captain = [
-        pulp.LpVariable("y{}".format(i), lowBound=0, upBound=1, cat='Integer') for i in range(N)
-    ]
+    ExcludeTeam_help = ExcludeTeam
+    ExcludeTeam = []
+    for i in range(len(ExcludeTeam_help)):
+        ExcludeTeam.append(team_lookup_num_reverse[ExcludeTeam_help[i]])
 
-    # Objective function:
-    model += sum((captain[i] + players[i]) * TotalPoints[i] for i in range(N))
-    
-    # Team constraint
-    model += sum(players) == 11
-    
-    # Cost constraint
-    model += sum(players[i] * Cost[i] for i in range(N)) <= Budget
+    squad_old = list(np.where(Data['fpl_name'].isin(squad_old_index), 1, 0))
+    TranferOut_pd = pd.DataFrame(TranferOut)
+    Budget = Budget_from_players + cash
 
-    # Position constraints
-    model += sum(players[i] for i in range(N) if Positions[i] == 'Goalkeeper') == 1
-    model += sum(players[i] for i in range(N) if Positions[i] == 'Defense') >= 3
-    model += sum(players[i] for i in range(N) if Positions[i] == 'Defense') <= 5
-    model += sum(players[i] for i in range(N) if Positions[i] == 'Midfield') >= 3
-    model += sum(players[i] for i in range(N) if Positions[i] == 'Midfield') <= 5
-    model += sum(players[i] for i in range(N) if Positions[i] == 'Striker') >= 1
-    model += sum(players[i] for i in range(N) if Positions[i] == 'Striker') <= 3  
-    
-    
-    # Club constraint
-    for team in np.unique(Teams):
-        model += sum(players[i] for i in range(N) if Teams[i] == team) <= 11
-    
-    # Captain constraint
-    model += sum(captain) == 1
-    for i in range(N):  #
-        model += (players[i] - captain[i]) >= 0
-    
-    # Include/Exclude players
-    for i in range(N):
-        if Names[i] in IncludePlayers:
-            model += players[i] == 1
-            
-        
-    for i in range(N):
-        if Names[i] in ExcludePlayers:
-            model += players[i] == 0
-        
-    # Exclude teams
-    for i in range(N):
-        if Teams[i] in ExcludeTeam:
-            model += players[i] == 0 
-    
-    # Solve problem:
-    print(Budget)
-    if model.solve()==1:
-        print("all good")
-        # Print results:
-        ExpPoints = 0
-        TotalCost = 0
-        TransferCost = 0
-        CaptainPTS = 0
-        n = 0
-        Squad = []
-        Squad_Position = []
-        Squad_Team = []
-        Squad_xPoints = []
-        Squad_Captain = []
-        for i in range(N):
-            if players[i].value()!=0:
-                ExpPoints += int(xPoints[i] - Transfer[i])
-                TotalCost += int(Cost[i])
-                TransferCost += int(Transfer[i])
-                print('{},Team = {}, xPoints = {}, Cost = {}'.format(Names[i], Teams[i], int(xPoints[i]), int(Cost[i])))
-                Squad.append(Names[i])
-                Squad_Position.append(Positions[i])
-                Squad_Team.append(Teams[i])
-                Squad_xPoints.append(int(xPoints[i]))
-                if xPoints[i]>CaptainPTS:
-                    Captain = Names[i]
-                    CaptainPTS = xPoints[i]
-                n += 1
-                if n==11:
-                    ExpPoints += int(CaptainPTS)
+    for i in range(6):
+        n_transfers = i
+        # Set up model:
+        model = pulp.LpProblem("Constrained_maximisation", pulp.LpMaximize)
+
+        players = [
+            pulp.LpVariable("z{}".format(i), lowBound=0, upBound=1, cat='Integer') for i in range(N)
+        ]
+        sub1 = [
+            pulp.LpVariable("zzz{}".format(i), lowBound=0, upBound=1, cat='Integer') for i in range(N)
+        ]
+        sub2 = [
+            pulp.LpVariable("zzzz{}".format(i), lowBound=0, upBound=1, cat='Integer') for i in range(N)
+        ]
+        sub3 = [
+            pulp.LpVariable("zzzzz{}".format(i), lowBound=0, upBound=1, cat='Integer') for i in range(N)
+        ]
+        subs_gk = [
+            pulp.LpVariable("xx{}".format(i), lowBound=0, upBound=1, cat='Integer') for i in range(N)
+        ]
+        captain = [
+            pulp.LpVariable("y{}".format(i), lowBound=0, upBound=1, cat='Integer') for i in range(N)
+        ]
+        y_help = [
+            pulp.LpVariable("yy{}".format(i), lowBound=0, upBound=1, cat='Integer') for i in range(N)
+        ]
+
+        # Objective function:
+        model += lpSum((captain[i] + players[i]) * TotalPoints[i] + \
+                        (sub1[i]) * TotalPoints[i] * sub_1_discount + \
+                        (sub2[i]) * TotalPoints[i] * sub_2_discount + \
+                        (sub3[i]) * TotalPoints[i] * sub_3_discount + \
+                        (subs_gk[i]) * TotalPoints[i] * sub_gk_discount  for i in range(N))
                     
-        nShare = round(TotalCost/Budget*100,1)
-        print('\nCaptain: {}'.format(Captain))
-        print('\nExpected points in this round = {}'.format(ExpPoints))
-        print('\nTransfer cost = {} \nTotal cost = {} \nBudget = {} \nShare = {}% \nBank = {}'.format(TransferCost,TotalCost, Budget, round(TotalCost/Budget*100,1),  Budget-TotalCost))
-        
-        sell_list = []
-        sell_list_team = []
-        sell_list_position=[]
-        sell_list_xPoints=[]
-        print('\nSell:')
-        Old_players = PlayerList
-        for i in range(N):
-            if Names[i] not in Squad:
-                if Names[i] in Old_players:
-                    sell_list.append(Names[i])
-                    sell_list_team.append(Teams[i])
-                    sell_list_position.append(Positions[i])
-                    sell_list_xPoints.append(round(xPoints[i]))
+        # Team constraint
+        model += lpSum(players[i] for i in range(N)) == 11
+        model += lpSum(sub1[i] for i in range(N)) == 1
+        model += lpSum(sub2[i] for i in range(N)) == 1
+        model += lpSum(sub3[i] for i in range(N)) == 1
+        model += lpSum(subs_gk[i] for i in range(N)) == 1
 
-        ## Sort
-        GK_index = [i for i, x in enumerate(sell_list_position) if x == "Goalkeeper"]
-        DEF_index = [i for i, x in enumerate(sell_list_position) if x == "Defense"]
-        MID_index = [i for i, x in enumerate(sell_list_position) if x == "Midfield"]
-        STR_index = [i for i, x in enumerate(sell_list_position) if x == "Striker"]
+        # Cost constraint
+        model += lpSum((players[i] + sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) * TranferIn[i] for i in range(N)) <= Budget
 
-        sell_list = [sell_list[i] for i in GK_index]+[sell_list[i] for i in DEF_index]+[sell_list[i] for i in MID_index]+[sell_list[i] for i in STR_index]
-        sell_list_team = [sell_list_team[i] for i in GK_index]+[sell_list_team[i] for i in DEF_index]+[sell_list_team[i] for i in MID_index]+[sell_list_team[i] for i in STR_index]
-        sell_list_position = [sell_list_position[i] for i in GK_index]+[sell_list_position[i] for i in DEF_index]+[sell_list_position[i] for i in MID_index]+[sell_list_position[i] for i in STR_index]
-        sell_list_xPoints = [sell_list_xPoints[i] for i in GK_index]+[sell_list_xPoints[i] for i in DEF_index]+[sell_list_xPoints[i] for i in MID_index]+[sell_list_xPoints[i] for i in STR_index]
+        # Position constraints on squad
+        model += lpSum((players[i] + sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) for i in range(N) if Positions[i] == 'Goalkeeper') == 2
+        model += lpSum((players[i] + sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) for i in range(N) if Positions[i] == 'Defense') == 5
+        model += lpSum((players[i] + sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) for i in range(N) if Positions[i] == 'Midfield') == 5
+        model += lpSum((players[i] + sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) for i in range(N) if Positions[i] == 'Striker') == 3
 
-        buy_list = []
-        buy_list_team = []
-        buy_list_position=[]
-        buy_list_xPoints=[]
-        print('\nBuy:')
-        Old_players = PlayerList
-        for i in range(N):
-            if Names[i] in Squad:
-                if Names[i] not in Old_players:
-                    buy_list.append(Names[i])
-                    buy_list_team.append(Teams[i])
-                    buy_list_position.append(Positions[i])
-                    buy_list_xPoints.append(round(xPoints[i]))
-           
-        ## Sort
-        GK_index = [i for i, x in enumerate(buy_list_position) if x == "Goalkeeper"]
-        DEF_index = [i for i, x in enumerate(buy_list_position) if x == "Defense"]
-        MID_index = [i for i, x in enumerate(buy_list_position) if x == "Midfield"]
-        STR_index = [i for i, x in enumerate(buy_list_position) if x == "Striker"]
+        # Position constraints on players
+        model += lpSum(players[i] for i in range(N) if Positions[i] == 'Goalkeeper') == 1
+        model += lpSum(players[i] for i in range(N) if Positions[i] == 'Defense') >= 3
+        model += lpSum(players[i] for i in range(N) if Positions[i] == 'Defense') <= 5
+        model += lpSum(players[i] for i in range(N) if Positions[i] == 'Midfield') >= 3
+        model += lpSum(players[i] for i in range(N) if Positions[i] == 'Midfield') <= 5
+        model += lpSum(players[i] for i in range(N) if Positions[i] == 'Striker') >= 1
+        model += lpSum(players[i] for i in range(N) if Positions[i] == 'Striker') <= 3  
 
-        buy_list = [buy_list[i] for i in GK_index]+[buy_list[i] for i in DEF_index]+[buy_list[i] for i in MID_index]+[buy_list[i] for i in STR_index]
-        buy_list_team = [buy_list_team[i] for i in GK_index]+[buy_list_team[i] for i in DEF_index]+[buy_list_team[i] for i in MID_index]+[buy_list_team[i] for i in STR_index]
-        buy_list_position = [buy_list_position[i] for i in GK_index]+[buy_list_position[i] for i in DEF_index]+[buy_list_position[i] for i in MID_index]+[buy_list_position[i] for i in STR_index]
-        buy_list_xPoints = [buy_list_xPoints[i] for i in GK_index]+[buy_list_xPoints[i] for i in DEF_index]+[buy_list_xPoints[i] for i in MID_index]+[buy_list_xPoints[i] for i in STR_index]
+        # Position constraints on subs
+        model += lpSum((sub1[i] + sub2[i] + sub3[i]) for i in range(N) if Positions[i] == 'Goalkeeper') == 0
+        model += lpSum(sub1[i] for i in range(N) if Positions[i] == 'Defense') == 1
+        model += lpSum(subs_gk[i] for i in range(N) if Positions[i] == 'Goalkeeper') == 1
 
-        ## Sort
-        GK_index = [i for i, x in enumerate(Squad_Position) if x == "Goalkeeper"]
-        DEF_index = [i for i, x in enumerate(Squad_Position) if x == "Defense"]
-        MID_index = [i for i, x in enumerate(Squad_Position) if x == "Midfield"]
-        STR_index = [i for i, x in enumerate(Squad_Position) if x == "Striker"]
+        # Club constraint
+        for team in np.unique(Teams):
+            model += lpSum(players[i] + sub1[i] + sub2[i] + sub3[i] + subs_gk[i] for i in range(N) if Teams[i] == team) <= 3
 
-        
-        Squad = [Squad[i] for i in GK_index]+[Squad[i] for i in DEF_index]+[Squad[i] for i in MID_index]+[Squad[i] for i in STR_index]
-        Squad_Position = [Squad_Position[i] for i in GK_index]+[Squad_Position[i] for i in DEF_index]+[Squad_Position[i] for i in MID_index]+[Squad_Position[i] for i in STR_index]
-        Squad_Team = [Squad_Team[i] for i in GK_index]+[Squad_Team[i] for i in DEF_index]+[Squad_Team[i] for i in MID_index]+[Squad_Team[i] for i in STR_index]
-        Squad_xPoints = [Squad_xPoints[i] for i in GK_index]+[Squad_xPoints[i] for i in DEF_index]+[Squad_xPoints[i] for i in MID_index]+[Squad_xPoints[i] for i in STR_index]
-        Squad_Captain = [''] * 11
-        Captain_index = [i for i, x in enumerate(Squad) if x == Captain]
-        print(Captain_index)
-        Squad_Captain[int(Captain_index[0])] = 'Captain'
-    
-        Budget = Budget-TotalCost 
-        
-    else:
-        print("""System crashed""")
-        
-        Squad = 0 
-        Squad_Team = 0 
-        Squad_xPoints = 0 
-        Squad_Position = 0 
-        Squad_Captain = 0 
-        Budget = 0 
-        TransferCost = 0 
-        nShare = 0 
-        Squad_xPoints = [0,2] 
-        sell_list = []
-        buy_list = []
-        buy_list_position = []
-        buy_list_team, buy_list_xPoints = [],[]
-        sell_list_team, sell_list_position = [],[]
-        sell_list_xPoints = []
-        
-    return  Squad, Squad_Team, Squad_xPoints, Squad_Position, Squad_Captain, Budget, TransferCost, nShare, sum(Squad_xPoints), buy_list, sell_list,  buy_list_position, buy_list_team, buy_list_xPoints, sell_list_team, sell_list_position, sell_list_xPoints
- 
+        # Captain constraint
+        model += lpSum(captain[i] for i in range(N)) == 1
+
+        for i in range(N):  
+            model += (players[i] - captain[i]) >= 0
+                        
+        # # You can only be player | sub | sub_gk
+        # for i in range(N):  
+            model += (players[i] + sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) <= 1
+
+        # # help matrix
+        # for i in range(N):  
+            model += (y_help[i]-(players[i] + sub1[i] + sub2[i] + sub3[i] + subs_gk[i])) <= 0
+
+        # for i in range(N):  
+            model += (y_help[i]-squad_old[i]) <= 0
+
+        # for i in range(N):  
+            model += (y_help[i] - squad_old[i] - (players[i] + sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) + 1 >= 0)
+
+        # Include players
+        # for i in range(N):
+            if Names[i] in IncludePlayers:
+                model += (players[i] +  sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) == 1
+            
+        # Exclude players
+        # for i in range(N):
+            if Names[i] in ExcludePlayers:
+                model += (players[i] +  sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) == 0
+
+        # Exclude teams
+        # for i in range(N):
+            if Teams[i] in ExcludeTeam:
+                model += (players[i] +  sub1[i] + sub2[i] + sub3[i] + subs_gk[i]) == 0 
+
+        # transfer_coinstraint
+        model += lpSum(y_help[i] for i in range(N)) == 15 - n_transfers
+
+
+        # Solve problem:
+        print(Budget)
+        if model.solve()==1:
+            print("all good")
+            
+            Output = []
+            for i in range(N):
+                if ((captain[i].value()==1) & (squad_old[i] == 0)):
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','New','Captain'])
+                elif ((captain[i].value()==1) & (squad_old[i] != 0)):
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','','Captain'])
+                elif ((players[i].value()==1) & (squad_old[i] == 0)):
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','New',''])
+                elif ((players[i].value()==1) & (squad_old[i] != 0)):
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','',''])
+                elif ((sub1[i].value() + sub2[i].value() + sub3[i].value() + subs_gk[i].value()==1) & (squad_old[i] == 0)):
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'sub','New',''])
+                elif ((sub1[i].value() + sub2[i].value() + sub3[i].value() + subs_gk[i].value()==1) & (squad_old[i] != 0)):
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'sub','',''])
+            
+            Output = pd.DataFrame(Output)
+            Output.columns = ['Names','Teams','Positions','xPoints','TotalPoints','Cost','player_sub','new_old','Captain']
+            Output = Output.sort_values(['player_sub','Positions']).reset_index(drop = True)
+            Output = pd.concat([Output[((Output['Positions']=='Goalkeeper') & (Output['player_sub']=='player'))].reset_index(drop = True),
+                                Output[((Output['Positions']!='Goalkeeper') | (Output['player_sub']!='player'))].reset_index(drop = True)]).reset_index(drop = True)
+
+            cost_squad = 0
+            for i in range(N):
+                if (players[i].value() + sub1[i].value() + sub2[i].value() + sub3[i].value() + subs_gk[i].value()) != 0 :
+                    cost_squad = TranferIn[i] + cost_squad
+                
+            nShare = cost_squad/Budget*100
+
+        else:
+            print("Wrong")
+            Output = 0
+            cost_squad = 0
+            nShare = 0
+
+        Output_list.append(Output)
+        cost_squad_list.append(cost_squad)
+        nShare_list.append(nShare)
+        Budget_list.append(Budget)
+
+    return Output_list, cost_squad_list, nShare_list, Budget_list
+  
 

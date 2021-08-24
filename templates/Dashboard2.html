@@ -3,6 +3,7 @@
 {% block title %} Dashboard {% endblock %} 
 
 <link rel="stylesheet" href="{{url_for('.static/assets', filename='style.css')}}">
+<link rel="stylesheet" href="/static/assets/plugins/chart-morris/css/morris.css">
 <style>
     form {
     width:100%;
@@ -19,7 +20,9 @@ input[type="checkbox"] {
     vertical-align: middle;
     }
 
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+
+{% endblock stylesheets %}
 
 {% block content %}
 <form action="/Adjustoptimization" method="POST">
@@ -33,56 +36,23 @@ input[type="checkbox"] {
                     <!-- [ Main Content ] start -->
                     <div class="row">
                         <!--[ daily sales section ] start-->
-                        <div class="col-md-6 col-xl-4">
-                            <div class="card daily-sales">
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>{{ Name1 }}</h5>
+                                </div>
                                 <div class="card-block">
-                                    <h6 class="mb-4">Unused Budget</h6>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-9">
-                                            <h3 class="f-w-300 d-flex align-items-center m-b-0">$ {{Budget}}</h3>
-                                        </div>
-
-                                        <div class="col-3 text-right">
-                                            <p class="m-b-0">{{ nShare }}% used</p>
-                                        </div>
-                                    </div>
-                                    <div class="progress m-t-30" style="height: 7px;">
-                                        <div class="progress-bar progress-c-theme" role="progressbar" style="width: {{ nShare }}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    <div id="morris-line-smooth-chart" class="ChartShadow" style="height:300px"></div>
                                 </div>
                             </div>
                         </div>
-                        <!--[ daily sales section ] end-->
-                        <!--[ Monthly  sales section ] starts-->
-                        <div class="col-md-6 col-xl-4">
-                            <div class="card Monthly-sales">
-                                <div class="card-block">
-                                    <h6 class="mb-4">Transfer costs</h6>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-9">
-                                            <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i class="feather icon-arrow-down text-c-red f-30 m-r-10"></i>{{TransferCost}}</h3>
-                                        </div>
-                                    </div>
-                                    <div class="progress m-t-30" style="height: 7px;">
-                                        <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>{{ Name2 }}</h5>
                                 </div>
-                            </div>
-                        </div>
-                        <!--[ Monthly  sales section ] end-->
-                        <!--[ year  sales section ] starts-->
-                        <div class="col-md-12 col-xl-4">
-                            <div class="card yearly-sales">
                                 <div class="card-block">
-                                    <h6 class="mb-4">Total Expected Points in coming round</h6>
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-9">
-                                            <h3 class="f-w-300 d-flex align-items-center  m-b-0"><i class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>{{Expected_points}}</h3>
-                                        </div>
-                                    </div>
-                                    <div class="progress m-t-30" style="height: 7px;">
-                                        <div class="progress-bar progress-c-theme" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    <div id="morris-line-smooth-chart1" class="ChartShadow" style="height:300px"></div>
                                 </div>
                             </div>
                         </div>
@@ -94,61 +64,506 @@ input[type="checkbox"] {
                                     <p class="m-0"><em>Checked players/teams is excluded from lineup optimizer</em></p>
                                 </div>
                                 <div class="card-block px-0 py-3">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                          <thead>
-                                            <tr>
-                                              <th scope="col">Player</th>
-                                              <th scope="col">Team</th>
-                                              <th scope="col">New player</th>
-                                              <th scope="col">Position</th>
-                                              <th scope="col">Points in coming round</th>
-                                            </tr>
-                                          </thead>
-                                            <tbody>
-                                              {% set count = namespace(value=1) %}
-                                                  {% for each in Squad %}                    
-                                                <tr class="unread">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">1 Substitute</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active show" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="true">2 Substitutes</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile3-tab" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile3" aria-selected="false">3 Substitutes</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile4-tab" data-toggle="tab" href="#profile4" role="tab" aria-controls="profile4" aria-selected="false">4 Substitutes</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile5-tab" data-toggle="tab" href="#profile5" role="tab" aria-controls="profile5" aria-selected="false">5 Substitutes</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                        <th scope="col">Player</th>
+                                                        <th scope="col">Team</th>
+                                                        <th scope="col">New player</th>
+                                                        <th scope="col">Position</th>
+                                                        <th scope="col">Points in coming round</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% set count = namespace(value=1) %}
+                                                            {% for each in Squad1 %}                    
+                                                            <tr class="unread">
+                                                            {% if  count.value-1 == 11  %}
+                                                            <tr>
+                                                                <th scope="col">Substitues</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                            {% endif  %} 
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckbox1" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Name1" value='{{ each }}'>
+                                                                    {{ each }}
+                                                                    <p class="m-0">{{ Squad_Captain1[count.value-1] }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxteam1" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Team1" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    {{ Squad_Team1[count.value-1] }}                                      
+                                                                </div>
+                                                            </td>
+                                                                {% if  New1[count.value-1]  == "New"  %}
+                                                                <td class="align-middle"><i class="fas fa-circle text-c-green f-10"></i>
+                                                                </td>
+                                                                {% else  %}      
+                                                                <td>
+                                                                    
+                                                                </td>
+                                                                {% endif  %}   
+                                                            <td>
+                                                                <h6 class="mb-1">{{ Squad_Position1[count.value-1] }}</h6>                                                    
+                                                                    </td>                                                   
+                                                                    <td>
+                                                                <h6 class="mb-1">{{ Squad_xPoints1[count.value-1] }}</h6>                                                    
+                                                            </td>
 
-                                                    <td>
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" name="mycheckbox" class="form-check-input" value={{ count.value }}>    
-                                                            <input type="hidden" name="Name" value='{{ each }}'>
-                                                            {{ each }}
-                                                            <p class="m-0">{{ Squad_Captain[count.value-1] }}</p>
-                                                        
-                                                    </td>
-                                                    <td>
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" name="mycheckboxteam" class="form-check-input" value={{ count.value }}>    
-                                                            <input type="hidden" name="Team" value='{{ Squad_Team[count.value-1] }}'>
-                                                            {{ Squad_Team[count.value-1] }}                                      
-                                                        </div>
-                                                    </td>
-                                                    {% if  New[count.value-1]  == "New"  %}
-                                                    <td class="align-middle"><i class="fas fa-circle text-c-green f-10"></i></td>
-                                                    {% else  %}      
-                                                    <td></td>
-                                                    {% endif  %}   
-                                                    <td>
-                                                        <h6 class="mb-1">{{ Squad_Position[count.value-1] }}</h6>                                                    
-                                                    </td>                                                   
-                                                    <td>
-                                                        <h6 class="mb-1">{{ Squad_xPoints[count.value-1] }}</h6>                                                    
-                                                    </td>
+                                                            {% set count.value = count.value + 1 %}
+                                                            {% endfor %}
+                                                            <tr>
+                                                                <th scope="col">Players to sell</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                            {% set count = namespace(value=1) %}
+                                                            {% for each in sell_list1 %} 
+                                                            <tr class="unread">
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxsell1" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Name1" value='{{ each }}'>
+                                                                    {{ each }}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxsell2" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Team1" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    {{ sell_list_team1[count.value-1] }}                                      
+                                                                </div>
+                                                            </td>
+                                                                <td>                                                           
+                                                                </td>
+                                                            <td>
+                                                                <h6 class="mb-1">{{ sell_list_position1[count.value-1] }}</h6>                                                    
+                                                                    </td>                                                   
+                                                                    <td>
+                                                                <h6 class="mb-1">{{ sell_list_xPoints1[count.value-1] }}</h6>                                                    
+                                                            </td>
+                                                            {% set count.value = count.value + 1 %}
+                                                            {% endfor %} 
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                            </form>
+                                          
+                                        </div>
+                                        <div class="tab-pane fade active show" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
+                                   
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                        <th scope="col">Player</th>
+                                                        <th scope="col">Team</th>
+                                                        <th scope="col">New player</th>
+                                                        <th scope="col">Position</th>
+                                                        <th scope="col">Points in coming round</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% set count = namespace(value=1) %}
+                                                            {% for each in Squad2 %}                    
+                                                        <tr class="unread">
+                                                            {% if  count.value-1 == 11  %}
+                                                            <tr>
+                                                                <th scope="col">Substitues</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                            {% endif  %} 
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckbox2" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Name2" value='{{ each }}'>
+                                                                    {{ each }}
+                                                                    <p class="m-0">{{ Squad_Captain2[count.value-1] }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxteam2" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Team2" value='{{ Squad_Team2[count.value-1] }}'>
+                                                                    {{ Squad_Team2[count.value-1] }}                                      
+                                                                </div>
+                                                            </td>
+                                                            {% if  New2[count.value-1]  == "New"  %}
+                                                            <td class="align-middle"><i class="fas fa-circle text-c-green f-10"></i></td>
+                                                            {% else  %}      
+                                                            <td></td>
+                                                            {% endif  %}   
+                                                            <td>
+                                                                <h6 class="mb-1">{{ Squad_Position2[count.value-1] }}</h6>                                                    
+                                                            </td>                                                   
+                                                            <td>
+                                                                <h6 class="mb-1">{{ Squad_xPoints2[count.value-1] }}</h6>                                                    
+                                                            </td>
 
-                                                       {% set count.value = count.value + 1 %}
-                                                       {% endfor %} 
-                                                        
-                                                </tr>
+                                                            {% set count.value = count.value + 1 %}
+                                                            {% endfor %}
+                                                            <tr>
+                                                                <th scope="col">Players to sell</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                            {% set count = namespace(value=1) %}
+                                                            {% for each in sell_list2 %} 
+                                                            <tr class="unread">
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxsell2" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Name" value='{{ each }}'>
+                                                                    {{ each }}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxsell2" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Team" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    {{ sell_list_team2[count.value-1] }}                                      
+                                                                </div>
+                                                            </td>
+                                                                <td>                                                           
+                                                                </td>
+                                                            <td>
+                                                                <h6 class="mb-1">{{ sell_list_position2[count.value-1] }}</h6>                                                    
+                                                                    </td>                                                   
+                                                                    <td>
+                                                                <h6 class="mb-1">{{ sell_list_xPoints2[count.value-1] }}</h6>                                                    
+                                                            </td>
+                                                            {% set count.value = count.value + 1 %}
+                                                            {% endfor %}  
+                                                                
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                            </form>
+                                          
+                                        </div>
+                                        <div class="tab-pane fade" id="profile3" role="tabpanel" aria-labelledby="profile3-tab">
+                                         
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                        <th scope="col">Player</th>
+                                                        <th scope="col">Team</th>
+                                                        <th scope="col">New player</th>
+                                                        <th scope="col">Position</th>
+                                                        <th scope="col">Points in coming round</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% set count = namespace(value=1) %}
+                                                            {% for each in Squad3 %}                    
+                                                        <tr class="unread">
+                                                            {% if  count.value-1 == 11  %}
+                                                            <tr>
+                                                                <th scope="col">Substitues</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                            {% endif  %} 
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckbox3" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Name3" value='{{ each }}'>
+                                                                    {{ each }}
+                                                                    <p class="m-0">{{ Squad_Captain3[count.value-1] }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxteam3" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Team3" value='{{ Squad_Team3[count.value-1] }}'>
+                                                                    {{ Squad_Team3[count.value-1] }}                                      
+                                                                </div>
+                                                            </td>
+                                                            {% if  New3[count.value-1]  == "New"  %}
+                                                            <td class="align-middle"><i class="fas fa-circle text-c-green f-10"></i></td>
+                                                            {% else  %}      
+                                                            <td></td>
+                                                            {% endif  %}   
+                                                            <td>
+                                                                <h6 class="mb-1">{{ Squad_Position3[count.value-1] }}</h6>                                                    
+                                                            </td>                                                   
+                                                            <td>
+                                                                <h6 class="mb-1">{{ Squad_xPoints3[count.value-1] }}</h6>                                                    
+                                                            </td>
 
-                                            </tbody>
-                                        </table>
-                                        <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                                            {% set count.value = count.value + 1 %}
+                                                            {% endfor %}
+                                                            <tr>
+                                                                <th scope="col">Players to sell</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                            {% set count = namespace(value=1) %}
+                                                            {% for each in sell_list3 %} 
+                                                            <tr class="unread">
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxsell3" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Name4" value='{{ each }}'>
+                                                                    {{ each }}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxsell3" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Team4" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    {{ sell_list_team3[count.value-1] }}                                      
+                                                                </div>
+                                                            </td>
+                                                                <td>                                                           
+                                                                </td>
+                                                            <td>
+                                                                <h6 class="mb-1">{{ sell_list_position3[count.value-1] }}</h6>                                                    
+                                                                    </td>                                                   
+                                                                    <td>
+                                                                <h6 class="mb-1">{{ sell_list_xPoints3[count.value-1] }}</h6>                                                    
+                                                            </td>
+                                                            {% set count.value = count.value + 1 %}
+                                                            {% endfor %}  
+                                                                
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                            </form>
+                                         
+                                        </div>
+                                        <div class="tab-pane fade" id="profile4" role="tabpanel" aria-labelledby="profile4-tab">
+                                       
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                        <th scope="col">Player</th>
+                                                        <th scope="col">Team</th>
+                                                        <th scope="col">New player</th>
+                                                        <th scope="col">Position</th>
+                                                        <th scope="col">Points in coming round</th>
+                                                        </tr>
+                                                    </thead>
+                                                <tbody>
+                                                    {% set count = namespace(value=1) %}
+                                                        {% for each in Squad4 %}                    
+                                                    <tr class="unread">
+                                                        {% if  count.value-1 == 11  %}
+                                                        <tr>
+                                                            <th scope="col">Substitues</th>
+                                                            <th scope="col"></th>
+                                                            <th scope="col"></th>
+                                                            <th scope="col"></th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                        {% endif  %} 
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="mycheckbox4" class="form-check-input" value={{ count.value }}>    
+                                                                <input type="hidden" name="Name5" value='{{ each }}'>
+                                                                {{ each }}
+                                                                <p class="m-0">{{ Squad_Captain4[count.value-1] }}</p>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="mycheckboxteam4" class="form-check-input" value={{ count.value }}>    
+                                                                <input type="hidden" name="Team5" value='{{ Squad_Team4[count.value-1] }}'>
+                                                                {{ Squad_Team4[count.value-1] }}                                      
+                                                            </div>
+                                                        </td>
+                                                        {% if  New4[count.value-1]  == "New"  %}
+                                                        <td class="align-middle"><i class="fas fa-circle text-c-green f-10"></i></td>
+                                                        {% else  %}      
+                                                        <td></td>
+                                                        {% endif  %}   
+                                                        <td>
+                                                            <h6 class="mb-1">{{ Squad_Position4[count.value-1] }}</h6>                                                    
+                                                        </td>                                                   
+                                                        <td>
+                                                            <h6 class="mb-1">{{ Squad_xPoints4[count.value-1] }}</h6>                                                    
+                                                        </td>
 
-                                        </form>
-                                    </div>                                   
+                                                        {% set count.value = count.value + 1 %}
+                                                        {% endfor %}
+                                                        <tr>
+                                                            <th scope="col">Players to sell</th>
+                                                            <th scope="col"></th>
+                                                            <th scope="col"></th>
+                                                            <th scope="col"></th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                        {% set count = namespace(value=1) %}
+                                                        {% for each in sell_list4 %} 
+                                                        <tr class="unread">
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="mycheckboxsell4" class="form-check-input" value={{ count.value }}>    
+                                                                <input type="hidden" name="Name" value='{{ each }}'>
+                                                                {{ each }}
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="mycheckboxsell4" class="form-check-input" value={{ count.value }}>    
+                                                                <input type="hidden" name="Team" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                {{ sell_list_team4[count.value-1] }}                                      
+                                                            </div>
+                                                        </td>
+                                                            <td>                                                           
+                                                            </td>
+                                                        <td>
+                                                            <h6 class="mb-1">{{ sell_list_position4[count.value-1] }}</h6>                                                    
+                                                                </td>                                                   
+                                                                <td>
+                                                            <h6 class="mb-1">{{ sell_list_xPoints4[count.value-1] }}</h6>                                                    
+                                                        </td>
+                                                        {% set count.value = count.value + 1 %}
+                                                        {% endfor %}  
+                                                            
+                                                    </tr>
+                                                </tbody>
+                                                </table>
+                                                <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                            </form>
+                                        
+                                        </div>
+                                        <div class="tab-pane fade" id="profile5" role="tabpanel" aria-labelledby="profile5-tab">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                        <th scope="col">Player</th>
+                                                        <th scope="col">Team</th>
+                                                        <th scope="col">New player</th>
+                                                        <th scope="col">Position</th>
+                                                        <th scope="col">Points in coming round</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% set count = namespace(value=1) %}
+                                                        {% for each in Squad5 %}                    
+                                                        <tr class="unread">
+                                                            {% if  count.value-1 == 11  %}
+                                                            <tr>
+                                                                <th scope="col">Substitues</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                            {% endif  %} 
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckbox5" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Name" value='{{ each }}'>
+                                                                    {{ each }}
+                                                                    <p class="m-0">{{ Squad_Captain5[count.value-1] }}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxteam5" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Team" value='{{ Squad_Team5[count.value-1] }}'>
+                                                                    {{ Squad_Team5[count.value-1] }}                                      
+                                                                </div>
+                                                            </td>
+                                                            {% if  New5[count.value-1]  == "New"  %}
+                                                            <td class="align-middle"><i class="fas fa-circle text-c-green f-10"></i></td>
+                                                            {% else  %}      
+                                                            <td></td>
+                                                            {% endif  %}   
+                                                            <td>
+                                                                <h6 class="mb-1">{{ Squad_Position5[count.value-1] }}</h6>                                                    
+                                                            </td>                                                   
+                                                            <td>
+                                                                <h6 class="mb-1">{{ Squad_xPoints5[count.value-1] }}</h6>                                                    
+                                                            </td>
 
+                                                            {% set count.value = count.value + 1 %}
+                                                            {% endfor %}
+                                                            <tr>
+                                                                <th scope="col">Players to sell</th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                            {% set count = namespace(value=1) %}
+                                                            {% for each in sell_list5 %} 
+                                                            <tr class="unread">
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxsell5" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Name" value='{{ each }}'>
+                                                                    {{ each }}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" name="mycheckboxsell5" class="form-check-input" value={{ count.value }}>    
+                                                                    <input type="hidden" name="Team" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    {{ sell_list_team5[count.value-1] }}                                      
+                                                                </div>
+                                                            </td>
+                                                                <td>                                                           
+                                                                </td>
+                                                            <td>
+                                                                <h6 class="mb-1">{{ sell_list_position5[count.value-1] }}</h6>                                                    
+                                                                    </td>                                                   
+                                                                    <td>
+                                                                <h6 class="mb-1">{{ sell_list_xPoints5[count.value-1] }}</h6>                                                    
+                                                            </td>
+                                                            {% set count.value = count.value + 1 %}
+                                                            {% endfor %}  
+                                                                
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                            </form>
+                            
+                                        </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
@@ -224,7 +639,6 @@ input[type="checkbox"] {
                                         <h5>Force players in future lineup</h5>
                                     </div>
                                     <div class="card-block px-0 py-3">
-                                        <div class="table-responsive">
                                             <table class="table table-hover">
                                                 <tbody>
                                                     <tr>
@@ -260,110 +674,29 @@ input[type="checkbox"] {
                                                     </div>
                                                 </div>
                                             </table>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xl-8 col-md-6">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Players To Sell</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Players To Buy</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>                                              
-                                                <th>Player</th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Points in coming round</th>
-                                                <th class="text-right"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                {% set count = namespace(value=1) %}
-                                                {% for each in sell_list %} 
-                                                <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ sell_list_team[count.value-1] }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ sell_list_position[count.value-1] }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ sell_list_xPoints[count.value-1] }}</h6>
-                                                </td>
-                                                <td class="text-right"><i class="fas fa-circle text-c-red f-10"></i></td>
-                                            </tr>
-                                                {% set count.value = count.value + 1 %}
-                                                {% endfor %} 
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Player</th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Points in coming round</th>
-                                                <th class="text-right"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                {% set count = namespace(value=1) %}
-                                                {% for each in buy_list %} 
-                                                <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ buy_list_team[count.value-1] }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ buy_list_position[count.value-1] }}</h6>
-                                                </td>
-                                                <td>
-                                                    <h6 class="m-0">{{ buy_list_xPoints[count.value-1] }}</h6>
-                                                </td>
-                                                <td class="text-right"><i class="fas fa-circle text-c-green f-10"></i></td>
-                                            </tr>                                               
-                                                {% set count.value = count.value + 1 %}
-                                                {% endfor %} 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                                <!--[ Recent Users ] start-->
-                            </div>
-                        </div>
+                
+                    <!--[ Recent Users ] start-->
+                </div>
+            </div>
                         <!-- [ statistics year chart ] end -->
 
-                        <form action="/teamupdated" method="POST">
-                            {% for each in Squad %}
-                              <input type="hidden" name="Name" value='{{ each }}'>
-                           {% endfor %} 
-                           <input type="hidden" name="Budget" value='{{ Budget }}'>
-                              <input type="submit" class="btn btn-primary" value="Save lineup to Dashboard" btn-lg>
-                        </form>
+            <form action="/teamupdated" method="POST">
+                {% for each in Squad %}
+                    <input type="hidden" name="Name" value='{{ each }}'>
+                {% endfor %} 
+                <input type="hidden" name="Budget" value='{{ Budget }}'>
+                    <input type="submit" class="btn btn-primary" value="Save lineup to Dashboard" btn-lg>
+            </form>
 
 
-                    </form> 
-                </div>
+            </form> 
+            </div>
             </div>
         </div>
     </div>
@@ -394,6 +727,120 @@ input[type="checkbox"] {
   $(document).ready(function() {
       $('#Player3IN').select2({  // init Select2 on form's name field
           placeholder: "{{ form.Player3IN.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+
+<script src="/static/assets/plugins/chart-morris/js/raphael.min.js"></script>
+<script src="/static/assets/plugins/chart-morris/js/morris.min.js"></script>
+<script> 'use strict';
+$(document).ready(function() {
+    setTimeout(function() {
+    Morris.Line({
+        element: 'morris-line-smooth-chart',
+        data: [{
+                y: {{ labels[0]|tojson }},
+                a: {{ values1[0]|tojson }}
+            },
+            {
+                y: {{ labels[1]|tojson }},
+                a: {{ values1[1]|tojson }}
+            },
+            {
+                y: {{ labels[2]|tojson }},
+                a: {{ values1[2]|tojson }}
+            },
+            {
+                y: {{ labels[3]|tojson }},
+                a: {{ values1[3]|tojson }}
+            },
+            {
+                 y: {{ labels[4]|tojson }},
+                a: {{ values1[4]|tojson }}
+            },
+            {
+                y: {{ labels[5]|tojson }},
+                a: {{ values1[5]|tojson }}
+            }
+        ],
+        xkey: 'y',
+        redraw: true,
+        parseTime: false,
+        resize: true,
+        ykeys: ['a'],
+        hideHover: 'auto',
+        responsive:true,
+        ymax: 75,
+        ymin:50,
+        labels: [{{ Name1|tojson }}],
+        lineColors: ['#1de9b6', '#A389D4']
+    });
+    // [ line-smooth-chart ] end
+   Morris.Line({
+        element: 'morris-line-smooth-chart1',
+        data: [{
+                y: {{ labels[0]|tojson }},
+                a: {{ values2[0]|tojson }}
+            },
+            {
+                y: {{ labels[1]|tojson }},
+                a: {{ values2[1]|tojson }}
+            },
+            {
+                y: {{ labels[2]|tojson }},
+                a: {{ values2[2]|tojson }}
+            },
+            {
+                y: {{ labels[3]|tojson }},
+                a: {{ values2[3]|tojson }}
+            },
+            {
+                 y: {{ labels[4]|tojson }},
+                a: {{ values2[4]|tojson }}
+            },
+            {
+                y: {{ labels[5]|tojson }},
+                a: {{ values2[5]|tojson }}
+            }
+        ],
+        xkey: 'y',
+        redraw: true,
+        parseTime: false,
+        resize: true,
+        ykeys: ['a'],
+        hideHover: 'auto',
+        responsive:true,
+        ymax: 75,
+        ymin:50,
+        labels: [{{ Name2|tojson }}],
+        lineColors: ['#1de9b6', '#A389D4']
+    });
+    // [ line-smooth-chart ] end    
+        }, 700);
+});
+</script>
+<script>
+  $(document).ready(function() {
+      $('#Player1').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player1.label.text }}",
+          allowClear: true,
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player2').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player2.label.text }}",
           allowClear: true,
           "width": "style"
       });

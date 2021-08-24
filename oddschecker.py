@@ -1,12 +1,32 @@
 from typing import Dict
+from soccerapi.api import Api888Sport
 from soccerapi.api import ApiUnibet
-import pandas as pd
+from soccerapi.api import ApiBet365
+
+api = ApiUnibet()
+url = 'https://www.888sport.com/#/filter/football/italy/serie_a'
+odds = api.odds(url)
+
+odds = api.competitions()
+print(odds)
+import pandas as pd 
 import numpy as np
 import os
 from difflib import get_close_matches
 
 import urllib.request, json
 
+## soccerAPI
+from soccerapi.api import Api888Sport
+api = Api888Sport()
+
+odds = api.competitions()
+
+print(odds['England'])
+
+url = 'https://www.888sport.com/#/filter/football/england/premier_league'
+odds = api.odds(url)
+print(odds)
 ## Odds
 url = "https://dh-api-production.herokuapp.com/football/euros/stages"
 

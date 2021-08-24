@@ -1,0 +1,396 @@
+{% extends "layoutbase.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<link rel="stylesheet" href="{{url_for('.static/assets', filename='style.css')}}">
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/path/to/select2.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="card Recent-Users">
+            <div class="card-header">
+                <h5>Check and correct selling price for each player</h5>
+            </div>
+            <div class="card-block px-1000 py-3">
+                <div class="col-sm-24"> 
+                    <form action="/optimization" method="POST">
+                    {{ form.csrf_token}} 
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="email" name='Budget'>Money Remaining:</label>
+                                    {{ form.Budget(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player1'>Player1</label>
+                                    {{ form.Player1(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost1'>Selling price</label>
+                                    {{ form.Cost1(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player2'>Player2</label>
+                                    {{ form.Player2(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost2'>Selling price</label>
+                                    {{ form.Cost2(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player3'>Player3</label>
+                                    {{ form.Player3(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost3'>Selling price</label>
+                                    {{ form.Cost3(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player4'>Player4</label>
+                                    {{ form.Player4(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost4'>Selling price</label>
+                                    {{ form.Cost4(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player5'>Player5</label>
+                                    {{ form.Player5(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost5'>Selling price</label>
+                                    {{ form.Cost5(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player6'>Player6</label>
+                                    {{ form.Player6(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost6'>Selling price</label>
+                                    {{ form.Cost6(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player7'>Player7</label>
+                                    {{ form.Player7(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost7'>Selling price</label>
+                                    {{ form.Cost7(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player8'>Player8</label>
+                                    {{ form.Player8(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost8'>Selling price</label>
+                                    {{ form.Cost8(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player9'>Player9</label>
+                                    {{ form.Player9(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost9'>Selling price</label>
+                                    {{ form.Cost9(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player10'>Player10</label>
+                                    {{ form.Player10(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost10'>Selling price</label>
+                                    {{ form.Cost10(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player11'>Player11</label>
+                                    {{ form.Player11(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost11'>Selling price</label>
+                                    {{ form.Cost11(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player12'>Player12</label>
+                                    {{ form.Player12(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost12'>Selling price</label>
+                                    {{ form.Cost12(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player13'>Player13</label>
+                                    {{ form.Player13(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost13'>Selling price</label>
+                                    {{ form.Cost13(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player14'>Player14</label>
+                                    {{ form.Player14(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost14'>Selling price</label>
+                                    {{ form.Cost14(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Player15'>Player15</label>
+                                    {{ form.Player15(class="form-control")}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" name='Cost15'>Selling price</label>
+                                    {{ form.Cost15(class="form-control")}}
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                         <input type="submit" class="btn btn-primary" value="Submit team and run lineup optimzier" btn-lg>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+
+{% endblock %}
+{% block javascripts %}
+<script>
+  $(document).ready(function() {
+      $('#Player1').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player1.label.text }}",
+          theme:"bootstrap4",
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player2').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player2.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player3').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player3.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player4').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player4.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player5').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player5.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player6').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player6.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player7').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player7.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player8').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player8.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player9').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player9.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player10').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player10.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+<script>
+  $(document).ready(function() {
+      $('#Player11').select2({  // init Select2 on form's name field
+          placeholder: "{{ form.Player11.label.text }}",
+          theme:"bootstrap4",
+          "width": "style"
+      });
+  });
+  </script>
+  <script>
+    $(document).ready(function() {
+        $('#Player12').select2({  // init Select2 on form's name field
+            placeholder: "{{ form.Player12.label.text }}",
+            theme:"bootstrap4",
+          "width": "style"
+        });
+    });
+    </script>
+    <script>
+      $(document).ready(function() {
+          $('#Player13').select2({  // init Select2 on form's name field
+              placeholder: "{{ form.Player13.label.text }}",
+              theme:"bootstrap4",
+          "width": "style"
+          });
+      });
+      </script>
+      <script>
+        $(document).ready(function() {
+            $('#Player14').select2({  // init Select2 on form's name field
+                placeholder: "{{ form.Player14.label.text }}",
+                theme:"bootstrap4",
+          "width": "style"
+            });
+        });
+        </script>
+        <script>
+          $(document).ready(function() {
+              $('#Player15').select2({  // init Select2 on form's name field
+                  placeholder: "{{ form.Player15.label.text }}",
+                  theme:"bootstrap4",
+            "width": "style"
+              });
+          });
+          </script>
+  </body>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+{% endblock javascripts %}    
