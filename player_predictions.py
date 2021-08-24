@@ -79,7 +79,7 @@ APP_ROOT = os.path.dirname(os.path.abspath('__file__'))
 # # APP_ROOT = os.path.dirname(os.path.abspath('__file__'))
 # # rw1 = pd.read_excel(os.path.join(APP_ROOT, 'soccer-projections.xlsx'), header=1)
 # rw_teams = pd.DataFrame(rw.Team.unique(), columns=['Team'])
-### FiveThirtyEight:
+# ## FiveThirtyEight:
 # For automation
 # url="https://projects.fivethirtyeight.com/soccer-api/club/spi_matches_latest.csv"
 # fte=pd.read_csv(url)
