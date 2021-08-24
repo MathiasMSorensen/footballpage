@@ -6,7 +6,7 @@ from dictionaries import team_lookup, team_lookup_num
 
 def team_forecast(team, fte, current_round, forecast_window):
     Output = pd.DataFrame(index=range(current_round, current_round + forecast_window), 
-                          columns = ['xG', 'xG_against', 'xCS', 'xWin', 'Opponent'])
+                            columns = ['xG', 'xG_against', 'xCS', 'xWin', 'Opponent'])
     team_fte = team_lookup[team]
     
     matches = fte.loc[(fte.team1==team_fte) | (fte.team2==team_fte)]

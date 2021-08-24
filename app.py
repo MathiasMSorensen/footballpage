@@ -112,8 +112,8 @@ def home():
     return render_template("index.html")
 
 
-@app.route('/ViewList3/',methods=["POST","GET"])
-def ViewList3():
+@app.route('/Viewlist3/',methods=["POST","GET"])
+def Viewlist3():
 
     fpl_name = data_final['fpl_name'] 
     fpl_cost = data_final[['fpl_name','cost']] 
@@ -191,7 +191,7 @@ def ViewList3():
         form.Player14.choices = [(found_user.Player14),"---"]+sorted(fpl_name)
         form.Player15.choices = [(found_user.Player15),"---"]+sorted(fpl_name)        
 
-        return render_template("ViewList3.html", form=form)  
+        return render_template("Viewlist3.html", form=form)  
     else:
         return render_template("ViewList.html", form=form)    
         
