@@ -137,11 +137,7 @@ def Pulp_optimization(Teams, N, Data, TranferIn, TranferOut ,TotalPoints, \
             
             Output = []
             for i in range(N):
-                if ((captain[i].value()==1) & (squad_old[i] == 0)):
-                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','New','Captain'])
-                elif ((captain[i].value()==1) & (squad_old[i] != 0)):
-                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','','Captain'])
-                elif ((players[i].value()==1) & (squad_old[i] == 0)):
+                if ((players[i].value()==1) & (squad_old[i] == 0)):
                     Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','New',''])
                 elif ((players[i].value()==1) & (squad_old[i] != 0)):
                     Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','',''])
@@ -155,6 +151,8 @@ def Pulp_optimization(Teams, N, Data, TranferIn, TranferOut ,TotalPoints, \
             Output = Output.sort_values(['player_sub','Positions']).reset_index(drop = True)
             Output = pd.concat([Output[((Output['Positions']=='Goalkeeper') & (Output['player_sub']=='player'))].reset_index(drop = True),
                                 Output[((Output['Positions']!='Goalkeeper') | (Output['player_sub']!='player'))].reset_index(drop = True)]).reset_index(drop = True)
+            
+            Output['Captain'][Output['TotalPoints'].idxmax()] = 'Captain'
 
             cost_squad = 0
             for i in range(N):

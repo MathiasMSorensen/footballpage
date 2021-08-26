@@ -238,3 +238,8 @@ N = len(data_final)
 #                                             list(data_final['Expected_Points_discounted']), list(data_final['position']), excluded_players, included_players, [], \
 #                                             0, list(data_final['fpl_name']), list(data_final['Expected_Points_round1']), 1, \
 #                                             squad_old_index, sub_1_discount, sub_2_discount,sub_3_discount, sub_gk_discount)
+
+
+# Output.iloc[Output['TotalPoints'].idxmax()] = 'Captain'
+# Output['Captain'][Output['TotalPoints'].idxmax()]= 'Captain'
+# Output = Output_list[0]['Captain']

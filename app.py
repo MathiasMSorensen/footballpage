@@ -30,8 +30,8 @@ from utils import get_optim_results
 
 app = Flask(__name__,template_folder="templates")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
 
@@ -65,6 +65,7 @@ class RegisterForm(FlaskForm):
         
 class Form(FlaskForm):
     Budget = IntegerField('How Many?', validators=[NumberRange(min=0, max=150, message='bla')])
+    n_tranfers = SelectField('How Many?', validators=[NumberRange(min=1, max=2, message='bla')])
     Cost1 = IntegerField('How Many?', validators=[NumberRange(min=3, max=15, message='bla')])
     Cost2 = IntegerField('How Many?', validators=[NumberRange(min=3, max=15, message='bla')])
     Cost3 = IntegerField('How Many?', validators=[NumberRange(min=3, max=15, message='bla')])
@@ -159,6 +160,7 @@ def Viewlist3():
         db.session.commit()
 
         form.Budget.data = found_user.Budget
+        form.n_tranfers.data = request.form.get("n_tranfers")
         form.Cost1.data = int(fpl_cost[fpl_cost['fpl_name']==Player1]['cost'])/10
         form.Cost2.data = int(fpl_cost[fpl_cost['fpl_name']==Player2]['cost'])/10
         form.Cost3.data = int(fpl_cost[fpl_cost['fpl_name']==Player3]['cost'])/10
@@ -175,6 +177,7 @@ def Viewlist3():
         form.Cost14.data = int(fpl_cost[fpl_cost['fpl_name']==Player14]['cost'])/10
         form.Cost15.data = int(fpl_cost[fpl_cost['fpl_name']==Player15]['cost'])/10
 
+        form.n_tranfers.choices = [1,2]
         form.Player1.choices = [(found_user.Player1),"---"]+sorted(fpl_name)
         form.Player2.choices = [(found_user.Player2),"---"]+sorted(fpl_name)
         form.Player3.choices = [(found_user.Player3),"---"]+sorted(fpl_name)
@@ -206,6 +209,7 @@ def Viewlist():
             print("""non empty""")
             print(found_user.Budget)
             form.Budget.data = 0
+            form.n_tranfers.choices = [1,2]
             form.Player1.choices = [(found_user.Player1),"---"]+sorted(fpl_name)
             form.Player2.choices = [(found_user.Player2),"---"]+sorted(fpl_name)
             form.Player3.choices = [(found_user.Player3),"---"]+sorted(fpl_name)
@@ -243,6 +247,7 @@ def Viewlist():
 
     elif request.method == 'POST':
         form.Budget.data = 0
+        form.n_tranfers.choices = [1,2]
         form.Player1.choices = [(request.form.get("Player1")),"---"]+sorted(fpl_name)
         form.Player2.choices = [(request.form.get("Player2")),"---"]+sorted(fpl_name)
         form.Player3.choices = [(request.form.get("Player3")),"---"]+sorted(fpl_name)
@@ -340,7 +345,7 @@ def optimization():
         Cost13 =  request.form.get("Cost13")
         Cost14 =  request.form.get("Cost14")
         Cost15 =  request.form.get("Cost15")
-
+        n_transfers =  request.form.get("n_tranfers")
         PlayerList = [Player1, Player2, Player3, Player4, Player5, 
                       Player6, Player7, Player8, Player9, Player10,
                       Player11, Player12, Player13, Player14, Player15]
@@ -401,16 +406,25 @@ def optimization():
                         int(sum(Output_list[3][Output_list[3]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[3], pd.DataFrame) else 0,
                         int(sum(Output_list[4][Output_list[4]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[4], pd.DataFrame) else 0,
                         int(sum(Output_list[5][Output_list[5]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[5], pd.DataFrame) else 0]
-                
-            values2 =  [int(sum(Output_list[0][Output_list[0]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[0], pd.DataFrame) else 0,
-                        int(sum(Output_list[1][Output_list[1]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[1], pd.DataFrame) else 0,
-                        int(sum(Output_list[2][Output_list[2]['player_sub']=='player' ]['TotalPoints']))-4 if isinstance(Output_list[2], pd.DataFrame) else 0,
-                        int(sum(Output_list[3][Output_list[3]['player_sub']=='player' ]['TotalPoints']))-8 if isinstance(Output_list[3], pd.DataFrame) else 0,
-                        int(sum(Output_list[4][Output_list[4]['player_sub']=='player' ]['TotalPoints']))-12 if isinstance(Output_list[4], pd.DataFrame) else 0,
-                        int(sum(Output_list[5][Output_list[5]['player_sub']=='player' ]['TotalPoints']))-16 if isinstance(Output_list[5], pd.DataFrame) else 0]
-
-            Name1 = "Expected points in coming round without transfer cost"
-            Name2 = "Expected points in coming round with transfer cost"
+            
+            if n_transfers == 1:
+                values2 =  [int(sum(Output_list[0][Output_list[0]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[0], pd.DataFrame) else 0,
+                            int(sum(Output_list[1][Output_list[1]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[1], pd.DataFrame) else 0,
+                            int(sum(Output_list[2][Output_list[2]['player_sub']=='player' ]['TotalPoints']))-4 if isinstance(Output_list[2], pd.DataFrame) else 0,
+                            int(sum(Output_list[3][Output_list[3]['player_sub']=='player' ]['TotalPoints']))-8 if isinstance(Output_list[3], pd.DataFrame) else 0,
+                            int(sum(Output_list[4][Output_list[4]['player_sub']=='player' ]['TotalPoints']))-12 if isinstance(Output_list[4], pd.DataFrame) else 0,
+                            int(sum(Output_list[5][Output_list[5]['player_sub']=='player' ]['TotalPoints']))-16 if isinstance(Output_list[5], pd.DataFrame) else 0]
+            else:
+                values2 =  [int(sum(Output_list[0][Output_list[0]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[0], pd.DataFrame) else 0,
+                            int(sum(Output_list[1][Output_list[1]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[1], pd.DataFrame) else 0,
+                            int(sum(Output_list[2][Output_list[2]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[2], pd.DataFrame) else 0,
+                            int(sum(Output_list[3][Output_list[3]['player_sub']=='player' ]['TotalPoints']))-4 if isinstance(Output_list[3], pd.DataFrame) else 0,
+                            int(sum(Output_list[4][Output_list[4]['player_sub']=='player' ]['TotalPoints']))-8 if isinstance(Output_list[4], pd.DataFrame) else 0,
+                            int(sum(Output_list[5][Output_list[5]['player_sub']=='player' ]['TotalPoints']))-12 if isinstance(Output_list[5], pd.DataFrame) else 0]
+            
+            Name1 = "Expected Points without transfer cost"
+            Name2 = "Expected Points with transfer cost"
+            print(n_transfers)
             print(PlayerList)
             Output = Output_list[1]
 
@@ -460,7 +474,7 @@ def optimization():
                                         Squad5 = Squad5, Squad_Position5 = Squad_Position5 ,Squad_Team5 = Squad_Team5, Squad_xPoints5 = Squad_xPoints5, Squad_Captain5 = Squad_Captain5, 
                                         buy_list5=buy_list5, sell_list5=sell_list5, buy_list_position5=buy_list_position5, buy_list_team5=buy_list_team5, buy_list_xPoints5=buy_list_xPoints5,
                                         sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, 
-                                        form = form, labels=labels, values1=values1, values2=values2, Name1=Name1, Name2=Name2)   
+                                        form = form, labels=labels, values1=values1, values2=values2, Name1=Name1, Name2=Name2, n_transfers = n_transfers)   
    
             else:
                 error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
@@ -538,7 +552,8 @@ def sure():
         excludedP = request.form.getlist("mycheckboxExcludePLayer")
         excludedPlayers = request.form.getlist("ExcludedPlayers")
         excludedT = request.form.getlist("mycheckboxExcludedTeams")
-        excludedTeams = request.form.getlist("ExcludedTeams")
+        n_transfers = request.form.getlist("n_transfers")
+
         
         ExcludePlayers = []
         IncludePlayers = []
@@ -663,12 +678,20 @@ def sure():
                     int(sum(Output_list[4][Output_list[4]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[4], pd.DataFrame) else 0,
                     int(sum(Output_list[5][Output_list[5]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[5], pd.DataFrame) else 0]
             
-        values2 =  [int(sum(Output_list[0][Output_list[0]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[0], pd.DataFrame) else 0,
-                    int(sum(Output_list[1][Output_list[1]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[1], pd.DataFrame) else 0,
-                    int(sum(Output_list[2][Output_list[2]['player_sub']=='player' ]['TotalPoints']))-4 if isinstance(Output_list[2], pd.DataFrame) else 0,
-                    int(sum(Output_list[3][Output_list[3]['player_sub']=='player' ]['TotalPoints']))-8 if isinstance(Output_list[3], pd.DataFrame) else 0,
-                    int(sum(Output_list[4][Output_list[4]['player_sub']=='player' ]['TotalPoints']))-12 if isinstance(Output_list[4], pd.DataFrame) else 0,
-                    int(sum(Output_list[5][Output_list[5]['player_sub']=='player' ]['TotalPoints']))-16 if isinstance(Output_list[5], pd.DataFrame) else 0]
+        if n_transfers == 1:
+            values2 =  [int(sum(Output_list[0][Output_list[0]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[0], pd.DataFrame) else 0,
+                        int(sum(Output_list[1][Output_list[1]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[1], pd.DataFrame) else 0,
+                        int(sum(Output_list[2][Output_list[2]['player_sub']=='player' ]['TotalPoints']))-4 if isinstance(Output_list[2], pd.DataFrame) else 0,
+                        int(sum(Output_list[3][Output_list[3]['player_sub']=='player' ]['TotalPoints']))-8 if isinstance(Output_list[3], pd.DataFrame) else 0,
+                        int(sum(Output_list[4][Output_list[4]['player_sub']=='player' ]['TotalPoints']))-12 if isinstance(Output_list[4], pd.DataFrame) else 0,
+                        int(sum(Output_list[5][Output_list[5]['player_sub']=='player' ]['TotalPoints']))-16 if isinstance(Output_list[5], pd.DataFrame) else 0]
+        else:
+            values2 =  [int(sum(Output_list[0][Output_list[0]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[0], pd.DataFrame) else 0,
+                        int(sum(Output_list[1][Output_list[1]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[1], pd.DataFrame) else 0,
+                        int(sum(Output_list[2][Output_list[2]['player_sub']=='player' ]['TotalPoints'])) if isinstance(Output_list[2], pd.DataFrame) else 0,
+                        int(sum(Output_list[3][Output_list[3]['player_sub']=='player' ]['TotalPoints']))-4 if isinstance(Output_list[3], pd.DataFrame) else 0,
+                        int(sum(Output_list[4][Output_list[4]['player_sub']=='player' ]['TotalPoints']))-8 if isinstance(Output_list[4], pd.DataFrame) else 0,
+                        int(sum(Output_list[5][Output_list[5]['player_sub']=='player' ]['TotalPoints']))-12 if isinstance(Output_list[5], pd.DataFrame) else 0]
 
         Name1 = "Expected points in coming round without transfer cost"
         Name2 = "Expected points in coming round with transfer cost"
@@ -707,7 +730,7 @@ def sure():
                                             Squad5 = Squad5, Squad_Position5 = Squad_Position5 ,Squad_Team5 = Squad_Team5, Squad_xPoints5 = Squad_xPoints5, Squad_Captain5 = Squad_Captain5, 
                                             buy_list5=buy_list5, sell_list5=sell_list5, buy_list_position5=buy_list_position5, buy_list_team5=buy_list_team5, buy_list_xPoints5=buy_list_xPoints5,
                                             sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, 
-                                            form = form, labels=labels, values1=values1, values2=values2, Name1=Name1, Name2=Name2)   
+                                            form = form, labels=labels, values1=values1, values2=values2, Name1=Name1, Name2=Name2, n_transfers = n_transfers)   
                                                     
 @app.route('/dashboard2')
 def dashboard2():
@@ -750,7 +773,7 @@ def dashboard():
             for i in range(15):
                 Squad_Position.append(data_final[data_final['fpl_name']==Squad[i]]['position'].to_string(index=False))
                 Squad_Team.append(team_lookup_num[int(data_final[data_final['fpl_name']==Squad[i]]['team'])])
-                Squad_xPoints.append(int(data_final[data_final['fpl_name']==Squad[i]]['Expected_Points_round1']))
+                Squad_xPoints.append(float(data_final[data_final['fpl_name']==Squad[i]]['Expected_Points_round1']))
                 Squad_Captain.append('')
 
             index = np.where(np.in1d(data_final['fpl_name'], Squad))[0] 
@@ -798,10 +821,18 @@ def dashboard():
         TransferCost = 0
         Expected_points = 0
 
+    xPoints = list(round(data_final['Expected_Points_round1'],2)) #X points total
+    indices =  sorted(range(len(xPoints)), key = lambda sub: xPoints[sub])[-100:]
+    indices = list(reversed(np.array(indices)))
+    
+    Names =  data_final['fpl_name'].to_list()
+
+    TotPoints = [round(xPoints[i],0) for i in indices]
+    Name = [Names[i] for i in indices]
+
     return render_template('dashboard.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                                Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
-                                               nShare = nShare, Budget = Budget
-                                               )
+                                               nShare = nShare, Budget = Budget, TotPoints = TotPoints, Name=Name)
 
 @app.route('/top100')
 @login_required
