@@ -138,13 +138,13 @@ def Pulp_optimization(Teams, N, Data, TranferIn, TranferOut ,TotalPoints, \
             Output = []
             for i in range(N):
                 if ((players[i].value()==1) & (squad_old[i] == 0)):
-                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','New',''])
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], round(float(TotalPoints[i]),1), round(float(xPoints[i]),1), round(float(TranferIn[i]),1),'player','New',''])
                 elif ((players[i].value()==1) & (squad_old[i] != 0)):
-                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'player','',''])
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], round(float(TotalPoints[i]),1), round(float(xPoints[i]),1), round(float(TranferIn[i]),1),'player','',''])
                 elif ((sub1[i].value() + sub2[i].value() + sub3[i].value() + subs_gk[i].value()==1) & (squad_old[i] == 0)):
-                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'sub','New',''])
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], round(float(TotalPoints[i]),1), round(float(xPoints[i]),1), round(float(TranferIn[i]),1),'sub','New',''])
                 elif ((sub1[i].value() + sub2[i].value() + sub3[i].value() + subs_gk[i].value()==1) & (squad_old[i] != 0)):
-                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], int(TotalPoints[i]), int(xPoints[i]), int(TranferIn[i]),'sub','',''])
+                    Output.append([Names[i], team_lookup_num[Teams[i]], Positions[i], round(float(TotalPoints[i]),1), round(float(xPoints[i]),1), round(float(TranferIn[i]),1),'sub','',''])
             
             Output = pd.DataFrame(Output)
             Output.columns = ['Names','Teams','Positions','xPoints','TotalPoints','Cost','player_sub','new_old','Captain']

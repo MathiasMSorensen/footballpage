@@ -178,31 +178,34 @@ def calculate_expected_points(data_master, relevant_player, game, i):
 
 # get optimzied results from optimzation
 def get_optim_results(Output, PlayerList,data_final):
-    Squad = list(Output['Names']) 
-    Squad_Position = list(Output['Positions']) 
-    Squad_Team = list(Output['Teams']) 
-    Squad_xPoints = list(Output['TotalPoints']) 
-    Squad_Captain  = list(Output['Captain']) 
-    Expected_points = sum(Output['TotalPoints'])
-    buy_list = list(Output[Output['new_old']=="New"]['Names'])
-    buy_list_position = list(Output[Output['new_old']=="New"]['Positions']) 
-    buy_list_team = list(Output[Output['new_old']=="New"]['Names'])
-    buy_list_xPoints = list(Output[Output['new_old']=="New"]['TotalPoints'])
+    if isinstance(Output, pd.DataFrame):
+        Squad = list(Output['Names']) 
+        Squad_Position = list(Output['Positions']) 
+        Squad_Team = list(Output['Teams']) 
+        Squad_xPoints = list(round(Output['TotalPoints'],2)) 
+        Squad_Captain  = list(Output['Captain']) 
+        Expected_points = sum(Output['TotalPoints'])
+        buy_list = list(Output[Output['new_old']=="New"]['Names'])
+        buy_list_position = list(Output[Output['new_old']=="New"]['Positions']) 
+        buy_list_team = list(Output[Output['new_old']=="New"]['Names'])
+        buy_list_xPoints = list(Output[Output['new_old']=="New"]['TotalPoints'])
 
-    sell_bool = np.where(pd.DataFrame(PlayerList)[0].isin(Output['Names']), False, True)
-    sell_list_names = pd.DataFrame(PlayerList)[sell_bool].reset_index(drop = True)
-    sell_list_bool = data_final['fpl_name'].isin(sell_list_names.astype('str')[0])
-    sell_list = list(data_final['fpl_name'][sell_list_bool])
-    sell_list_position = list(data_final['position'][sell_list_bool]) 
+        sell_bool = np.where(pd.DataFrame(PlayerList)[0].isin(Output['Names']), False, True)
+        sell_list_names = pd.DataFrame(PlayerList)[sell_bool].reset_index(drop = True)
+        sell_list_bool = data_final['fpl_name'].isin(sell_list_names.astype('str')[0])
+        sell_list = list(data_final['fpl_name'][sell_list_bool])
+        sell_list_position = list(data_final['position'][sell_list_bool]) 
 
-    sell_list_team = []
-    sell_list_xPoints = []
-    sell_list_team_temp = list(data_final['team'][sell_list_bool])
-    sell_list_xPoints_temp = list(data_final['Expected_Points_round1'][sell_list_bool])
-    for i in range(len(sell_list_team_temp)):
-        sell_list_team.append(team_lookup_num[sell_list_team_temp[i]])
-        sell_list_xPoints.append(int(sell_list_xPoints_temp[i]))
-    
-    New = list(Output['new_old']) 
+        sell_list_team = []
+        sell_list_xPoints = []
+        sell_list_team_temp = list(data_final['team'][sell_list_bool])
+        sell_list_xPoints_temp = list(data_final['Expected_Points_round1'][sell_list_bool])
+        for i in range(len(sell_list_team_temp)):
+            sell_list_team.append(team_lookup_num[sell_list_team_temp[i]])
+            sell_list_xPoints.append(int(sell_list_xPoints_temp[i]))
+        
+        New = list(Output['new_old']) 
 
-    return New, Squad, Squad_Position, Squad_Team, Squad_xPoints, Squad_Captain, Expected_points, buy_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list, sell_list_team, sell_list_position, sell_list_xPoints
+        return New, Squad, Squad_Position, Squad_Team, Squad_xPoints, Squad_Captain, Expected_points, buy_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list, sell_list_team, sell_list_position, sell_list_xPoints
+    else:
+        return 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0

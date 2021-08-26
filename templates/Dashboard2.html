@@ -94,6 +94,8 @@ input[type="checkbox"] {
                                                         <th scope="col">Points in coming round</th>
                                                         </tr>
                                                     </thead>
+                                                    {% if  Squad1.value == 0  %}
+                                                    {% else %} 
                                                     <tbody>
                                                         {% set count = namespace(value=1) %}
                                                             {% for each in Squad1 %}                    
@@ -110,15 +112,16 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckbox1" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Name1" value='{{ each }}'>
+                                                                    <input type="hidden" name="Names1" value='{{ each }}'>
                                                                     {{ each }}
                                                                     <p class="m-0">{{ Squad_Captain1[count.value-1] }}</p>
+                                                                    
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxteam1" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Team1" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    <input type="hidden" name="Teams1" value='{{ Squad_Team1[count.value-1] }}'>
                                                                     {{ Squad_Team1[count.value-1] }}                                      
                                                                 </div>
                                                             </td>
@@ -152,14 +155,14 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxsell1" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Name1" value='{{ each }}'>
+                                                                    <input type="hidden" name="Names" value='{{ each }}'>
                                                                     {{ each }}
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxsell2" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Team1" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    <input type="hidden" name="Teams" value='{{ Squad_Team1[count.value-1] }}'>
                                                                     {{ sell_list_team1[count.value-1] }}                                      
                                                                 </div>
                                                             </td>
@@ -175,6 +178,7 @@ input[type="checkbox"] {
                                                             {% endfor %} 
                                                         </tr>
                                                     </tbody>
+                                                    {% endif  %} 
                                                 </table>
                                                 <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                             </form>
@@ -192,6 +196,8 @@ input[type="checkbox"] {
                                                         <th scope="col">Points in coming round</th>
                                                         </tr>
                                                     </thead>
+                                                    {% if  Squad2[0] == 0  %}
+                                                    {% else  %} 
                                                     <tbody>
                                                         {% set count = namespace(value=1) %}
                                                             {% for each in Squad2 %}                    
@@ -208,7 +214,7 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckbox2" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Name2" value='{{ each }}'>
+                                                                    <input type="hidden" name="Names2" value='{{ each }}'>
                                                                     {{ each }}
                                                                     <p class="m-0">{{ Squad_Captain2[count.value-1] }}</p>
                                                                 </div>
@@ -216,7 +222,7 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxteam2" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Team2" value='{{ Squad_Team2[count.value-1] }}'>
+                                                                    <input type="hidden" name="Teams2" value='{{ Squad_Team2[count.value-1] }}'>
                                                                     {{ Squad_Team2[count.value-1] }}                                      
                                                                 </div>
                                                             </td>
@@ -247,14 +253,14 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxsell2" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Name" value='{{ each }}'>
+                                                                    <input type="hidden" name="Names" value='{{ each }}'>
                                                                     {{ each }}
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxsell2" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Team" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    <input type="hidden" name="Teams" value='{{ Squad_Team1[count.value-1] }}'>
                                                                     {{ sell_list_team2[count.value-1] }}                                      
                                                                 </div>
                                                             </td>
@@ -271,6 +277,7 @@ input[type="checkbox"] {
                                                                 
                                                         </tr>
                                                     </tbody>
+                                                    {% endif  %} 
                                                 </table>
                                                 <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                             </form>
@@ -288,6 +295,8 @@ input[type="checkbox"] {
                                                         <th scope="col">Points in coming round</th>
                                                         </tr>
                                                     </thead>
+                                                    {% if  Squad3[0] == 0  %}
+                                                    {% else  %} 
                                                     <tbody>
                                                         {% set count = namespace(value=1) %}
                                                             {% for each in Squad3 %}                    
@@ -304,7 +313,7 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckbox3" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Name3" value='{{ each }}'>
+                                                                    <input type="hidden" name="Names3" value='{{ each }}'>
                                                                     {{ each }}
                                                                     <p class="m-0">{{ Squad_Captain3[count.value-1] }}</p>
                                                                 </div>
@@ -312,7 +321,8 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxteam3" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Team3" value='{{ Squad_Team3[count.value-1] }}'>
+                                                                    <input type="hidden" name="Teams3" value='{{ Squad_Team3[count.value-1] }}'>
+                                                                    <input type="hidden" name="n_transfers" value='{{ n_transfers }}'>
                                                                     {{ Squad_Team3[count.value-1] }}                                      
                                                                 </div>
                                                             </td>
@@ -343,14 +353,14 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxsell3" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Name4" value='{{ each }}'>
+                                                                    <input type="hidden" name="Names" value='{{ each }}'>
                                                                     {{ each }}
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxsell3" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Team4" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    <input type="hidden" name="Teams" value='{{ Squad_Team1[count.value-1] }}'>
                                                                     {{ sell_list_team3[count.value-1] }}                                      
                                                                 </div>
                                                             </td>
@@ -367,6 +377,7 @@ input[type="checkbox"] {
                                                                 
                                                         </tr>
                                                     </tbody>
+                                                    {% endif  %}
                                                 </table>
                                                 <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                             </form>
@@ -384,6 +395,8 @@ input[type="checkbox"] {
                                                         <th scope="col">Points in coming round</th>
                                                         </tr>
                                                     </thead>
+                                                    {% if  Squad4[0] == 0  %}
+                                                    {% else  %} 
                                                 <tbody>
                                                     {% set count = namespace(value=1) %}
                                                         {% for each in Squad4 %}                    
@@ -400,7 +413,7 @@ input[type="checkbox"] {
                                                         <td>
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" name="mycheckbox4" class="form-check-input" value={{ count.value }}>    
-                                                                <input type="hidden" name="Name5" value='{{ each }}'>
+                                                                <input type="hidden" name="Names4" value='{{ each }}'>
                                                                 {{ each }}
                                                                 <p class="m-0">{{ Squad_Captain4[count.value-1] }}</p>
                                                             </div>
@@ -408,7 +421,7 @@ input[type="checkbox"] {
                                                         <td>
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" name="mycheckboxteam4" class="form-check-input" value={{ count.value }}>    
-                                                                <input type="hidden" name="Team5" value='{{ Squad_Team4[count.value-1] }}'>
+                                                                <input type="hidden" name="Teams4" value='{{ Squad_Team4[count.value-1] }}'>
                                                                 {{ Squad_Team4[count.value-1] }}                                      
                                                             </div>
                                                         </td>
@@ -439,14 +452,14 @@ input[type="checkbox"] {
                                                         <td>
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" name="mycheckboxsell4" class="form-check-input" value={{ count.value }}>    
-                                                                <input type="hidden" name="Name" value='{{ each }}'>
+                                                                <input type="hidden" name="Names" value='{{ each }}'>
                                                                 {{ each }}
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" name="mycheckboxsell4" class="form-check-input" value={{ count.value }}>    
-                                                                <input type="hidden" name="Team" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                <input type="hidden" name="Teams" value='{{ Squad_Team1[count.value-1] }}'>
                                                                 {{ sell_list_team4[count.value-1] }}                                      
                                                             </div>
                                                         </td>
@@ -463,6 +476,7 @@ input[type="checkbox"] {
                                                             
                                                     </tr>
                                                 </tbody>
+                                                {% endif  %}
                                                 </table>
                                                 <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                             </form>
@@ -479,6 +493,8 @@ input[type="checkbox"] {
                                                         <th scope="col">Points in coming round</th>
                                                         </tr>
                                                     </thead>
+                                                    {% if  Squad5[0] == 0  %}
+                                                    {% else  %} 
                                                     <tbody>
                                                         {% set count = namespace(value=1) %}
                                                         {% for each in Squad5 %}                    
@@ -495,7 +511,7 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckbox5" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Name" value='{{ each }}'>
+                                                                    <input type="hidden" name="Names5" value='{{ each }}'>
                                                                     {{ each }}
                                                                     <p class="m-0">{{ Squad_Captain5[count.value-1] }}</p>
                                                                 </div>
@@ -503,7 +519,7 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxteam5" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Team" value='{{ Squad_Team5[count.value-1] }}'>
+                                                                    <input type="hidden" name="Teams5" value='{{ Squad_Team5[count.value-1] }}'>
                                                                     {{ Squad_Team5[count.value-1] }}                                      
                                                                 </div>
                                                             </td>
@@ -534,14 +550,14 @@ input[type="checkbox"] {
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxsell5" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Name" value='{{ each }}'>
+                                                                    <input type="hidden" name="Names5" value='{{ each }}'>
                                                                     {{ each }}
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" name="mycheckboxsell5" class="form-check-input" value={{ count.value }}>    
-                                                                    <input type="hidden" name="Team" value='{{ Squad_Team1[count.value-1] }}'>
+                                                                    <input type="hidden" name="Teams5" value='{{ Squad_Team1[count.value-1] }}'>
                                                                     {{ sell_list_team5[count.value-1] }}                                      
                                                                 </div>
                                                             </td>
@@ -558,6 +574,7 @@ input[type="checkbox"] {
                                                                 
                                                         </tr>
                                                     </tbody>
+                                                    {% endif %}
                                                 </table>
                                                 <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                             </form>

@@ -122,7 +122,7 @@ def Viewlist3():
     found_user = users9.query.filter_by(username=username).first()
     form = Form()
     if request.method == 'POST': 
-        Budget = request.form.get("Budget")
+        Budget = request.form.get("Budget").replace(",",".")
         Player1 = request.form.get("Player1")
         Player2 = request.form.get("Player2")
         Player3 = request.form.get("Player3")
@@ -229,6 +229,7 @@ def Viewlist():
         else:
             print("""empty""")
             form = Form()
+            form.n_tranfers.choices = [1,2]
             form.Player1.choices = [('Please Select'),"---"]+sorted(fpl_name)
             form.Player2.choices = [('Please Select'),"---"]+sorted(fpl_name)
             form.Player3.choices = [('Please Select'),"---"]+sorted(fpl_name)
@@ -315,6 +316,7 @@ def optimization():
     if request.method == 'POST':
         
         cash = request.form.get("Budget")
+        cash = cash.replace(",",".")
         Player1 = request.form.get("Player1")
         Player2 = request.form.get("Player2")
         Player3 = request.form.get("Player3")
@@ -424,9 +426,7 @@ def optimization():
             
             Name1 = "Expected Points without transfer cost"
             Name2 = "Expected Points with transfer cost"
-            print(n_transfers)
-            print(PlayerList)
-            Output = Output_list[1]
+
 
             New1, Squad1, Squad_Position1, Squad_Team1, Squad_xPoints1, Squad_Captain1, Expected_points1, buy_list1, \
             buy_list_position1, buy_list_team1, buy_list_xPoints1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1 = get_optim_results(Output_list[1], PlayerList, data_final)
@@ -443,6 +443,7 @@ def optimization():
             New5, Squad5, Squad_Position5, Squad_Team5, Squad_xPoints5, Squad_Captain5, Expected_points5, buy_list5, \
             buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[5], PlayerList, data_final)
 
+            print(Squad1)
 
             Output = Output_list[3]
 
@@ -539,19 +540,20 @@ def sure():
         includedTeams4 = request.form.getlist("mycheckboxteam4")
         included5 = request.form.getlist("mycheckbox5")
         includedTeams5 = request.form.getlist("mycheckboxteam5")
-        suggested_players1 = request.form.getlist("Name1")
-        suggested_teams1 = request.form.getlist("Team1")
-        suggested_players2 = request.form.getlist("Name2")
-        suggested_teams2 = request.form.getlist("Team2")
-        suggested_players3 = request.form.getlist("Name3")
-        suggested_teams3 = request.form.getlist("Team3")
-        suggested_players4 = request.form.getlist("Name4")
-        suggested_teams4 = request.form.getlist("Team4")
-        suggested_players5 = request.form.getlist("Name5")
-        suggested_teams5 = request.form.getlist("Team5")
+        suggested_players1 = request.form.getlist("Names1")
+        suggested_teams1 = request.form.getlist("Teams1")
+        suggested_players2 = request.form.getlist("Names2")
+        suggested_teams2 = request.form.getlist("Teams2")
+        suggested_players3 = request.form.getlist("Names3")
+        suggested_teams3 = request.form.getlist("Teams3")
+        suggested_players4 = request.form.getlist("Names4")
+        suggested_teams4 = request.form.getlist("Teams4")
+        suggested_players5 = request.form.getlist("Names5")
+        suggested_teams5 = request.form.getlist("Teams5")
         excludedP = request.form.getlist("mycheckboxExcludePLayer")
         excludedPlayers = request.form.getlist("ExcludedPlayers")
         excludedT = request.form.getlist("mycheckboxExcludedTeams")
+        excludedTeams = request.form.getlist("ExcludedTeams")
         n_transfers = request.form.getlist("n_transfers")
 
         
@@ -604,7 +606,6 @@ def sure():
             if str(i+1) in excludedP:
                 ExcludePlayers.append(excludedPlayers[i]) 
 
-        print(range(len(excludedTeams)))  
         for i in range(len(excludedTeams)):
             if str(i+1) in excludedT:
                 ExcludeTeam.append(excludedTeams[i]) 
@@ -697,7 +698,7 @@ def sure():
         Name2 = "Expected points in coming round with transfer cost"
         print(PlayerList)
         Output = Output_list[1]
- 
+        
         New1, Squad1, Squad_Position1, Squad_Team1, Squad_xPoints1, Squad_Captain1, Expected_points1, buy_list1, \
         buy_list_position1, buy_list_team1, buy_list_xPoints1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1 = get_optim_results(Output_list[1], PlayerList, data_final)
 
@@ -713,6 +714,7 @@ def sure():
         New5, Squad5, Squad_Position5, Squad_Team5, Squad_xPoints5, Squad_Captain5, Expected_points5, buy_list5, \
         buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[5], PlayerList, data_final)
 
+        print(Squad_xPoints1)
 
         return render_template("Dashboard2.html", ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam, Expected_points = Expected_points1, 
                                             Squad1 = Squad1, Squad_Position1 = Squad_Position1 ,Squad_Team1 = Squad_Team1, Squad_xPoints1 = Squad_xPoints1, Squad_Captain1 = Squad_Captain1, 
@@ -741,7 +743,7 @@ def dashboard2():
 def dashboard():
     username = session["user"]
     found_user = users9.query.filter_by(username=username).first()
-    print(found_user.Player1)
+    
     
     if found_user.Player11!='':
         Squad=[]   
@@ -773,9 +775,10 @@ def dashboard():
             for i in range(15):
                 Squad_Position.append(data_final[data_final['fpl_name']==Squad[i]]['position'].to_string(index=False))
                 Squad_Team.append(team_lookup_num[int(data_final[data_final['fpl_name']==Squad[i]]['team'])])
-                Squad_xPoints.append(round(data_final[data_final['fpl_name']==Squad[i]]['Expected_Points_round1'],2))
+                Squad_xPoints.append(round(float(data_final[data_final['fpl_name']==Squad[i]]['Expected_Points_round1']),1)) 
                 Squad_Captain.append('')
 
+            data_final.loc[data_final['fpl_name']=='Adam Lallana',['Expected_Points_round1']]
             index = np.where(np.in1d(data_final['fpl_name'], Squad))[0] 
             Team_help = [list(data_final['team'])[i] for i in index]
             Labels, Values = np.unique(Team_help, return_counts=True)
@@ -827,9 +830,9 @@ def dashboard():
     
     Names =  data_final['fpl_name'].to_list()
 
-    TotPoints = [round(xPoints[i],0) for i in indices]
+    TotPoints = [round(xPoints[i],1) for i in indices]
     Name = [Names[i] for i in indices]
-
+    print(TotPoints)
     return render_template('dashboard.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                                Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, labels=labels, values=values,
                                                nShare = nShare, Budget = Budget, TotPoints = TotPoints, Name=Name)
