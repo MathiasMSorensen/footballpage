@@ -773,7 +773,7 @@ def dashboard():
             for i in range(15):
                 Squad_Position.append(data_final[data_final['fpl_name']==Squad[i]]['position'].to_string(index=False))
                 Squad_Team.append(team_lookup_num[int(data_final[data_final['fpl_name']==Squad[i]]['team'])])
-                Squad_xPoints.append(float(data_final[data_final['fpl_name']==Squad[i]]['Expected_Points_round1']))
+                Squad_xPoints.append(round(data_final[data_final['fpl_name']==Squad[i]]['Expected_Points_round1'],2))
                 Squad_Captain.append('')
 
             index = np.where(np.in1d(data_final['fpl_name'], Squad))[0] 
