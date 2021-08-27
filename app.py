@@ -30,8 +30,8 @@ from utils import get_optim_results
 
 app = Flask(__name__,template_folder="templates")
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Stor6612@localhost:5432/flask"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pnbgdrhhgszifs:ccee2ed3aa53813ba15a0810d7d2f0ffb324c06a3b56f13d0c87571aca463791@ec2-54-146-73-98.compute-1.amazonaws.com:5432/d5h5t687jv1hvq"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "hello"
 
@@ -427,24 +427,33 @@ def optimization():
             Name1 = "Expected Points without transfer cost"
             Name2 = "Expected Points with transfer cost"
 
+            if isinstance(Output_list[1], pd.DataFrame):
+                control = [1,2,3,4,5]
+            elif isinstance(Output_list[2], pd.DataFrame):
+                control = [2,2,3,4,5]
+            elif isinstance(Output_list[3], pd.DataFrame):
+                control = [3,3,3,4,5]
+            elif isinstance(Output_list[4], pd.DataFrame):
+                control = [4,4,4,4,5]
+            elif isinstance(Output_list[5], pd.DataFrame):
+                control = [5,5,5,5,5]
 
+            
             New1, Squad1, Squad_Position1, Squad_Team1, Squad_xPoints1, Squad_Captain1, Expected_points1, buy_list1, \
-            buy_list_position1, buy_list_team1, buy_list_xPoints1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1 = get_optim_results(Output_list[1], PlayerList, data_final)
+            buy_list_position1, buy_list_team1, buy_list_xPoints1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1 = get_optim_results(Output_list[control[0]], PlayerList, data_final)
 
             New2, Squad2, Squad_Position2, Squad_Team2, Squad_xPoints2, Squad_Captain2, Expected_points2, buy_list2, \
-            buy_list_position2, buy_list_team2, buy_list_xPoints2, sell_list2, sell_list_team2, sell_list_position2, sell_list_xPoints2 = get_optim_results(Output_list[2], PlayerList, data_final)
+            buy_list_position2, buy_list_team2, buy_list_xPoints2, sell_list2, sell_list_team2, sell_list_position2, sell_list_xPoints2 = get_optim_results(Output_list[control[1]], PlayerList, data_final)
 
             New3, Squad3, Squad_Position3, Squad_Team3, Squad_xPoints3, Squad_Captain3, Expected_points3, buy_list3, \
-            buy_list_position3, buy_list_team3, buy_list_xPoints3, sell_list3, sell_list_team3, sell_list_position3, sell_list_xPoints3 = get_optim_results(Output_list[3], PlayerList, data_final)
+            buy_list_position3, buy_list_team3, buy_list_xPoints3, sell_list3, sell_list_team3, sell_list_position3, sell_list_xPoints3 = get_optim_results(Output_list[control[2]], PlayerList, data_final)
 
             New4, Squad4, Squad_Position4, Squad_Team4, Squad_xPoints4, Squad_Captain4, Expected_points4, buy_list4, \
-            buy_list_position4, buy_list_team4, buy_list_xPoints4, sell_list4, sell_list_team4, sell_list_position4, sell_list_xPoints4 = get_optim_results(Output_list[4], PlayerList, data_final)
+            buy_list_position4, buy_list_team4, buy_list_xPoints4, sell_list4, sell_list_team4, sell_list_position4, sell_list_xPoints4 = get_optim_results(Output_list[control[3]], PlayerList, data_final)
 
             New5, Squad5, Squad_Position5, Squad_Team5, Squad_xPoints5, Squad_Captain5, Expected_points5, buy_list5, \
-            buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[5], PlayerList, data_final)
-
-            print(Squad1)
-
+            buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[control[4]], PlayerList, data_final)
+        
             Output = Output_list[3]
 
             TransferCost = TransferCost[1]
@@ -696,25 +705,33 @@ def sure():
 
         Name1 = "Expected points in coming round without transfer cost"
         Name2 = "Expected points in coming round with transfer cost"
-        print(PlayerList)
-        Output = Output_list[1]
+        
+        if isinstance(Output_list[1], pd.DataFrame):
+            control = [1,2,3,4,5]
+        elif isinstance(Output_list[2], pd.DataFrame):
+            control = [2,2,3,4,5]
+        elif isinstance(Output_list[3], pd.DataFrame):
+            control = [3,3,3,4,5]
+        elif isinstance(Output_list[4], pd.DataFrame):
+            control = [4,4,4,4,5]
+        elif isinstance(Output_list[5], pd.DataFrame):
+            control = [5,5,5,5,5]
         
         New1, Squad1, Squad_Position1, Squad_Team1, Squad_xPoints1, Squad_Captain1, Expected_points1, buy_list1, \
-        buy_list_position1, buy_list_team1, buy_list_xPoints1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1 = get_optim_results(Output_list[1], PlayerList, data_final)
+        buy_list_position1, buy_list_team1, buy_list_xPoints1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1 = get_optim_results(Output_list[control[0]], PlayerList, data_final)
 
         New2, Squad2, Squad_Position2, Squad_Team2, Squad_xPoints2, Squad_Captain2, Expected_points2, buy_list2, \
-        buy_list_position2, buy_list_team2, buy_list_xPoints2, sell_list2, sell_list_team2, sell_list_position2, sell_list_xPoints2 = get_optim_results(Output_list[2], PlayerList, data_final)
+        buy_list_position2, buy_list_team2, buy_list_xPoints2, sell_list2, sell_list_team2, sell_list_position2, sell_list_xPoints2 = get_optim_results(Output_list[control[1]], PlayerList, data_final)
 
         New3, Squad3, Squad_Position3, Squad_Team3, Squad_xPoints3, Squad_Captain3, Expected_points3, buy_list3, \
-        buy_list_position3, buy_list_team3, buy_list_xPoints3, sell_list3, sell_list_team3, sell_list_position3, sell_list_xPoints3 = get_optim_results(Output_list[3], PlayerList, data_final)
+        buy_list_position3, buy_list_team3, buy_list_xPoints3, sell_list3, sell_list_team3, sell_list_position3, sell_list_xPoints3 = get_optim_results(Output_list[control[2]], PlayerList, data_final)
 
         New4, Squad4, Squad_Position4, Squad_Team4, Squad_xPoints4, Squad_Captain4, Expected_points4, buy_list4, \
-        buy_list_position4, buy_list_team4, buy_list_xPoints4, sell_list4, sell_list_team4, sell_list_position4, sell_list_xPoints4 = get_optim_results(Output_list[4], PlayerList, data_final)
+        buy_list_position4, buy_list_team4, buy_list_xPoints4, sell_list4, sell_list_team4, sell_list_position4, sell_list_xPoints4 = get_optim_results(Output_list[control[3]], PlayerList, data_final)
 
         New5, Squad5, Squad_Position5, Squad_Team5, Squad_xPoints5, Squad_Captain5, Expected_points5, buy_list5, \
-        buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[5], PlayerList, data_final)
-
-        print(Squad_xPoints1)
+        buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[control[4]], PlayerList, data_final)
+    
 
         return render_template("Dashboard2.html", ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam, Expected_points = Expected_points1, 
                                             Squad1 = Squad1, Squad_Position1 = Squad_Position1 ,Squad_Team1 = Squad_Team1, Squad_xPoints1 = Squad_xPoints1, Squad_Captain1 = Squad_Captain1, 

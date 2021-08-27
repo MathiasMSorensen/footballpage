@@ -200,7 +200,7 @@ Player_stats = pd.read_csv(os.path.join(APP_ROOT, 'Player_stats'))
 # data_final.to_csv('data_final')
 data_final = pd.read_csv(os.path.join(APP_ROOT, 'data_final'))
 N = len(data_final)
-# print(data_final.sort_values('Expected_Points_discounted',ascending=False)[0:30])
+# print(data_final.sort_values('Expected_Points_round1',ascending=False)[0:30])
 
 # %% optimize team
 
