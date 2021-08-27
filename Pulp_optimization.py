@@ -84,7 +84,7 @@ def Pulp_optimization(Teams, N, Data, TranferIn, TranferOut ,TotalPoints, \
 
         # Position constraints on subs
         model += lpSum((sub1[i] + sub2[i] + sub3[i]) for i in range(N) if Positions[i] == 'Goalkeeper') == 0
-        model += lpSum(sub1[i] for i in range(N) if Positions[i] == 'Defense') == 1
+        # model += lpSum(sub1[i] for i in range(N) if Positions[i] == 'Defense') == 1
         model += lpSum(subs_gk[i] for i in range(N) if Positions[i] == 'Goalkeeper') == 1
 
         # Club constraint
