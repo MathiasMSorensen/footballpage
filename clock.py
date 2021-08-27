@@ -79,7 +79,6 @@ def timed_job():
            'AP', 'CR', 'ACR', 'AW', 'DR', 'DSP', 'INT', 'TKL', 'TKLW', 'BLK', 'CL',
            'CS', 'GC', 'SV', 'FS', 'FC', 'Y', 'R']
 
-
     ## FiveThirtyEight:
     url="https://projects.fivethirtyeight.com/soccer-api/club/spi_matches_latest.csv"
     fte=pd.read_csv(url)
@@ -194,6 +193,8 @@ def timed_job():
     data_final = pd.concat([master_data.reset_index(drop=True),residual_players.reset_index(drop=True)],axis=0).reset_index(drop=True)
 
     data_final.to_csv('data_final')
+
+    print("It worked, data is now updated")
     
 
 sched.start()
