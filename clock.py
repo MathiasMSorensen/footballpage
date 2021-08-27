@@ -2,7 +2,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=60)
+@sched.scheduled_job('interval', minutes=1)
 def timed_job():
     import pandas as pd
     import numpy as np
@@ -103,8 +103,8 @@ def timed_job():
     fte_to_web_cs = []
     for team in fte['team1'].unique():
         
-        fte_temp = fte[((fte['team1']==team) | (fte['team2']==team))][0:6].reset_index(drop=True)
-        fte_temp = fte_temp[fte_temp['round'].isin(range(current_round,current_round+6,1))]
+        fte_temp = fte[((fte['team1']==team) | (fte['team2']==team))].reset_index(drop=True)
+        fte_temp = fte_temp[fte_temp['round'].isin(range(current_round,current_round+6,1))].reset_index(drop=True)
         temp_xg = []
         temp_xw = []
         temp_cs = []
@@ -134,7 +134,7 @@ def timed_job():
     # #merge with fpl data
 
     for i in range(len(rw)):
-        df_player = player_forecast(rw.iloc[i,:], fte, current_round, forecast_window, team_lookup)
+        df_player = player_forecast(rw.iloc[i,:], fte, current_round, forecast_window, team_lookup).reset_index(drop=True)
         avoid_bps = 0
         df_player['BPS'] = None
         if rw.loc[i,:]['Player'] in dict_players_rev.values():
@@ -147,7 +147,7 @@ def timed_job():
 
         if avoid_bps == 0:
             for j in range(len(df_player)):
-                df_player.loc[j+1,'BPS']= calculate_BPS(df_player,j+1)
+                df_player.loc[j,'BPS']= calculate_BPS(df_player, current_round+j, j)
 
             if i == 0:
                 master_data = df_player
@@ -166,8 +166,8 @@ def timed_job():
         master_data.loc[i, 'Opponent_num'] = team_lookup_num_reverse[master_data['Opponent'][i]]
         master_data.loc[i, 'BPS_rank'] = get_BPS_rank(master_data, master_data.loc[i,'fpl_name'], master_data.loc[i,'team'], master_data.loc[i,'Opponent_num'], master_data.loc[i,'round'])
         master_data.loc[i, 'Expected_Points'] = calculate_expected_points(master_data, master_data.loc[i,'fpl_name'], master_data.loc[i,'round'], i)
-        master_data.loc[i, 'Expected_Points_discounted'] = master_data.loc[i, 'Expected_Points']*(discount_factor**(int(master_data.loc[i,'round'])-1))
-        if master_data.loc[i,'round']==1:
+        master_data.loc[i, 'Expected_Points_discounted'] = master_data.loc[i, 'Expected_Points']*(discount_factor**(int(master_data.loc[i,'round'])-current_round))
+        if master_data.loc[i,'round']==current_round:
             master_data.loc[i, 'Expected_Points_round1'] = master_data.loc[i, 'Expected_Points']
         else: 
             master_data.loc[i, 'Expected_Points_round1'] = 0
@@ -175,7 +175,7 @@ def timed_job():
 
     Player_stats = master_data[['fpl_name','Expected_Points','team','round']].groupby(['fpl_name','team','round']).sum()
     Player_stats.to_csv('Player_stats')
-    Player_stats = pd.read_csv(os.path.join(APP_ROOT, 'Player_stats'))
+    
     master_data = master_data[['fpl_name','Expected_Points_discounted','team','cost','position','Expected_Points_round1']].groupby(['fpl_name','team','cost','position']).sum()
     master_data = master_data.reset_index()
 

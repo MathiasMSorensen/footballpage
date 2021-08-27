@@ -84,30 +84,30 @@ def get_BPS_rank(master_data, relevant_player, relevant_player_team, team_agains
     
     return float(bps_score_final)
 
-def calculate_BPS(df_player,game):
+def calculate_BPS(df_player,game, index):
     
     df = df_player[df_player['round'] == game]
     bps = 0 
 
-    if df['position'][game] == 'Goalkeeper':
+    if df['position'][index] == 'Goalkeeper':
         bps = bps + 6
         bps = bps + float(df['G']) * 12 
         bps = bps + float(df['A']) * 9 
         bps = bps + float(df['CS']) * 12
         bps = bps + float(df['SV']) * 2
 
-    elif df['position'][game] == 'Defense':
+    elif df['position'][index] == 'Defense':
         bps = bps + 6
         bps = bps + float(df['G']) * 12 
         bps = bps + float(df['A']) * 9 
         bps = bps + float(df['CS']) * 12
 
-    elif df['position'][game] == 'Midfield':
+    elif df['position'][index] == 'Midfield':
         bps = bps + 6
         bps = bps + float(df['G']) * 18
         bps = bps + float(df['A']) * 9 
 
-    elif df['position'][game] == 'Striker':
+    elif df['position'][index] == 'Striker':
         bps = bps + 6
         bps = bps + float(df['G']) * 24 
         bps = bps + float(df['A']) * 9 
