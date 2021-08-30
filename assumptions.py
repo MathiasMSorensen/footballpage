@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 date = datetime.today().date()
-current_round = 3
+current_round = 4
 forecast_window = 6
 discount_factor = 0.5
 sub_1_discount = 0.8
