@@ -2,7 +2,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=30)
+@sched.scheduled_job('interval', minutes=60)
 def timed_job():
     import pandas as pd
     import numpy as np
@@ -20,6 +20,7 @@ def timed_job():
     import pandas as pd
     import os 
 
+    print(current_round)
     APP_ROOT = os.path.dirname(os.path.abspath('__file__'))
 
     url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
