@@ -13,164 +13,180 @@
 
 <div class="container">
     <div class="row">
-        <div class="card Recent-Users">
-            <div class="card-header">
-                <h5>Select your current team</h5>
-            </div>
-            <div class="card-block px-1000 py-3">
-                <div class="col-sm-24"> 
-                    <form action="/Viewlist3/" method="POST">
-                    {{ form.csrf_token}} 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Budget'>Money Remaining:</label>
-                                    {{ form.Budget(class="form-control")}}
+        <div class="col-xl-4">
+            <div class="row">
+                <div class="card Recent-Users">
+                    <div class="card-header">
+                        <h5>Select your current team</h5>
+                    </div>
+                    <div class="card-block px-1000 py-3">
+                        <div class="col-sm-24"> 
+                            <form action="/Viewlist3/" method="POST">
+                            {{ form.csrf_token}} 
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Budget'>Money Remaining:</label>
+                                            {{ form.Budget(class="form-control")}}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Budget'>Number of free transfers:</label>
-                                    {{ form.n_tranfers(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Budget'>Number of free transfers:</label>
+                                            {{ form.n_tranfers(class="form-control")}}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player1'>Player1</label>
-                                    {{ form.Player1(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player1'>Player1</label>
+                                            {{ form.Player1(class="form-control")}}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player2'>Player2</label>
-                                    {{ form.Player2(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player2'>Player2</label>
+                                            {{ form.Player2(class="form-control")}}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player3'>Player3</label>
-                                    {{ form.Player3(class="form-control")}}
-                                </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player3'>Player3</label>
+                                            {{ form.Player3(class="form-control")}}
+                                        </div>
+                                    </div>
 
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player4'>Player4</label>
-                                    {{ form.Player4(class="form-control")}}
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player4'>Player4</label>
+                                            {{ form.Player4(class="form-control")}}
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player5'>Player5</label>
+                                            {{ form.Player5(class="form-control")}}
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player6'>Player6</label>
+                                            {{ form.Player6(class="form-control")}}
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player7'>Player7</label>
+                                            {{ form.Player7(class="form-control")}}
+                                        </div>
+                                    </div>
                             
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player5'>Player5</label>
-                                    {{ form.Player5(class="form-control")}}
                                 </div>
-                            </div>
-                
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player6'>Player6</label>
-                                    {{ form.Player6(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player8'>Player8</label>
+                                            {{ form.Player8(class="form-control")}}
+                                        </div>
+                                    </div>
+                            
                                 </div>
-                            </div>
-                 
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player7'>Player7</label>
-                                    {{ form.Player7(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player9'>Player9</label>
+                                            {{ form.Player9(class="form-control")}}
+                                        </div>
+                                    </div>
+                            
                                 </div>
-                            </div>
-                    
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player8'>Player8</label>
-                                    {{ form.Player8(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player10'>Player10</label>
+                                            {{ form.Player10(class="form-control")}}
+                                        </div>
+                                    </div>
+                            
                                 </div>
-                            </div>
-                       
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player9'>Player9</label>
-                                    {{ form.Player9(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player11'>Player11</label>
+                                            {{ form.Player11(class="form-control")}}
+                                        </div>
+                                    </div>
+                        
                                 </div>
-                            </div>
-                      
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player10'>Player10</label>
-                                    {{ form.Player10(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player12'>Player12</label>
+                                            {{ form.Player12(class="form-control")}}
+                                        </div>
+                                    </div>
+                            
                                 </div>
-                            </div>
-                       
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player11'>Player11</label>
-                                    {{ form.Player11(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player13'>Player13</label>
+                                            {{ form.Player13(class="form-control")}}
+                                        </div>
+                                    </div>
+                            
                                 </div>
-                            </div>
-                   
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player12'>Player12</label>
-                                    {{ form.Player12(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player14'>Player14</label>
+                                            {{ form.Player14(class="form-control")}}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                      
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player13'>Player13</label>
-                                    {{ form.Player13(class="form-control")}}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" name='Player15'>Player15</label>
+                                            {{ form.Player15(class="form-control")}}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                      
+                                <br/>
+                                <input type="submit" class="btn btn-primary" value="Get selling prices" btn-lg>
+                            </form> 
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player14'>Player14</label>
-                                    {{ form.Player14(class="form-control")}}
-                                </div>
-                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <div class="card Recent-Users">
+                <div class="card-header">
+                    <h5>Follow this guide</h5>
+                </div>
+                <div class="card-block">
+                        <div class="position-relative d-flex align-items-center justify-content-center l-100">
+                            <img class="w-100 position-relative z-index-2 pt-4" src="/static/images/viewlist.png">
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="email" name='Player15'>Player15</label>
-                                    {{ form.Player15(class="form-control")}}
-                                </div>
-                            </div>
-                        </div>
-                        <br/>
-                         <input type="submit" class="btn btn-primary" value="Get selling prices" btn-lg>
-                    </form> 
                 </div>
             </div>
         </div>

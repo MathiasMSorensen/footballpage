@@ -138,63 +138,89 @@ def Viewlist3():
         Player13 = request.form.get("Player13")
         Player14 = request.form.get("Player14")
         Player15 = request.form.get("Player15")
+        PlayerList = [Player1, Player2, Player3, Player4, Player5, 
+                Player6, Player7, Player8, Player9, Player10,
+                Player11, Player12, Player13, Player14, Player15]
 
-        username = session["user"]
-        found_user = users9.query.filter_by(username=username).first()
 
-        found_user.Player1 = Player1
-        found_user.Player2 = Player2
-        found_user.Player3 = Player3
-        found_user.Player4 = Player4
-        found_user.Player5 = Player5
-        found_user.Player6 = Player6
-        found_user.Player7 = Player7
-        found_user.Player8 = Player8
-        found_user.Player9 = Player9
-        found_user.Player10 = Player10
-        found_user.Player11 = Player11
-        found_user.Player12 = Player12
-        found_user.Player13 = Player13
-        found_user.Player14 = Player14
-        found_user.Player15 = Player15
-        db.session.commit()
+        if 'Please Select' not in PlayerList:
+            Username = session["user"]
+            found_user = users9.query.filter_by(username=username).first()
 
-        form.Budget.data = found_user.Budget
-        form.n_tranfers.data = request.form.get("n_tranfers")
-        form.Cost1.data = int(fpl_cost[fpl_cost['fpl_name']==Player1]['cost'])/10
-        form.Cost2.data = int(fpl_cost[fpl_cost['fpl_name']==Player2]['cost'])/10
-        form.Cost3.data = int(fpl_cost[fpl_cost['fpl_name']==Player3]['cost'])/10
-        form.Cost4.data = int(fpl_cost[fpl_cost['fpl_name']==Player4]['cost'])/10
-        form.Cost5.data = int(fpl_cost[fpl_cost['fpl_name']==Player5]['cost'])/10
-        form.Cost6.data = int(fpl_cost[fpl_cost['fpl_name']==Player6]['cost'])/10
-        form.Cost7.data = int(fpl_cost[fpl_cost['fpl_name']==Player7]['cost'])/10
-        form.Cost8.data = int(fpl_cost[fpl_cost['fpl_name']==Player8]['cost'])/10
-        form.Cost9.data = int(fpl_cost[fpl_cost['fpl_name']==Player9]['cost'])/10
-        form.Cost10.data = int(fpl_cost[fpl_cost['fpl_name']==Player10]['cost'])/10
-        form.Cost11.data = int(fpl_cost[fpl_cost['fpl_name']==Player11]['cost'])/10
-        form.Cost12.data = int(fpl_cost[fpl_cost['fpl_name']==Player12]['cost'])/10
-        form.Cost13.data = int(fpl_cost[fpl_cost['fpl_name']==Player13]['cost'])/10
-        form.Cost14.data = int(fpl_cost[fpl_cost['fpl_name']==Player14]['cost'])/10
-        form.Cost15.data = int(fpl_cost[fpl_cost['fpl_name']==Player15]['cost'])/10
+            found_user.Player1 = Player1
+            found_user.Player2 = Player2
+            found_user.Player3 = Player3
+            found_user.Player4 = Player4
+            found_user.Player5 = Player5
+            found_user.Player6 = Player6
+            found_user.Player7 = Player7
+            found_user.Player8 = Player8
+            found_user.Player9 = Player9
+            found_user.Player10 = Player10
+            found_user.Player11 = Player11
+            found_user.Player12 = Player12
+            found_user.Player13 = Player13
+            found_user.Player14 = Player14
+            found_user.Player15 = Player15
+            db.session.commit()
 
-        form.n_tranfers.choices = [1,2]
-        form.Player1.choices = [(found_user.Player1),"---"]+sorted(fpl_name)
-        form.Player2.choices = [(found_user.Player2),"---"]+sorted(fpl_name)
-        form.Player3.choices = [(found_user.Player3),"---"]+sorted(fpl_name)
-        form.Player4.choices = [(found_user.Player4),"---"]+sorted(fpl_name)
-        form.Player5.choices = [(found_user.Player5),"---"]+sorted(fpl_name)
-        form.Player6.choices = [(found_user.Player6),"---"]+sorted(fpl_name)
-        form.Player7.choices = [(found_user.Player7),"---"]+sorted(fpl_name)
-        form.Player8.choices = [(found_user.Player8),"---"]+sorted(fpl_name)
-        form.Player9.choices = [(found_user.Player9),"---"]+sorted(fpl_name)
-        form.Player10.choices = [(found_user.Player10),"---"]+sorted(fpl_name)
-        form.Player11.choices = [(found_user.Player11),"---"]+sorted(fpl_name)
-        form.Player12.choices = [(found_user.Player12),"---"]+sorted(fpl_name)
-        form.Player13.choices = [(found_user.Player13),"---"]+sorted(fpl_name)
-        form.Player14.choices = [(found_user.Player14),"---"]+sorted(fpl_name)
-        form.Player15.choices = [(found_user.Player15),"---"]+sorted(fpl_name)        
+            form.Budget.data = found_user.Budget
+            form.n_tranfers.data = request.form.get("n_tranfers")
+            form.Cost1.data = int(fpl_cost[fpl_cost['fpl_name']==Player1]['cost'])/10
+            form.Cost2.data = int(fpl_cost[fpl_cost['fpl_name']==Player2]['cost'])/10
+            form.Cost3.data = int(fpl_cost[fpl_cost['fpl_name']==Player3]['cost'])/10
+            form.Cost4.data = int(fpl_cost[fpl_cost['fpl_name']==Player4]['cost'])/10
+            form.Cost5.data = int(fpl_cost[fpl_cost['fpl_name']==Player5]['cost'])/10
+            form.Cost6.data = int(fpl_cost[fpl_cost['fpl_name']==Player6]['cost'])/10
+            form.Cost7.data = int(fpl_cost[fpl_cost['fpl_name']==Player7]['cost'])/10
+            form.Cost8.data = int(fpl_cost[fpl_cost['fpl_name']==Player8]['cost'])/10
+            form.Cost9.data = int(fpl_cost[fpl_cost['fpl_name']==Player9]['cost'])/10
+            form.Cost10.data = int(fpl_cost[fpl_cost['fpl_name']==Player10]['cost'])/10
+            form.Cost11.data = int(fpl_cost[fpl_cost['fpl_name']==Player11]['cost'])/10
+            form.Cost12.data = int(fpl_cost[fpl_cost['fpl_name']==Player12]['cost'])/10
+            form.Cost13.data = int(fpl_cost[fpl_cost['fpl_name']==Player13]['cost'])/10
+            form.Cost14.data = int(fpl_cost[fpl_cost['fpl_name']==Player14]['cost'])/10
+            form.Cost15.data = int(fpl_cost[fpl_cost['fpl_name']==Player15]['cost'])/10
 
-        return render_template("Viewlist3.html", form=form)  
+            form.n_tranfers.choices = [1,2]
+            form.Player1.choices = [(found_user.Player1),"---"]+sorted(fpl_name)
+            form.Player2.choices = [(found_user.Player2),"---"]+sorted(fpl_name)
+            form.Player3.choices = [(found_user.Player3),"---"]+sorted(fpl_name)
+            form.Player4.choices = [(found_user.Player4),"---"]+sorted(fpl_name)
+            form.Player5.choices = [(found_user.Player5),"---"]+sorted(fpl_name)
+            form.Player6.choices = [(found_user.Player6),"---"]+sorted(fpl_name)
+            form.Player7.choices = [(found_user.Player7),"---"]+sorted(fpl_name)
+            form.Player8.choices = [(found_user.Player8),"---"]+sorted(fpl_name)
+            form.Player9.choices = [(found_user.Player9),"---"]+sorted(fpl_name)
+            form.Player10.choices = [(found_user.Player10),"---"]+sorted(fpl_name)
+            form.Player11.choices = [(found_user.Player11),"---"]+sorted(fpl_name)
+            form.Player12.choices = [(found_user.Player12),"---"]+sorted(fpl_name)
+            form.Player13.choices = [(found_user.Player13),"---"]+sorted(fpl_name)
+            form.Player14.choices = [(found_user.Player14),"---"]+sorted(fpl_name)
+            form.Player15.choices = [(found_user.Player15),"---"]+sorted(fpl_name)        
+
+            return render_template("Viewlist3.html", form=form)  
+        else:
+    
+
+            form = Form()
+            form.n_tranfers.choices = [1,2]
+            form.Player1.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player2.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player3.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player4.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player5.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player6.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player7.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player8.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player9.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player10.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player11.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player12.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player13.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player14.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            form.Player15.choices = [('Please Select'),"---"]+sorted(fpl_name)
+            return render_template("ViewList.html", form=form) 
     else:
         return render_template("ViewList.html", form=form)    
         
