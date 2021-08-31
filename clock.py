@@ -53,7 +53,7 @@ def timed_job():
     from http.cookiejar import LWPCookieJar
     import requests
     import json
-
+    print(1)
     browser = mechanize.Browser()
     cj = LWPCookieJar()
     browser.set_cookiejar(cj)
@@ -130,7 +130,7 @@ def timed_job():
     fte_to_web_xg.to_csv('fte_to_web_xg')
     fte_to_web_xw.to_csv('fte_to_web_xw')
     fte_to_web_cs.to_csv('fte_to_web_cs')
-
+    print(2)
     # #%% Merge data:
     # #merge with fpl data
 
@@ -162,7 +162,7 @@ def timed_job():
     master_data['Expected_Points'] = None
     master_data['Expected_Points_discounted'] = None
     master_data['Expected_Points_round1'] = None
-
+    print(3)
     for i in range(len(master_data)):
         master_data.loc[i, 'Opponent_num'] = team_lookup_num_reverse[master_data['Opponent'][i]]
         master_data.loc[i, 'BPS_rank'] = get_BPS_rank(master_data, master_data.loc[i,'fpl_name'], master_data.loc[i,'team'], master_data.loc[i,'Opponent_num'], master_data.loc[i,'round'])
@@ -179,7 +179,7 @@ def timed_job():
     
     master_data = master_data[['fpl_name','Expected_Points_discounted','team','cost','position','Expected_Points_round1']].groupby(['fpl_name','team','cost','position']).sum()
     master_data = master_data.reset_index()
-
+    print(4)
     # make list of players not part of the RW
     residual_players = fpl
     residual_players['Expected_Points_discounted'] = 0 
