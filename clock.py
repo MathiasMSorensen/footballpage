@@ -8,14 +8,11 @@ def timed_job():
     import numpy as np
     from urllib.request import urlopen
     import json
-    from datetime import datetime, timedelta
-    from difflib import get_close_matches
+    from datetime import timedelta
     import os 
-    from utils import team_forecast, player_forecast, get_BPS_rank, calculate_BPS, calculate_expected_points
-    from Pulp_optimization import Pulp_optimization
-    from dictionaries import dict_players_rev, team_lookup, dict_players, team_lookup_num, team_lookup_num_reverse, position_lookup
-    import requests
-    from assumptions import current_round , forecast_window , discount_factor , sub_1_discount , sub_2_discount , sub_3_discount ,sub_gk_discount ,cash, date
+    from utils import player_forecast, get_BPS_rank, calculate_BPS, calculate_expected_points
+    from dictionaries import dict_players_rev, team_lookup, dict_players, team_lookup_num_reverse, position_lookup
+    from assumptions import current_round , forecast_window , discount_factor 
     import math
     import pandas as pd
     import os 
