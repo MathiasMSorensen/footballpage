@@ -41,11 +41,8 @@ def timed_job():
     data_df = data_df[col_list]
 
     data_df['Player'] = data_df['first_name'] + ' ' + data_df['second_name']
-
-    fpl = data_df[['Player', 'team', 'element_type', 'now_cost','web_name']].copy(deep=True)
-
+  
     ### Rotowire:
-
     import mechanize
     from http.cookiejar import LWPCookieJar
     import requests

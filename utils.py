@@ -209,3 +209,32 @@ def get_optim_results(Output, PlayerList,data_final):
         return New, Squad, Squad_Position, Squad_Team, Squad_xPoints, Squad_Captain, Expected_points, buy_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list, sell_list_team, sell_list_position, sell_list_xPoints
     else:
         return 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+def get_current_team(username,password):
+
+    import mechanize
+    from http.cookiejar import LWPCookieJar
+    import requests
+    import json
+    import pandas as pd
+    print(1)
+    browser = mechanize.Browser()
+    cj = LWPCookieJar()
+    browser.set_cookiejar(cj)
+    browser.set_handle_equiv(True)
+    browser.set_handle_redirect(True)
+    browser.set_handle_robots(False)
+    browser.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+    browser.open('https://users.premierleague.com/')
+    browser.select_form(nr = 0)
+    browser.form['login'] = username
+    browser.form['password'] = password
+    browser.submit()
+    try:
+        url = browser.open('https://fantasy.premierleague.com/api/my-team/4651465/')
+        data_json = json.loads(url.read())
+        data_df = pd.DataFrame(data_json["picks"])
+    except:
+        data_df = 0
+
+    return data_df

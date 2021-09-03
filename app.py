@@ -22,7 +22,7 @@ from datetime import datetime, timedelta
 from player_predictions import data_final, N, fte_to_web_xg, fte_to_web_xw ,fte_to_web_cs, Player_stats
 from assumptions import current_round , forecast_window , discount_factor , sub_1_discount , sub_2_discount , sub_3_discount ,sub_gk_discount ,cash, date, n_transfer
 from dictionaries import team_lookup_reverse, dict_players_rev, team_lookup, dict_players, team_lookup_num, team_lookup_num_reverse, position_lookup
-from utils import get_optim_results
+from utils import get_optim_results, get_current_team
 
 # from datafile import Data, Names2, Data_ECS, Data_EG, Data_EW, N, Names, Teams,Value,Positions,xPoints,xPoints2, xPoints3,xPoints4, xPoints5,xPoints6, xPointsTotal, TotalPoints, Transfer, Cost, xGrowth,Names, TotalPoints, Cost, Positions,Teams, xPoints, Transfer 
 # USe env\Scripts\Activate.ps1 to activate venv
