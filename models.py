@@ -3,7 +3,7 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
  
-class users9(UserMixin, db.Model):
+class users11(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100))
     password = db.Column(db.String(250))

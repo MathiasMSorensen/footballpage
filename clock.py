@@ -26,7 +26,7 @@ def timed_job():
     data_json = json.loads(response.read())
 
     data_df = pd.DataFrame(data_json["elements"])
-
+    data_df.to_csv('asddas.csv')
     col_list = ['first_name',
                 'second_name',
                 'team',

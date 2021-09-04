@@ -208,7 +208,7 @@ N = len(data_final)
 
 # included_players = ['']
 
-# excluded_players = ['']
+# 
 
 # cash = 1000 - sum(data_final['cost'][data_final['fpl_name'].isin(squad_old_index)])
 
@@ -243,3 +243,4 @@ N = len(data_final)
 # Output.iloc[Output['TotalPoints'].idxmax()] = 'Captain'
 # Output['Captain'][Output['TotalPoints'].idxmax()]= 'Captain'
 # Output = Output_list[0]['Captain']
+

@@ -1,7 +1,7 @@
 def Pulp_optimization(Teams, N, Data, TranferIn, TranferOut ,TotalPoints, \
                       Positions, ExcludePlayers, IncludePlayers, ExcludeTeam, \
                       cash, Names, xPoints, n_transfers, squad_old_index, \
-                      sub_1_discount, sub_2_discount,sub_3_discount, sub_gk_discount, Budget_from_players):
+                      sub_1_discount, sub_2_discount,sub_3_discount, sub_gk_discount, Budget_from_players, loop_range):
     
     import pulp
     from pulp import lpSum
@@ -22,8 +22,13 @@ def Pulp_optimization(Teams, N, Data, TranferIn, TranferOut ,TotalPoints, \
     squad_old = list(np.where(Data['fpl_name'].isin(squad_old_index), 1, 0))
     TranferOut_pd = pd.DataFrame(TranferOut)
     Budget = Budget_from_players + cash
+    
+    if loop_range == 1:
+        loop_rng = np.array(range(1,2))  
+    else: 
+        loop_rng = range(6)
 
-    for i in range(6):
+    for i in loop_rng:
         n_transfers = i
         # Set up model:
         model = pulp.LpProblem("Constrained_maximisation", pulp.LpMaximize)

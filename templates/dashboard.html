@@ -7,7 +7,7 @@
 
 {% endblock stylesheets %}
 {% block content %}
-<form action="/Viewlist/">
+<form action="{{ url_for('optimization') }}" method="POST">
     <div class="pcoded-content">
         <div class="pcoded-inner-content">
             <!-- [ breadcrumb ] start -->
@@ -18,49 +18,37 @@
                     <!-- [ Main Content ] start -->
                     <div class="row">
                         <div class="col-md-6 col-xl-4">
-                            <div class="card daily-sales">
+                            <div class="card theme-bg bitcoin-wallet">
                                 <div class="card-block">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-9">
-                                            <h5 class="f-w-300 d-flex align-items-center m-b-0"><i class="feather icon-box text-c-green f-30 m-r-10"></i>Input your current team and substites</h5>
-                                        </div>
-
-                                    </div>
-                                    <div class="progress m-t-30" style="height: 7px;">
-                                        <div class="progress-bar progress-c-theme" role="progressbar" style="width: 33%;" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    <h5 class="text-white mb-2">Projected points this round</h5>
+                                    <h3 class="text-white mb-2 f-w-200">{{ squad_points }}</h3>
+                                    <span class="text-white d-block">Estimated by our AI algorithm</span>
+                                    <i class="fab fa-btc f-70 text-white"></i>
                                 </div>
                             </div>
                         </div>
                         <!--[ daily sales section ] end-->
                         <!--[ Monthly  sales section ] starts-->
                         <div class="col-md-6 col-xl-4">
-                            <div class="card Monthly-sales">
+                            <div class="card theme-bg2 bitcoin-wallet">
                                 <div class="card-block">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-9">
-                                            <h5 class="f-w-300 d-flex align-items-center  m-b-0"><i class="feather icon-bar-chart text-c-green f-30 m-r-10"></i>Utilize our algorithm and get suggested lineup</h5>
-                                        </div>
-                                    </div>
-                                    <div class="progress m-t-30" style="height: 7px;">
-                                        <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    <h5 class="text-white mb-2">Recommend to buy</h5>
+                                    <h3 class="text-white mb-2 f-w-300">{{ buy_list1 }}</h3>
+                                    <span class="text-white d-block">and sell {{ sell_list1 }} and get {{ point_increase }} points</span>
+                                    <i class="fas fa-exchange-alt f-70 text-white"></i>
                                 </div>
                             </div>
                         </div>
                         <!--[ Monthly  sales section ] end-->
                         <!--[ year  sales section ] starts-->
                         <div class="col-md-12 col-xl-4">
-                            <div class="card yearly-sales">
+                            <div class="card bg-c-blue bitcoin-wallet">
                                 <div class="card-block">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-9">
-                                            <h5 class="f-w-300 d-flex align-items-center  m-b-0"><i class="feather icon-activity text-c-green f-30 m-r-10"></i>Input constraints to personalize optimization</h5>
-                                        </div>
-                                    </div>
-                                    <div class="progress m-t-30" style="height: 7px;">
-                                        <div class="progress-bar progress-c-theme" role="progressbar" style="width: 99%;" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    <h5 class="text-white mb-2">Most popular player currently</h5>
+                                    <h3 class="text-white mb-2 f-w-300">Christiano Ronaldo</h3>
+                                    <span class="text-white d-block">selected by 47%</span>
+                                    <span class="text-white d-block"></span>
+                                    <i class="fas fa-angle-double-up f-70 text-white"></i>
                                 </div>
                             </div>
                         </div>
@@ -149,13 +137,54 @@
                         </div>
                         <!--[ Recent Users ] end--> 
                         <div class="col-xl-4 col-md-6">
-                            <div class="card">
-                               <div class="card-header">
-                                   <h5>Club allocation</h5>
-                               </div>
-                               <div class="card-block">
-                                   <div id="morris-bar-chart" style="height:300px"></div>
-                               </div>
+                            <div class="card note-bar">
+                                <div class="card-header">
+                                    <h5>Notifications</h5>
+                                </div>
+                                <div class="card-block p-0">
+                                    <a href="#!" class="media friendlist-box">
+                                        <div class="mr-3 photo-table">
+                                            <i class="fas fa-exclamation-circle f-30"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6>You have {{ zero_players }} players expected not to play this round</h6>
+                                            <span class="f-12 float-right text-muted"></span>
+                                            <p class="text-muted m-0">{{ zero_players_bench }} of them is on bench</p>
+                                        </div>
+                                    </a>
+                                    <a href="#!" class="media friendlist-box border-top">
+                                        <div class="mr-3 photo-table">
+                                            <i class="fas fa-chart-bar f-30"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6>You are currently rank {{ rank }} </h6>
+                                            <span class="f-12 float-right text-muted"></span>
+                                            <p class="text-muted m-0">out of 7.7 mio in total</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="#!" class="media friendlist-box border-top">
+                                        <div class="mr-3 photo-table">
+                                            <i class="fas fa-exchange-alt f-30"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6>You have {{ n_transfers }} tranfer this coming round </h6>
+                                            <span class="f-12 float-right text-muted"></span>
+                                            <p class="text-muted m-0">use it to buy {{ buy_list1 }}</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="#!" class="media friendlist-box border-top">
+                                        <div class="mr-3 photo-table">
+                                            <i class="fas fa-chess f-30"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6>We do not recommned to play any wild cards</h6>
+                                            <span class="f-12 float-right text-muted"></span>
+                                            <p class="text-muted m-0">based on captain points, sub points, etc. </p>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                             <div class="card">
                                 <div class="card user-list">
@@ -163,31 +192,41 @@
                                         <h5>Top players in this round</h5>
                                     </div>
                                 <div class="card-block">
-                                    <div class="row align-items-center justify-content-center m-b-20">
-                                        <div class="col-6">
-                                            <h2 class="f-w-300 d-flex align-items-center float-left m-0"> {{ Name[0] }}  <i class="fas fa-star f-10 m-l-10 text-c-yellow"></i></h2>
-                                        </div>
-                                        <div class="col-6">
-                                            <h6 class="d-flex  align-items-center float-right m-0"> {{ TotPoints[0] }} <i class="fas fa-caret-up text-c-green f-22 m-l-10"></i></h6>
-                                        </div>
-                                    </div>
                                     <div class="row">
                                         <div class="col-xl-12">
-                                            <h6 class="align-items-center float-left"><i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>{{ Name[1] }}</h6>
+                                            <h6 class="align-items-center float-left"><i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>{{ Name[0] }} </h6>
+                                            <h6 class="align-items-center float-right"> {{ TotPoints[0] }} </h6>
+                                            <div class="progress m-t-30 m-b-20" style="height: 6px;">
+                                                <div class="progress-bar progress-c-theme" role="progressbar" style="width: 1000%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <h6 class="align-items-center float-left"><i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>{{ Name[1] }}</h6>
                                             <h6 class="align-items-center float-right">{{ TotPoints[1] }} </h6>
                                             <div class="progress m-t-30 m-b-20" style="height: 6px;">
                                                 <div class="progress-bar progress-c-theme" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="col-xl-12">
-                                            <h6 class="align-items-center float-left"><i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>{{ Name[2] }}</h6>
+                                            <h6 class="align-items-center float-left"><i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>{{ Name[2] }}</h6>
                                             <h6 class="align-items-center float-right">{{ TotPoints[2] }} </h6>
                                             <div class="progress m-t-30  m-b-20" style="height: 6px;">
                                                 <div class="progress-bar progress-c-theme" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="col-xl-12">
-                                            <h6 class="align-items-center float-left"><i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>{{ Name[3] }}</h6>
+                                            <h6 class="align-items-center float-left"><i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      <i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>
+                                                                                      {{ Name[3] }}</h6>
                                             <h6 class="align-items-center float-right">{{ TotPoints[3] }} </h6>
                                             <div class="progress m-t-30  m-b-20" style="height: 6px;">
                                                 <div class="progress-bar progress-c-theme" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -204,79 +243,22 @@
                                             <h6 class="align-items-center float-left"><i class="fas fa-star f-10 m-r-10 text-c-yellow"></i>{{ Name[5] }}</h6>
                                             <h6 class="align-items-center float-right">{{ TotPoints[5] }} </h6>
                                             <div class="progress m-t-30  m-b-20" style="height: 6px;">
-                                                <div class="progress-bar" role="progressbar" style="width:5%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width:5%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-        
-                           
-                       </div> 
-                  </div>
-                   
+                    </div>
                </form> 
            </div>
        </div>
    </div>
    {% endblock content %}     
    {% block javascripts %}
-       <script src="/static/assets/plugins/chart-morris/js/raphael.min.js"></script>
-       <script src="/static/assets/plugins/chart-morris/js/morris.min.js"></script>
-       <script> 'use strict';
-   $(document).ready(function() {
-       setTimeout(function() {
-       // [ bar-simple ] chart start
-       Morris.Bar({
-           element: 'morris-bar-chart',
-           data: [{
-           
-                   y: {{ labels[0]|tojson }},
-                   a: {{ values[0]|tojson }},
-               },
-               {
-                   y: {{ labels[1]|tojson }},
-                   a: {{ values[1]|tojson }},
-   
-               },
-               {
-                   y: {{ labels[2]|tojson }},
-                   a: {{ values[2]|tojson }},
-               },
-               {
-                   y: {{ labels[3]|tojson }},
-                   a: {{ values[3]|tojson }},
-               },            
-               {
-                   y: {{ labels[4]|tojson }},
-                   a: {{ values[4]|tojson }},
-               },            
-               {
-                   y: {{ labels[5]|tojson }},
-                   a: {{ values[5]|tojson }},
-               },            
-               {
-                   y: {{ labels[6]|tojson }},
-                   a: {{ values[6]|tojson }},
-               }
-               
-           ],
-           xkey: 'y',
-           barSizeRatio: 0.70,
-           barGap: 3,
-           xLabelMargin: 10,
-           resize: true,
-           ymax: 4,
-           ymin:0,
-           responsive:true,
-           ykeys: ['a'],
-           labels: ['Count'],
-           barColors: ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#04a9f5"]
-       });
-       // [ bar-simple ] chart end
-           }, 700);
-   });
-   </script>
+     
+
    
    {% endblock javascripts %}  

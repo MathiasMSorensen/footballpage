@@ -2,7 +2,8 @@
 
 import pandas as pd
 import numpy as np
-from dictionaries import team_lookup, team_lookup_num
+from dictionaries import team_lookup, team_lookup_num, position_lookup
+from player_predictions import data_final
 
 def team_forecast(team, fte, current_round, forecast_window):
     Output = pd.DataFrame(index=range(current_round, current_round + forecast_window), 
@@ -217,6 +218,8 @@ def get_current_team(username,password):
     import requests
     import json
     import pandas as pd
+    from urllib.request import urlopen
+
     print(1)
     browser = mechanize.Browser()
     cj = LWPCookieJar()
@@ -234,7 +237,47 @@ def get_current_team(username,password):
         url = browser.open('https://fantasy.premierleague.com/api/my-team/4651465/')
         data_json = json.loads(url.read())
         data_df = pd.DataFrame(data_json["picks"])
+        
+        transfers = data_json["transfers"]['limit']
+
+        url = browser.open('https://fantasy.premierleague.com/api/entry/4651465/')
+        data_json = json.loads(url.read())
+        bank = data_json['last_deadline_bank']/10
+        rank = data_json['summary_overall_rank']
+
+        url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
+        response = urlopen(url)
+        data_json = json.loads(response.read())
+        data_df_fpl = pd.DataFrame(data_json["elements"])
+        data_df_fpl['Player'] = data_df_fpl['first_name'] + ' ' + data_df_fpl['second_name']
+        
+        data_df = data_df.sort_values(['element']).reset_index(drop = True)
+
+        logical  = data_df_fpl['id'].isin(data_df['element'])
+        data_df['player'] = data_df_fpl['Player'][logical].reset_index(drop=True)
+        data_df['multiplier'] = np.where(data_df['multiplier']>=1,0,1)
+        data_df['position'] = data_df_fpl['element_type'][logical].reset_index(drop=True)
+
+        data_df = data_df.sort_values(['player']).reset_index(drop = True)
+        logical = []
+        for i in range(len(data_df)):
+            logical.append(data_final.index[data_df['player'].loc[i]== data_final['fpl_name']])
+
+        data_df['team'] = data_final['team'][list(pd.DataFrame(logical)[0])].reset_index(drop=True)
+        data_df['Expected_Points_round1'] = round(data_final['Expected_Points_round1'][list(pd.DataFrame(logical)[0])].reset_index(drop=True),1)
+        data_df['Captain'] = np.where(data_df['is_captain']==True,"Captain","")
+
+        data_df = data_df.sort_values(['multiplier','position']).reset_index(drop = True)
+
+        for i in range(len(data_df['team'])):
+            data_df['team'].loc[i] = team_lookup_num[data_df['team'][i]]
+            data_df['position'].loc[i] = position_lookup[data_df['position'][i]]     
+
     except:
         data_df = 0
-
-    return data_df
+        bank = 0
+        rank = 0
+        transfers = 0 
+        
+    return data_df, bank, rank, transfers
+    

@@ -2,25 +2,11 @@
 
 {% block title %} Dashboard {% endblock %} 
 
-<link rel="stylesheet" href="{{url_for('.static/assets', filename='style.css')}}">
-<link rel="stylesheet" href="/static/assets/plugins/chart-morris/css/morris.css">
-<style>
-    form {
-    width:100%;
-    height:100px;
-    margin:auto;
-    position:relative;
-    }
-     input {
-    width:100%;
-    height: 20px;
-     }
-</style> 
-input[type="checkbox"] {
-    vertical-align: middle;
-    }
+
 
 {% block stylesheets %}
+<link rel="stylesheet" href="/static/assets/css/style.css">
+<link rel="stylesheet" href="/static/assets/plugins/chart-morris/css/morris.css">
 
 {% endblock stylesheets %}
 
@@ -36,24 +22,48 @@ input[type="checkbox"] {
                     <!-- [ Main Content ] start -->
                     <div class="row">
                         <!--[ daily sales section ] start-->
-                        <div class="col-xl-6">
+                        <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h5>{{ Name1 }}</h5>
                                 </div>
                                 <div class="card-block">
-                                    <div id="morris-bar-chart" class="ChartShadow" style="height:300px"></div>
+                                    <div id="morris-bar-chart" class="ChartShadow" style="height:200px"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>{{ Name2 }}</h5>
-                                </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card theme-bg bitcoin-wallet">
                                 <div class="card-block">
-                                    <div id="morris-bar-chart1" class="ChartShadow" style="height:300px"></div>
+                                    <h5 class="text-white mb-2">Recommended to use</h5>
+                                    <h3 class="text-white mb-2 f-w-200">{{ substitues }}</h3>
+                                    <span class="text-white d-block">tranfers in this round</span>
+                                    <i class="fas fa-angle-double-up f-70 text-white"></i>
                                 </div>
+                            </div>
+                        </div>
+                        <!--[ daily sales section ] end-->
+                        <!--[ Monthly  sales section ] starts-->
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card theme-bg2 bitcoin-wallet">
+                                <div class="card-block">
+                                    <h5 class="text-white mb-2">Recommend to buy</h5>
+                                    <h3 class="text-white mb-2 f-w-300">{{ buy_str }}</h3>
+                                    <span class="text-white d-block">and sell {{ sell_str }} </span>
+                                    <i class="fas fa-exchange-alt f-70 text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--[ Monthly  sales section ] end-->
+                        <!--[ year  sales section ] starts-->
+                        <div class="col-md-12 col-xl-4">
+                            <div class="card bg-c-blue bitcoin-wallet">
+                                <div class="card-block">
+                                    <h5 class="text-white mb-2">And select the following captain</h5>
+                                    <h3 class="text-white mb-2 f-w-300"> {{ captain }} </h3>
+                                    <span class="text-white d-block"> and {{ vice_captain }} as vice-captain</span>
+                                    <i class="fab fa-btc f-70 text-white"></i>
+                                </div>       
                             </div>
                         </div>
                         <!--[ year  sales section ] end-->
@@ -703,13 +713,13 @@ input[type="checkbox"] {
             </div>
                         <!-- [ statistics year chart ] end -->
 
-            <form action="/teamupdated" method="POST">
+            <!-- <form action="/teamupdated" method="POST">
                 {% for each in Squad %}
                     <input type="hidden" name="Name" value='{{ each }}'>
                 {% endfor %} 
                 <input type="hidden" name="Budget" value='{{ Budget }}'>
                     <input type="submit" class="btn btn-primary" value="Save lineup to Dashboard" btn-lg>
-            </form>
+            </form> -->
 
 
             </form> 
@@ -759,98 +769,80 @@ input[type="checkbox"] {
 
 <script src="/static/assets/plugins/chart-morris/js/raphael.min.js"></script>
 <script src="/static/assets/plugins/chart-morris/js/morris.min.js"></script>
-<script> 
-    $(document).ready(function() {
-        setTimeout(function() {
+<script> 'use strict';
+$(document).ready(function() {
+    setTimeout(function() {
         // [ bar-simple ] chart start
         Morris.Bar({
-            element: 'morris-bar-chart',
-            data: [{
-            
-                    y: {{ labels[0]|tojson }},
-                    a: {{ values1[0]|tojson }},
-                },
-                {
-                    y: {{ labels[1]|tojson }},
-                    a: {{ values1[1]|tojson }},
-    
-                },
-                {
-                    y: {{ labels[2]|tojson }},
-                    a: {{ values1[2]|tojson }},
-                },
-                {
-                    y: {{ labels[3]|tojson }},
-                    a: {{ values1[3]|tojson }},
-                },            
-                {
-                    y: {{ labels[4]|tojson }},
-                    a: {{ values1[4]|tojson }},
-                },            
-                {
-                    y: {{ labels[5]|tojson }},
-                    a: {{ values1[5]|tojson }},
-                }
-                
-            ],
-            xkey: 'y',
-            barSizeRatio: 0.70,
-            barGap: 3,
-            xLabelMargin: 10,
-            resize: true,
-            ymax: 70,
-            ymin:30,
-            responsive:true,
-            ykeys: ['a'],
-            labels: ['Count'],
-            barColors: ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#04a9f5"]
-        });
-        // [ bar-simple ] chart end
-
-        Morris.Bar({
-            element: 'morris-bar-chart1',
-            data: [{
-            
-                    y: {{ labels[0]|tojson }},
-                    a: {{ values2[0]|tojson }},
-                },
-                {
-                    y: {{ labels[1]|tojson }},
-                    a: {{ values2[1]|tojson }},
-    
-                },
-                {
-                    y: {{ labels[2]|tojson }},
-                    a: {{ values2[2]|tojson }},
-                },
-                {
-                    y: {{ labels[3]|tojson }},
-                    a: {{ values2[3]|tojson }},
-                },            
-                {
-                    y: {{ labels[4]|tojson }},
-                    a: {{ values2[4]|tojson }},
-                },            
-                {
-                    y: {{ labels[5]|tojson }},
-                    a: {{ values2[5]|tojson }},
-                }
-                ],
-                xkey: 'y',
-                barSizeRatio: 0.70,
-                barGap: 3,
-                xLabelMargin: 10,
-                resize: true,
-                ymax: 70,
-                ymin:30,
-                responsive: true,
-                ykeys: ['a'],
-                labels: [''],
-                barColors: ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#04a9f5"]
-        });
-        // [ bar-simple ] chart end
-    });    
-});   
+        element: 'morris-bar-chart',
+        data: [{
+                y: {{ labels[0]|tojson }},
+                a: {{ values0[0]|tojson }},
+                b: {{ values1[0]|tojson }},
+                c: {{ values2[0]|tojson }},
+                d: {{ values3[0]|tojson }},
+                e: {{ values4[0]|tojson }},
+                f: {{ values5[0]|tojson }},
+            },
+            {
+                y: {{ labels[1]|tojson }},
+                a: {{ values0[1]|tojson }},
+                b: {{ values1[1]|tojson }},
+                c: {{ values2[1]|tojson }},
+                d: {{ values3[1]|tojson }},
+                e: {{ values4[1]|tojson }},
+                f: {{ values5[1]|tojson }},
+            },
+            {
+                y: {{ labels[2]|tojson }},
+                a: {{ values0[2]|tojson }},
+                b: {{ values1[2]|tojson }},
+                c: {{ values2[2]|tojson }},
+                d: {{ values3[2]|tojson }},
+                e: {{ values4[2]|tojson }},
+                f: {{ values5[2]|tojson }},
+            },
+            {
+                y: {{ labels[3]|tojson }},
+                a: {{ values0[3]|tojson }},
+                b: {{ values1[3]|tojson }},
+                c: {{ values2[3]|tojson }},
+                d: {{ values3[3]|tojson }},
+                e: {{ values4[3]|tojson }},
+                f: {{ values5[3]|tojson }},
+            },
+            {
+                y: {{ labels[4]|tojson }},
+                a: {{ values0[4]|tojson }},
+                b: {{ values1[4]|tojson }},
+                c: {{ values2[4]|tojson }},
+                d: {{ values3[4]|tojson }},
+                e: {{ values4[4]|tojson }},
+                f: {{ values5[4]|tojson }},
+            },
+            {
+                y: {{ labels[5]|tojson }},
+                a: {{ values0[5]|tojson }},
+                b: {{ values1[5]|tojson }},
+                c: {{ values2[5]|tojson }},
+                d: {{ values3[5]|tojson }},
+                e: {{ values4[5]|tojson }},
+                f: {{ values5[5]|tojson }},
+            }
+        ],
+        xkey: 'y',
+        barSizeRatio: 0.70,
+        barGap: 3,
+        resize: true,
+        ymax: 70,
+        ymin:40,
+        responsive:true,
+        ykeys: ['a', 'b', 'c','d','e','f'],
+        labels: ['0 transfers', '1 transfers', '2 transfers','3 transfers','4 transfers','5 transfers'],
+        barColors: ["0-#1de9b6-#1dc4e9", "0-#899FD4-#A389D4", "#04a9f5",'#b4becb', '#A389D4', '#1de9b6']
+    });             
+}, 700);
+});
 </script>
 <script>
   $(document).ready(function() {
