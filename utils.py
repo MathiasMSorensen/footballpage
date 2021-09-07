@@ -188,8 +188,10 @@ def get_optim_results(Output, PlayerList,data_final):
         Expected_points = sum(Output['TotalPoints'])
         buy_list = list(Output[Output['new_old']=="New"]['Names'])
         buy_list_position = list(Output[Output['new_old']=="New"]['Positions']) 
-        buy_list_team = list(Output[Output['new_old']=="New"]['Names'])
-        buy_list_xPoints = list(Output[Output['new_old']=="New"]['TotalPoints'])
+        buy_list_team = list(Output[Output['new_old']=="New"]['Teams'])
+        buy_list_xPoints = list(round(Output[Output['new_old']=="New"]['TotalPoints'],2))
+        print(buy_list_xPoints)
+        print(Squad_xPoints)
 
         sell_bool = np.where(pd.DataFrame(PlayerList)[0].isin(Output['Names']), False, True)
         sell_list_names = pd.DataFrame(PlayerList)[sell_bool].reset_index(drop = True)
@@ -203,7 +205,7 @@ def get_optim_results(Output, PlayerList,data_final):
         sell_list_xPoints_temp = list(data_final['Expected_Points_round1'][sell_list_bool])
         for i in range(len(sell_list_team_temp)):
             sell_list_team.append(team_lookup_num[sell_list_team_temp[i]])
-            sell_list_xPoints.append(int(sell_list_xPoints_temp[i]))
+            sell_list_xPoints.append(round(sell_list_xPoints_temp[i],1))
         
         New = list(Output['new_old']) 
 

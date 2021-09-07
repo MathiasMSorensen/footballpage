@@ -440,42 +440,48 @@ def optimization():
         for i in range(6):
             values0.append(int(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i])))
     else:
-        values0.append(0)
+        for i in range(6):
+            values0.append(0)
 
     values1 = []
     if isinstance(Output_list[1], pd.DataFrame):
         for i in range(6):
             values1.append(int(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i])))
     else:
-        values1.append(0)
+        for i in range(6):
+            values1.append(0)
         
     values2 = []
     if isinstance(Output_list[2], pd.DataFrame):
         for i in range(6):
             values2.append(int(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])))
     else:
-        values2.append(0)
+        for i in range(6):
+            values2.append(0)
 
     values3 = []
     if isinstance(Output_list[3], pd.DataFrame):
         for i in range(6):
             values3.append(int(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i])))
     else:
-        values3.append(0)
+        for i in range(6):
+            values3.append(0)
 
     values4 = []
     if isinstance(Output_list[4], pd.DataFrame):
         for i in range(6):
             values4.append(int(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i])))
     else:
-        values4.append(0)
+        for i in range(6):
+            values4.append(0)
 
     values5 = []
     if isinstance(Output_list[5], pd.DataFrame):
         for i in range(6):
             values5.append(int(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i])))
     else:
-        values5.append(0)
+        for i in range(6):
+            values5.append(0)
 
     Name1 = "Expected Points by number of tranfers and rounds (Without tranfer cost)"
 
@@ -506,6 +512,8 @@ def optimization():
     New5, Squad5, Squad_Position5, Squad_Team5, Squad_xPoints5, Squad_Captain5, Expected_points5, buy_list5, \
     buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[control[4]], PlayerList, data_final)
 
+    print(buy_list_xPoints5)
+    
     Output = Output_list[3]
 
     TransferCost = TransferCost[1]
@@ -566,7 +574,8 @@ def optimization():
             ExcludePlayers = (value for value in ExcludePlayers if value != 'Please Select')
         if 'Please Select' in ExcludeTeam:
             ExcludeTeam = (value for value in ExcludeTeam if value != 'Please Select')   
-    
+        print(values0)
+
         return render_template("Dashboard2.html", 
                                 ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam, Expected_points = Expected_points1, 
                                 Squad1 = Squad1, Squad_Position1 = Squad_Position1 ,Squad_Team1 = Squad_Team1, Squad_xPoints1 = Squad_xPoints1, Squad_Captain1 = Squad_Captain1, 
@@ -799,42 +808,48 @@ def sure():
             for i in range(6):
                 values0.append(int(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i])))
         else:
-            values0.append(0)
+            for i in range(6):
+                values0.append(0)
 
         values1 = []
         if isinstance(Output_list[1], pd.DataFrame):
             for i in range(6):
                 values1.append(int(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i])))
         else:
-            values1.append(0)
+            for i in range(6):
+                values1.append(0)
             
         values2 = []
         if isinstance(Output_list[2], pd.DataFrame):
             for i in range(6):
                 values2.append(int(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])))
         else:
-            values2.append(0)
+            for i in range(6):
+                values2.append(0)
 
         values3 = []
         if isinstance(Output_list[3], pd.DataFrame):
             for i in range(6):
                 values3.append(int(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i])))
         else:
-            values3.append(0)
+            for i in range(6):
+                values3.append(0)
 
         values4 = []
         if isinstance(Output_list[4], pd.DataFrame):
             for i in range(6):
                 values4.append(int(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i])))
         else:
-            values4.append(0)
+            for i in range(6):
+                values4.append(0)
 
         values5 = []
         if isinstance(Output_list[5], pd.DataFrame):
             for i in range(6):
                 values5.append(int(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i])))
         else:
-            values5.append(0)
+            for i in range(6):
+                values5.append(0)
 
         Name1 = "Expected Points by number of tranfers and rounds (Without tranfer cost)"
 
