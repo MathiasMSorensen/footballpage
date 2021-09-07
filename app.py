@@ -513,7 +513,7 @@ def optimization():
     buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[control[4]], PlayerList, data_final)
 
     print(buy_list_xPoints5)
-    
+
     Output = Output_list[3]
 
     TransferCost = TransferCost[1]
@@ -538,35 +538,42 @@ def optimization():
         sell_str = ' '.join([str(item) for item in sell_list1])
         captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_Captain1) == 'Captain'].dropna()[0].iloc[0]
         temp = pd.DataFrame(Squad_xPoints1).sort_values(by=0)
-        vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[1]
+        length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+        vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[length]
     elif values2[0]-(2-n_transfers)*4 > values3[0]-(3-n_transfers)*4:
         substitues = 2
         buy_str = ' '.join([str(item) for item in buy_list2])
         sell_str = ' '.join([str(item) for item in sell_list2])
         captain =  pd.DataFrame(Squad2)[pd.DataFrame(Squad_Captain2) == 'Captain'].dropna()[0].iloc[0]
         temp = pd.DataFrame(Squad_xPoints2).sort_values(by=0)
-        vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[1]
+        length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+        vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[length]
+        print(pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0])
     elif values3[0]-(3-n_transfers)*4 > values4[0]-(4-n_transfers)*4:
         substitues = 3
         buy_str = ' '.join([str(item) for item in buy_list3])
         sell_str = ' '.join([str(item) for item in sell_list3])
         captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_Captain3) == 'Captain'].dropna()[0].iloc[0]
         temp = pd.DataFrame(Squad_xPoints3).sort_values(by=0)
-        vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[1]
+        print(pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0])
+        length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+        vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[length]
     elif values4[0]-(4-n_transfers)*4 > values5[0]-(5-n_transfers)*4:
         substitues = 4
         buy_str = ' '.join([str(item) for item in buy_list4])
         sell_str = ' '.join([str(item) for item in sell_list4])
         captain = pd.DataFrame(Squad4)[pd.DataFrame(Squad_Captain4) == 'Captain'].dropna()[0].iloc[0]
         temp = pd.DataFrame(Squad_xPoints4).sort_values(by=0)
-        vice_captain =  pd.DataFrame(Squad4)['Names'][pd.DataFrame(Squad_xPoints4) == float(temp.iloc[-2])].dropna()[0].iloc[1]
+        length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+        vice_captain =  pd.DataFrame(Squad4)['Names'][pd.DataFrame(Squad_xPoints4) == float(temp.iloc[-2])].dropna()[0].iloc[length]
     else:
         substitues = 5
         buy_str = ' '.join([str(item) for item in buy_list5])
         sell_str = ' '.join([str(item) for item in sell_list5])
         captain =  pd.DataFrame(Squad5)[pd.DataFrame(Squad_Captain5) == 'Captain'].dropna()[0].iloc[0]
         temp = pd.DataFrame(Squad_xPoints5).sort_values(by=0)
-        vice_captain =  pd.DataFrame(Squad5)['Names'][pd.DataFrame(Squad_xPoints5) == float(temp.iloc[-2])].dropna()[0].iloc[1]
+        length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+        vice_captain =  pd.DataFrame(Squad5)['Names'][pd.DataFrame(Squad_xPoints5) == float(temp.iloc[-2])].dropna()[0].iloc[length]
 
     if isinstance(Output, pd.DataFrame):
 
@@ -898,36 +905,42 @@ def sure():
             sell_str = ' '.join([str(item) for item in sell_list1])
             captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_Captain1) == 'Captain'].dropna()[0].iloc[0]
             temp = pd.DataFrame(Squad_xPoints1).sort_values(by=0)
-            vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[1]
+            length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+            vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[length]
         elif values2[0]-(2-n_transfers)*4 > values3[0]-(3-n_transfers)*4:
             substitues = 2
             buy_str = ' '.join([str(item) for item in buy_list2])
             sell_str = ' '.join([str(item) for item in sell_list2])
             captain =  pd.DataFrame(Squad2)[pd.DataFrame(Squad_Captain2) == 'Captain'].dropna()[0].iloc[0]
             temp = pd.DataFrame(Squad_xPoints2).sort_values(by=0)
-            vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[1]
+            length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+            vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[length]
+            print(pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0])
         elif values3[0]-(3-n_transfers)*4 > values4[0]-(4-n_transfers)*4:
             substitues = 3
             buy_str = ' '.join([str(item) for item in buy_list3])
             sell_str = ' '.join([str(item) for item in sell_list3])
             captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_Captain3) == 'Captain'].dropna()[0].iloc[0]
             temp = pd.DataFrame(Squad_xPoints3).sort_values(by=0)
-            vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[1]
+            print(pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0])
+            length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+            vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[length]
         elif values4[0]-(4-n_transfers)*4 > values5[0]-(5-n_transfers)*4:
             substitues = 4
             buy_str = ' '.join([str(item) for item in buy_list4])
             sell_str = ' '.join([str(item) for item in sell_list4])
             captain = pd.DataFrame(Squad4)[pd.DataFrame(Squad_Captain4) == 'Captain'].dropna()[0].iloc[0]
             temp = pd.DataFrame(Squad_xPoints4).sort_values(by=0)
-            vice_captain =  pd.DataFrame(Squad4)['Names'][pd.DataFrame(Squad_xPoints4) == float(temp.iloc[-2])].dropna()[0].iloc[1]
+            length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+            vice_captain =  pd.DataFrame(Squad4)['Names'][pd.DataFrame(Squad_xPoints4) == float(temp.iloc[-2])].dropna()[0].iloc[length]
         else:
             substitues = 5
             buy_str = ' '.join([str(item) for item in buy_list5])
             sell_str = ' '.join([str(item) for item in sell_list5])
             captain =  pd.DataFrame(Squad5)[pd.DataFrame(Squad_Captain5) == 'Captain'].dropna()[0].iloc[0]
             temp = pd.DataFrame(Squad_xPoints5).sort_values(by=0)
-            vice_captain =  pd.DataFrame(Squad5)['Names'][pd.DataFrame(Squad_xPoints5) == float(temp.iloc[-2])].dropna()[0].iloc[1]
-
+            length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
+            vice_captain =  pd.DataFrame(Squad5)['Names'][pd.DataFrame(Squad_xPoints5) == float(temp.iloc[-2])].dropna()[0].iloc[length]
 
 
         return render_template("Dashboard2.html", 
