@@ -66,394 +66,388 @@
                                 </div>       
                             </div>
                         </div>
-                    </div>
                         <!--[ year  sales section ] end-->
-                    <div class="col-xl-8 col-md-6"></div>
-                        <div class="card Recent-Users">
-                            <div class="card-header">
-                                <h5>Recommended transfers </h5>
-                                <p class="m-0"><em>Across number of substitutions</em></p>
-                            </div>
-                            <div class="card-block px-0 py-3">
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">1 Substitute</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active show" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="true">2 Substitutes</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="profile3-tab" data-toggle="tab" href="#profile3" role="tab" aria-controls="profile3" aria-selected="false">3 Substitutes</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="profile4-tab" data-toggle="tab" href="#profile4" role="tab" aria-controls="profile4" aria-selected="false">4 Substitutes</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="profile5-tab" data-toggle="tab" href="#profile5" role="tab" aria-controls="profile5" aria-selected="false">5 Substitutes</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to sell</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in sell_list1 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_team1[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_position1[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="m-0">{{ sell_list_xPoints1[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-red f-10"></i></td>
-                                                </tr>
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to Buy</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in buy_list1 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_team1[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_position1[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="m-0">{{ buy_list_xPoints1[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-green f-10"></i></td>
-                                                </tr>                                               
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade active show" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to sell</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in sell_list2 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_team2[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_position2[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="mb-1">{{ sell_list_xPoints2[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-red f-10"></i></td>
-                                                </tr>
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to Buy</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in buy_list2 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_team2[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_position2[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="mb-1">{{ buy_list_xPoints2[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-green f-10"></i></td>
-                                                </tr>                                               
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    
-                                    <div class="tab-pane fade" id="profile3" role="tabpanel" aria-labelledby="profile3-tab">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to sell</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in sell_list3 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_team3[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_position3[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="m-0">{{ sell_list_xPoints3[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-red f-10"></i></td>
-                                                </tr>
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to Buy</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in buy_list3 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_team3[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_position3[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="mb-1">{{ buy_list_xPoints3[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-green f-10"></i></td>
-                                                </tr>                                               
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    
-                                    <div class="tab-pane fade" id="profile4" role="tabpanel" aria-labelledby="profile4-tab">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to sell</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in sell_list4 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_team4[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_position4[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="m-0">{{ sell_list_xPoints4[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-red f-10"></i></td>
-                                                </tr>
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to Buy</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in buy_list4 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_team4[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_position4[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="mb-1">{{ buy_list_xPoints4[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-green f-10"></i></td>
-                                                </tr>                                               
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane fade" id="profile5" role="tabpanel" aria-labelledby="profile5-tab">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to sell</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in sell_list5 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_team5[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ sell_list_position5[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="mb-1">{{ sell_list_xPoints5[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-red f-10"></i></td>
-                                                </tr>
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                            <thead>
-                                                <tr>                                              
-                                                    <th>Player to Buy</th>
-                                                    <th>Team</th>
-                                                    <th>Position</th>
-                                                    <th>Points in coming round</th>
-                                                    <th>Sell/Buy</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    {% set count = namespace(value=1) %}
-                                                    {% for each in buy_list5 %} 
-                                                    <td>
-                                                        <h6 class="m-0">{{ each }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_team5[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="m-0">{{ buy_list_position5[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td class="text-middle">
-                                                        <h6 class="mb-1">{{ buy_list_xPoints5[count.value-1] }}</h6>
-                                                    </td>
-                                                    <td><i class="fas fa-circle text-c-green f-10"></i></td>
-                                                </tr>                                               
-                                                    {% set count.value = count.value + 1 %}
-                                                    {% endfor %} 
-                                            </tbody>
-                                        </table>
-                                    </div>
+                        <div class="col-xl-12 col-md-6">
+                            <h5>Recommended transfers </h5>
+                            <p class="m-0"><em>Across number of substitutions</em></p>
+                            <hr>
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="false">1 Substitute</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile2-tab" data-toggle="pill" href="#profile2" role="tab" aria-controls="profile2" aria-selected="true">2 Substitutes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile3-tab" data-toggle="pill" href="#profile3" role="tab" aria-controls="profile3" aria-selected="false">3 Substitutes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile4-tab" data-toggle="pill" href="#profile4" role="tab" aria-controls="profile4" aria-selected="false">4 Substitutes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile5-tab" data-toggle="pill" href="#profile5" role="tab" aria-controls="profile5" aria-selected="false">5 Substitutes</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to sell</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in sell_list1 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_team1[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_position1[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="m-0">{{ sell_list_xPoints1[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-red f-10"></i></td>
+                                            </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to Buy</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in buy_list1 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_team1[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_position1[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="m-0">{{ buy_list_xPoints1[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-green f-10"></i></td>
+                                            </tr>                                               
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade active show" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to sell</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in sell_list2 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_team2[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_position2[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="mb-1">{{ sell_list_xPoints2[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-red f-10"></i></td>
+                                            </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to Buy</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in buy_list2 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_team2[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_position2[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="mb-1">{{ buy_list_xPoints2[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-green f-10"></i></td>
+                                            </tr>                                               
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="profile3" role="tabpanel" aria-labelledby="profile3-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to sell</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in sell_list3 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_team3[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_position3[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="m-0">{{ sell_list_xPoints3[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-red f-10"></i></td>
+                                            </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to Buy</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in buy_list3 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_team3[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_position3[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="mb-1">{{ buy_list_xPoints3[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-green f-10"></i></td>
+                                            </tr>                                               
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="profile4" role="tabpanel" aria-labelledby="profile4-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to sell</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in sell_list4 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_team4[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_position4[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="m-0">{{ sell_list_xPoints4[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-red f-10"></i></td>
+                                            </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to Buy</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in buy_list4 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_team4[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_position4[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="mb-1">{{ buy_list_xPoints4[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-green f-10"></i></td>
+                                            </tr>                                               
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="profile5" role="tabpanel" aria-labelledby="profile5-tab">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to sell</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in sell_list5 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_team5[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_position5[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="mb-1">{{ sell_list_xPoints5[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-red f-10"></i></td>
+                                            </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                        <thead>
+                                            <tr>                                              
+                                                <th>Player to Buy</th>
+                                                <th>Team</th>
+                                                <th>Position</th>
+                                                <th>Points</th>
+                                                <th>Sell/Buy</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% set count = namespace(value=1) %}
+                                                {% for each in buy_list5 %} 
+                                                <td>
+                                                    <h6 class="m-0">{{ each }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_team5[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_position5[count.value-1] }}</h6>
+                                                </td>
+                                                <td class="text-middle">
+                                                    <h6 class="mb-1">{{ buy_list_xPoints5[count.value-1] }}</h6>
+                                                </td>
+                                                <td><i class="fas fa-circle text-c-green f-10"></i></td>
+                                            </tr>                                               
+                                                {% set count.value = count.value + 1 %}
+                                                {% endfor %} 
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
+                        <hr> 
                         <div class="col-xl-8 col-md-6">
-                            <div class="card Recent-Users">
-                                <div class="card-header">
-                                    <h5>Updated team </h5>
-                                    <p class="m-0"><em>Checked players/teams is excluded from lineup optimizer</em></p>
-                                </div>
-                                <div class="card-block px-0 py-3">
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="home-tab_2" data-toggle="tab" href="#home_2" role="tab" aria-controls="home" aria-selected="false">1 Substitute</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active show" id="profile2-tab_2" data-toggle="tab" href="#profile2_2" role="tab" aria-controls="profile2_2" aria-selected="true">2 Substitutes</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="profile3-tab_2" data-toggle="tab" href="#profile3_2" role="tab" aria-controls="profile3_2" aria-selected="false">3 Substitutes</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="profile4-tab_2" data-toggle="tab" href="#profile4_2" role="tab" aria-controls="profile4_2" aria-selected="false">4 Substitutes</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="profile5-tab_2" data-toggle="tab" href="#profile5_2" role="tab" aria-controls="profile5_2" aria-selected="false">5 Substitutes</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade" id="home_2" role="tabpanel" aria-labelledby="home-tab_2">
+                            <hr>
+                            <h5>Updated team</h5>
+                            <p class="m-0"><em>Checked players/teams is excluded from lineup optimizer</em></p>
+                            <hr>
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="home-tab_2" data-toggle="pill" href="#home_2" role="tab" aria-controls="home" aria-selected="false">1 Substitute</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile2-tab_2" data-toggle="pill" href="#profile2_2" role="tab" aria-controls="profile2_2" aria-selected="true">2 Substitutes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile3-tab_2" data-toggle="pill" href="#profile3_2" role="tab" aria-controls="profile3_2" aria-selected="false">3 Substitutes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile4-tab_2" data-toggle="pill" href="#profile4_2" role="tab" aria-controls="profile4_2" aria-selected="false">4 Substitutes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile5-tab_2" data-toggle="pill" href="#profile5_2" role="tab" aria-controls="profile5_2" aria-selected="false">5 Substitutes</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade" id="home_2" role="tabpanel" aria-labelledby="home-tab_2">
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
                                             <table class="table table-hover">
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Player</th>
                                                     <th scope="col">Team</th>
-                                                    <th scope="col">New player</th>
+                                                    <th scope="col">New</th>
                                                     <th scope="col">Position</th>
-                                                    <th scope="col">Points in coming round</th>
+                                                    <th scope="col">Points</th>
                                                     </tr>
                                                 </thead>
                                                 {% if  Squad1.value == 0  %}
@@ -508,19 +502,22 @@
                                                 </tbody>
                                                 {% endif  %} 
                                             </table>
-                                            
-                                            <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
-                                        </form>
                                         </div>
-                                        <div class="tab-pane fade active show" id="profile2_2" role="tabpanel" aria-labelledby="profile2-tab_2">
+                                    </div>
+                                    <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                </form>
+                                </div>
+                                <div class="tab-pane fade active show" id="profile2_2" role="tabpanel" aria-labelledby="profile2-tab_2">
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
                                             <table class="table table-hover">
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Player</th>
                                                     <th scope="col">Team</th>
-                                                    <th scope="col">New player</th>
+                                                    <th scope="col">New</th>
                                                     <th scope="col">Position</th>
-                                                    <th scope="col">Points in coming round</th>
+                                                    <th scope="col">Points</th>
                                                     </tr>
                                                 </thead>
                                                 {% if  Squad2[0] == 0  %}
@@ -569,21 +566,24 @@
                                                         {% endfor %}
                                                         
                                                 </tbody>
-                                                {% endif  %} 
                                             </table>
-                                            
-                                            <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
-                                        </form>
-                                        </div>
-                                        <div class="tab-pane fade" id="profile3_2" role="tabpanel" aria-labelledby="profile3-tab_2">
+                                        {% endif  %}
+                                        </div> 
+                                    </div> 
+                                    <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                </form>
+                                </div>
+                                <div class="tab-pane fade" id="profile3_2" role="tabpanel" aria-labelledby="profile3-tab_2">
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
                                             <table class="table table-hover">
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Player</th>
                                                     <th scope="col">Team</th>
-                                                    <th scope="col">New player</th>
+                                                    <th scope="col">New</th>
                                                     <th scope="col">Position</th>
-                                                    <th scope="col">Points in coming round</th>
+                                                    <th scope="col">Points</th>
                                                     </tr>
                                                 </thead>
                                                 {% if  Squad3[0] == 0  %}
@@ -635,23 +635,26 @@
                                                 </tbody>
                                                 {% endif  %}
                                             </table>
-                                            <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
-                                        </form>
-
                                         </div>
-                                        <div class="tab-pane fade" id="profile4_2" role="tabpanel" aria-labelledby="profile4-tab_2">
+                                    </div>
+                                    <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                </form>
+                                </div>
+                                <div class="tab-pane fade" id="profile4_2" role="tabpanel" aria-labelledby="profile4-tab_2">
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
                                             <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                        <th scope="col">Player</th>
-                                                        <th scope="col">Team</th>
-                                                        <th scope="col">New player</th>
-                                                        <th scope="col">Position</th>
-                                                        <th scope="col">Points in coming round</th>
-                                                        </tr>
-                                                    </thead>
-                                                    {% if  Squad4[0] == 0  %}
-                                                    {% else  %} 
+                                                <thead>
+                                                    <tr>
+                                                    <th scope="col">Player</th>
+                                                    <th scope="col">Team</th>
+                                                    <th scope="col">New</th>
+                                                    <th scope="col">Position</th>
+                                                    <th scope="col">Points</th>
+                                                    </tr>
+                                                </thead>
+                                            {% if  Squad4[0] == 0  %}
+                                            {% else  %} 
                                                 <tbody>
                                                     {% set count = namespace(value=1) %}
                                                         {% for each in Squad4 %}                    
@@ -696,20 +699,24 @@
                                                         {% endfor %}
                                                     
                                                 </tbody>
-                                                {% endif  %}
+                                        {% endif  %}
                                             </table>
                                             <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                         </form>
-                                        </div>
-                                        <div class="tab-pane fade" id="profile5_2" role="tabpanel" aria-labelledby="profile5-tab_2">
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="profile5_2" role="tabpanel" aria-labelledby="profile5-tab_2">
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
                                             <table class="table table-hover">
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Player</th>
                                                     <th scope="col">Team</th>
-                                                    <th scope="col">New player</th>
+                                                    <th scope="col">New</th>
                                                     <th scope="col">Position</th>
-                                                    <th scope="col">Points in coming round</th>
+                                                    <th scope="col">Points</th>
                                                     </tr>
                                                 </thead>
                                                 {% if  Squad5[0] == 0  %}
@@ -763,11 +770,12 @@
                                             <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                         </form>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
-                            </div>
+                            </div>                                    
                         </div>
                         <div class="col-xl-4 col-md-6">
+                            <hr>
                             <div class="card Recent-Users">
                                 <div class="card-header">
                                     <h5>Players excluded from lineup optimizer</h5>
@@ -838,46 +846,46 @@
                                         <h5>Force players in future lineup</h5>
                                     </div>
                                     <div class="card-block px-0 py-3">
-                                            <table class="table table-hover">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <label class="form-check-label" for="customCheck1"> Player1 </label>
-                                                        </td>
-                                                        <td> 
-                                                            <div class="form-group" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                                {{ form.Player1IN(class="form-control")}}
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label class="form-check-label" for="customCheck1"> Player2 </label>
-                                                        </td>
-                                                        <td> 
-                                                            <div class="form-group" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                                {{ form.Player2IN(class="form-control")}}
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label class="form-check-label" for="customCheck1"> Player3 </label>
-                                                        </td>
-                                                        <td> 
-                                                            <div class="form-group" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                                                                {{ form.Player3IN(class="form-control")}}
-                                                            </div>
-                                                        </td>
-                                                    </tr> 
-                                                    </div>
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label class="form-check-label" for="customCheck1"> Player1 </label>
+                                                    </td>
+                                                    <td> 
+                                                        <div class="form-group" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                            {{ form.Player1IN(class="form-control")}}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="form-check-label" for="customCheck1"> Player2 </label>
+                                                    </td>
+                                                    <td> 
+                                                        <div class="form-group" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                            {{ form.Player2IN(class="form-control")}}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="form-check-label" for="customCheck1"> Player3 </label>
+                                                    </td>
+                                                    <td> 
+                                                        <div class="form-group" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                            {{ form.Player3IN(class="form-control")}}
+                                                        </div>
+                                                    </td>
+                                                </tr> 
                                                 </div>
-                                            </table>
+                                            </div>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                        
                 </div>
             </div>
                         <!-- [ statistics year chart ] end -->
