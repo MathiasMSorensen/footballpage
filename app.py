@@ -1046,11 +1046,11 @@ def dashboard():
     TotPoints = [round(xPoints[i],1) for i in indices]
     Name = [Names[i] for i in indices]
     print(TotPoints)
-
+    bank = session["bank"]
     return render_template('dashboard.html', name=current_user.username, Squad = Squad, Squad_Position = Squad_Position ,Squad_Team = Squad_Team, 
                                              Squad_xPoints = Squad_xPoints, Squad_Captain = Squad_Captain, buy_list1 = buy_list1, sell_list1 = sell_list1,
                                              squad_points = squad_points, TotPoints = TotPoints, Name=Name, point_increase = point_increase, zero_players = zero_players,
-                                             zero_players_bench = zero_players_bench, rank = rank, n_transfers = n_transfers)
+                                             zero_players_bench = zero_players_bench, rank = rank, n_transfers = n_transfers, bank = bank)
 
 @app.route('/top100')
 @login_required
@@ -1078,7 +1078,8 @@ def top100():
     cost_players1 = [round(cost_players[i],0) for i in indices] 
 
     return render_template('top100.html', TotPoints=TotPoints, Name = Name, Team1 = Team1 ,xPoints1 = xPoints1, Transfer1 = Transfer1,
-                                                xPointsTotal1 = xPointsTotal1, TotalPoints1 = TotalPoints1, xGrowth1=xGrowth1, cost_players1=cost_players1)
+                                                xPointsTotal1 = xPointsTotal1, TotalPoints1 = TotalPoints1, xGrowth1=xGrowth1, cost_players1=cost_players1, 
+                                                current_round = current_round)
 
 @app.route('/top100growth')
 @login_required
@@ -1106,7 +1107,8 @@ def top100growth():
     cost_players1 = [round(cost_players[i],0) for i in indices] 
 
     return render_template('top100growth.html', TotPoints=TotPoints, Name = Name, Team1 = Team1 ,xPoints1 = xPoints1, Transfer1 = Transfer1,
-                                                xPointsTotal1 = xPointsTotal1, TotalPoints1 = TotalPoints1, xGrowth1=xGrowth1, cost_players1=cost_players1)
+                                                xPointsTotal1 = xPointsTotal1, TotalPoints1 = TotalPoints1, xGrowth1=xGrowth1, cost_players1=cost_players1, 
+                                                current_round = current_round)
 
 @app.route('/ExpectedCS', methods=['GET', 'POST'])
 @login_required
@@ -1124,7 +1126,7 @@ def ExpectedCS():
     Max = list(round(fte_to_web_cs[['0','1','2','3','4','5']].max(axis=1),2))  
 
     return render_template('ExpectedCS.html', Team1=Team1, col1=col1, col2=col2, col3=col3, col4=col4, col5=col5, col6=col6, 
-                                            Avg=Avg,Min=Min, Max=Max)
+                                            Avg=Avg,Min=Min, Max=Max, current_round = current_round)
                            
 @app.route('/ExpectedG', methods=['GET', 'POST'])
 @login_required
@@ -1142,7 +1144,7 @@ def ExpectedG():
     Max = list(round(fte_to_web_xg[['0','1','2','3','4','5']].max(axis=1),2))  
 
     return render_template('ExpectedG.html', Team1=Team1, col1=col1, col2=col2, col3=col3, col4=col4, col5=col5, col6=col6, 
-                                            Avg=Avg,Min=Min, Max=Max)
+                                            Avg=Avg,Min=Min, Max=Max, current_round = current_round)
 
 @app.route('/ExpectedW', methods=['GET', 'POST'])
 @login_required
@@ -1160,7 +1162,7 @@ def ExpectedW():
     Max = list(round(fte_to_web_xw[['0','1','2','3','4','5']].max(axis=1),2))  
 
     return render_template('ExpectedW.html', Team1=Team1, col1=col1, col2=col2, col3=col3, col4=col4, col5=col5, col6=col6, 
-                                            Avg=Avg,Min=Min, Max=Max)
+                                            Avg=Avg,Min=Min, Max=Max, current_round = current_round)
                            
 @app.route('/AnalyzePlayers', methods=['GET', 'POST'])
 @login_required
