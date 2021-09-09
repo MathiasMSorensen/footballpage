@@ -314,7 +314,7 @@ def login():
             if found_user:
                 if check_password_hash(found_user.password, form.password.data):
                     print(found_user)
-                    session.permanent = True
+                    session.permanent = False
                     session["user"] = form.username.data
                     session["players"] = data_df.to_json()
                     session["bank"] = bank
@@ -431,57 +431,76 @@ def optimization():
 
     print(Player_stats)
     print(Output_list[0])
-    labels = ["Round" + str(current_round),"Round" + str(current_round+1),"Round" + str(current_round+2),"Round" + str(current_round+3),
-               "Round" + str(current_round+4),"Round" + str(current_round +5)]
+    labels = ["Round " + str(current_round),"Round " + str(current_round+1),"Round " + str(current_round+2),"Round " + str(current_round+3),
+               "Round " + str(current_round+4),"Round " + str(current_round +5)]
     
     
     values0 = []
+    values0_mod = []
     if isinstance(Output_list[0], pd.DataFrame):
         for i in range(6):
-            values0.append(int(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i])))
+            values0.append(round(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i]),1))
+            values0_mod.append(round(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i]),1))
+            
     else:
         for i in range(6):
             values0.append(0)
+            values0_mod.append(0)
 
     values1 = []
+    values1_mod = []
     if isinstance(Output_list[1], pd.DataFrame):
         for i in range(6):
-            values1.append(int(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i])))
+            values1.append(round(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i]),1))
+            values1_mod.append(round(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i]),1))
     else:
         for i in range(6):
             values1.append(0)
+            values1_mod.append(0)
         
     values2 = []
+    values2_mod = []
     if isinstance(Output_list[2], pd.DataFrame):
         for i in range(6):
-            values2.append(int(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])))
+            values2.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i]),1))
+            values2_mod.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])-(2-n_transfers)*4,1))
     else:
         for i in range(6):
             values2.append(0)
+            values2_mod.append(0)
 
     values3 = []
+    values3_mod = []
     if isinstance(Output_list[3], pd.DataFrame):
         for i in range(6):
-            values3.append(int(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i])))
+            values3.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i]),1))
+            values3_mod.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i])-(3-n_transfers)*4,1))
     else:
         for i in range(6):
             values3.append(0)
+            values3_mod.append(0)
 
     values4 = []
+    values4_mod = []
     if isinstance(Output_list[4], pd.DataFrame):
         for i in range(6):
-            values4.append(int(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i])))
+            values4.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i]),1))
+            values4_mod.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i])-(4-n_transfers)*4,1))
     else:
         for i in range(6):
             values4.append(0)
+            values4_mod.append(0)
 
     values5 = []
+    values5_mod = []
     if isinstance(Output_list[5], pd.DataFrame):
         for i in range(6):
-            values5.append(int(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i])))
+            values5.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i]),1))
+            values5_mod.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i])-(5-n_transfers)*4,1))
     else:
         for i in range(6):
             values5.append(0)
+            values5_mod.append(0)
 
     Name1 = "Expected Points by number of tranfers and rounds (Without tranfer cost)"
 
@@ -512,19 +531,11 @@ def optimization():
     New5, Squad5, Squad_Position5, Squad_Team5, Squad_xPoints5, Squad_Captain5, Expected_points5, buy_list5, \
     buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[control[4]], PlayerList, data_final)
 
-    print(buy_list_xPoints5)
-
-    Output = Output_list[3]
+    Output = Output_list[5]
 
     TransferCost = TransferCost[1]
 
     nShare = nShare[1]
-    print(Squad2)
-    print(Squad_Captain2)
-
-    Squad2 = ['Alisson Ramses Becker', 'Ben White', 'Joël Veltman', 'Trent Alexander-Arnold', 'Bruno Miguel Borges Fernandes', 'Diogo Jota', 'Ferran Torres', 'Mason Greenwood', 'Saïd Benrahma', 'Michail Antonio', 'Richarlison de Andrade', 'Daniel Amartey', 'Vladimir Coufal', 'Ben Foster', 'Rodrigo Moreno']
-    Squad_Captain2 = ['', '', '', '', '', 'Captain', '', '', '', '', '', '', '', '', '']
-    pd.DataFrame(Squad2)[pd.DataFrame(Squad_Captain2) == 'Captain'].dropna()[0].iloc[0]
 
     if values0[0] > values1[0]:
         substitues = 0
@@ -601,6 +612,7 @@ def optimization():
                                 buy_list5=buy_list5, sell_list5=sell_list5, buy_list_position5=buy_list_position5, buy_list_team5=buy_list_team5, buy_list_xPoints5=buy_list_xPoints5,
                                 sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, 
                                 form = form, labels=labels, values0=values0, values1=values1, values2=values2, values3=values3, values4=values4, values5=values5,
+                                values0_mod=values0_mod, values1_mod=values1_mod, values2_mod=values2_mod, values3_mod=values3_mod, values4_mod=values4_mod, values5_mod=values5_mod,
                                 Name1=Name1, n_transfers = n_transfers, substitues = substitues, buy_str = buy_str, sell_str = sell_str, captain = captain, vice_captain = vice_captain)   
 
     else:
@@ -806,60 +818,79 @@ def sure():
 
         print(Player_stats)
         print(Output_list[0])
-        labels = ["Round" + str(current_round),"Round" + str(current_round+1),"Round" + str(current_round+2),"Round" + str(current_round+3),
-                "Round" + str(current_round+4),"Round" + str(current_round +5)]
+        labels = ["Round " + str(current_round),"Round " + str(current_round+1),"Round " + str(current_round+2),"Round " + str(current_round+3),
+                "Round " + str(current_round+4),"Round " + str(current_round +5)]
         
         
         values0 = []
+        values0_mod = []
         if isinstance(Output_list[0], pd.DataFrame):
             for i in range(6):
-                values0.append(int(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i])))
+                values0.append(round(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i]),1))
+                values0_mod.append(round(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i]),1))
+                
         else:
             for i in range(6):
                 values0.append(0)
+                values0_mod.append(0)
 
         values1 = []
+        values1_mod = []
         if isinstance(Output_list[1], pd.DataFrame):
             for i in range(6):
-                values1.append(int(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i])))
+                values1.append(round(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i]),1))
+                values1_mod.append(round(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i]),1))
         else:
             for i in range(6):
                 values1.append(0)
+                values1_mod.append(0)
             
         values2 = []
+        values2_mod = []
         if isinstance(Output_list[2], pd.DataFrame):
             for i in range(6):
-                values2.append(int(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])))
+                values2.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i]),1))
+                values2_mod.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])-(2-n_transfers)*4,1))
         else:
             for i in range(6):
                 values2.append(0)
+                values2_mod.append(0)
 
         values3 = []
+        values3_mod = []
         if isinstance(Output_list[3], pd.DataFrame):
             for i in range(6):
-                values3.append(int(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i])))
+                values3.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i]),1))
+                values3_mod.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i])-(3-n_transfers)*4,1))
         else:
             for i in range(6):
                 values3.append(0)
+                values3_mod.append(0)
 
         values4 = []
+        values4_mod = []
         if isinstance(Output_list[4], pd.DataFrame):
             for i in range(6):
-                values4.append(int(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i])))
+                values4.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i]),1))
+                values4_mod.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i])-(4-n_transfers)*4,1))
         else:
             for i in range(6):
                 values4.append(0)
+                values4_mod.append(0)
 
         values5 = []
+        values5_mod = []
         if isinstance(Output_list[5], pd.DataFrame):
             for i in range(6):
-                values5.append(int(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i])))
+                values5.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i]),1))
+                values5_mod.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i])-(5-n_transfers)*4,1))
         else:
             for i in range(6):
                 values5.append(0)
+                values5_mod.append(0)
 
         Name1 = "Expected Points by number of tranfers and rounds (Without tranfer cost)"
-
+        
         if isinstance(Output_list[1], pd.DataFrame):
             control = [1,2,3,4,5]
         elif isinstance(Output_list[2], pd.DataFrame):
@@ -961,6 +992,7 @@ def sure():
                                 buy_list5=buy_list5, sell_list5=sell_list5, buy_list_position5=buy_list_position5, buy_list_team5=buy_list_team5, buy_list_xPoints5=buy_list_xPoints5,
                                 sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, 
                                 form = form, labels=labels, values0=values0, values1=values1, values2=values2, values3=values3, values4=values4, values5=values5,
+                                values0_mod=values0_mod, values1_mod=values1_mod, values2_mod=values2_mod, values3_mod=values3_mod, values4_mod=values4_mod, values5_mod=values5_mod,
                                 Name1=Name1, n_transfers = n_transfers, substitues = substitues, buy_str = buy_str, sell_str = sell_str, captain = captain, vice_captain = vice_captain)   
    
                                                     
@@ -979,6 +1011,7 @@ def dashboard():
     Squad_Position = list(data_df['position'])
     Squad_Team = list(data_df['team'])
     Squad_xPoints = list(data_df['Expected_Points_round1'])
+    
     Squad_Captain = list(data_df['Captain'])
     
     squad_points = sum(data_df['Expected_Points_round1'])

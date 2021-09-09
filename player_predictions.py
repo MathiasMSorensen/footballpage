@@ -244,3 +244,7 @@ N = len(data_final)
 # Output['Captain'][Output['TotalPoints'].idxmax()]= 'Captain'
 # Output = Output_list[0]['Captain']
 
+
+    # PLAYER =  ['Alisson Ramses Becker', 'Benjamin Chilwell', 'Trent Alexander-Arnold', 'Vladimir Coufal', 'Mason Greenwood', 'Bruno Miguel Borges Fernandes', 'Daniel James', 'Diogo Jota', 'Harvey Barnes', 'Michail Antonio', 'Timo Werner', 'Ben Foster', 'Joël Veltman', 'Rodrigo Moreno', 'Daniel Amartey']
+
+    # data_final['Expected_Points_round1']
