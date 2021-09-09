@@ -431,8 +431,8 @@ def optimization():
 
     print(Player_stats)
     print(Output_list[0])
-    labels = ["Round " + str(current_round),"Round " + str(current_round+1),"Round " + str(current_round+2),"Round " + str(current_round+3),
-               "Round " + str(current_round+4),"Round " + str(current_round +5)]
+    labels = ["Round"+" " + str(current_round),"Round"+" " + str(current_round+1),"Round"+" " + str(current_round+2),"Round"+" " + str(current_round+3),
+               "Round"+" " + str(current_round+4),"Round"+" " + str(current_round +5)]
     
     
     values0 = []
@@ -818,8 +818,8 @@ def sure():
 
         print(Player_stats)
         print(Output_list[0])
-        labels = ["Round " + str(current_round),"Round " + str(current_round+1),"Round " + str(current_round+2),"Round " + str(current_round+3),
-                "Round " + str(current_round+4),"Round " + str(current_round +5)]
+        labels = ["Round"+" " + str(current_round),"Round"+" " + str(current_round+1),"Round"+" " + str(current_round+2),"Round"+" " + str(current_round+3),
+                "Round"+" " + str(current_round+4),"Round"+" " + str(current_round +5)]
         
         
         values0 = []
@@ -1014,7 +1014,7 @@ def dashboard():
     
     Squad_Captain = list(data_df['Captain'])
     
-    squad_points = sum(data_df['Expected_Points_round1'])
+    squad_points = round(sum(data_df['Expected_Points_round1']),1)
     data_df = pd.read_json(session["players"])
     Budget_from_players = sum(data_df.selling_price)
     PlayerList = list(data_df.player)
