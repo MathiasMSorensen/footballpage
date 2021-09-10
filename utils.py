@@ -214,7 +214,8 @@ def get_optim_results(Output, PlayerList,data_final):
         return 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 def get_current_team(username,password):
-
+    username = 'mathiasmollersorensen93@gmail.com'
+    password = 'Stor6612'
     import mechanize
     from http.cookiejar import LWPCookieJar
     import requests
@@ -229,23 +230,43 @@ def get_current_team(username,password):
     browser.set_handle_equiv(True)
     browser.set_handle_redirect(True)
     browser.set_handle_robots(False)
-    browser.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
+    browser.set_handle_refresh(False)
     browser.open('https://users.premierleague.com/')
     browser.select_form(nr = 0)
+    print(username)
+    print(password)
     browser.form['login'] = username
     browser.form['password'] = password
     browser.submit()
     try:
-        url = browser.open('https://fantasy.premierleague.com/api/my-team/4651465/')
+        url = browser.open('https://fantasy.premierleague.com/api/me/')
+        data_json = json.loads(url.read())
+        id_fpl = data_json["player"]['entry']
+        
+        url = browser.open("https://fantasy.premierleague.com/api/my-team/"+str(id_fpl)+"/")
         data_json = json.loads(url.read())
         data_df = pd.DataFrame(data_json["picks"])
         
         transfers = data_json["transfers"]['limit']
-
-        url = browser.open('https://fantasy.premierleague.com/api/entry/4651465/')
+        if transfers == None:
+            transfers = 1
+        else:
+            transfers = transfers
+            
+        url = browser.open("https://fantasy.premierleague.com/api/entry/"+str(id_fpl)+"/")
         data_json = json.loads(url.read())
-        bank = data_json['last_deadline_bank']/10
+        bank = data_json['last_deadline_bank']
         rank = data_json['summary_overall_rank']
+        
+        if bank == None:
+            bank = 0
+        else:
+            bank = bank/10
+        
+        if rank == None:
+            rank = 7000000
+        else:
+            rank = rank
 
         url = 'https://fantasy.premierleague.com/api/bootstrap-static/'
         response = urlopen(url)

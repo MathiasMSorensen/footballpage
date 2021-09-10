@@ -304,6 +304,8 @@ def login():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
+        print(username)
+        print(password)
         data_df, bank, rank, transfer = get_current_team(username, password)
         print(data_df)
         if isinstance(data_df, pd.DataFrame):
