@@ -578,7 +578,7 @@ def optimization():
         captain = pd.DataFrame(Squad4)[pd.DataFrame(Squad_Captain4) == 'Captain'].dropna()[0].iloc[0]
         temp = pd.DataFrame(Squad_xPoints4).sort_values(by=0)
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
-        vice_captain =  pd.DataFrame(Squad4)['Names'][pd.DataFrame(Squad_xPoints4) == float(temp.iloc[-2])].dropna()[0].iloc[length]
+        vice_captain =  pd.DataFrame(Squad4)[pd.DataFrame(Squad_xPoints4) == float(temp.iloc[-2])].dropna()[0].iloc[length]
     else:
         substitues = 5
         buy_str = ' '.join([str(item) for item in buy_list5])
@@ -586,7 +586,7 @@ def optimization():
         captain =  pd.DataFrame(Squad5)[pd.DataFrame(Squad_Captain5) == 'Captain'].dropna()[0].iloc[0]
         temp = pd.DataFrame(Squad_xPoints5).sort_values(by=0)
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
-        vice_captain =  pd.DataFrame(Squad5)['Names'][pd.DataFrame(Squad_xPoints5) == float(temp.iloc[-2])].dropna()[0].iloc[length]
+        vice_captain =  pd.DataFrame(Squad5)[pd.DataFrame(Squad_xPoints5) == float(temp.iloc[-2])].dropna()[0].iloc[length]
 
     if isinstance(Output, pd.DataFrame):
 
@@ -965,7 +965,7 @@ def sure():
             captain = pd.DataFrame(Squad4)[pd.DataFrame(Squad_Captain4) == 'Captain'].dropna()[0].iloc[0]
             temp = pd.DataFrame(Squad_xPoints4).sort_values(by=0)
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
-            vice_captain =  pd.DataFrame(Squad4)['Names'][pd.DataFrame(Squad_xPoints4) == float(temp.iloc[-2])].dropna()[0].iloc[length]
+            vice_captain =  pd.DataFrame(Squad4)[pd.DataFrame(Squad_xPoints4) == float(temp.iloc[-2])].dropna()[0].iloc[length]
         else:
             substitues = 5
             buy_str = ' '.join([str(item) for item in buy_list5])
@@ -973,8 +973,7 @@ def sure():
             captain =  pd.DataFrame(Squad5)[pd.DataFrame(Squad_Captain5) == 'Captain'].dropna()[0].iloc[0]
             temp = pd.DataFrame(Squad_xPoints5).sort_values(by=0)
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
-            vice_captain =  pd.DataFrame(Squad5)['Names'][pd.DataFrame(Squad_xPoints5) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-
+            vice_captain =  pd.DataFrame(Squad5)[pd.DataFrame(Squad_xPoints5) == float(temp.iloc[-2])].dropna()[0].iloc[length]
 
         return render_template("Dashboard2.html", 
                                 ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam, Expected_points = Expected_points1, 
