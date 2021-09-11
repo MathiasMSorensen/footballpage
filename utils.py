@@ -214,8 +214,7 @@ def get_optim_results(Output, PlayerList,data_final):
         return 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 def get_current_team(username,password):
-    username = 'mathiasmollersorensen93@gmail.com'
-    password = 'Stor6612'
+
     import mechanize
     from http.cookiejar import LWPCookieJar
     import requests
