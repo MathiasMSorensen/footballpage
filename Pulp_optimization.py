@@ -157,7 +157,7 @@ def Pulp_optimization(Teams, N, Data, TranferIn, TranferOut ,TotalPoints, \
             Output = pd.concat([Output[((Output['Positions']=='Goalkeeper') & (Output['player_sub']=='player'))].reset_index(drop = True),
                                 Output[((Output['Positions']!='Goalkeeper') | (Output['player_sub']!='player'))].reset_index(drop = True)]).reset_index(drop = True)
             
-            Output['Captain'][Output['xPoints'].idxmax()] = 'Captain'
+            Output['Captain'][Output['TotalPoints'].idxmax()] = 'Captain'
 
             cost_squad = 0
             for i in range(N):

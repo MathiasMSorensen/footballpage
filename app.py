@@ -519,19 +519,19 @@ def optimization():
 
     
     New1, Squad1, Squad_Position1, Squad_Team1, Squad_xPoints1, Squad_Captain1, Expected_points1, buy_list1, \
-    buy_list_position1, buy_list_team1, buy_list_xPoints1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1 = get_optim_results(Output_list[control[0]], PlayerList, data_final)
+    buy_list_position1, buy_list_team1, buy_list_xPoints1, buy_list_Cost1,  sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1, sell_list_Cost1 = get_optim_results(Output_list[control[0]], PlayerList, data_final)
 
     New2, Squad2, Squad_Position2, Squad_Team2, Squad_xPoints2, Squad_Captain2, Expected_points2, buy_list2, \
-    buy_list_position2, buy_list_team2, buy_list_xPoints2, sell_list2, sell_list_team2, sell_list_position2, sell_list_xPoints2 = get_optim_results(Output_list[control[1]], PlayerList, data_final)
+    buy_list_position2, buy_list_team2, buy_list_xPoints2, buy_list_Cost2,  sell_list2, sell_list_team2, sell_list_position2, sell_list_xPoints2, sell_list_Cost2 = get_optim_results(Output_list[control[1]], PlayerList, data_final)
 
     New3, Squad3, Squad_Position3, Squad_Team3, Squad_xPoints3, Squad_Captain3, Expected_points3, buy_list3, \
-    buy_list_position3, buy_list_team3, buy_list_xPoints3, sell_list3, sell_list_team3, sell_list_position3, sell_list_xPoints3 = get_optim_results(Output_list[control[2]], PlayerList, data_final)
+    buy_list_position3, buy_list_team3, buy_list_xPoints3, buy_list_Cost3,  sell_list3, sell_list_team3, sell_list_position3, sell_list_xPoints3, sell_list_Cost3 = get_optim_results(Output_list[control[2]], PlayerList, data_final)
 
     New4, Squad4, Squad_Position4, Squad_Team4, Squad_xPoints4, Squad_Captain4, Expected_points4, buy_list4, \
-    buy_list_position4, buy_list_team4, buy_list_xPoints4, sell_list4, sell_list_team4, sell_list_position4, sell_list_xPoints4 = get_optim_results(Output_list[control[3]], PlayerList, data_final)
+    buy_list_position4, buy_list_team4, buy_list_xPoints4, buy_list_Cost4,  sell_list4, sell_list_team4, sell_list_position4, sell_list_xPoints4, sell_list_Cost4 = get_optim_results(Output_list[control[3]], PlayerList, data_final)
 
     New5, Squad5, Squad_Position5, Squad_Team5, Squad_xPoints5, Squad_Captain5, Expected_points5, buy_list5, \
-    buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[control[4]], PlayerList, data_final)
+    buy_list_position5, buy_list_team5, buy_list_xPoints5, buy_list_Cost5,  sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5, sell_list_Cost5 = get_optim_results(Output_list[control[4]], PlayerList, data_final)
 
     Output = Output_list[5]
 
@@ -539,13 +539,14 @@ def optimization():
 
     nShare = nShare[1]
 
-    if values0[0] > values1[0]:
+    max_val = max([values0_mod,values1_mod,values2_mod,values3_mod,values4_mod,values5_mod])
+    if values0_mod==max_val:
         substitues = 0
         buy_str = 'None'
         sell_str = 'None'
         captain = 'None'
         vice_captain = 'None'
-    elif values1[0] > values2[0]-(2-n_transfers)*4:
+    elif values1_mod==max_val:
         substitues = 1
         buy_str = ' '.join([str(item) for item in buy_list1])
         sell_str = ' '.join([str(item) for item in sell_list1])
@@ -553,7 +554,7 @@ def optimization():
         temp = pd.DataFrame(Squad_xPoints1).sort_values(by=0)
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
         vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-    elif values2[0]-(2-n_transfers)*4 > values3[0]-(3-n_transfers)*4:
+    elif values2_mod==max_val:
         substitues = 2
         buy_str = ' '.join([str(item) for item in buy_list2])
         sell_str = ' '.join([str(item) for item in sell_list2])
@@ -562,7 +563,7 @@ def optimization():
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
         vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[length]
         print(pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0])
-    elif values3[0]-(3-n_transfers)*4 > values4[0]-(4-n_transfers)*4:
+    elif values3_mod==max_val:
         substitues = 3
         buy_str = ' '.join([str(item) for item in buy_list3])
         sell_str = ' '.join([str(item) for item in sell_list3])
@@ -571,7 +572,7 @@ def optimization():
         print(pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0])
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
         vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-    elif values4[0]-(4-n_transfers)*4 > values5[0]-(5-n_transfers)*4:
+    elif values4_mod==max_val:
         substitues = 4
         buy_str = ' '.join([str(item) for item in buy_list4])
         sell_str = ' '.join([str(item) for item in sell_list4])
@@ -600,19 +601,19 @@ def optimization():
                                 ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam, Expected_points = Expected_points1, 
                                 Squad1 = Squad1, Squad_Position1 = Squad_Position1 ,Squad_Team1 = Squad_Team1, Squad_xPoints1 = Squad_xPoints1, Squad_Captain1 = Squad_Captain1, 
                                 buy_list1=buy_list1, sell_list1=sell_list1, buy_list_position1=buy_list_position1, buy_list_team1=buy_list_team1, buy_list_xPoints1=buy_list_xPoints1,
-                                sell_list_team1=sell_list_team1, sell_list_position1=sell_list_position1, sell_list_xPoints1=sell_list_xPoints1,New1 = New1, 
+                                sell_list_team1=sell_list_team1, sell_list_position1=sell_list_position1, sell_list_xPoints1=sell_list_xPoints1,New1 = New1, buy_list_Cost1 = buy_list_Cost1, sell_list_Cost1 = sell_list_Cost1, 
                                 Squad2 = Squad2, Squad_Position2 = Squad_Position2 ,Squad_Team2 = Squad_Team2, Squad_xPoints2 = Squad_xPoints2, Squad_Captain2 = Squad_Captain2, 
                                 buy_list2=buy_list2, sell_list2=sell_list2, buy_list_position2=buy_list_position2, buy_list_team2=buy_list_team2, buy_list_xPoints2=buy_list_xPoints2,
-                                sell_list_team2=sell_list_team2, sell_list_position2=sell_list_position2, sell_list_xPoints2=sell_list_xPoints2,New2 = New2, 
+                                sell_list_team2=sell_list_team2, sell_list_position2=sell_list_position2, sell_list_xPoints2=sell_list_xPoints2,New2 = New2, buy_list_Cost2 = buy_list_Cost2, sell_list_Cost2 = sell_list_Cost2,
                                 Squad3 = Squad3, Squad_Position3 = Squad_Position3 ,Squad_Team3 = Squad_Team3, Squad_xPoints3 = Squad_xPoints3, Squad_Captain3 = Squad_Captain3, 
                                 buy_list3=buy_list3, sell_list3=sell_list3, buy_list_position3=buy_list_position3, buy_list_team3=buy_list_team3, buy_list_xPoints3=buy_list_xPoints3,
-                                sell_list_team3=sell_list_team3, sell_list_position3=sell_list_position3, sell_list_xPoints3=sell_list_xPoints3,New3 = New3, 
+                                sell_list_team3=sell_list_team3, sell_list_position3=sell_list_position3, sell_list_xPoints3=sell_list_xPoints3,New3 = New3, buy_list_Cost3 = buy_list_Cost3, sell_list_Cost3 = sell_list_Cost3,
                                 Squad4 = Squad4, Squad_Position4 = Squad_Position4 ,Squad_Team4 = Squad_Team4, Squad_xPoints4 = Squad_xPoints4, Squad_Captain4 = Squad_Captain4, 
                                 buy_list4=buy_list4, sell_list4=sell_list4, buy_list_position4=buy_list_position4, buy_list_team4=buy_list_team4, buy_list_xPoints4=buy_list_xPoints4,
-                                sell_list_team4=sell_list_team4, sell_list_position4=sell_list_position4, sell_list_xPoints4=sell_list_xPoints4,New4 = New4, 
+                                sell_list_team4=sell_list_team4, sell_list_position4=sell_list_position4, sell_list_xPoints4=sell_list_xPoints4,New4 = New4, buy_list_Cost4 = buy_list_Cost4, sell_list_Cost4 = sell_list_Cost4,
                                 Squad5 = Squad5, Squad_Position5 = Squad_Position5 ,Squad_Team5 = Squad_Team5, Squad_xPoints5 = Squad_xPoints5, Squad_Captain5 = Squad_Captain5, 
                                 buy_list5=buy_list5, sell_list5=sell_list5, buy_list_position5=buy_list_position5, buy_list_team5=buy_list_team5, buy_list_xPoints5=buy_list_xPoints5,
-                                sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, 
+                                sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, buy_list_Cost5 = buy_list_Cost5, sell_list_Cost5 = sell_list_Cost5,
                                 form = form, labels=labels, values0=values0, values1=values1, values2=values2, values3=values3, values4=values4, values5=values5,
                                 values0_mod=values0_mod, values1_mod=values1_mod, values2_mod=values2_mod, values3_mod=values3_mod, values4_mod=values4_mod, values5_mod=values5_mod,
                                 Name1=Name1, n_transfers = n_transfers, substitues = substitues, buy_str = buy_str, sell_str = sell_str, captain = captain, vice_captain = vice_captain)   
@@ -666,9 +667,39 @@ def teamupdated():
 def sure():
     if request.method == 'POST':    
       
-        
 
-        
+        sell11 = request.form.getlist("sell11")
+        sell21 = request.form.getlist("sell21")
+        sell22 = request.form.getlist("sell22")
+        sell31 = request.form.getlist("sell31")
+        sell32 = request.form.getlist("sell32")
+        sell33 = request.form.getlist("sell33")
+        sell41 = request.form.getlist("sell41")
+        sell42 = request.form.getlist("sell42")
+        sell43 = request.form.getlist("sell43")
+        sell44 = request.form.getlist("sell44")
+        sell51 = request.form.getlist("sell51")
+        sell52 = request.form.getlist("sell52")
+        sell53 = request.form.getlist("sell53")
+        sell54 = request.form.getlist("sell54")
+        sell55 = request.form.getlist("sell55")
+
+        buy11 = request.form.getlist("buy11")
+        buy21 = request.form.getlist("buy21")
+        buy22 = request.form.getlist("buy22")
+        buy31 = request.form.getlist("buy31")
+        buy32 = request.form.getlist("buy32")
+        buy33 = request.form.getlist("buy33")
+        buy41 = request.form.getlist("buy41")
+        buy42 = request.form.getlist("buy42")
+        buy43 = request.form.getlist("buy43")
+        buy44 = request.form.getlist("buy44")
+        buy51 = request.form.getlist("buy51")
+        buy52 = request.form.getlist("buy52")
+        buy53 = request.form.getlist("buy53")
+        buy54 = request.form.getlist("buy54")
+        buy55 = request.form.getlist("buy55")
+
         included1 = request.form.getlist("mycheckbox1")
         includedTeams1 = request.form.getlist("mycheckboxteam1")
         included2 = request.form.getlist("mycheckbox2")
@@ -695,7 +726,8 @@ def sure():
         excludedTeams = request.form.getlist("ExcludedTeams")
         n_transfers = request.form.getlist("n_transfers")
 
-        
+        print(sell55)
+
         ExcludePlayers = []
         IncludePlayers = []
         ExcludeTeam = []
@@ -793,7 +825,7 @@ def sure():
                                             list(data_final['Expected_Points_discounted']), list(data_final['position']), ExcludePlayers, IncludePlayers, ExcludeTeam, \
                                             cash, list(data_final['fpl_name']), list(data_final['Expected_Points_round1']), n_transfer, \
                                             PlayerList, sub_1_discount, sub_2_discount,sub_3_discount, sub_gk_discount, Budget_from_players, loop_range)
-                                            
+        print(Output_list)
         if isinstance(Output_list[0], pd.DataFrame):
             temp = Player_stats[Player_stats['fpl_name'].isin(Output_list[0]['Names'][Output_list[0].player_sub=='player'])]
             temp_0 = Player_stats[Player_stats['fpl_name'].isin(Output_list[0]['Names'][Output_list[0].player_sub=='player'])]
@@ -904,35 +936,34 @@ def sure():
         elif isinstance(Output_list[5], pd.DataFrame):
             control = [5,5,5,5,5]
 
-        
         New1, Squad1, Squad_Position1, Squad_Team1, Squad_xPoints1, Squad_Captain1, Expected_points1, buy_list1, \
-        buy_list_position1, buy_list_team1, buy_list_xPoints1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1 = get_optim_results(Output_list[control[0]], PlayerList, data_final)
+        buy_list_position1, buy_list_team1, buy_list_xPoints1, buy_list_Cost1,  sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1, sell_list_Cost1 = get_optim_results(Output_list[control[0]], PlayerList, data_final)
 
         New2, Squad2, Squad_Position2, Squad_Team2, Squad_xPoints2, Squad_Captain2, Expected_points2, buy_list2, \
-        buy_list_position2, buy_list_team2, buy_list_xPoints2, sell_list2, sell_list_team2, sell_list_position2, sell_list_xPoints2 = get_optim_results(Output_list[control[1]], PlayerList, data_final)
+        buy_list_position2, buy_list_team2, buy_list_xPoints2, buy_list_Cost2,  sell_list2, sell_list_team2, sell_list_position2, sell_list_xPoints2, sell_list_Cost2 = get_optim_results(Output_list[control[1]], PlayerList, data_final)
 
         New3, Squad3, Squad_Position3, Squad_Team3, Squad_xPoints3, Squad_Captain3, Expected_points3, buy_list3, \
-        buy_list_position3, buy_list_team3, buy_list_xPoints3, sell_list3, sell_list_team3, sell_list_position3, sell_list_xPoints3 = get_optim_results(Output_list[control[2]], PlayerList, data_final)
+        buy_list_position3, buy_list_team3, buy_list_xPoints3, buy_list_Cost3,  sell_list3, sell_list_team3, sell_list_position3, sell_list_xPoints3, sell_list_Cost3 = get_optim_results(Output_list[control[2]], PlayerList, data_final)
 
         New4, Squad4, Squad_Position4, Squad_Team4, Squad_xPoints4, Squad_Captain4, Expected_points4, buy_list4, \
-        buy_list_position4, buy_list_team4, buy_list_xPoints4, sell_list4, sell_list_team4, sell_list_position4, sell_list_xPoints4 = get_optim_results(Output_list[control[3]], PlayerList, data_final)
+        buy_list_position4, buy_list_team4, buy_list_xPoints4, buy_list_Cost4,  sell_list4, sell_list_team4, sell_list_position4, sell_list_xPoints4, sell_list_Cost4 = get_optim_results(Output_list[control[3]], PlayerList, data_final)
 
         New5, Squad5, Squad_Position5, Squad_Team5, Squad_xPoints5, Squad_Captain5, Expected_points5, buy_list5, \
-        buy_list_position5, buy_list_team5, buy_list_xPoints5, sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5 = get_optim_results(Output_list[control[4]], PlayerList, data_final)
+        buy_list_position5, buy_list_team5, buy_list_xPoints5, buy_list_Cost5,  sell_list5, sell_list_team5, sell_list_position5, sell_list_xPoints5, sell_list_Cost5 = get_optim_results(Output_list[control[4]], PlayerList, data_final)
 
         Output = Output_list[3]
 
         TransferCost = TransferCost[1]
 
         nShare = nShare[1]
-
-        if values0[0] > values1[0]:
+        max_val = max([values0_mod,values1_mod,values2_mod,values3_mod,values4_mod,values5_mod])
+        if values0_mod==max_val:
             substitues = 0
             buy_str = 'None'
             sell_str = 'None'
             captain = 'None'
             vice_captain = 'None'
-        elif values1[0] > values2[0]-(2-n_transfers)*4:
+        elif values1_mod==max_val:
             substitues = 1
             buy_str = ' '.join([str(item) for item in buy_list1])
             sell_str = ' '.join([str(item) for item in sell_list1])
@@ -940,7 +971,7 @@ def sure():
             temp = pd.DataFrame(Squad_xPoints1).sort_values(by=0)
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
             vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-        elif values2[0]-(2-n_transfers)*4 > values3[0]-(3-n_transfers)*4:
+        elif values2_mod==max_val:
             substitues = 2
             buy_str = ' '.join([str(item) for item in buy_list2])
             sell_str = ' '.join([str(item) for item in sell_list2])
@@ -949,7 +980,7 @@ def sure():
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
             vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[length]
             print(pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0])
-        elif values3[0]-(3-n_transfers)*4 > values4[0]-(4-n_transfers)*4:
+        elif values3_mod==max_val:
             substitues = 3
             buy_str = ' '.join([str(item) for item in buy_list3])
             sell_str = ' '.join([str(item) for item in sell_list3])
@@ -958,7 +989,7 @@ def sure():
             print(pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0])
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
             vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-        elif values4[0]-(4-n_transfers)*4 > values5[0]-(5-n_transfers)*4:
+        elif values4_mod==max_val:
             substitues = 4
             buy_str = ' '.join([str(item) for item in buy_list4])
             sell_str = ' '.join([str(item) for item in sell_list4])
@@ -976,27 +1007,26 @@ def sure():
             vice_captain =  pd.DataFrame(Squad5)[pd.DataFrame(Squad_xPoints5) == float(temp.iloc[-2])].dropna()[0].iloc[length]
 
         return render_template("Dashboard2.html", 
-                                ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam, Expected_points = Expected_points1, 
-                                Squad1 = Squad1, Squad_Position1 = Squad_Position1 ,Squad_Team1 = Squad_Team1, Squad_xPoints1 = Squad_xPoints1, Squad_Captain1 = Squad_Captain1, 
-                                buy_list1=buy_list1, sell_list1=sell_list1, buy_list_position1=buy_list_position1, buy_list_team1=buy_list_team1, buy_list_xPoints1=buy_list_xPoints1,
-                                sell_list_team1=sell_list_team1, sell_list_position1=sell_list_position1, sell_list_xPoints1=sell_list_xPoints1,New1 = New1, 
-                                Squad2 = Squad2, Squad_Position2 = Squad_Position2 ,Squad_Team2 = Squad_Team2, Squad_xPoints2 = Squad_xPoints2, Squad_Captain2 = Squad_Captain2, 
-                                buy_list2=buy_list2, sell_list2=sell_list2, buy_list_position2=buy_list_position2, buy_list_team2=buy_list_team2, buy_list_xPoints2=buy_list_xPoints2,
-                                sell_list_team2=sell_list_team2, sell_list_position2=sell_list_position2, sell_list_xPoints2=sell_list_xPoints2,New2 = New2, 
-                                Squad3 = Squad3, Squad_Position3 = Squad_Position3 ,Squad_Team3 = Squad_Team3, Squad_xPoints3 = Squad_xPoints3, Squad_Captain3 = Squad_Captain3, 
-                                buy_list3=buy_list3, sell_list3=sell_list3, buy_list_position3=buy_list_position3, buy_list_team3=buy_list_team3, buy_list_xPoints3=buy_list_xPoints3,
-                                sell_list_team3=sell_list_team3, sell_list_position3=sell_list_position3, sell_list_xPoints3=sell_list_xPoints3,New3 = New3, 
-                                Squad4 = Squad4, Squad_Position4 = Squad_Position4 ,Squad_Team4 = Squad_Team4, Squad_xPoints4 = Squad_xPoints4, Squad_Captain4 = Squad_Captain4, 
-                                buy_list4=buy_list4, sell_list4=sell_list4, buy_list_position4=buy_list_position4, buy_list_team4=buy_list_team4, buy_list_xPoints4=buy_list_xPoints4,
-                                sell_list_team4=sell_list_team4, sell_list_position4=sell_list_position4, sell_list_xPoints4=sell_list_xPoints4,New4 = New4, 
-                                Squad5 = Squad5, Squad_Position5 = Squad_Position5 ,Squad_Team5 = Squad_Team5, Squad_xPoints5 = Squad_xPoints5, Squad_Captain5 = Squad_Captain5, 
-                                buy_list5=buy_list5, sell_list5=sell_list5, buy_list_position5=buy_list_position5, buy_list_team5=buy_list_team5, buy_list_xPoints5=buy_list_xPoints5,
-                                sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, 
-                                form = form, labels=labels, values0=values0, values1=values1, values2=values2, values3=values3, values4=values4, values5=values5,
-                                values0_mod=values0_mod, values1_mod=values1_mod, values2_mod=values2_mod, values3_mod=values3_mod, values4_mod=values4_mod, values5_mod=values5_mod,
-                                Name1=Name1, n_transfers = n_transfers, substitues = substitues, buy_str = buy_str, sell_str = sell_str, captain = captain, vice_captain = vice_captain)   
-   
-                                                    
+                                        ExcludePlayers  = ExcludePlayers, ExcludeTeam = ExcludeTeam, Expected_points = Expected_points1, 
+                                        Squad1 = Squad1, Squad_Position1 = Squad_Position1 ,Squad_Team1 = Squad_Team1, Squad_xPoints1 = Squad_xPoints1, Squad_Captain1 = Squad_Captain1, 
+                                        buy_list1=buy_list1, sell_list1=sell_list1, buy_list_position1=buy_list_position1, buy_list_team1=buy_list_team1, buy_list_xPoints1=buy_list_xPoints1,
+                                        sell_list_team1=sell_list_team1, sell_list_position1=sell_list_position1, sell_list_xPoints1=sell_list_xPoints1,New1 = New1, buy_list_Cost1 = buy_list_Cost1, sell_list_Cost1 = sell_list_Cost1, 
+                                        Squad2 = Squad2, Squad_Position2 = Squad_Position2 ,Squad_Team2 = Squad_Team2, Squad_xPoints2 = Squad_xPoints2, Squad_Captain2 = Squad_Captain2, 
+                                        buy_list2=buy_list2, sell_list2=sell_list2, buy_list_position2=buy_list_position2, buy_list_team2=buy_list_team2, buy_list_xPoints2=buy_list_xPoints2,
+                                        sell_list_team2=sell_list_team2, sell_list_position2=sell_list_position2, sell_list_xPoints2=sell_list_xPoints2,New2 = New2, buy_list_Cost2 = buy_list_Cost2, sell_list_Cost2 = sell_list_Cost2,
+                                        Squad3 = Squad3, Squad_Position3 = Squad_Position3 ,Squad_Team3 = Squad_Team3, Squad_xPoints3 = Squad_xPoints3, Squad_Captain3 = Squad_Captain3, 
+                                        buy_list3=buy_list3, sell_list3=sell_list3, buy_list_position3=buy_list_position3, buy_list_team3=buy_list_team3, buy_list_xPoints3=buy_list_xPoints3,
+                                        sell_list_team3=sell_list_team3, sell_list_position3=sell_list_position3, sell_list_xPoints3=sell_list_xPoints3,New3 = New3, buy_list_Cost3 = buy_list_Cost3, sell_list_Cost3 = sell_list_Cost3,
+                                        Squad4 = Squad4, Squad_Position4 = Squad_Position4 ,Squad_Team4 = Squad_Team4, Squad_xPoints4 = Squad_xPoints4, Squad_Captain4 = Squad_Captain4, 
+                                        buy_list4=buy_list4, sell_list4=sell_list4, buy_list_position4=buy_list_position4, buy_list_team4=buy_list_team4, buy_list_xPoints4=buy_list_xPoints4,
+                                        sell_list_team4=sell_list_team4, sell_list_position4=sell_list_position4, sell_list_xPoints4=sell_list_xPoints4,New4 = New4, buy_list_Cost4 = buy_list_Cost4, sell_list_Cost4 = sell_list_Cost4,
+                                        Squad5 = Squad5, Squad_Position5 = Squad_Position5 ,Squad_Team5 = Squad_Team5, Squad_xPoints5 = Squad_xPoints5, Squad_Captain5 = Squad_Captain5, 
+                                        buy_list5=buy_list5, sell_list5=sell_list5, buy_list_position5=buy_list_position5, buy_list_team5=buy_list_team5, buy_list_xPoints5=buy_list_xPoints5,
+                                        sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, buy_list_Cost5 = buy_list_Cost5, sell_list_Cost5 = sell_list_Cost5,
+                                        form = form, labels=labels, values0=values0, values1=values1, values2=values2, values3=values3, values4=values4, values5=values5,
+                                        values0_mod=values0_mod, values1_mod=values1_mod, values2_mod=values2_mod, values3_mod=values3_mod, values4_mod=values4_mod, values5_mod=values5_mod,
+                                        Name1=Name1, n_transfers = n_transfers, substitues = substitues, buy_str = buy_str, sell_str = sell_str, captain = captain, vice_captain = vice_captain)   
+                                                            
 @app.route('/dashboard2')
 def dashboard2():
     return render_template('dashboard2.html')
@@ -1027,11 +1057,11 @@ def dashboard():
                                                                     PlayerList, sub_1_discount, sub_2_discount,sub_3_discount, sub_gk_discount, Budget_from_players, 1)
 
     New1, Squad1, Squad_Position1, Squad_Team1, Squad_xPoints1, Squad_Captain1, Expected_points1, buy_list1, \
-        buy_list_position1, buy_list_team1, buy_list_xPoints1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1 = get_optim_results(Output_list[0], PlayerList, data_final)
+        buy_list_position1, buy_list_team1, buy_list_xPoints1, buy_list_cost1, sell_list1, sell_list_team1, sell_list_position1, sell_list_xPoints1, sell_list_cost1,= get_optim_results(Output_list[0], PlayerList, data_final)
     
     buy_list1 =  buy_list1[0]
     sell_list1 =  sell_list1[0]
-    point_increase = sum(buy_list_xPoints1) - sum(sell_list_xPoints1)
+    point_increase = round(sum(buy_list_xPoints1) - sum(sell_list_xPoints1),2)
     print(sell_list1)
     zero_players = sum(data_df['Expected_Points_round1'] == 0)
     zero_players_bench = sum(((data_df['Expected_Points_round1'] == 0) & (data_df['multiplier'] == 1)))

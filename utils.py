@@ -187,7 +187,8 @@ def get_optim_results(Output, PlayerList,data_final):
         Squad_Captain  = list(Output['Captain']) 
         Expected_points = sum(Output['TotalPoints'])
         buy_list = list(Output[Output['new_old']=="New"]['Names'])
-        buy_list_position = list(Output[Output['new_old']=="New"]['Positions']) 
+        buy_list_position = list(Output[Output['new_old']=="New"]['Positions'])
+        buy_list_Cost =  list(round(Output[Output['new_old']=="New"]['Cost']/10,1))
         buy_list_team = list(Output[Output['new_old']=="New"]['Teams'])
         buy_list_xPoints = list(round(Output[Output['new_old']=="New"]['TotalPoints'],2))
         print(buy_list_xPoints)
@@ -198,6 +199,7 @@ def get_optim_results(Output, PlayerList,data_final):
         sell_list_bool = data_final['fpl_name'].isin(sell_list_names.astype('str')[0])
         sell_list = list(data_final['fpl_name'][sell_list_bool])
         sell_list_position = list(data_final['position'][sell_list_bool]) 
+        sell_list_Cost = list(round(data_final['cost'][sell_list_bool]/10,2)) 
 
         sell_list_team = []
         sell_list_xPoints = []
@@ -209,12 +211,13 @@ def get_optim_results(Output, PlayerList,data_final):
         
         New = list(Output['new_old']) 
 
-        return New, Squad, Squad_Position, Squad_Team, Squad_xPoints, Squad_Captain, Expected_points, buy_list, buy_list_position, buy_list_team, buy_list_xPoints, sell_list, sell_list_team, sell_list_position, sell_list_xPoints
+        return New, Squad, Squad_Position, Squad_Team, Squad_xPoints, Squad_Captain, Expected_points, buy_list, buy_list_position, buy_list_team, buy_list_xPoints, buy_list_Cost, sell_list, sell_list_team, sell_list_position, sell_list_xPoints,sell_list_Cost 
     else:
         return 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 def get_current_team(username,password):
-
+    username = "mathias47@hotmail.com"
+    password = "Stor6612"
     import mechanize
     from http.cookiejar import LWPCookieJar
     import requests
@@ -274,11 +277,13 @@ def get_current_team(username,password):
         data_df_fpl['Player'] = data_df_fpl['first_name'] + ' ' + data_df_fpl['second_name']
         
         data_df = data_df.sort_values(['element']).reset_index(drop = True)
+        data_df_fpl = data_df_fpl.sort_values(['id']).reset_index(drop = True)
 
-        logical  = data_df_fpl['id'].isin(data_df['element'])
-        data_df['player'] = data_df_fpl['Player'][logical].reset_index(drop=True)
-        data_df['multiplier'] = np.where(data_df['multiplier']>=1,0,1)
-        data_df['position'] = data_df_fpl['element_type'][logical].reset_index(drop=True)
+        logical  = pd.DataFrame(np.where(data_df_fpl['id'].isin(data_df['element']),data_df_fpl.index,np.nan))
+        logical  = logical.dropna()
+        data_df['player'] = data_df_fpl['Player'].loc[logical[0]].reset_index(drop=True)
+        data_df['multiplier'] = np.where(data_df['multiplier'] >= 1,0,1)
+        data_df['position'] = data_df_fpl['element_type'].loc[logical[0]].reset_index(drop=True)
 
         data_df = data_df.sort_values(['player']).reset_index(drop = True)
         logical = []

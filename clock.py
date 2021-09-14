@@ -43,7 +43,7 @@ def timed_job():
     data_df['Player'] = data_df['first_name'] + ' ' + data_df['second_name']
   
     fpl = data_df[['Player', 'team', 'element_type', 'now_cost','web_name']].copy(deep=True)
-    
+
     ### Rotowire:
     import mechanize
     from http.cookiejar import LWPCookieJar
@@ -75,7 +75,8 @@ def timed_job():
     rw.columns = ['Player', 'Team', 'Opp', 'Pos', 'MIN', 'G', 'A', 'S', 'SOG', 'CC', 'P',
            'AP', 'CR', 'ACR', 'AW', 'DR', 'DSP', 'INT', 'TKL', 'TKLW', 'BLK', 'CL',
            'CS', 'GC', 'SV', 'FS', 'FC', 'Y', 'R']
-
+    
+    # rw[rw['Team']=='MUN']
     ## FiveThirtyEight:
     url="https://projects.fivethirtyeight.com/soccer-api/club/spi_matches_latest.csv"
     fte=pd.read_csv(url)

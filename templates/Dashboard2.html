@@ -5,8 +5,11 @@
 
 
 {% block stylesheets %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <link rel="stylesheet" href="/static/assets/css/style.css">
 <link rel="stylesheet" href="/static/assets/plugins/chart-morris/css/morris.css">
+
 
 {% endblock stylesheets %}
 
@@ -59,7 +62,6 @@
                                 <div class="card-block">
                                     <h5 class="text-white mb-2">Algorithm recommends to buy</h5>
                                     <h4 class="text-white mb-2 f-w-300">{{ buy_str }}</h4>
-                                    <span class="text-white d-block">and sell {{ sell_str }} </span>
                                     <i class="fas fa-exchange-alt f-70 text-white"></i>
                                 </div>
                             </div>
@@ -69,9 +71,8 @@
                         <div class="col-md-12 col-xl-4">
                             <div class="card bg-c-blue bitcoin-wallet">
                                 <div class="card-block">
-                                    <h5 class="text-white mb-2">Algorithm reccomend</h5>
-                                    <h4 class="text-white mb-2 f-w-300"> {{ captain }} as captain </h4>
-                                    <span class="text-white d-block">and {{ vice_captain }} as vice-captain</span>
+                                    <h5 class="text-white mb-2">Algorithm recommends to sell</h5>
+                                    <h4 class="text-white mb-2 f-w-300"> {{ sell_str }} </h4>
                                     <i class="fab fa-btc f-70 text-white"></i>
                                 </div>       
                             </div>
@@ -82,30 +83,66 @@
                             <p class="m-0"><em>Across number of substitutions</em></p>
                             <hr>
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                {% if  substitues == 1  %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">1 Substitute</a>
+                                </li>
+                                {% else  %}
                                 <li class="nav-item">
                                     <a class="nav-link" id="home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="false">1 Substitute</a>
                                 </li>
+                                {% endif %}
+                                {% if  substitues == 2  %}
                                 <li class="nav-item">
                                     <a class="nav-link active show" id="profile2-tab" data-toggle="pill" href="#profile2" role="tab" aria-controls="profile2" aria-selected="true">2 Substitutes</a>
                                 </li>
+                                {% else  %}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile2-tab" data-toggle="pill" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">2 Substitutes</a>
+                                </li>
+                                {% endif %}
+                                {% if  substitues == 3  %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile3-tab" data-toggle="pill" href="#profile3" role="tab" aria-controls="profile3" aria-selected="true">3 Substitutes</a>
+                                </li>
+                                {% else  %}
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile3-tab" data-toggle="pill" href="#profile3" role="tab" aria-controls="profile3" aria-selected="false">3 Substitutes</a>
                                 </li>
+                                {% endif %}
+                                {% if  substitues == 4  %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile4-tab" data-toggle="pill" href="#profile4" role="tab" aria-controls="profile4" aria-selected="true">4 Substitutes</a>
+                                </li>
+                                {% else  %}
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile4-tab" data-toggle="pill" href="#profile4" role="tab" aria-controls="profile4" aria-selected="false">4 Substitutes</a>
                                 </li>
+                                {% endif %}
+                                {% if  substitues == 5  %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile5-tab" data-toggle="pill" href="#profile5" role="tab" aria-controls="profile5" aria-selected="true">5 Substitutes</a>
+                                </li>
+                                {% else  %}
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile5-tab" data-toggle="pill" href="#profile5" role="tab" aria-controls="profile5" aria-selected="false">5 Substitutes</a>
                                 </li>
+                                {% endif %}
                             </ul>
+
                             <div class="tab-content" id="myTabContent">
+                                {% if  substitues == 1  %}
+                                <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                {% else  %}
                                 <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                {% endif  %}
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell</th>
+                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"> </th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -123,6 +160,9 @@
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_position1[count.value-1] }}</h6>
                                                 </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_Cost1[count.value-1] }}</h6>
+                                                </td>
                                                 <td class="text-middle">
                                                     <h6 class="m-0">{{ sell_list_xPoints1[count.value-1] }}</h6>
                                                 </td>
@@ -136,6 +176,7 @@
                                                 <th>Player to Buy</th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -153,6 +194,9 @@
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_position1[count.value-1] }}</h6>
                                                 </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_Cost1[count.value-1] }}</h6>
+                                                </td>
                                                 <td class="text-middle">
                                                     <h6 class="m-0">{{ buy_list_xPoints1[count.value-1] }}</h6>
                                                 </td>
@@ -163,13 +207,18 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                {% if  substitues == 2  %}
                                 <div class="tab-pane fade active show" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
+                                {% else  %}
+                                <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
+                                {% endif  %}
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell</th>
+                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"></th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -187,6 +236,9 @@
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_position2[count.value-1] }}</h6>
                                                 </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_Cost2[count.value-1] }}</h6>
+                                                </td>
                                                 <td class="text-middle">
                                                     <h6 class="mb-1">{{ sell_list_xPoints2[count.value-1] }}</h6>
                                                 </td>
@@ -200,6 +252,7 @@
                                                 <th>Player to Buy</th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -217,6 +270,9 @@
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_position2[count.value-1] }}</h6>
                                                 </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_Cost2[count.value-1] }}</h6>
+                                                </td>
                                                 <td class="text-middle">
                                                     <h6 class="mb-1">{{ buy_list_xPoints2[count.value-1] }}</h6>
                                                 </td>
@@ -228,13 +284,18 @@
                                     </table>
                                 </div>
                                 
+                                {% if  substitues == 3  %}
+                                <div class="tab-pane fade active show" id="profile3" role="tabpanel" aria-labelledby="profile3-tab">
+                                {% else  %}
                                 <div class="tab-pane fade" id="profile3" role="tabpanel" aria-labelledby="profile3-tab">
+                                {% endif  %}
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell</th>
+                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"></th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -252,6 +313,9 @@
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_position3[count.value-1] }}</h6>
                                                 </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_Cost3[count.value-1] }}</h6>
+                                                </td>
                                                 <td class="text-middle">
                                                     <h6 class="m-0">{{ sell_list_xPoints3[count.value-1] }}</h6>
                                                 </td>
@@ -265,6 +329,7 @@
                                                 <th>Player to Buy</th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -282,6 +347,9 @@
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_position3[count.value-1] }}</h6>
                                                 </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_Cost3[count.value-1] }}</h6>
+                                                </td>
                                                 <td class="text-middle">
                                                     <h6 class="mb-1">{{ buy_list_xPoints3[count.value-1] }}</h6>
                                                 </td>
@@ -293,13 +361,18 @@
                                     </table>
                                 </div>
                                 
+                                {% if  substitues == 4  %}
+                                <div class="tab-pane fade active show" id="profile4" role="tabpanel" aria-labelledby="profile4-tab">
+                                {% else  %}
                                 <div class="tab-pane fade" id="profile4" role="tabpanel" aria-labelledby="profile4-tab">
+                                {% endif  %}
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell</th>
+                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"> </th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -317,6 +390,9 @@
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_position4[count.value-1] }}</h6>
                                                 </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_Cost4[count.value-1] }}</h6>
+                                                </td>
                                                 <td class="text-middle">
                                                     <h6 class="m-0">{{ sell_list_xPoints4[count.value-1] }}</h6>
                                                 </td>
@@ -330,6 +406,7 @@
                                                 <th>Player to Buy</th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -347,6 +424,9 @@
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_position4[count.value-1] }}</h6>
                                                 </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_Cost4[count.value-1] }}</h6>
+                                                </td>
                                                 <td class="text-middle">
                                                     <h6 class="mb-1">{{ buy_list_xPoints4[count.value-1] }}</h6>
                                                 </td>
@@ -357,13 +437,18 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                {% if  substitues == 5  %}
+                                <div class="tab-pane fade active show" id="profile5" role="tabpanel" aria-labelledby="profile5-tab">
+                                {% else  %}
                                 <div class="tab-pane fade" id="profile5" role="tabpanel" aria-labelledby="profile5-tab">
+                                {% endif  %}
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell</th>
+                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"> </th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -381,6 +466,9 @@
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_position5[count.value-1] }}</h6>
                                                 </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ sell_list_Cost5[count.value-1] }}</h6>
+                                                </td>
                                                 <td class="text-middle">
                                                     <h6 class="mb-1">{{ sell_list_xPoints5[count.value-1] }}</h6>
                                                 </td>
@@ -394,6 +482,7 @@
                                                 <th>Player to Buy</th>
                                                 <th>Team</th>
                                                 <th>Position</th>
+                                                <th>Costs</th>
                                                 <th>Points</th>
                                                 <th>Sell/Buy</th>
                                             </tr>
@@ -410,6 +499,9 @@
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_position5[count.value-1] }}</h6>
+                                                </td>
+                                                <td>
+                                                    <h6 class="m-0">{{ buy_list_Cost5[count.value-1] }}</h6>
                                                 </td>
                                                 <td class="text-middle">
                                                     <h6 class="mb-1">{{ buy_list_xPoints5[count.value-1] }}</h6>
@@ -430,24 +522,60 @@
                             <p class="m-0"><em>Checked players/teams is excluded from lineup optimizer</em></p>
                             <hr>
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                {% if  substitues == 1  %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="home-tab_2" data-toggle="pill" href="#home_2" role="tab" aria-controls="home_2" aria-selected="true">1 Substitute</a>
+                                </li>
+                                {% else  %}
                                 <li class="nav-item">
                                     <a class="nav-link" id="home-tab_2" data-toggle="pill" href="#home_2" role="tab" aria-controls="home" aria-selected="false">1 Substitute</a>
                                 </li>
+                                {% endif %}
+                                {% if  substitues == 2  %}
                                 <li class="nav-item">
                                     <a class="nav-link active show" id="profile2-tab_2" data-toggle="pill" href="#profile2_2" role="tab" aria-controls="profile2_2" aria-selected="true">2 Substitutes</a>
                                 </li>
+                                {% else  %}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile2-tab_2" data-toggle="pill" href="#profile2_2" role="tab" aria-controls="profile2_2" aria-selected="false">2 Substitutes</a>
+                                </li>
+                                {% endif %}
+                                {% if  substitues == 3  %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile3-tab_2" data-toggle="pill" href="#profile3_2" role="tab" aria-controls="profile3_2" aria-selected="true">3 Substitutes</a>
+                                </li>
+                                {% else  %}
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile3-tab_2" data-toggle="pill" href="#profile3_2" role="tab" aria-controls="profile3_2" aria-selected="false">3 Substitutes</a>
                                 </li>
+                                {% endif %}
+                                {% if  substitues == 4  %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile4-tab_2" data-toggle="pill" href="#profile4_2" role="tab" aria-controls="profile4_2" aria-selected="true">4 Substitutes</a>
+                                </li>
+                                {% else  %}
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile4-tab_2" data-toggle="pill" href="#profile4_2" role="tab" aria-controls="profile4_2" aria-selected="false">4 Substitutes</a>
                                 </li>
+                                {% endif %}
+                                {% if  substitues == 5  %}
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="profile5-tab_2" data-toggle="pill" href="#profile5_2" role="tab" aria-controls="profile5_2" aria-selected="true">5 Substitutes</a>
+                                </li>
+                                {% else  %}
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile5-tab_2" data-toggle="pill" href="#profile5_2" role="tab" aria-controls="profile5_2" aria-selected="false">5 Substitutes</a>
                                 </li>
+                                {% endif %}
+
                             </ul>
                             <div class="tab-content" id="myTabContent">
+                                {% if  substitues == 1  %}
+                                <div class="tab-pane fade active show" id="home_2" role="tabpanel" aria-labelledby="home-tab_2">
+                                {% else  %}
                                 <div class="tab-pane fade" id="home_2" role="tabpanel" aria-labelledby="home-tab_2">
+                                {% endif  %}
+
                                     <div class="card-block px-0 py-3">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -517,7 +645,11 @@
                                     <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                 </form>
                                 </div>
+                                {% if  substitues == 2  %}
                                 <div class="tab-pane fade active show" id="profile2_2" role="tabpanel" aria-labelledby="profile2-tab_2">
+                                {% else  %}
+                                <div class="tab-pane fade" id="profile2_2" role="tabpanel" aria-labelledby="profile2-tab_2">
+                                {% endif  %}
                                     <div class="card-block px-0 py-3">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -583,7 +715,11 @@
                                     <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                 </form>
                                 </div>
+                                {% if  substitues == 3  %}
+                                <div class="tab-pane fade active show" id="profile3_2" role="tabpanel" aria-labelledby="profile3-tab_2">
+                                {% else  %}
                                 <div class="tab-pane fade" id="profile3_2" role="tabpanel" aria-labelledby="profile3-tab_2">
+                                {% endif  %}
                                     <div class="card-block px-0 py-3">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -650,7 +786,11 @@
                                     <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
                                 </form>
                                 </div>
+                                {% if  substitues == 4  %}
+                                <div class="tab-pane fade active show" id="profile4_2" role="tabpanel" aria-labelledby="profile4-tab_2">
+                                {% else  %}
                                 <div class="tab-pane fade" id="profile4_2" role="tabpanel" aria-labelledby="profile4-tab_2">
+                                {% endif  %}
                                     <div class="card-block px-0 py-3">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -716,7 +856,11 @@
                                         </div>  
                                     </div>
                                 </div>
+                                {% if  substitues == 5  %}
+                                <div class="tab-pane fade active show" id="profile5_2" role="tabpanel" aria-labelledby="profile5-tab_2">
+                                {% else  %}
                                 <div class="tab-pane fade" id="profile5_2" role="tabpanel" aria-labelledby="profile5-tab_2">
+                                {% endif  %}
                                     <div class="card-block px-0 py-3">
                                         <div class="table-responsive">
                                             <table class="table table-hover">
@@ -893,21 +1037,30 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div class="modal show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>                        
                 </div>
             </div>
-                        <!-- [ statistics year chart ] end -->
-
-            <!-- <form action="/teamupdated" method="POST">
-                {% for each in Squad %}
-                    <input type="hidden" name="Name" value='{{ each }}'>
-                {% endfor %} 
-                <input type="hidden" name="Budget" value='{{ Budget }}'>
-                    <input type="submit" class="btn btn-primary" value="Save lineup to Dashboard" btn-lg>
-            </form> -->
-
 
             </form> 
             </div>
@@ -919,6 +1072,16 @@
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+
 <script>
   $(document).ready(function() {
       $('#Player1IN').select2({  // init Select2 on form's name field
@@ -927,7 +1090,7 @@
           "width": "style"
       });
   });
-  </script>
+</script>
 <script>
   $(document).ready(function() {
       $('#Player2IN').select2({  // init Select2 on form's name field
