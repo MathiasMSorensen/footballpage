@@ -139,12 +139,12 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"> </th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(243, 10, 10);">Player to sell (check checkbox to keep player in lineup) </th>
+                                                <th style="color:rgb(243, 10, 10);">Team</th>
+                                                <th style="color:rgb(243, 10, 10);">Position</th>
+                                                <th style="color:rgb(243, 10, 10);">Costs</th>
+                                                <th style="color:rgb(243, 10, 10);">Points</th>
+                                                <th style="color:rgb(243, 10, 10);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -152,7 +152,11 @@
                                                 {% set count = namespace(value=1) %}
                                                 {% for each in sell_list1 %} 
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxsell1" class="form-check-input" value={{ count.value }} title = "Not satisfied selling this player, then force him in the linup by checking this checkbox and run the lineup optimization with updated constraints">    
+                                                        <input type="hidden" name="sell1" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_team1[count.value-1] }}</h6>
@@ -173,12 +177,12 @@
                                         </tbody>
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to Buy</th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(11, 184, 48);">Player to sell (Check checkbox to exclude player from optimization) </th>
+                                                <th style="color:rgb(11, 184, 48);">Team</th>
+                                                <th style="color:rgb(11, 184, 48);">Position</th>
+                                                <th style="color:rgb(11, 184, 48);">Costs</th>
+                                                <th style="color:rgb(11, 184, 48);">Points</th>
+                                                <th style="color:rgb(11, 184, 48);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -186,7 +190,11 @@
                                                 {% set count = namespace(value=1) %}
                                                 {% for each in buy_list1 %} 
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxbuy1" class="form-check-input" value={{ count.value }}  title = "Not satisfied buing this player, then exclude him by checking this checkbox and run the lineup optimization with updated constraints">    
+                                                        <input type="hidden" name="buy1" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_team1[count.value-1] }}</h6>
@@ -206,6 +214,8 @@
                                                 {% endfor %} 
                                         </tbody>
                                     </table>
+                                    <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                </form>
                                 </div>
                                 {% if  substitues == 2  %}
                                 <div class="tab-pane fade active show" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
@@ -215,12 +225,12 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"></th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(243, 10, 10);">Player to sell (check checkbox to keep player in lineup)   </th>
+                                                <th style="color:rgb(243, 10, 10);">Team</th>
+                                                <th style="color:rgb(243, 10, 10);">Position</th>
+                                                <th style="color:rgb(243, 10, 10);">Costs</th>
+                                                <th style="color:rgb(243, 10, 10);">Points</th>
+                                                <th style="color:rgb(243, 10, 10);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -228,7 +238,11 @@
                                                 {% set count = namespace(value=1) %}
                                                 {% for each in sell_list2 %} 
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxsell2" class="form-check-input" value={{ count.value }} title = "Not satisfied selling this player, then force him in the linup by checking this checkbox and run the lineup optimization with updated constraints">    
+                                                        <input type="hidden" name="sell2" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_team2[count.value-1] }}</h6>
@@ -249,12 +263,12 @@
                                         </tbody>
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to Buy</th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(11, 184, 48);">Player to sell (Check checkbox to exclude player from optimization) </th>
+                                                <th style="color:rgb(11, 184, 48);">Team</th>
+                                                <th style="color:rgb(11, 184, 48);">Position</th>
+                                                <th style="color:rgb(11, 184, 48);">Costs</th>
+                                                <th style="color:rgb(11, 184, 48);">Points</th>
+                                                <th style="color:rgb(11, 184, 48);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -262,7 +276,11 @@
                                                 {% set count = namespace(value=1) %}
                                                 {% for each in buy_list2 %} 
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxbuy2" class="form-check-input" value={{ count.value }} title  title = "Not satisfied buing this player, then exclude him by checking this checkbox and run the lineup optimization with updated constraints">    
+                                                        <input type="hidden" name="buy2" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_team2[count.value-1] }}</h6>
@@ -282,6 +300,8 @@
                                                 {% endfor %} 
                                         </tbody>
                                     </table>
+                                    <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                </form>
                                 </div>
                                 
                                 {% if  substitues == 3  %}
@@ -292,12 +312,12 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"></th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(243, 10, 10);">Player to sell (check checkbox to keep player in lineup)    </th>
+                                                <th style="color:rgb(243, 10, 10);">Team</th>
+                                                <th style="color:rgb(243, 10, 10);">Position</th>
+                                                <th style="color:rgb(243, 10, 10);">Costs</th>
+                                                <th style="color:rgb(243, 10, 10);">Points</th>
+                                                <th style="color:rgb(243, 10, 10);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -305,7 +325,11 @@
                                                 {% set count = namespace(value=1) %}
                                                 {% for each in sell_list3 %} 
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxsell3" class="form-check-input" value={{ count.value }} title = "Not satisfied selling this player, then force him in the linup by checking this checkbox and run the lineup optimization with updated constraints">    
+                                                        <input type="hidden" name="sell3" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_team3[count.value-1] }}</h6>
@@ -326,12 +350,12 @@
                                         </tbody>
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to Buy</th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(11, 184, 48);">Player to sell (Check checkbox to exclude player from optimization)  </th>
+                                                <th style="color:rgb(11, 184, 48);">Team</th>
+                                                <th style="color:rgb(11, 184, 48);">Position</th>
+                                                <th style="color:rgb(11, 184, 48);">Costs</th>
+                                                <th style="color:rgb(11, 184, 48);">Points</th>
+                                                <th style="color:rgb(11, 184, 48);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -339,7 +363,11 @@
                                                 {% set count = namespace(value=1) %}
                                                 {% for each in buy_list3 %} 
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxbuy3" class="form-check-input" value={{ count.value }}  title = "Not satisfied buing this player, then exclude him by checking this checkbox and run the lineup optimization with updated constraints" >    
+                                                        <input type="hidden" name="buy3" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_team3[count.value-1] }}</h6>
@@ -359,6 +387,8 @@
                                                 {% endfor %} 
                                         </tbody>
                                     </table>
+                                    <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                </form>
                                 </div>
                                 
                                 {% if  substitues == 4  %}
@@ -369,12 +399,12 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"> </th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(243, 10, 10);">Player to sell (check checkbox to keep player in lineup)  </th>
+                                                <th style="color:rgb(243, 10, 10);">Team</th>
+                                                <th style="color:rgb(243, 10, 10);">Position</th>
+                                                <th style="color:rgb(243, 10, 10);">Costs</th>
+                                                <th style="color:rgb(243, 10, 10);">Points</th>
+                                                <th style="color:rgb(243, 10, 10);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -382,7 +412,11 @@
                                                 {% set count = namespace(value=1) %}
                                                 {% for each in sell_list4 %} 
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxsell4" class="form-check-input" value={{ count.value }} title = "Not satisfied selling this player, then force him in the linup by checking this checkbox and run the lineup optimization with updated constraints">    
+                                                        <input type="hidden" name="sell4" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_team4[count.value-1] }}</h6>
@@ -403,12 +437,12 @@
                                         </tbody>
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to Buy</th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(11, 184, 48);">Player to sell (Check checkbox to exclude player from optimization) </th>
+                                                <th style="color:rgb(11, 184, 48);">Team</th>
+                                                <th style="color:rgb(11, 184, 48);">Position</th>
+                                                <th style="color:rgb(11, 184, 48);">Costs</th>
+                                                <th style="color:rgb(11, 184, 48);">Points</th>
+                                                <th style="color:rgb(11, 184, 48);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -416,7 +450,11 @@
                                                 {% set count = namespace(value=1) %}
                                                 {% for each in buy_list4 %} 
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxbuy4" class="form-check-input" value={{ count.value }}  title = "Not satisfied buing this player, then exclude him by checking this checkbox and run the lineup optimization with updated constraints">    
+                                                        <input type="hidden" name="buy4" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_team4[count.value-1] }}</h6>
@@ -436,6 +474,8 @@
                                                 {% endfor %} 
                                         </tbody>
                                     </table>
+                                    <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                </form>
                                 </div>
                                 {% if  substitues == 5  %}
                                 <div class="tab-pane fade active show" id="profile5" role="tabpanel" aria-labelledby="profile5-tab">
@@ -445,20 +485,24 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to sell <img src="/static/assets/images/user/Capture.JPG" width="20" title = "Not satisfied by some of the players? Then go below and exclude/include players and run it again"> </th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(243, 10, 10);">Player to sell (check checkbox to keep player in lineup)   </th>
+                                                <th style="color:rgb(243, 10, 10);">Team</th>
+                                                <th style="color:rgb(243, 10, 10);">Position</th>
+                                                <th style="color:rgb(243, 10, 10);">Costs</th>
+                                                <th style="color:rgb(243, 10, 10);">Points</th>
+                                                <th style="color:rgb(243, 10, 10);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 {% set count = namespace(value=1) %}
-                                                {% for each in sell_list5 %} 
+                                                {% for each in sell_list5 %}
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxsell5" class="form-check-input" value={{ count.value }} title = "Not satisfied selling this player, then force him in the linup by checking this checkbox and run the lineup optimization with updated constraints">    
+                                                        <input type="hidden" name="sell5" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ sell_list_team5[count.value-1] }}</h6>
@@ -479,12 +523,12 @@
                                         </tbody>
                                         <thead>
                                             <tr>                                              
-                                                <th>Player to Buy</th>
-                                                <th>Team</th>
-                                                <th>Position</th>
-                                                <th>Costs</th>
-                                                <th>Points</th>
-                                                <th>Sell/Buy</th>
+                                                <th style="color:rgb(11, 184, 48);">Player to sell (Check checkbox to exclude player from optimization)  </th>
+                                                <th style="color:rgb(11, 184, 48);">Team</th>
+                                                <th style="color:rgb(11, 184, 48);">Position</th>
+                                                <th style="color:rgb(11, 184, 48);">Costs</th>
+                                                <th style="color:rgb(11, 184, 48);">Points</th>
+                                                <th style="color:rgb(11, 184, 48);">Sell/Buy</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -492,7 +536,11 @@
                                                 {% set count = namespace(value=1) %}
                                                 {% for each in buy_list5 %} 
                                                 <td>
-                                                    <h6 class="m-0">{{ each }}</h6>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="mycheckboxbuy5" class="form-check-input" value={{ count.value }} title = "Not satisfied buing this player, then exclude him by checking this checkbox and run the lineup optimization with updated constraints">    
+                                                        <input type="hidden" name="buy5" value='{{ each }}'>
+                                                        {{ each }}
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <h6 class="m-0">{{ buy_list_team5[count.value-1] }}</h6>
@@ -512,6 +560,8 @@
                                                 {% endfor %} 
                                         </tbody>
                                     </table>
+                                    <input type="submit" class="btn btn-primary" value="Run lineup optimization with updated constraints"  btn-lg>
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -964,8 +1014,40 @@
                                 </div>
                         
                                 <div class="card Recent-Users">
+                                <div class="card-header">
+                                    <h5>Teams excluded from lineup optimizer</h5>
+                                </div>
+                                    <div class="card-block px-0 py-3">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Team</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% set count = namespace(value=1) %}
+                                                    {% for each in ExcludeTeam %}
+                                                    <tr>
+                                                        <td>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="mycheckboxExcludedTeams" class="form-check-input" value={{ count.value }}  checked>
+                                                                <label class="form-check-label" for="customCheck1"> {{ count.value }} </label>
+                                                            </div>
+                                                        </td>
+                                                        <td> <input type="hidden" name="ExcludedTeams" value='{{ each }}'> {{ each }} </td>
+                                                    {% set count.value = count.value + 1 %}
+                                                    {% endfor %} 
+                                                    </tr>   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card Recent-Users">
                                     <div class="card-header">
-                                        <h5>Teams excluded from lineup optimizer</h5>
+                                        <h5>Players forced included in lineup optimizer</h5>
                                     </div>
                                         <div class="card-block px-0 py-3">
                                             <div class="table-responsive">
@@ -973,20 +1055,20 @@
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">#</th>
-                                                            <th scope="col">Team</th>
+                                                            <th scope="col">Player</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         {% set count = namespace(value=1) %}
-                                                        {% for each in ExcludeTeam %}
+                                                        {% for each in IncludePlayers_temp %}
                                                         <tr>
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" name="mycheckboxExcludedTeams" class="form-check-input" value={{ count.value }}  checked>
+                                                                    <input type="checkbox" name="IncludePlayers_temp_checkbox" class="form-check-input" value={{ count.value }}  checked>
                                                                     <label class="form-check-label" for="customCheck1"> {{ count.value }} </label>
                                                                 </div>
                                                             </td>
-                                                            <td> <input type="hidden" name="ExcludedTeams" value='{{ each }}'> {{ each }} </td>
+                                                            <td> <input type="hidden" name="IncludePlayers_temp_val" value='{{ each }}'> {{ each }} </td>
                                                         {% set count.value = count.value + 1 %}
                                                         {% endfor %} 
                                                         </tr>   

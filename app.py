@@ -396,6 +396,7 @@ def optimization():
     ExcludePlayers = []
     IncludePlayers = []
     ExcludeTeam = []
+    IncludePlayers_temp = []
     cash = session["bank"]*10
     n_transfers = session["transfer"] 
     print(Budget_from_players)
@@ -443,11 +444,12 @@ def optimization():
         for i in range(6):
             values0.append(round(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i]),1))
             values0_mod.append(round(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i]),1))
-            
+            values0_disc = sum(Output_list[0]['xPoints'][Output_list[0].player_sub=='player'])
     else:
         for i in range(6):
             values0.append(0)
             values0_mod.append(0)
+            values0_disc = 0
 
     values1 = []
     values1_mod = []
@@ -455,10 +457,12 @@ def optimization():
         for i in range(6):
             values1.append(round(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i]),1))
             values1_mod.append(round(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i]),1))
+            values1_disc = sum(Output_list[1]['xPoints'][Output_list[1].player_sub=='player'])
     else:
         for i in range(6):
             values1.append(0)
             values1_mod.append(0)
+            values1_disc = 0
         
     values2 = []
     values2_mod = []
@@ -466,10 +470,12 @@ def optimization():
         for i in range(6):
             values2.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i]),1))
             values2_mod.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])-(2-n_transfers)*4,1))
+            values2_disc = sum(Output_list[2]['xPoints'][Output_list[2].player_sub=='player'])-(2-n_transfers)
     else:
         for i in range(6):
             values2.append(0)
             values2_mod.append(0)
+            values2_disc = 0
 
     values3 = []
     values3_mod = []
@@ -477,10 +483,12 @@ def optimization():
         for i in range(6):
             values3.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i]),1))
             values3_mod.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i])-(3-n_transfers)*4,1))
+            values3_disc = sum(Output_list[3]['xPoints'][Output_list[3].player_sub=='player'])-(3-n_transfers)
     else:
         for i in range(6):
             values3.append(0)
             values3_mod.append(0)
+            values3_disc = 0
 
     values4 = []
     values4_mod = []
@@ -488,10 +496,12 @@ def optimization():
         for i in range(6):
             values4.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i]),1))
             values4_mod.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i])-(4-n_transfers)*4,1))
+            values4_disc = sum(Output_list[4]['xPoints'][Output_list[4].player_sub=='player'])-(4-n_transfers)
     else:
         for i in range(6):
             values4.append(0)
             values4_mod.append(0)
+            values4_disc = 0
 
     values5 = []
     values5_mod = []
@@ -499,10 +509,12 @@ def optimization():
         for i in range(6):
             values5.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i]),1))
             values5_mod.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i])-(5-n_transfers)*4,1))
+            values5_disc = sum(Output_list[5]['xPoints'][Output_list[5].player_sub=='player'])-(5-n_transfers)
     else:
         for i in range(6):
             values5.append(0)
             values5_mod.append(0)
+            values5_disc = 0
 
     Name1 = "Expected Points by number of tranfers and rounds (Without tranfer cost)"
 
@@ -536,17 +548,15 @@ def optimization():
     Output = Output_list[5]
 
     TransferCost = TransferCost[1]
-
-    nShare = nShare[1]
-
-    max_val = max([values0_mod,values1_mod,values2_mod,values3_mod,values4_mod,values5_mod])
-    if values0_mod==max_val:
+    print([sum(values0_mod),sum(values1_mod),sum(values2_mod),sum(values3_mod),sum(values4_mod),sum(values5_mod)])
+    max_val = max([sum(values0_mod),sum(values1_mod),sum(values2_mod),sum(values3_mod),sum(values4_mod),sum(values5_mod)])
+    if sum(values0_mod)==max_val:
         substitues = 0
         buy_str = 'None'
         sell_str = 'None'
         captain = 'None'
         vice_captain = 'None'
-    elif values1_mod==max_val:
+    elif sum(values1_mod)==max_val:
         substitues = 1
         buy_str = ' '.join([str(item) for item in buy_list1])
         sell_str = ' '.join([str(item) for item in sell_list1])
@@ -554,7 +564,7 @@ def optimization():
         temp = pd.DataFrame(Squad_xPoints1).sort_values(by=0)
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
         vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-    elif values2_mod==max_val:
+    elif sum(values2_mod)==max_val:
         substitues = 2
         buy_str = ' '.join([str(item) for item in buy_list2])
         sell_str = ' '.join([str(item) for item in sell_list2])
@@ -563,7 +573,7 @@ def optimization():
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
         vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[length]
         print(pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0])
-    elif values3_mod==max_val:
+    elif sum(values3_mod)==max_val:
         substitues = 3
         buy_str = ' '.join([str(item) for item in buy_list3])
         sell_str = ' '.join([str(item) for item in sell_list3])
@@ -572,7 +582,7 @@ def optimization():
         print(pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0])
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
         vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-    elif values4_mod==max_val:
+    elif sum(values4_mod)==max_val:
         substitues = 4
         buy_str = ' '.join([str(item) for item in buy_list4])
         sell_str = ' '.join([str(item) for item in sell_list4])
@@ -616,7 +626,7 @@ def optimization():
                                 sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, buy_list_Cost5 = buy_list_Cost5, sell_list_Cost5 = sell_list_Cost5,
                                 form = form, labels=labels, values0=values0, values1=values1, values2=values2, values3=values3, values4=values4, values5=values5,
                                 values0_mod=values0_mod, values1_mod=values1_mod, values2_mod=values2_mod, values3_mod=values3_mod, values4_mod=values4_mod, values5_mod=values5_mod,
-                                Name1=Name1, n_transfers = n_transfers, substitues = substitues, buy_str = buy_str, sell_str = sell_str, captain = captain, vice_captain = vice_captain)   
+                                Name1=Name1, n_transfers = n_transfers, substitues = substitues, buy_str = buy_str, sell_str = sell_str, captain = captain, vice_captain = vice_captain, IncludePlayers_temp = IncludePlayers_temp)   
 
     else:
         error_statement = "Something went wrong with the optimization, please check your team and budget and edit if needed"
@@ -668,37 +678,27 @@ def sure():
     if request.method == 'POST':    
       
 
-        sell11 = request.form.getlist("sell11")
-        sell21 = request.form.getlist("sell21")
-        sell22 = request.form.getlist("sell22")
-        sell31 = request.form.getlist("sell31")
-        sell32 = request.form.getlist("sell32")
-        sell33 = request.form.getlist("sell33")
-        sell41 = request.form.getlist("sell41")
-        sell42 = request.form.getlist("sell42")
-        sell43 = request.form.getlist("sell43")
-        sell44 = request.form.getlist("sell44")
-        sell51 = request.form.getlist("sell51")
-        sell52 = request.form.getlist("sell52")
-        sell53 = request.form.getlist("sell53")
-        sell54 = request.form.getlist("sell54")
-        sell55 = request.form.getlist("sell55")
+        sell1 = request.form.getlist("sell1")
+        sell2 = request.form.getlist("sell2")
+        sell3 = request.form.getlist("sell3")
+        sell4 = request.form.getlist("sell4")
+        sell5 = request.form.getlist("sell5")
+        mycheckboxsell1 = request.form.getlist("mycheckboxsell1")
+        mycheckboxsell2 = request.form.getlist("mycheckboxsell2")
+        mycheckboxsell3 = request.form.getlist("mycheckboxsell3")
+        mycheckboxsell4 = request.form.getlist("mycheckboxsell4")
+        mycheckboxsell5 = request.form.getlist("mycheckboxsell5")
 
-        buy11 = request.form.getlist("buy11")
-        buy21 = request.form.getlist("buy21")
-        buy22 = request.form.getlist("buy22")
-        buy31 = request.form.getlist("buy31")
-        buy32 = request.form.getlist("buy32")
-        buy33 = request.form.getlist("buy33")
-        buy41 = request.form.getlist("buy41")
-        buy42 = request.form.getlist("buy42")
-        buy43 = request.form.getlist("buy43")
-        buy44 = request.form.getlist("buy44")
-        buy51 = request.form.getlist("buy51")
-        buy52 = request.form.getlist("buy52")
-        buy53 = request.form.getlist("buy53")
-        buy54 = request.form.getlist("buy54")
-        buy55 = request.form.getlist("buy55")
+        buy1 = request.form.getlist("buy1")
+        buy2 = request.form.getlist("buy2")
+        buy3 = request.form.getlist("buy2")
+        buy4 = request.form.getlist("buy4")
+        buy5 = request.form.getlist("buy5")
+        mycheckboxbuy1 = request.form.getlist("mycheckboxbuy1")
+        mycheckboxbuy2 = request.form.getlist("mycheckboxbuy2")
+        mycheckboxbuy3 = request.form.getlist("mycheckboxbuy3")
+        mycheckboxbuy4 = request.form.getlist("mycheckboxbuy4")
+        mycheckboxbuy5 = request.form.getlist("mycheckboxbuy5")
 
         included1 = request.form.getlist("mycheckbox1")
         includedTeams1 = request.form.getlist("mycheckboxteam1")
@@ -725,13 +725,58 @@ def sure():
         excludedT = request.form.getlist("mycheckboxExcludedTeams")
         excludedTeams = request.form.getlist("ExcludedTeams")
         n_transfers = request.form.getlist("n_transfers")
+        IncludePlayers_temp_checkbox = request.form.getlist("IncludePlayers_temp_checkbox")
+        IncludePlayers_temp_val = request.form.getlist("IncludePlayers_temp_val")
 
-        print(sell55)
+
 
         ExcludePlayers = []
+        IncludePlayers_temp = []
         IncludePlayers = []
         ExcludeTeam = []
-        
+
+## from input output table 
+        for i in range(len(sell1)):
+            if str(i+1) in mycheckboxsell1:
+                IncludePlayers_temp.append(sell1[i]) 
+
+        for i in range(len(sell2)):
+            if str(i+1) in mycheckboxsell2:
+                IncludePlayers_temp.append(sell2[i]) 
+
+        for i in range(len(sell3)):
+            if str(i+1) in mycheckboxsell3:
+                IncludePlayers_temp.append(sell3[i]) 
+
+        for i in range(len(sell4)):
+            if str(i+1) in mycheckboxsell4:
+                IncludePlayers_temp.append(sell4[i]) 
+
+        for i in range(len(sell5)):
+            if str(i+1) in mycheckboxsell5:
+                IncludePlayers_temp.append(sell5[i]) 
+
+        for i in range(len(buy1)):
+            if str(i+1) in mycheckboxbuy1:
+                ExcludePlayers.append(buy1[i]) 
+
+        for i in range(len(buy2)):
+            if str(i+1) in mycheckboxbuy2:
+                ExcludePlayers.append(buy2[i]) 
+
+        for i in range(len(buy3)):
+            if str(i+1) in mycheckboxbuy3:
+                ExcludePlayers.append(buy3[i]) 
+
+        for i in range(len(buy4)):
+            if str(i+1) in mycheckboxbuy4:
+                ExcludePlayers.append(buy4[i]) 
+
+        for i in range(len(buy5)):
+            if str(i+1) in mycheckboxbuy5:
+                ExcludePlayers.append(buy5[i]) 
+## From team overview
+
         for i in range(len(suggested_players1)):
             if str(i+1) in included1:
                 ExcludePlayers.append(suggested_players1[i]) 
@@ -780,6 +825,10 @@ def sure():
         for i in range(len(excludedTeams)):
             if str(i+1) in excludedT:
                 ExcludeTeam.append(excludedTeams[i]) 
+
+        for i in range(len(IncludePlayers_temp_val)):
+            if str(i+1) in IncludePlayers_temp_checkbox:
+                IncludePlayers_temp.append(IncludePlayers_temp_val[i]) 
         
         
         Player1_IN = request.form.get("Player1IN")
@@ -808,10 +857,13 @@ def sure():
         else:
             form.Player3IN.choices = [("Please Select"),"None"]+sorted(fpl_name)
 
+        for i in IncludePlayers_temp:
+            IncludePlayers.append(i)
+
         print(ExcludePlayers)
         print(IncludePlayers)
         print(ExcludeTeam)
-        
+
         data_df = pd.read_json(session["players"])
         Budget_from_players = sum(data_df.selling_price)
         PlayerList = list(data_df.player)
@@ -825,6 +877,7 @@ def sure():
                                             list(data_final['Expected_Points_discounted']), list(data_final['position']), ExcludePlayers, IncludePlayers, ExcludeTeam, \
                                             cash, list(data_final['fpl_name']), list(data_final['Expected_Points_round1']), n_transfer, \
                                             PlayerList, sub_1_discount, sub_2_discount,sub_3_discount, sub_gk_discount, Budget_from_players, loop_range)
+                                            
         print(Output_list)
         if isinstance(Output_list[0], pd.DataFrame):
             temp = Player_stats[Player_stats['fpl_name'].isin(Output_list[0]['Names'][Output_list[0].player_sub=='player'])]
@@ -862,11 +915,12 @@ def sure():
             for i in range(6):
                 values0.append(round(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i]),1))
                 values0_mod.append(round(sum(temp_0.Expected_Points[temp_0['round'] == current_round + i]),1))
-                
+                values0_disc = sum(Output_list[0]['xPoints'][Output_list[0].player_sub=='player'])
         else:
             for i in range(6):
                 values0.append(0)
                 values0_mod.append(0)
+                values0_disc = 0
 
         values1 = []
         values1_mod = []
@@ -874,10 +928,12 @@ def sure():
             for i in range(6):
                 values1.append(round(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i]),1))
                 values1_mod.append(round(sum(temp_1.Expected_Points[temp_1['round'] == current_round + i]),1))
+                values1_disc = sum(Output_list[1]['xPoints'][Output_list[1].player_sub=='player'])
         else:
             for i in range(6):
                 values1.append(0)
                 values1_mod.append(0)
+                values1_disc = 0
             
         values2 = []
         values2_mod = []
@@ -885,10 +941,12 @@ def sure():
             for i in range(6):
                 values2.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i]),1))
                 values2_mod.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])-(2-n_transfers)*4,1))
+                values2_disc = sum(Output_list[2]['xPoints'][Output_list[2].player_sub=='player'])-(2-n_transfers)
         else:
             for i in range(6):
                 values2.append(0)
                 values2_mod.append(0)
+                values2_disc = 0
 
         values3 = []
         values3_mod = []
@@ -896,10 +954,12 @@ def sure():
             for i in range(6):
                 values3.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i]),1))
                 values3_mod.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i])-(3-n_transfers)*4,1))
+                values3_disc = sum(Output_list[3]['xPoints'][Output_list[3].player_sub=='player'])-(3-n_transfers)*4
         else:
             for i in range(6):
                 values3.append(0)
                 values3_mod.append(0)
+                values3_disc = 0
 
         values4 = []
         values4_mod = []
@@ -907,10 +967,12 @@ def sure():
             for i in range(6):
                 values4.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i]),1))
                 values4_mod.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i])-(4-n_transfers)*4,1))
+                values4_disc = sum(Output_list[4]['xPoints'][Output_list[4].player_sub=='player'])-(4-n_transfers)*4
         else:
             for i in range(6):
                 values4.append(0)
                 values4_mod.append(0)
+                values4_disc = 0
 
         values5 = []
         values5_mod = []
@@ -918,10 +980,12 @@ def sure():
             for i in range(6):
                 values5.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i]),1))
                 values5_mod.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i])-(5-n_transfers)*4,1))
+                values5_disc = sum(Output_list[5]['xPoints'][Output_list[5].player_sub=='player'])-(5-n_transfers)*4
         else:
             for i in range(6):
                 values5.append(0)
                 values5_mod.append(0)
+                values5_disc = 0
 
         Name1 = "Expected Points by number of tranfers and rounds (Without tranfer cost)"
         
@@ -955,15 +1019,14 @@ def sure():
 
         TransferCost = TransferCost[1]
 
-        nShare = nShare[1]
-        max_val = max([values0_mod,values1_mod,values2_mod,values3_mod,values4_mod,values5_mod])
-        if values0_mod==max_val:
+        max_val = max([sum(values0_mod),sum(values1_mod),sum(values2_mod),sum(values3_mod),sum(values4_mod),sum(values5_mod)])
+        if sum(values0_mod)==max_val:
             substitues = 0
             buy_str = 'None'
             sell_str = 'None'
             captain = 'None'
             vice_captain = 'None'
-        elif values1_mod==max_val:
+        elif sum(values1_mod)==max_val:
             substitues = 1
             buy_str = ' '.join([str(item) for item in buy_list1])
             sell_str = ' '.join([str(item) for item in sell_list1])
@@ -971,7 +1034,7 @@ def sure():
             temp = pd.DataFrame(Squad_xPoints1).sort_values(by=0)
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
             vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-        elif values2_mod==max_val:
+        elif sum(values2_mod)==max_val:
             substitues = 2
             buy_str = ' '.join([str(item) for item in buy_list2])
             sell_str = ' '.join([str(item) for item in sell_list2])
@@ -980,7 +1043,7 @@ def sure():
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
             vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[length]
             print(pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0])
-        elif values3_mod==max_val:
+        elif sum(values3_mod)==max_val:
             substitues = 3
             buy_str = ' '.join([str(item) for item in buy_list3])
             sell_str = ' '.join([str(item) for item in sell_list3])
@@ -989,7 +1052,7 @@ def sure():
             print(pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0])
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
             vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-        elif values4_mod==max_val:
+        elif sum(values4_mod)==max_val:
             substitues = 4
             buy_str = ' '.join([str(item) for item in buy_list4])
             sell_str = ' '.join([str(item) for item in sell_list4])
@@ -1025,7 +1088,7 @@ def sure():
                                         sell_list_team5=sell_list_team5, sell_list_position5=sell_list_position5, sell_list_xPoints5=sell_list_xPoints5,New5 = New5, buy_list_Cost5 = buy_list_Cost5, sell_list_Cost5 = sell_list_Cost5,
                                         form = form, labels=labels, values0=values0, values1=values1, values2=values2, values3=values3, values4=values4, values5=values5,
                                         values0_mod=values0_mod, values1_mod=values1_mod, values2_mod=values2_mod, values3_mod=values3_mod, values4_mod=values4_mod, values5_mod=values5_mod,
-                                        Name1=Name1, n_transfers = n_transfers, substitues = substitues, buy_str = buy_str, sell_str = sell_str, captain = captain, vice_captain = vice_captain)   
+                                        Name1=Name1, n_transfers = n_transfers, substitues = substitues, buy_str = buy_str, sell_str = sell_str, captain = captain, vice_captain = vice_captain, IncludePlayers_temp = IncludePlayers_temp)   
                                                             
 @app.route('/dashboard2')
 def dashboard2():
