@@ -216,6 +216,8 @@ def get_optim_results(Output, PlayerList,data_final):
         return 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 def get_current_team(username,password):
+    
+    from dictionaries import team_lookup_num, position_lookup
     import mechanize
     from http.cookiejar import LWPCookieJar
     import requests

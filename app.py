@@ -314,23 +314,22 @@ def login():
             print(found_user)
 
             if found_user:
-                if check_password_hash(found_user.password, form.password.data):
-                    print(found_user)
-                    session.permanent = False
-                    session["user"] = form.username.data
-                    session["players"] = data_df.to_json()
-                    session["bank"] = bank
-                    session["rank"] = rank
-                    session["transfer"] = transfer
-                    print(found_user)
-                    
-                    login_user(found_user, remember=form.remember.data)
-                    print(found_user)
+                
+                print(found_user)
+                session.permanent = False
+                session["user"] = form.username.data
+                session["players"] = data_df.to_json()
+                session["bank"] = bank
+                session["rank"] = rank
+                session["transfer"] = transfer
+                print(found_user)
+                
+                login_user(found_user, remember=form.remember.data)
+                print(found_user)
 
-                    return redirect(url_for('dashboard'))
+                return redirect(url_for('dashboard'))
 
-                print("hej")
-                return '<h1>No FPL account</h1>'
+               
             else:
                 hashed_password = generate_password_hash(form.password.data, method='sha256')
                 new_user = users11(username=form.username.data, email=form.username.data, password=hashed_password,
@@ -346,7 +345,7 @@ def login():
                 session["bank"] = bank
                 session["rank"] = rank
                 session["transfer"] = transfer
-                print("hej")
+                print("hej2")
                 login_user(new_user)
                 print("dig")
                 return redirect(url_for('dashboard'))
