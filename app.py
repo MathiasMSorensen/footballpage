@@ -329,7 +329,6 @@ def login():
 
                 return redirect(url_for('dashboard'))
 
-               
             else:
                 hashed_password = generate_password_hash(form.password.data, method='sha256')
                 new_user = users11(username=form.username.data, email=form.username.data, password=hashed_password,
@@ -469,7 +468,7 @@ def optimization():
         for i in range(6):
             values2.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i]),1))
             values2_mod.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])-(2-n_transfers)*4,1))
-            values2_disc = sum(Output_list[2]['xPoints'][Output_list[2].player_sub=='player'])-(2-n_transfers)
+            values2_disc = sum(Output_list[2]['xPoints'][Output_list[2].player_sub=='player'])-(2-n_transfers)*4
     else:
         for i in range(6):
             values2.append(0)
@@ -482,7 +481,7 @@ def optimization():
         for i in range(6):
             values3.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i]),1))
             values3_mod.append(round(sum(temp_3.Expected_Points[temp_3['round'] == current_round + i])-(3-n_transfers)*4,1))
-            values3_disc = sum(Output_list[3]['xPoints'][Output_list[3].player_sub=='player'])-(3-n_transfers)
+            values3_disc = sum(Output_list[3]['xPoints'][Output_list[3].player_sub=='player'])-(3-n_transfers)*4
     else:
         for i in range(6):
             values3.append(0)
@@ -495,7 +494,7 @@ def optimization():
         for i in range(6):
             values4.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i]),1))
             values4_mod.append(round(sum(temp_4.Expected_Points[temp_4['round'] == current_round + i])-(4-n_transfers)*4,1))
-            values4_disc = sum(Output_list[4]['xPoints'][Output_list[4].player_sub=='player'])-(4-n_transfers)
+            values4_disc = sum(Output_list[4]['xPoints'][Output_list[4].player_sub=='player'])-(4-n_transfers)*4
     else:
         for i in range(6):
             values4.append(0)
@@ -508,7 +507,7 @@ def optimization():
         for i in range(6):
             values5.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i]),1))
             values5_mod.append(round(sum(temp_5.Expected_Points[temp_5['round'] == current_round + i])-(5-n_transfers)*4,1))
-            values5_disc = sum(Output_list[5]['xPoints'][Output_list[5].player_sub=='player'])-(5-n_transfers)
+            values5_disc = sum(Output_list[5]['xPoints'][Output_list[5].player_sub=='player'])-(5-n_transfers)*4
     else:
         for i in range(6):
             values5.append(0)
@@ -547,15 +546,14 @@ def optimization():
     Output = Output_list[5]
 
     TransferCost = TransferCost[1]
-    print([sum(values0_mod),sum(values1_mod),sum(values2_mod),sum(values3_mod),sum(values4_mod),sum(values5_mod)])
-    max_val = max([sum(values0_mod),sum(values1_mod),sum(values2_mod),sum(values3_mod),sum(values4_mod),sum(values5_mod)])
-    if sum(values0_mod)==max_val:
+    max_val = max([values0_disc,values1_disc,values2_disc,values3_disc,values4_disc,values5_disc])
+    if values0_disc==max_val:
         substitues = 0
         buy_str = 'None'
         sell_str = 'None'
         captain = 'None'
         vice_captain = 'None'
-    elif sum(values1_mod)==max_val:
+    elif values1_disc==max_val:
         substitues = 1
         buy_str = ' '.join([str(item) for item in buy_list1])
         sell_str = ' '.join([str(item) for item in sell_list1])
@@ -563,7 +561,7 @@ def optimization():
         temp = pd.DataFrame(Squad_xPoints1).sort_values(by=0)
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
         vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-    elif sum(values2_mod)==max_val:
+    elif values2_disc==max_val:
         substitues = 2
         buy_str = ' '.join([str(item) for item in buy_list2])
         sell_str = ' '.join([str(item) for item in sell_list2])
@@ -572,7 +570,7 @@ def optimization():
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
         vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[length]
         print(pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0])
-    elif sum(values3_mod)==max_val:
+    elif values3_disc==max_val:
         substitues = 3
         buy_str = ' '.join([str(item) for item in buy_list3])
         sell_str = ' '.join([str(item) for item in sell_list3])
@@ -581,7 +579,7 @@ def optimization():
         print(pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0])
         length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
         vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-    elif sum(values4_mod)==max_val:
+    elif values4_disc==max_val:
         substitues = 4
         buy_str = ' '.join([str(item) for item in buy_list4])
         sell_str = ' '.join([str(item) for item in sell_list4])
@@ -940,7 +938,7 @@ def sure():
             for i in range(6):
                 values2.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i]),1))
                 values2_mod.append(round(sum(temp_2.Expected_Points[temp_2['round'] == current_round + i])-(2-n_transfers)*4,1))
-                values2_disc = sum(Output_list[2]['xPoints'][Output_list[2].player_sub=='player'])-(2-n_transfers)
+                values2_disc = sum(Output_list[2]['xPoints'][Output_list[2].player_sub=='player'])-(2-n_transfers)*4
         else:
             for i in range(6):
                 values2.append(0)
@@ -986,6 +984,7 @@ def sure():
                 values5_mod.append(0)
                 values5_disc = 0
 
+
         Name1 = "Expected Points by number of tranfers and rounds (Without tranfer cost)"
         
         if isinstance(Output_list[1], pd.DataFrame):
@@ -1018,14 +1017,14 @@ def sure():
 
         TransferCost = TransferCost[1]
 
-        max_val = max([sum(values0_mod),sum(values1_mod),sum(values2_mod),sum(values3_mod),sum(values4_mod),sum(values5_mod)])
-        if sum(values0_mod)==max_val:
+        max_val = max([values0_disc,values1_disc,values2_disc,values3_disc,values4_disc,values5_disc])
+        if values0_disc==max_val:
             substitues = 0
             buy_str = 'None'
             sell_str = 'None'
             captain = 'None'
             vice_captain = 'None'
-        elif sum(values1_mod)==max_val:
+        elif values1_disc==max_val:
             substitues = 1
             buy_str = ' '.join([str(item) for item in buy_list1])
             sell_str = ' '.join([str(item) for item in sell_list1])
@@ -1033,7 +1032,7 @@ def sure():
             temp = pd.DataFrame(Squad_xPoints1).sort_values(by=0)
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
             vice_captain =  pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-        elif sum(values2_mod)==max_val:
+        elif values2_disc==max_val:
             substitues = 2
             buy_str = ' '.join([str(item) for item in buy_list2])
             sell_str = ' '.join([str(item) for item in sell_list2])
@@ -1042,7 +1041,7 @@ def sure():
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
             vice_captain = pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0].iloc[length]
             print(pd.DataFrame(Squad2)[pd.DataFrame(Squad_xPoints2) == float(temp.iloc[-2])].dropna()[0])
-        elif sum(values3_mod)==max_val:
+        elif values3_disc==max_val:
             substitues = 3
             buy_str = ' '.join([str(item) for item in buy_list3])
             sell_str = ' '.join([str(item) for item in sell_list3])
@@ -1051,7 +1050,7 @@ def sure():
             print(pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0])
             length = len(pd.DataFrame(Squad1)[pd.DataFrame(Squad_xPoints1) == float(temp.iloc[-2])].dropna()[0])-1
             vice_captain =  pd.DataFrame(Squad3)[pd.DataFrame(Squad_xPoints3) == float(temp.iloc[-2])].dropna()[0].iloc[length]
-        elif sum(values4_mod)==max_val:
+        elif values4_disc==max_val:
             substitues = 4
             buy_str = ' '.join([str(item) for item in buy_list4])
             sell_str = ' '.join([str(item) for item in sell_list4])
