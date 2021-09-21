@@ -1,579 +1,579 @@
 ,fpl_name,team,cost,position,Expected_Points_discounted,Expected_Points_round1
-0,Aaron Cresswell,19,55,Defense,7.094317747837631,3.0800000000000005
-1,Aaron Wan-Bissaka,13,54,Defense,5.750053334154731,3.15
-2,Abdoulaye Doucouré,8,55,Midfield,5.645283148279911,3.46
-3,Adam Lallana,4,54,Midfield,4.956062672992939,2.5500000000000003
-4,Adama Traoré,20,60,Midfield,8.643566859433221,4.4013567451541835
-5,Alex Iwobi,8,59,Midfield,6.996851051840695,3.9537459656603557
-6,Alex McCarthy,16,45,Goalkeeper,5.9110701419822735,2.8666666666666667
-7,Alisson Ramses Becker,11,60,Goalkeeper,8.092144779504219,4.253333333333333
-8,Allan Marques Loureiro,8,46,Midfield,5.389045632745278,3.12
-9,Allan Saint-Maximin,14,67,Striker,17.07649419826797,9.837154489793914
-10,Andreas Christensen,6,50,Defense,9.635614422138124,3.7
-11,Andros Townsend,8,54,Midfield,6.225445401764514,3.797754618192476
-12,Angelo Ogbonna,19,50,Defense,5.310277607453011,2.58
-13,Antonio Rüdiger,6,55,Defense,9.079545039104673,3.5500000000000003
-14,Ashley Barnes,5,55,Striker,5.524150041051277,2.8499999999999996
-15,Ashley Westwood,5,54,Midfield,7.818070744407664,3.7971887692272364
-16,Asmir Begović,8,40,Goalkeeper,5.748216203808002,3.2133333333333334
-17,Axel Tuanzebe,2,45,Defense,8.221636770366151,3.62
-18,Bamidele Alli,17,65,Midfield,4.831392620139326,2.35
-19,Ben Foster,18,40,Goalkeeper,6.511327363299124,3.2933333333333334
-20,Ben Godfrey,8,48,Defense,4.938078105426812,3.1
-21,Ben Mee,5,49,Defense,6.3532914604579585,3.1199999999999997
-22,Ben White,1,44,Defense,6.808208936427975,3.34
-23,Bernardo Mota Veiga de Carvalho e Silva,12,69,Midfield,6.657095354776097,3.1699999999999995
-24,Billy Gilmour,15,45,Midfield,4.759041211831119,2.38
-25,Boubakary Soumaré,9,49,Midfield,4.539913477370975,2.4699999999999998
-26,Brandon Williams,15,40,Defense,6.360889225326234,3.1099999999999994
-27,Bruno Miguel Borges Fernandes,13,119,Midfield,7.1475991128929035,3.6800000000000006
-28,Bryan Mbeumo,3,55,Midfield,6.466369852538708,2.9899999999999998
-29,Bukayo Saka,1,63,Midfield,5.004618890646312,2.5300000000000002
-30,Charlie Taylor,5,44,Defense,5.780840468981917,2.7800000000000002
-31,Che Adams,16,70,Striker,5.970365347535359,3.14
-32,Cheikhou Kouyaté,7,45,Defense,5.413960714971338,2.81
-33,Chris Wood,5,69,Striker,8.026520492679671,4.008366963430169
-34,Christian Benteke,7,63,Striker,5.7972053001544035,2.96
-35,Christian Nørgaard,3,50,Midfield,4.875975543910179,2.1999999999999997
-36,Ciaran Clark,14,44,Defense,5.302601900339996,2.84
-37,Conor Coady,20,45,Defense,7.701764269016706,3.8100000000000005
-38,Conor Gallagher,7,56,Midfield,8.322016286686212,4.108878598320198
-39,Craig Cathcart,18,44,Defense,7.306631880205148,4.322469661591624
-40,Cristiano Ronaldo dos Santos Aveiro,13,127,Striker,11.882124953653532,6.307043079356722
-41,César Azpilicueta,6,60,Defense,15.70120916456524,6.158568963467013
-42,Daniel James,10,60,Midfield,5.21345355298041,2.58
-43,Danny Ings,2,80,Striker,18.21093148833106,8.041000202180415
-44,Danny Rose,18,43,Defense,5.49283774176912,3.01
-45,Danny Welbeck,4,60,Striker,9.050477037637044,4.7320190993334394
-46,David Raya Martin,3,46,Goalkeeper,8.052752113173597,3.92
-47,David de Gea,13,50,Goalkeeper,9.502981433448587,4.4399999999999995
-48,Declan Rice,19,50,Midfield,6.6823514856193125,3.3048441691729233
-49,Demarai Gray,8,57,Midfield,8.588721874985207,4.991315980875284
-50,Diogo Jota,11,77,Midfield,11.841849766005524,6.615059200544062
-51,Douglas Luiz Soares de Paulo,2,45,Midfield,4.414869896418298,2.0399999999999996
-52,Dwight McNeil,5,59,Midfield,5.615683961496725,2.70044059676587
-53,Ederson Santana de Moraes,12,60,Goalkeeper,9.433811807668434,4.626666666666667
-54,Emile Smith Rowe,1,53,Midfield,5.375250379212106,2.7299999999999995
-55,Emiliano Martínez,2,55,Goalkeeper,8.283472734540982,3.9400000000000004
-56,Eric Dier,17,46,Defense,5.342783755071809,2.5999999999999996
-57,Ethan Pinnock,3,46,Defense,7.407765873808058,3.3400000000000003
-58,Ezri Konsa Ngoyo,2,49,Defense,8.212710083386904,3.62
-59,Fabio Henrique Tavares,11,54,Midfield,6.7414503354494,3.58
-60,Fernando Luiz Rosa,12,49,Midfield,5.8441993787487005,2.82
-61,Fernando Marçal,20,46,Defense,9.117846520902129,4.6893509687982675
-62,Francisco Femenía Far,18,44,Defense,7.9718626084424775,4.771764534735738
-63,Francisco Machado Mota de Castro Trincão,20,59,Midfield,6.929211372932267,3.4
-64,Frederico Rodrigues de Paula Santos,13,50,Midfield,5.812510283732524,3.09
-65,Gabriel Fernando de Jesus,12,86,Striker,22.175171881157183,10.164724810303454
-66,Gabriel Magalhães,1,50,Defense,7.13433978404523,3.51
-67,Giovani Lo Celso,17,59,Midfield,5.922839970482218,2.8600000000000003
-68,Grant Hanley,15,44,Defense,7.4741334817281615,3.6599999999999997
-69,Harry Kane,17,122,Striker,4.67440382938912,2.27
-70,Harry Maguire,13,54,Defense,6.722513053211825,3.42
-71,Harvey Barnes,9,68,Midfield,7.560225226048861,4.100768409387938
-72,Heung-Min Son,17,100,Midfield,12.915755477882417,6.152434287536773
-73,Hugo Lloris,17,56,Goalkeeper,7.12869969312455,3.5466666666666664
-74,Héctor Junior Firpo Adames,10,48,Defense,9.358602681184921,4.214462652318286
-75,Ibrahima Konaté,11,52,Defense,7.509097493149311,4.2
-76,Ilkay Gündogan,12,73,Midfield,9.67746144076161,4.539616332865501
-77,Illan Meslier,10,50,Goalkeeper,6.1291860034584085,2.88
-78,Isaac Hayden,14,45,Midfield,4.352357777699488,2.33
-79,Ismaila Sarr,18,61,Midfield,6.094647990601266,3.2999999999999994
-80,Ivan Toney,3,63,Striker,6.327451252626163,2.92
-81,Jack Grealish,12,80,Midfield,15.782775877793721,7.271553124749657
-82,Jack Stephens,16,45,Defense,2.943103557598661,1.7900000000000003
-83,Jacob Ramsey,2,45,Midfield,4.534306552304335,2.119999999999999
-84,Jamaal Lascelles,14,44,Defense,5.13457151704175,2.77
-85,James Maddison,9,68,Midfield,4.700126286005791,2.44
-86,James McArthur,7,45,Midfield,5.031937234466799,2.5400000000000005
-87,James Milner,11,49,Midfield,5.177946610920595,2.9000000000000004
-88,James Tarkowski,5,50,Defense,7.339851093485483,3.6
-89,James Ward-Prowse,16,64,Midfield,4.719532862533228,2.4499999999999993
-90,Jamie Vardy,9,104,Striker,11.650077448339808,6.3147375027580654
-91,Jan Bednarek,16,44,Defense,3.2978222347097113,1.9000000000000001
-92,Jannik Vestergaard,9,49,Defense,5.631509878793384,3.06
-93,Jarrod Bowen,19,63,Midfield,4.989100957563824,2.28
-94,Javier Manquillo,14,40,Defense,7.4917047268200605,4.02
-95,Joachim Andersen,7,45,Defense,3.867342678360837,2.06
-96,Joel Ward,7,45,Defense,4.236808153149595,2.23
-97,Joelinton Cássio Apolinário de Lira,14,58,Striker,4.957958569495557,2.5700000000000003
-98,Johann Berg Gudmundsson,5,55,Midfield,6.475223873109281,3.08
-99,John McGinn,2,59,Midfield,6.772383354866923,2.8499999999999996
-100,Jordan Ayew,7,59,Striker,4.951893708420929,2.49
-101,Jordan Henderson,11,50,Midfield,8.715674373502278,4.856962943235322
-102,Jorge Luiz Frello Filho,6,59,Midfield,5.7499602982720255,2.5599999999999996
-103,Joseph Willock,14,59,Midfield,4.544392501468912,2.41
-104,Josh Brownhill,5,45,Midfield,4.607049790622816,2.4
-105,Joshua King,18,55,Striker,11.087091628291155,6.437136929100164
-106,José Malheiro de Sá,20,50,Goalkeeper,8.863111112553318,4.426666666666667
-107,João Filipe Iria Santos Moutinho,20,50,Midfield,6.026577447887411,3.1485199431650748
-108,João Pedro Cavaco Cancelo,12,60,Defense,10.590913375196642,5.103340711347931
-109,Joël Veltman,4,44,Defense,8.027709426259808,4.298469058499922
-110,Kai Havertz,6,83,Midfield,13.181383358049173,5.756748365385424
-111,Kalvin Phillips,10,49,Midfield,5.387561995937678,2.6399999999999997
-112,Karl Darlow,14,45,Goalkeeper,6.559011704377363,3.4166666666666665
-113,Kasper Schmeichel,9,50,Goalkeeper,9.034528470586675,4.333333333333333
-114,Kenny McLean,15,49,Midfield,4.759041211831119,2.38
-115,Kepa Arrizabalaga,6,49,Goalkeeper,10.18576323751047,4.52
-116,Kieran Tierney,1,49,Defense,10.46167291494679,5.322323245554811
-117,Kristoffer Ajer,3,45,Defense,7.0046638081988295,3.1399999999999997
-118,Kurt Zouma,19,54,Defense,5.310277607453011,2.58
-119,Kyle Walker,12,55,Defense,8.339693171242002,3.98
-120,Kyle Walker-Peters,16,48,Defense,3.4161890396389936,1.95
-121,Leandro Trossard,4,64,Midfield,5.348875596274266,2.7300000000000004
-122,Lewis Dunk,4,50,Defense,6.066190071668327,3.1499999999999995
-123,Liam Cooper,10,45,Defense,6.064301413075797,2.81
-124,Lucas Digne,8,54,Defense,5.10808780696954,3.556826435348649
-125,Lukasz Fabianski,19,50,Goalkeeper,6.653491958820017,3.3466666666666667
-126,Luke Ayling,10,45,Defense,9.991147537663895,4.62971159341
-127,Luke Shaw,13,55,Defense,9.184355808304845,4.908258802335541
-128,Marc Guéhi,7,45,Defense,4.010792524583985,2.12
-129,Marcos Alonso,6,57,Defense,12.300513580200569,4.854022347658365
-130,Mason Greenwood,13,77,Midfield,9.980841232951247,5.2834546086474825
-131,Mason Mount,6,74,Midfield,11.656839447690228,5.115571661649186
-132,Mateo Kovacic,6,51,Midfield,7.167640797423364,3.1099999999999994
-133,Mateusz Klich,10,55,Midfield,7.751561158012971,3.6896655836829364
-134,Matt Ritchie,14,50,Defense,7.0131098563446175,4.017289298873806
-135,Matt Targett,2,48,Defense,7.633955789092225,3.11
-136,Matthew Cash,2,50,Defense,7.423548431976554,3.14
-137,Matthew Lowton,5,44,Defense,7.411604121333807,3.726002071981412
-138,Max Aarons,15,44,Defense,7.167671795393046,3.714743381007487
-139,Max Kilman,20,45,Defense,7.591654087914925,3.7500000000000004
-140,Michael Keane,8,50,Defense,5.3850682920417325,3.34
-141,Miguel Almirón,14,54,Midfield,4.544392501468912,2.41
-142,Milot Rashica,15,54,Midfield,6.485023423907873,3.261494990219549
-143,Mohamed Salah,11,126,Midfield,14.89928513517469,8.45726707418698
-144,Moussa Sissoko,18,45,Midfield,3.702426229245191,2.12
-145,Nathan Aké,12,49,Defense,12.965599612870161,5.9399999999999995
-146,Nathan Redmond,16,59,Midfield,4.727112397232954,2.4599999999999995
-147,Neal Maupay,4,65,Striker,11.788445236040534,6.251500903943281
-148,Nick Pope,5,55,Goalkeeper,6.296677231012891,3.0933333333333333
-149,Nicolas Pépé,1,72,Midfield,5.630699823638649,2.8200000000000003
-150,Nélson Cabral Semedo,20,49,Defense,18.584123680897417,9.313685495871002
-151,Ollie Watkins,2,73,Striker,10.014266032166203,4.59935679774282
-152,Oriol Romeu Vidal,16,45,Midfield,3.336053518364442,1.94
-153,Pablo Fornals,19,60,Midfield,8.009384207006162,4.04
-154,Patrick Bamford,10,80,Striker,10.943448115843879,5.121716381921059
-155,Paul Pogba,13,78,Midfield,7.345878975429898,3.9299999999999997
-156,Pierre-Emerick Aubameyang,1,99,Striker,17.42548897281332,9.485678353040502
-157,Pierre-Emile Højbjerg,17,50,Midfield,4.400172046417043,2.15
-158,Pontus Jansson,3,46,Defense,9.312143835953972,4.258618185315599
-159,Raheem Sterling,12,108,Midfield,12.715839766023922,5.868508204682282
-160,Raphael Dias Belloli,10,65,Midfield,4.8560629254898435,2.38
-161,Raúl Jiménez,20,75,Striker,7.744883616101338,3.868468661695873
-162,Ricardo Domingos Barbosa Pereira,9,55,Defense,8.544330658976179,4.992505026077353
-163,Rico Henry,3,45,Defense,6.88046066896359,2.99
-164,Robert Sánchez,4,45,Goalkeeper,6.686472753014171,3.4933333333333336
-165,Rodrigo Moreno,10,63,Striker,4.185220686590209,2.07
-166,Romain Saïss,20,50,Defense,7.389785422561662,3.6400000000000006
-167,Ryan Bertrand,9,49,Defense,6.016685587672645,3.2
-168,Rúben Diogo da Silva Neves,20,55,Midfield,4.966463332579522,2.4499999999999997
-169,Rúben Santos Gato Alves Dias,12,61,Defense,13.986327035108463,6.522256816051173
-170,Sadio Mané,11,119,Midfield,10.875156212738153,6.072433990257042
-171,Saïd Benrahma,19,64,Midfield,10.425756496966665,5.189657949367812
-172,Scott McTominay,13,54,Midfield,5.639842861977957,2.9699999999999998
-173,Sean Longstaff,14,45,Midfield,4.544392501468912,2.41
-174,Sergi Canós,3,55,Midfield,5.855520505000085,2.68
-175,Sergio Reguilón,17,52,Defense,6.908453621560098,3.402654374303241
-176,Shane Duffy,4,43,Defense,6.903061365909972,3.5999999999999996
-177,Solomon March,4,54,Midfield,5.296443091199254,2.6
-178,Stuart Dallas,10,54,Midfield,6.92659087558026,3.1599999999999997
-179,Tanguy Ndombele,17,58,Midfield,4.622095076279772,2.28
-180,Teemu Pukki,15,59,Striker,14.463627315659005,7.21239050334544
-181,Thiago Alcántara do Nascimento,11,54,Midfield,7.064431157119885,3.72
-182,Thiago Emiliano da Silva,6,54,Defense,9.661113924211227,3.7
-183,Thomas Partey,1,50,Midfield,5.548262519951879,2.83
-184,Tim Krul,15,45,Goalkeeper,7.288577687842984,3.5733333333333337
-185,Tom Cleverley,18,50,Midfield,4.579280963400419,2.54
-186,Tomas Soucek,19,59,Midfield,4.725045245271651,2.36
-187,Tyrick Mitchell,7,45,Defense,4.333183580379054,2.26
-188,Tyrone Mings,2,50,Defense,8.494348437019985,3.69
-189,Vicente Guaita,7,45,Goalkeeper,7.517167957096964,3.453333333333333
-190,Virgil van Dijk,11,65,Defense,8.019567545623337,4.679398193456399
-191,Vitaly Janelt,3,50,Midfield,4.677199179009474,2.15
-192,Vladimir Coufal,19,50,Defense,9.631898478332262,4.63674139111952
-193,Wilfred Ndidi,9,50,Midfield,4.98432618312752,2.64
-194,Wilfried Zaha,7,69,Midfield,6.455198504349093,3.07
-195,William Troost-Ekong,18,45,Defense,5.9800110557351305,3.28
-196,Yerry Mina,8,49,Defense,4.565431463095444,2.94
-197,Youri Tielemans,9,64,Midfield,6.9567436105671945,3.7100000000000004
-198,Yves Bissouma,4,46,Midfield,5.570720164271534,2.8800000000000003
-199,Çaglar Söyüncü,9,50,Defense,5.566390980337602,3.0100000000000002
-200,Bernd Leno,1,49,Goalkeeper,0.0,0.0
-201,Rúnar Alex Rúnarsson,1,40,Goalkeeper,0.0,0.0
-202,Willian Borges Da Silva,1,63,Midfield,0.0,0.0
-203,Cédric Soares,1,44,Defense,0.0,0.0
-204,Alexandre Lacazette,1,84,Striker,0.0,0.0
-205,Granit Xhaka,1,49,Midfield,0.0,0.0
-206,Pablo Marí,1,44,Defense,0.0,0.0
-207,Héctor Bellerín,1,48,Defense,0.0,0.0
-208,Calum Chambers,1,43,Defense,0.0,0.0
-209,Sead Kolasinac,1,43,Defense,0.0,0.0
-210,Mohamed Naser El Sayed Elneny,1,45,Midfield,0.0,0.0
-211,Ainsley Maitland-Niles,1,54,Midfield,0.0,0.0
-212,Rob Holding,1,43,Defense,0.0,0.0
-213,Lucas Torreira,1,45,Midfield,0.0,0.0
-214,Edward Nketiah,1,54,Striker,0.0,0.0
-215,Konstantinos Mavropanos,1,45,Defense,0.0,0.0
-216,Mattéo Guendouzi,1,45,Midfield,0.0,0.0
-217,Gabriel Teodoro Martinelli Silva,1,53,Midfield,0.0,0.0
-218,William Saliba,1,45,Defense,0.0,0.0
-219,Nuno Varela Tavares,1,44,Defense,0.0,0.0
-220,Albert Sambi Lokonga,1,50,Midfield,0.0,0.0
-221,Folarin Balogun,1,49,Striker,0.0,0.0
-222,Reiss Nelson,1,50,Midfield,0.0,0.0
-223,Karl Hein,1,40,Goalkeeper,0.0,0.0
-224,Martin Ødegaard,1,55,Midfield,0.0,0.0
-225,Aaron Ramsdale,1,45,Goalkeeper,0.0,0.0
-226,Arthur Okonkwo,1,40,Goalkeeper,0.0,0.0
-227,Takehiro Tomiyasu,1,45,Defense,0.0,0.0
-228,Jed Steer,2,40,Goalkeeper,0.0,0.0
-229,Conor Hourihane,2,49,Midfield,0.0,0.0
-230,Björn Engels,2,45,Defense,0.0,0.0
-231,Bertrand Traoré,2,59,Midfield,0.0,0.0
-232,Morgan Sanson,2,50,Midfield,0.0,0.0
-233,Kortney Hause,2,44,Defense,0.0,0.0
-234,Mahmoud Ahmed Ibrahim Hassan,2,55,Midfield,0.0,0.0
-235,Marvelous Nakamba,2,45,Midfield,0.0,0.0
-236,Anwar El Ghazi,2,59,Midfield,0.0,0.0
-237,Emiliano Buendía Stati,2,64,Midfield,0.0,0.0
-238,Frédéric Guilbert,2,45,Defense,0.0,0.0
-239,Wesley Moraes,2,54,Striker,0.0,0.0
-240,Mbwana Ally Samatta,2,55,Striker,0.0,0.0
-241,Keinan Davis,2,45,Striker,0.0,0.0
-242,Ashley Young,2,50,Defense,0.0,0.0
-243,Leon Bailey,2,64,Midfield,0.0,0.0
-244,Aaron Ramsey,2,45,Midfield,0.0,0.0
-245,Jaden Philogene-Bidace,2,50,Midfield,0.0,0.0
-246,Carney Chukwuemeka,2,45,Midfield,0.0,0.0
-247,Cameron Archer,2,45,Striker,0.0,0.0
-248,Viljami Sinisalo,2,40,Goalkeeper,0.0,0.0
-249,Tariqe Fosu-Henry,3,52,Midfield,0.0,0.0
-250,Pelenda Joshua Dasilva,3,54,Midfield,0.0,0.0
-251,Saman Ghoddos,3,54,Midfield,0.0,0.0
-252,Mathias Jensen,3,49,Midfield,0.0,0.0
-253,Charlie Goode,3,39,Defense,0.0,0.0
-254,Marcus Forss,3,54,Striker,0.0,0.0
-255,Mads Roerslev Rasmussen,3,43,Defense,0.0,0.0
-256,Mads Bech Sørensen,3,44,Defense,0.0,0.0
-257,Ellery Balcombe,3,40,Goalkeeper,0.0,0.0
-258,Jan Zamburek,3,45,Midfield,0.0,0.0
-259,Patrik Gunnarsson,3,40,Goalkeeper,0.0,0.0
-260,Halil Dervişoğlu,3,54,Striker,0.0,0.0
-261,Mads Bidstrup,3,45,Midfield,0.0,0.0
-262,Frank Onyeka,3,49,Midfield,0.0,0.0
-263,Dominic Thompson,3,45,Defense,0.0,0.0
-264,Shandon Baptiste,3,50,Midfield,0.0,0.0
-265,Yoane Wissa,3,59,Midfield,0.0,0.0
-266,Álvaro Fernández,3,45,Goalkeeper,0.0,0.0
-267,Finley Stevens,3,40,Defense,0.0,0.0
-268,Mathias Jorgensen,3,45,Defense,0.0,0.0
-269,Jason Steele,4,40,Goalkeeper,0.0,0.0
-270,Pascal Groß,4,60,Midfield,0.0,0.0
-271,Davy Pröpper,4,45,Midfield,0.0,0.0
-272,Dan Burn,4,44,Defense,0.0,0.0
-273,Adam Webster,4,45,Defense,0.0,0.0
-274,Mathew Ryan,4,45,Goalkeeper,0.0,0.0
-275,Alireza Jahanbakhsh,4,55,Midfield,0.0,0.0
-276,Bernardo Fernandes Da Silva Junior,4,40,Defense,0.0,0.0
-277,Tariq Lamptey,4,44,Defense,0.0,0.0
-278,Aaron Connolly,4,53,Striker,0.0,0.0
-279,Steven Alzate,4,50,Midfield,0.0,0.0
-280,Alexis Mac Allister,4,55,Midfield,0.0,0.0
-281,Jakub Moder,4,45,Midfield,0.0,0.0
-282,Enock Mwepu,4,59,Midfield,0.0,0.0
-283,Kjell Scherpen,4,45,Goalkeeper,0.0,0.0
-284,Florin Andone,4,50,Striker,0.0,0.0
-285,Andi Zeqiri,4,45,Striker,0.0,0.0
-286,Michal Karbownik,4,40,Defense,0.0,0.0
-287,Taylor Richards,4,45,Midfield,0.0,0.0
-288,Moisés Caicedo,4,45,Midfield,0.0,0.0
-289,Haydon Roberts,4,40,Defense,0.0,0.0
-290,Marc Cucurella,4,50,Defense,0.0,0.0
-291,Jürgen Locadia,4,45,Striker,0.0,0.0
-292,Phil Bardsley,5,40,Defense,0.0,0.0
-293,Erik Pieters,5,44,Defense,0.0,0.0
-294,Jack Cork,5,45,Midfield,0.0,0.0
-295,Dale Stephens,5,45,Midfield,0.0,0.0
-296,Kevin Long,5,40,Defense,0.0,0.0
-297,Jay Rodriguez,5,54,Striker,0.0,0.0
-298,Matej Vydra,5,53,Striker,0.0,0.0
-299,Will Norris,5,45,Goalkeeper,0.0,0.0
-300,Josh Benson,5,45,Midfield,0.0,0.0
-301,Bailey Peacock-Farrell,5,45,Goalkeeper,0.0,0.0
-302,Nathan Collins,5,44,Defense,0.0,0.0
-303,Wayne Hennessey,5,45,Goalkeeper,0.0,0.0
-304,Lewis Richardson,5,45,Striker,0.0,0.0
-305,Bobby Thomas,5,40,Defense,0.0,0.0
-306,Owen Dodgson,5,40,Defense,0.0,0.0
-307,Aaron Lennon,5,50,Midfield,0.0,0.0
-308,Maxwel Cornet,5,60,Midfield,0.0,0.0
-309,Connor Roberts,5,45,Defense,0.0,0.0
-310,Olivier Giroud,6,65,Striker,0.0,0.0
-311,Ross Barkley,6,53,Midfield,0.0,0.0
-312,Michy Batshuayi,6,55,Striker,0.0,0.0
-313,N'Golo Kanté,6,49,Midfield,0.0,0.0
-314,Hakim Ziyech,6,74,Midfield,0.0,0.0
-315,Ruben Loftus-Cheek,6,54,Midfield,0.0,0.0
-316,Timo Werner,6,86,Striker,0.0,0.0
-317,Benjamin Chilwell,6,56,Defense,0.0,0.0
-318,Tammy Abraham,6,65,Striker,0.0,0.0
-319,Christian Pulisic,6,79,Midfield,0.0,0.0
-320,Ethan Ampadu,6,45,Defense,0.0,0.0
-321,Callum Hudson-Odoi,6,53,Midfield,0.0,0.0
-322,Reece James,6,56,Defense,0.0,0.0
-323,Edouard Mendy,6,60,Goalkeeper,0.0,0.0
-324,Malang Sarr,6,49,Defense,0.0,0.0
-325,Trevoh Chalobah,6,49,Defense,0.0,0.0
-326,Romelu Lukaku,6,116,Striker,0.0,0.0
-327,Emerson Palmieri dos Santos,6,45,Defense,0.0,0.0
-328,Saúl Ñíguez,6,55,Midfield,0.0,0.0
-329,Marcus Bettinelli,6,40,Goalkeeper,0.0,0.0
-330,James Tomkins,7,44,Defense,0.0,0.0
-331,Martin Kelly,7,40,Defense,0.0,0.0
-332,Luka Milivojevic,7,54,Midfield,0.0,0.0
-333,Jeffrey Schlupp,7,54,Midfield,0.0,0.0
-334,Jack Butland,7,45,Goalkeeper,0.0,0.0
-335,Jairo Riedewald,7,49,Midfield,0.0,0.0
-336,Jarosław Jach,7,44,Defense,0.0,0.0
-337,Jean-Philippe Mateta,7,54,Striker,0.0,0.0
-338,Eberechi Eze,7,59,Midfield,0.0,0.0
-339,Nathan Ferguson,7,45,Defense,0.0,0.0
-340,Will Hughes,7,49,Midfield,0.0,0.0
-341,Michael Olise,7,54,Midfield,0.0,0.0
-342,Nathaniel Clyne,7,44,Defense,0.0,0.0
-343,Reece Hannam,7,40,Defense,0.0,0.0
-344,Jesurun Rak-Sakyi,7,45,Midfield,0.0,0.0
-345,Robert Street,7,45,Striker,0.0,0.0
-346,Scott Banks,7,45,Midfield,0.0,0.0
-347,Remi Matthews,7,40,Goalkeeper,0.0,0.0
-348,Odsonne Edouard,7,65,Striker,0.0,0.0
-349,Fabian Delph,8,44,Midfield,0.0,0.0
-350,Gylfi Sigurdsson,8,68,Midfield,0.0,0.0
-351,Seamus Coleman,8,50,Defense,0.0,0.0
-352,James Rodríguez,8,69,Midfield,0.0,0.0
-353,Bernard Anício Caldeira Duarte,8,55,Midfield,0.0,0.0
-354,Jordan Pickford,8,50,Goalkeeper,0.0,0.0
-355,André Filipe Tavares Gomes,8,49,Midfield,0.0,0.0
-356,Tom Davies,8,49,Midfield,0.0,0.0
-357,Dominic Calvert-Lewin,8,81,Striker,0.0,0.0
-358,Mason Holgate,8,45,Defense,0.0,0.0
-359,Richarlison de Andrade,8,75,Striker,0.0,0.0
-360,João Virgínia,8,40,Goalkeeper,0.0,0.0
-361,Jonjoe Kenny,8,45,Defense,0.0,0.0
-362,Anthony Gordon,8,45,Midfield,0.0,0.0
-363,Jean-Philippe Gbamin,8,45,Midfield,0.0,0.0
-364,Jarrad Branthwaite,8,40,Defense,0.0,0.0
-365,Nathan Broadhead,8,45,Striker,0.0,0.0
-366,Moise Kean,8,60,Striker,0.0,0.0
-367,Niels Nkounkou,8,40,Defense,0.0,0.0
-368,Andy Lonergan,8,40,Goalkeeper,0.0,0.0
-369,Salomón Rondón,8,60,Striker,0.0,0.0
-370,Ellis Simms,8,45,Striker,0.0,0.0
-371,Jonny Evans,9,54,Defense,0.0,0.0
-372,Marc Albrighton,9,54,Midfield,0.0,0.0
-373,Nampalys Mendy,9,44,Midfield,0.0,0.0
-374,Danny Ward,9,40,Goalkeeper,0.0,0.0
-375,Dennis Praet,9,49,Midfield,0.0,0.0
-376,Daniel Amartey,9,41,Defense,0.0,0.0
-377,Timothy Castagne,9,54,Defense,0.0,0.0
-378,Ayoze Pérez,9,58,Midfield,0.0,0.0
-379,Kelechi Iheanacho,9,71,Striker,0.0,0.0
-380,Hamza Choudhury,9,45,Midfield,0.0,0.0
-381,James Justin,9,49,Defense,0.0,0.0
-382,Luke Thomas,9,45,Defense,0.0,0.0
-383,Wesley Fofana,9,44,Defense,0.0,0.0
-384,Patson Daka,9,71,Striker,0.0,0.0
-385,Kiernan Dewsbury-Hall,9,45,Midfield,0.0,0.0
-386,Eldin Jakupovic,9,40,Goalkeeper,0.0,0.0
-387,Ademola Lookman,9,60,Midfield,0.0,0.0
-388,Pablo Hernández Domínguez,10,55,Midfield,0.0,0.0
-389,Francisco Casilla Cortés,10,45,Goalkeeper,0.0,0.0
-390,Diego Llorente,10,45,Defense,0.0,0.0
-391,Hélder Wander Sousa de Azevedo e Costa,10,54,Midfield,0.0,0.0
-392,Tyler Roberts,10,49,Midfield,0.0,0.0
-393,Robin Koch,10,44,Defense,0.0,0.0
-394,Ian Carlo Poveda-Ocampo,10,45,Midfield,0.0,0.0
-395,Jamie Shackleton,10,45,Midfield,0.0,0.0
-396,Pascal Struijk,10,44,Defense,0.0,0.0
-397,Jack Harrison,10,58,Midfield,0.0,0.0
-398,Kristoffer Klaesson,10,45,Goalkeeper,0.0,0.0
-399,Sam Greenwood,10,45,Striker,0.0,0.0
-400,Crysencio Summerville,10,45,Midfield,0.0,0.0
-401,Adam Forshaw,10,45,Midfield,0.0,0.0
-402,Cody Drameh,10,40,Defense,0.0,0.0
-403,Charlie Cresswell,10,40,Defense,0.0,0.0
-404,Liam McCarron,10,45,Midfield,0.0,0.0
-405,Joe Gelhardt,10,45,Striker,0.0,0.0
-406,Nohan Kenneh,10,45,Midfield,0.0,0.0
-407,Stuart McKinstry,10,45,Midfield,0.0,0.0
-408,Adrián San Miguel del Castillo,11,44,Goalkeeper,0.0,0.0
-409,Joel Matip,11,50,Defense,0.0,0.0
-410,Xherdan Shaqiri,11,59,Midfield,0.0,0.0
-411,Alex Oxlade-Chamberlain,11,59,Midfield,0.0,0.0
-412,Roberto Firmino,11,88,Striker,0.0,0.0
-413,Andrew Robertson,11,70,Defense,0.0,0.0
-414,Divock Origi,11,49,Striker,0.0,0.0
-415,Takumi Minamino,11,52,Midfield,0.0,0.0
-416,Trent Alexander-Arnold,11,76,Defense,0.0,0.0
-417,Joseph Gomez,11,48,Defense,0.0,0.0
-418,Naby Keita,11,50,Midfield,0.0,0.0
-419,Nathaniel Phillips,11,44,Defense,0.0,0.0
-420,Caoimhin Kelleher,11,44,Goalkeeper,0.0,0.0
-421,Curtis Jones,11,50,Midfield,0.0,0.0
-422,Konstantinos Tsimikas,11,40,Defense,0.0,0.0
-423,Neco Williams,11,40,Defense,0.0,0.0
-424,Rhys Williams,11,44,Defense,0.0,0.0
-425,Ben Davies,11,40,Defense,0.0,0.0
-426,Harvey Elliott,11,55,Midfield,0.0,0.0
-427,Ben Woodburn,11,45,Midfield,0.0,0.0
-428,Kevin De Bruyne,12,119,Midfield,0.0,0.0
-429,John Stones,12,53,Defense,0.0,0.0
-430,Benjamin Mendy,12,53,Defense,0.0,0.0
-431,Riyad Mahrez,12,88,Midfield,0.0,0.0
-432,Aymeric Laporte,12,56,Defense,0.0,0.0
-433,Zack Steffen,12,45,Goalkeeper,0.0,0.0
-434,Oleksandr Zinchenko,12,53,Defense,0.0,0.0
-435,Phil Foden,12,79,Midfield,0.0,0.0
-436,Rodrigo Hernandez,12,55,Midfield,0.0,0.0
-437,Ferran Torres,12,72,Midfield,0.0,0.0
-438,Cole Palmer,12,45,Midfield,0.0,0.0
-439,Samuel Edozie,12,49,Midfield,0.0,0.0
-440,Tommy Doyle,12,45,Midfield,0.0,0.0
-441,Scott Carson,12,40,Goalkeeper,0.0,0.0
-442,Luke Mbete,12,40,Defense,0.0,0.0
-443,Joshua Wilson-Esbrand,12,40,Defense,0.0,0.0
-444,Romeo Lavia,12,45,Midfield,0.0,0.0
-445,Edinson Cavani,13,84,Striker,0.0,0.0
-446,Nemanja Matic,13,45,Midfield,0.0,0.0
-447,Jesse Lingard,13,69,Midfield,0.0,0.0
-448,Anthony Martial,13,77,Striker,0.0,0.0
-449,Alex Nicolao Telles,13,50,Defense,0.0,0.0
-450,Dean Henderson,13,49,Goalkeeper,0.0,0.0
-451,Marcus Rashford,13,94,Midfield,0.0,0.0
-452,Donny van de Beek,13,58,Midfield,0.0,0.0
-453,Victor Lindelöf,13,49,Defense,0.0,0.0
-454,Eric Bailly,13,49,Defense,0.0,0.0
-455,Juan Mata,13,49,Midfield,0.0,0.0
-456,Jadon Sancho,13,91,Midfield,0.0,0.0
-457,Tom Heaton,13,40,Goalkeeper,0.0,0.0
-458,José Diogo Dalot Teixeira,13,44,Defense,0.0,0.0
-459,Andreas Pereira,13,50,Midfield,0.0,0.0
-460,Anthony Elanga,13,49,Midfield,0.0,0.0
-461,Raphaël Varane,13,55,Defense,0.0,0.0
-462,Jonjo Shelvey,14,53,Midfield,0.0,0.0
-463,Martin Dubravka,14,44,Goalkeeper,0.0,0.0
-464,Callum Wilson,14,74,Striker,0.0,0.0
-465,Jeff Hendrick,14,49,Midfield,0.0,0.0
-466,Ryan Fraser,14,54,Midfield,0.0,0.0
-467,Dwight Gayle,14,54,Striker,0.0,0.0
-468,Paul Dummett,14,45,Defense,0.0,0.0
-469,Emil Krafth,14,44,Defense,0.0,0.0
-470,Jacob Murphy,14,50,Midfield,0.0,0.0
-471,Fabian Schär,14,44,Defense,0.0,0.0
-472,Jamal Lewis,14,44,Defense,0.0,0.0
-473,Matthew Longstaff,14,45,Midfield,0.0,0.0
-474,Federico Fernández,14,44,Defense,0.0,0.0
-475,Freddie Woodman,14,45,Goalkeeper,0.0,0.0
-476,Mark Gillespie,14,40,Goalkeeper,0.0,0.0
-477,Joe White,14,45,Midfield,0.0,0.0
-478,Michael McGovern,15,40,Goalkeeper,0.0,0.0
-479,Marco Stiepermann,15,50,Midfield,0.0,0.0
-480,Lukas Rupp,15,45,Midfield,0.0,0.0
-481,Onel Hernández,15,49,Midfield,0.0,0.0
-482,Sam Byram,15,44,Defense,0.0,0.0
-483,Jordan Hugill,15,54,Striker,0.0,0.0
-484,Kieran Dowell,15,53,Midfield,0.0,0.0
-485,Christoph Zimmermann,15,44,Defense,0.0,0.0
-486,Todd Cantwell,15,54,Midfield,0.0,0.0
-487,Jacob Sørensen,15,44,Defense,0.0,0.0
-488,Przemyslaw Placheta,15,49,Midfield,0.0,0.0
-489,Adam Idah,15,50,Striker,0.0,0.0
-490,Josh Martin,15,50,Midfield,0.0,0.0
-491,Andrew Omobamidele,15,39,Defense,0.0,0.0
-492,Angus Gunn,15,40,Goalkeeper,0.0,0.0
-493,Ben Gibson,15,44,Defense,0.0,0.0
-494,Dimitris Giannoulis,15,44,Defense,0.0,0.0
-495,Pierre Lees-Melou,15,50,Midfield,0.0,0.0
-496,Bali Mumba,15,40,Defense,0.0,0.0
-497,Joshua Sargent,15,54,Striker,0.0,0.0
-498,Christos Tzolis,15,50,Midfield,0.0,0.0
-499,Ozan Kabak,15,45,Defense,0.0,0.0
-500,Mathias Normann,15,45,Midfield,0.0,0.0
-501,Theo Walcott,16,59,Midfield,0.0,0.0
-502,Fraser Forster,16,44,Goalkeeper,0.0,0.0
-503,Stuart Armstrong,16,58,Midfield,0.0,0.0
-504,Daniel N'Lundulu,16,45,Striker,0.0,0.0
-505,Nathan Tella,16,48,Midfield,0.0,0.0
-506,William Smallbone,16,45,Midfield,0.0,0.0
-507,Michael Obafemi,16,45,Striker,0.0,0.0
-508,Ibrahima Diallo,16,45,Midfield,0.0,0.0
-509,Moussa Djenepo,16,54,Midfield,0.0,0.0
-510,Mohammed Salisu,16,45,Defense,0.0,0.0
-511,Romain Perraud,16,49,Defense,0.0,0.0
-512,Tino Livramento,16,41,Defense,0.0,0.0
-513,Mohamed Elyounoussi,16,55,Midfield,0.0,0.0
-514,Armando Broja,16,50,Striker,0.0,0.0
-515,Shane Long,16,55,Striker,0.0,0.0
-516,Adam Armstrong,16,60,Striker,0.0,0.0
-517,Yan Valery,16,40,Defense,0.0,0.0
-518,Lyanco Evangelista Silveira Neves Vojnovic,16,45,Defense,0.0,0.0
-519,Joe Hart,17,45,Goalkeeper,0.0,0.0
-520,Toby Alderweireld,17,50,Defense,0.0,0.0
-521,Erik Lamela,17,60,Midfield,0.0,0.0
-522,Serge Aurier,17,49,Defense,0.0,0.0
-523,Matt Doherty,17,48,Defense,0.0,0.0
-524,Lucas Rodrigues Moura da Silva,17,65,Midfield,0.0,0.0
-525,Ben Davies,17,44,Defense,0.0,0.0
-526,Harry Winks,17,45,Midfield,0.0,0.0
-527,Davinson Sánchez,17,45,Defense,0.0,0.0
-528,Ryan Sessegnon,17,44,Defense,0.0,0.0
-529,Steven Bergwijn,17,60,Midfield,0.0,0.0
-530,Japhet Tanganga,17,46,Defense,0.0,0.0
+0,Aaron Cresswell,19,55,Defense,9.509969420680306,4.619738110268419
+1,Aaron Wan-Bissaka,13,54,Defense,6.305372416481529,3.3899999999999997
+2,Abdoulaye Doucouré,8,55,Midfield,8.770219906412347,5.4743219459164285
+3,Adam Lallana,4,54,Midfield,4.588559588749399,2.36
+4,Adama Traoré,20,60,Midfield,5.876351385852918,2.91
+5,Alex Iwobi,8,59,Midfield,5.441356992683735,2.9699999999999998
+6,Alex McCarthy,16,45,Goalkeeper,7.545709671032551,3.816666666666667
+7,Alisson Ramses Becker,11,60,Goalkeeper,8.404067036537956,4.266666666666667
+8,Allan Marques Loureiro,8,46,Midfield,5.273464737436673,2.9499999999999997
+9,Allan Saint-Maximin,14,67,Striker,12.519917361086693,7.0367455502199885
+10,Andreas Christensen,6,50,Defense,8.610556481858344,3.23
+11,Andrew Robertson,11,70,Defense,7.635750765310257,4.426599496873005
+12,Andros Townsend,8,54,Midfield,10.051832539446327,6.195186583811785
+13,Angelo Ogbonna,19,50,Defense,5.922705133458391,2.86
+14,Antonio Rüdiger,6,55,Defense,8.688177817365617,3.31
+15,Ashley Barnes,5,55,Striker,5.303331597058337,2.7
+16,Ashley Westwood,5,54,Midfield,7.413149639995543,3.5990180471223434
+17,Ashley Young,2,50,Defense,6.464943553977414,2.68
+18,Asmir Begović,8,40,Goalkeeper,6.880034512158217,3.9033333333333338
+19,Axel Tuanzebe,2,45,Defense,4.842794682125621,2.28
+20,Ayoze Pérez,9,58,Midfield,9.433849359657222,5.49066399439815
+21,Bamidele Alli,17,65,Midfield,7.776885062483755,3.6399999999999997
+22,Ben Foster,18,40,Goalkeeper,6.2239439627223,3.4133333333333336
+23,Ben Godfrey,8,48,Defense,5.84045398628286,3.7600000000000002
+24,Ben Mee,5,49,Defense,7.023866593211136,3.4800000000000004
+25,Ben White,1,44,Defense,6.788310287438296,3.37
+26,Billy Gilmour,15,45,Midfield,4.349601656169056,2.1899999999999995
+27,Brandon Williams,15,40,Defense,5.06522206936854,2.52
+28,Bruno Miguel Borges Fernandes,13,119,Midfield,14.386858758333904,7.650798843499116
+29,Bryan Mbeumo,3,55,Midfield,5.65348046306146,2.69
+30,Bukayo Saka,1,63,Midfield,7.982305006589232,4.344781694030538
+31,Charlie Taylor,5,44,Defense,5.675684684893067,2.58
+32,Che Adams,16,69,Striker,8.419173802739857,4.7669913340423715
+33,Cheikhou Kouyaté,7,45,Defense,6.840862690573267,3.61
+34,Chris Wood,5,68,Striker,5.911732271447971,2.9699999999999998
+35,Christian Benteke,7,63,Striker,4.815825052599353,2.5100000000000002
+36,Christian Nørgaard,3,50,Midfield,6.270329703154053,2.99
+37,Ciaran Clark,14,44,Defense,5.607728229095995,3.02
+38,Conor Coady,20,45,Defense,6.017978691187073,2.99
+39,Conor Gallagher,7,56,Midfield,9.380701095891009,5.027433987884216
+40,Craig Cathcart,18,44,Defense,5.799435395846507,3.24
+41,Cristiano Ronaldo dos Santos Aveiro,13,127,Striker,13.154424734780292,6.945262796683682
+42,César Azpilicueta,6,60,Defense,12.99477268960463,5.176429200138511
+43,Daniel James,10,60,Midfield,6.145227611143523,2.71
+44,Danny Ings,2,79,Striker,9.800978499052695,4.02
+45,Danny Rose,18,43,Defense,6.378602898579152,3.9234816135671284
+46,Danny Welbeck,4,60,Striker,5.706430138622092,2.9
+47,David Raya Martin,3,46,Goalkeeper,7.42015793635037,3.7733333333333334
+48,David de Gea,13,50,Goalkeeper,9.105999970641557,4.59
+49,Declan Rice,19,50,Midfield,8.17205560259541,4.135644335149836
+50,Demarai Gray,8,58,Midfield,8.638874062997804,5.137738234247094
+51,Diogo Jota,11,77,Midfield,9.13296630006139,5.100832325999374
+52,Douglas Luiz Soares de Paulo,2,45,Midfield,4.512494223668444,2.15
+53,Dwight McNeil,5,59,Midfield,5.673131520367366,2.5300000000000002
+54,Ederson Santana de Moraes,12,60,Goalkeeper,7.75682103295339,3.7866666666666666
+55,Edouard Mendy,6,60,Goalkeeper,9.11056640107279,4.383333333333333
+56,Emile Smith Rowe,1,53,Midfield,6.83502122220824,3.7187499872589425
+57,Emiliano Martínez,2,55,Goalkeeper,6.521110632837497,3.32
+58,Eric Dier,17,46,Defense,5.906992650261101,2.8800000000000003
+59,Ethan Pinnock,3,46,Defense,6.222215041506153,2.8600000000000003
+60,Ezri Konsa Ngoyo,2,49,Defense,4.842794682125621,2.28
+61,Fabio Henrique Tavares,11,54,Midfield,6.783360595552129,3.6700000000000004
+62,Fernando Luiz Rosa,12,49,Midfield,5.082327678111579,2.46
+63,Fernando Marçal,20,46,Defense,6.8519653611919775,3.13
+64,Ferran Torres,12,72,Midfield,8.071325919757124,3.79
+65,Francisco Femenía Far,18,44,Defense,6.124926828970715,3.4000000000000004
+66,Francisco Machado Mota de Castro Trincão,20,59,Midfield,8.663854183029716,4.437720935083102
+67,Frank Onyeka,3,49,Midfield,4.657929659677505,2.2800000000000002
+68,Frederico Rodrigues de Paula Santos,13,50,Midfield,5.60046755533142,2.94
+69,Gabriel Fernando de Jesus,12,86,Striker,11.174664944260865,5.229728040481504
+70,Gabriel Magalhães,1,50,Defense,6.920464149541885,3.44
+71,Giovani Lo Celso,17,59,Midfield,6.080680972355075,2.9
+72,Grant Hanley,15,44,Defense,6.045283077814655,2.99
+73,Harry Kane,17,122,Striker,6.028125748898481,2.7800000000000002
+74,Harry Maguire,13,54,Defense,6.940836354006482,3.7
+75,Harry Winks,17,45,Midfield,4.567797280102361,2.2899999999999996
+76,Harvey Barnes,9,68,Midfield,8.20845828298509,4.42
+77,Heung-Min Son,17,100,Midfield,10.242116759858728,4.831173342030722
+78,Hugo Lloris,17,56,Goalkeeper,7.876531455510832,4.04
+79,Héctor Junior Firpo Adames,10,48,Defense,7.575760998351937,3.13
+80,Ilkay Gündogan,12,73,Midfield,7.952054212213617,3.7715133005240173
+81,Illan Meslier,10,50,Goalkeeper,8.213408519028834,4.123333333333333
+82,Isaac Hayden,14,45,Midfield,3.9585424531294313,2.12
+83,Ismaila Sarr,18,61,Midfield,8.927372155539397,5.458304626894994
+84,Ivan Toney,3,63,Striker,5.883572474693024,2.82
+85,Jack Grealish,12,80,Midfield,7.891184649985071,3.3400000000000003
+86,Jacob Ramsey,2,45,Midfield,4.334206410947714,1.8
+87,Jamaal Lascelles,14,44,Defense,5.487706526740104,2.97
+88,James Maddison,9,68,Midfield,5.999240390774742,3.1700000000000004
+89,James McArthur,7,45,Midfield,5.255197986197214,2.71
+90,James Tarkowski,5,50,Defense,5.667347097798292,2.8200000000000003
+91,James Ward-Prowse,16,64,Midfield,6.299912528188936,3.641644337814906
+92,Jamie Shackleton,10,45,Midfield,4.829151700398523,2.37
+93,Jamie Vardy,9,104,Striker,12.388480943334539,7.091922381519562
+94,Jan Bednarek,16,44,Defense,5.5701562031942435,3.1300000000000003
+95,Jannik Vestergaard,9,49,Defense,6.770662286429157,3.7499999999999996
+96,Japhet Tanganga,17,46,Defense,4.754934718124004,2.21
+97,Jarrod Bowen,19,63,Midfield,5.157647632998339,2.58
+98,Javier Manquillo,14,40,Defense,10.483136690241652,5.886894177492662
+99,Joachim Andersen,7,45,Defense,6.151157888039386,3.34
+100,Joel Matip,11,50,Defense,6.37978390750519,3.56
+101,Joel Ward,7,45,Defense,5.378962164355177,2.95
+102,Joelinton Cássio Apolinário de Lira,14,58,Striker,4.553226008167008,2.37
+103,Johann Berg Gudmundsson,5,55,Midfield,5.65788364613294,2.8600000000000003
+104,John McGinn,2,59,Midfield,7.738271343988443,3.0578977944954957
+105,Jordan Ayew,7,59,Striker,6.259880383713987,3.36570739915728
+106,Jordan Henderson,11,50,Midfield,5.610598959487555,3.02
+107,Jorge Luiz Frello Filho,6,59,Midfield,5.918506785456258,2.6799999999999997
+108,Joseph Willock,14,59,Midfield,4.438629262552991,2.32
+109,Josh Brownhill,5,45,Midfield,6.469330375282683,3.2064606378900993
+110,Joshua King,18,55,Striker,8.70244312702272,5.1875733124553065
+111,José Malheiro de Sá,20,50,Goalkeeper,7.545790648218217,3.716666666666667
+112,João Filipe Iria Santos Moutinho,20,50,Midfield,6.728857085287985,3.5349258143526803
+113,João Pedro Cavaco Cancelo,12,60,Defense,8.162905120925958,4.12108921172182
+114,Joël Veltman,4,44,Defense,7.693580052704331,4.014521424438837
+115,Kai Havertz,6,83,Midfield,6.379026769059035,2.88
+116,Kalvin Phillips,10,49,Midfield,4.721934512151353,2.31
+117,Karl Darlow,14,45,Goalkeeper,7.976556199362116,4.0
+118,Kasper Schmeichel,9,50,Goalkeeper,11.027129057043052,5.683665029134906
+119,Kenny McLean,15,49,Midfield,4.349601656169056,2.1899999999999995
+120,Kevin De Bruyne,12,119,Midfield,5.464509848164288,2.46
+121,Kieran Tierney,1,49,Defense,8.340701601760543,4.14435018428312
+122,Kristoffer Ajer,3,45,Defense,4.976770036980553,2.25
+123,Kurt Zouma,19,54,Defense,5.922705133458391,2.86
+124,Kyle Walker,12,55,Defense,6.59659389137907,3.19
+125,Kyle Walker-Peters,16,48,Defense,4.813930242325428,2.8099999999999996
+126,Leandro Trossard,4,64,Midfield,8.267054818964683,4.1000000000000005
+127,Lewis Dunk,4,50,Defense,6.293047059449597,3.2800000000000002
+128,Liam Cooper,10,45,Defense,6.440596718828869,2.86
+129,Lucas Digne,8,54,Defense,6.805706322796698,4.538074639252172
+130,Lukasz Fabianski,19,50,Goalkeeper,7.11223959376708,3.5466666666666664
+131,Luke Shaw,13,55,Defense,9.046310238877806,4.8975573711556
+132,Marc Guéhi,7,45,Defense,6.509782503597256,3.4899999999999998
+133,Marcos Alonso,6,58,Defense,12.958204771249777,5.13528070233107
+134,Mason Greenwood,13,77,Midfield,8.668896987554444,4.672611406048877
+135,Mason Mount,6,74,Midfield,7.010089710215262,2.8000000000000007
+136,Mateusz Klich,10,55,Midfield,6.427951975127988,3.0199999999999996
+137,Matt Ritchie,14,50,Defense,7.152624799946693,4.197000719369921
+138,Matthew Cash,2,50,Defense,10.565119933373381,4.2
+139,Matthew Lowton,5,44,Defense,6.206111021186987,2.89
+140,Max Aarons,15,44,Defense,5.923789389069419,2.9299999999999997
+141,Max Kilman,20,45,Defense,5.8344617226841065,2.89
+142,Michael Keane,8,50,Defense,10.795146687966694,6.701580903333338
+143,Michail Antonio,19,79,Striker,11.903357763678308,6.034692158581328
+144,Miguel Almirón,14,54,Midfield,4.342611900668279,2.28
+145,Milot Rashica,15,54,Midfield,6.888504756921145,3.4330976934391813
+146,Mohamed Salah,11,126,Midfield,16.365470492498602,8.998479699880122
+147,Mohammed Salisu,16,45,Defense,5.0864489162246285,2.9800000000000004
+148,Moussa Sissoko,18,45,Midfield,3.979178696283162,2.28
+149,Naby Keita,11,50,Midfield,5.9408459404574385,3.18
+150,Nathan Aké,12,49,Defense,9.145815283273357,4.24
+151,Nathan Redmond,16,59,Midfield,4.940821567611683,2.5999999999999996
+152,Neal Maupay,4,65,Striker,8.597351910010351,4.400076554446186
+153,Nick Pope,5,55,Goalkeeper,5.917389248926971,2.8533333333333335
+154,Nicolas Pépé,1,72,Midfield,11.236599203380301,5.92277702309134
+155,Nélson Cabral Semedo,20,49,Defense,9.477288540102288,4.83970784231048
+156,Ollie Watkins,2,73,Striker,6.357908056353456,2.99
+157,Oriol Romeu Vidal,16,45,Midfield,3.9158666461370935,2.26
+158,Pablo Fornals,19,60,Midfield,7.058258636313632,3.5100000000000007
+159,Patrick Bamford,10,80,Striker,11.598965165519433,5.6387589976095285
+160,Paul Pogba,13,78,Midfield,16.292963485052933,8.725871788117232
+161,Pierre-Emerick Aubameyang,1,99,Striker,10.655075560658725,5.6981677693053365
+162,Pierre-Emile Højbjerg,17,50,Midfield,5.339503263034269,2.5799999999999996
+163,Pontus Jansson,3,46,Defense,5.424307587035297,2.49
+164,Raphael Dias Belloli,10,65,Midfield,10.381869766403833,4.984065919955863
+165,Raúl Jiménez,20,75,Striker,9.783747847744772,4.769009736396458
+166,Ricardo Domingos Barbosa Pereira,9,55,Defense,8.935364161559598,5.111603243268273
+167,Rico Henry,3,45,Defense,5.4102009132128925,2.45
+168,Robert Sánchez,4,46,Goalkeeper,6.9142981392263305,3.543333333333334
+169,Rodrigo Moreno,10,63,Striker,3.9083226089146095,1.9399999999999997
+170,Romain Saïss,20,50,Defense,5.92622020693559,2.9400000000000004
+171,Ryan Bertrand,9,49,Defense,7.540939942818448,4.0600000000000005
+172,Rúben Diogo da Silva Neves,20,55,Midfield,5.159595331042111,2.5500000000000003
+173,Rúben Santos Gato Alves Dias,12,61,Defense,9.835352835395351,4.705959544803078
+174,Sadio Mané,11,119,Midfield,8.92402170678019,4.937995542055928
+175,Saïd Benrahma,19,64,Midfield,10.237686846596725,5.187100478435026
+176,Scott McTominay,13,54,Midfield,5.31931150445625,2.7800000000000002
+177,Sean Longstaff,14,45,Midfield,4.438629262552991,2.32
+178,Sergi Canós,3,55,Midfield,8.127719122625221,3.42
+179,Sergio Reguilón,17,52,Defense,6.206397820599904,3.06
+180,Shane Duffy,4,43,Defense,6.464617247327213,3.39
+181,Solomon March,4,54,Midfield,5.897880063692838,3.0439495515825388
+182,Stuart Dallas,10,54,Midfield,5.070342578776903,2.49
+183,Teemu Pukki,15,59,Striker,7.98484770174351,3.85
+184,Thiago Emiliano da Silva,6,54,Defense,9.599458595259472,3.5900000000000003
+185,Thomas Partey,1,50,Midfield,4.909292537597311,2.4899999999999998
+186,Tim Krul,15,45,Goalkeeper,5.919204257558433,2.9333333333333336
+187,Todd Cantwell,15,54,Midfield,5.9308507383974165,2.9499999999999997
+188,Tom Cleverley,18,50,Midfield,4.548788704250523,2.5599999999999996
+189,Tomas Soucek,19,59,Midfield,7.0285306451712914,3.5300000000000002
+190,Trent Alexander-Arnold,11,76,Defense,10.657305569162043,6.086733799295109
+191,Tyrick Mitchell,7,45,Defense,5.929595437957935,3.1699999999999995
+192,Tyrone Mings,2,50,Defense,4.740099923175925,2.12
+193,Vicente Guaita,7,45,Goalkeeper,7.4473791514975884,3.7866666666666666
+194,Virgil van Dijk,11,65,Defense,7.035738854808036,4.0693591358964625
+195,Vitaly Janelt,3,50,Midfield,4.579769723697906,2.2300000000000004
+196,Vladimir Coufal,19,50,Defense,7.504695130273313,3.41
+197,Wilfred Ndidi,9,50,Midfield,4.251638340841053,2.33
+198,Wilfried Zaha,7,69,Midfield,13.291013019983017,7.0683110824909425
+199,William Troost-Ekong,18,45,Defense,6.056870339425679,3.35
+200,Yerry Mina,8,49,Defense,6.922769992982234,4.33
+201,Youri Tielemans,9,64,Midfield,5.7622678161425345,3.06
+202,Yves Bissouma,4,46,Midfield,4.714614774014306,2.4299999999999997
+203,Çaglar Söyüncü,9,50,Defense,6.604764273200459,3.6799999999999997
+204,Bernd Leno,1,49,Goalkeeper,0.0,0.0
+205,Rúnar Alex Rúnarsson,1,40,Goalkeeper,0.0,0.0
+206,Willian Borges Da Silva,1,63,Midfield,0.0,0.0
+207,Cédric Soares,1,44,Defense,0.0,0.0
+208,Alexandre Lacazette,1,84,Striker,0.0,0.0
+209,Granit Xhaka,1,49,Midfield,0.0,0.0
+210,Pablo Marí,1,44,Defense,0.0,0.0
+211,Héctor Bellerín,1,48,Defense,0.0,0.0
+212,Calum Chambers,1,43,Defense,0.0,0.0
+213,Sead Kolasinac,1,43,Defense,0.0,0.0
+214,Mohamed Naser El Sayed Elneny,1,45,Midfield,0.0,0.0
+215,Ainsley Maitland-Niles,1,53,Midfield,0.0,0.0
+216,Rob Holding,1,43,Defense,0.0,0.0
+217,Lucas Torreira,1,45,Midfield,0.0,0.0
+218,Edward Nketiah,1,54,Striker,0.0,0.0
+219,Konstantinos Mavropanos,1,45,Defense,0.0,0.0
+220,Mattéo Guendouzi,1,45,Midfield,0.0,0.0
+221,Gabriel Teodoro Martinelli Silva,1,53,Midfield,0.0,0.0
+222,William Saliba,1,45,Defense,0.0,0.0
+223,Nuno Varela Tavares,1,44,Defense,0.0,0.0
+224,Albert Sambi Lokonga,1,49,Midfield,0.0,0.0
+225,Folarin Balogun,1,49,Striker,0.0,0.0
+226,Reiss Nelson,1,50,Midfield,0.0,0.0
+227,Karl Hein,1,40,Goalkeeper,0.0,0.0
+228,Martin Ødegaard,1,55,Midfield,0.0,0.0
+229,Aaron Ramsdale,1,45,Goalkeeper,0.0,0.0
+230,Arthur Okonkwo,1,40,Goalkeeper,0.0,0.0
+231,Takehiro Tomiyasu,1,45,Defense,0.0,0.0
+232,Jed Steer,2,40,Goalkeeper,0.0,0.0
+233,Conor Hourihane,2,49,Midfield,0.0,0.0
+234,Björn Engels,2,45,Defense,0.0,0.0
+235,Bertrand Traoré,2,59,Midfield,0.0,0.0
+236,Morgan Sanson,2,50,Midfield,0.0,0.0
+237,Kortney Hause,2,44,Defense,0.0,0.0
+238,Mahmoud Ahmed Ibrahim Hassan,2,55,Midfield,0.0,0.0
+239,Matt Targett,2,48,Defense,0.0,0.0
+240,Marvelous Nakamba,2,45,Midfield,0.0,0.0
+241,Anwar El Ghazi,2,59,Midfield,0.0,0.0
+242,Emiliano Buendía Stati,2,64,Midfield,0.0,0.0
+243,Frédéric Guilbert,2,45,Defense,0.0,0.0
+244,Wesley Moraes,2,54,Striker,0.0,0.0
+245,Mbwana Ally Samatta,2,55,Striker,0.0,0.0
+246,Keinan Davis,2,45,Striker,0.0,0.0
+247,Leon Bailey,2,64,Midfield,0.0,0.0
+248,Aaron Ramsey,2,45,Midfield,0.0,0.0
+249,Jaden Philogene-Bidace,2,50,Midfield,0.0,0.0
+250,Carney Chukwuemeka,2,45,Midfield,0.0,0.0
+251,Cameron Archer,2,45,Striker,0.0,0.0
+252,Viljami Sinisalo,2,40,Goalkeeper,0.0,0.0
+253,Tariqe Fosu-Henry,3,52,Midfield,0.0,0.0
+254,Pelenda Joshua Dasilva,3,54,Midfield,0.0,0.0
+255,Saman Ghoddos,3,54,Midfield,0.0,0.0
+256,Mathias Jensen,3,49,Midfield,0.0,0.0
+257,Charlie Goode,3,39,Defense,0.0,0.0
+258,Marcus Forss,3,54,Striker,0.0,0.0
+259,Mads Roerslev Rasmussen,3,43,Defense,0.0,0.0
+260,Mads Bech Sørensen,3,44,Defense,0.0,0.0
+261,Ellery Balcombe,3,40,Goalkeeper,0.0,0.0
+262,Jan Zamburek,3,45,Midfield,0.0,0.0
+263,Patrik Gunnarsson,3,40,Goalkeeper,0.0,0.0
+264,Halil Dervişoğlu,3,54,Striker,0.0,0.0
+265,Mads Bidstrup,3,45,Midfield,0.0,0.0
+266,Dominic Thompson,3,45,Defense,0.0,0.0
+267,Shandon Baptiste,3,50,Midfield,0.0,0.0
+268,Yoane Wissa,3,59,Midfield,0.0,0.0
+269,Álvaro Fernández,3,45,Goalkeeper,0.0,0.0
+270,Finley Stevens,3,40,Defense,0.0,0.0
+271,Mathias Jorgensen,3,45,Defense,0.0,0.0
+272,Jason Steele,4,40,Goalkeeper,0.0,0.0
+273,Pascal Groß,4,60,Midfield,0.0,0.0
+274,Davy Pröpper,4,45,Midfield,0.0,0.0
+275,Dan Burn,4,44,Defense,0.0,0.0
+276,Adam Webster,4,45,Defense,0.0,0.0
+277,Mathew Ryan,4,45,Goalkeeper,0.0,0.0
+278,Alireza Jahanbakhsh,4,55,Midfield,0.0,0.0
+279,Bernardo Fernandes Da Silva Junior,4,40,Defense,0.0,0.0
+280,Tariq Lamptey,4,44,Defense,0.0,0.0
+281,Aaron Connolly,4,53,Striker,0.0,0.0
+282,Steven Alzate,4,50,Midfield,0.0,0.0
+283,Alexis Mac Allister,4,55,Midfield,0.0,0.0
+284,Jakub Moder,4,45,Midfield,0.0,0.0
+285,Enock Mwepu,4,59,Midfield,0.0,0.0
+286,Kjell Scherpen,4,45,Goalkeeper,0.0,0.0
+287,Florin Andone,4,50,Striker,0.0,0.0
+288,Andi Zeqiri,4,45,Striker,0.0,0.0
+289,Michal Karbownik,4,40,Defense,0.0,0.0
+290,Taylor Richards,4,45,Midfield,0.0,0.0
+291,Moisés Caicedo,4,45,Midfield,0.0,0.0
+292,Haydon Roberts,4,40,Defense,0.0,0.0
+293,Marc Cucurella,4,50,Defense,0.0,0.0
+294,Jürgen Locadia,4,45,Striker,0.0,0.0
+295,Phil Bardsley,5,40,Defense,0.0,0.0
+296,Erik Pieters,5,44,Defense,0.0,0.0
+297,Jack Cork,5,45,Midfield,0.0,0.0
+298,Dale Stephens,5,45,Midfield,0.0,0.0
+299,Kevin Long,5,40,Defense,0.0,0.0
+300,Jay Rodriguez,5,54,Striker,0.0,0.0
+301,Matej Vydra,5,53,Striker,0.0,0.0
+302,Will Norris,5,44,Goalkeeper,0.0,0.0
+303,Josh Benson,5,45,Midfield,0.0,0.0
+304,Bailey Peacock-Farrell,5,45,Goalkeeper,0.0,0.0
+305,Nathan Collins,5,44,Defense,0.0,0.0
+306,Wayne Hennessey,5,45,Goalkeeper,0.0,0.0
+307,Lewis Richardson,5,45,Striker,0.0,0.0
+308,Bobby Thomas,5,40,Defense,0.0,0.0
+309,Owen Dodgson,5,40,Defense,0.0,0.0
+310,Aaron Lennon,5,50,Midfield,0.0,0.0
+311,Maxwel Cornet,5,60,Midfield,0.0,0.0
+312,Connor Roberts,5,45,Defense,0.0,0.0
+313,Olivier Giroud,6,65,Striker,0.0,0.0
+314,Ross Barkley,6,53,Midfield,0.0,0.0
+315,Mateo Kovacic,6,51,Midfield,0.0,0.0
+316,Michy Batshuayi,6,55,Striker,0.0,0.0
+317,Kepa Arrizabalaga,6,49,Goalkeeper,0.0,0.0
+318,N'Golo Kanté,6,49,Midfield,0.0,0.0
+319,Hakim Ziyech,6,74,Midfield,0.0,0.0
+320,Ruben Loftus-Cheek,6,54,Midfield,0.0,0.0
+321,Timo Werner,6,86,Striker,0.0,0.0
+322,Benjamin Chilwell,6,56,Defense,0.0,0.0
+323,Tammy Abraham,6,65,Striker,0.0,0.0
+324,Christian Pulisic,6,79,Midfield,0.0,0.0
+325,Ethan Ampadu,6,45,Defense,0.0,0.0
+326,Callum Hudson-Odoi,6,53,Midfield,0.0,0.0
+327,Reece James,6,56,Defense,0.0,0.0
+328,Malang Sarr,6,49,Defense,0.0,0.0
+329,Trevoh Chalobah,6,49,Defense,0.0,0.0
+330,Romelu Lukaku,6,116,Striker,0.0,0.0
+331,Emerson Palmieri dos Santos,6,45,Defense,0.0,0.0
+332,Saúl Ñíguez,6,54,Midfield,0.0,0.0
+333,Marcus Bettinelli,6,40,Goalkeeper,0.0,0.0
+334,James Tomkins,7,44,Defense,0.0,0.0
+335,Martin Kelly,7,40,Defense,0.0,0.0
+336,Luka Milivojevic,7,54,Midfield,0.0,0.0
+337,Jeffrey Schlupp,7,54,Midfield,0.0,0.0
+338,Jack Butland,7,45,Goalkeeper,0.0,0.0
+339,Jairo Riedewald,7,49,Midfield,0.0,0.0
+340,Jarosław Jach,7,44,Defense,0.0,0.0
+341,Jean-Philippe Mateta,7,54,Striker,0.0,0.0
+342,Eberechi Eze,7,59,Midfield,0.0,0.0
+343,Nathan Ferguson,7,45,Defense,0.0,0.0
+344,Will Hughes,7,49,Midfield,0.0,0.0
+345,Michael Olise,7,54,Midfield,0.0,0.0
+346,Nathaniel Clyne,7,44,Defense,0.0,0.0
+347,Reece Hannam,7,40,Defense,0.0,0.0
+348,Jesurun Rak-Sakyi,7,45,Midfield,0.0,0.0
+349,Robert Street,7,45,Striker,0.0,0.0
+350,Scott Banks,7,45,Midfield,0.0,0.0
+351,Remi Matthews,7,40,Goalkeeper,0.0,0.0
+352,Odsonne Edouard,7,65,Striker,0.0,0.0
+353,Fabian Delph,8,44,Midfield,0.0,0.0
+354,Gylfi Sigurdsson,8,68,Midfield,0.0,0.0
+355,Seamus Coleman,8,50,Defense,0.0,0.0
+356,James Rodríguez,8,69,Midfield,0.0,0.0
+357,Bernard Anício Caldeira Duarte,8,55,Midfield,0.0,0.0
+358,Jordan Pickford,8,50,Goalkeeper,0.0,0.0
+359,André Filipe Tavares Gomes,8,49,Midfield,0.0,0.0
+360,Tom Davies,8,49,Midfield,0.0,0.0
+361,Dominic Calvert-Lewin,8,81,Striker,0.0,0.0
+362,Mason Holgate,8,45,Defense,0.0,0.0
+363,Richarlison de Andrade,8,75,Striker,0.0,0.0
+364,João Virgínia,8,40,Goalkeeper,0.0,0.0
+365,Jonjoe Kenny,8,45,Defense,0.0,0.0
+366,Anthony Gordon,8,45,Midfield,0.0,0.0
+367,Jean-Philippe Gbamin,8,45,Midfield,0.0,0.0
+368,Jarrad Branthwaite,8,40,Defense,0.0,0.0
+369,Nathan Broadhead,8,45,Striker,0.0,0.0
+370,Moise Kean,8,60,Striker,0.0,0.0
+371,Niels Nkounkou,8,40,Defense,0.0,0.0
+372,Andy Lonergan,8,40,Goalkeeper,0.0,0.0
+373,Salomón Rondón,8,60,Striker,0.0,0.0
+374,Ellis Simms,8,45,Striker,0.0,0.0
+375,Jonny Evans,9,54,Defense,0.0,0.0
+376,Marc Albrighton,9,54,Midfield,0.0,0.0
+377,Nampalys Mendy,9,44,Midfield,0.0,0.0
+378,Danny Ward,9,40,Goalkeeper,0.0,0.0
+379,Dennis Praet,9,49,Midfield,0.0,0.0
+380,Daniel Amartey,9,41,Defense,0.0,0.0
+381,Timothy Castagne,9,54,Defense,0.0,0.0
+382,Kelechi Iheanacho,9,71,Striker,0.0,0.0
+383,Hamza Choudhury,9,45,Midfield,0.0,0.0
+384,James Justin,9,49,Defense,0.0,0.0
+385,Luke Thomas,9,45,Defense,0.0,0.0
+386,Wesley Fofana,9,44,Defense,0.0,0.0
+387,Patson Daka,9,71,Striker,0.0,0.0
+388,Boubakary Soumaré,9,49,Midfield,0.0,0.0
+389,Kiernan Dewsbury-Hall,9,45,Midfield,0.0,0.0
+390,Eldin Jakupovic,9,40,Goalkeeper,0.0,0.0
+391,Ademola Lookman,9,60,Midfield,0.0,0.0
+392,Pablo Hernández Domínguez,10,55,Midfield,0.0,0.0
+393,Francisco Casilla Cortés,10,45,Goalkeeper,0.0,0.0
+394,Luke Ayling,10,45,Defense,0.0,0.0
+395,Diego Llorente,10,45,Defense,0.0,0.0
+396,Hélder Wander Sousa de Azevedo e Costa,10,54,Midfield,0.0,0.0
+397,Tyler Roberts,10,49,Midfield,0.0,0.0
+398,Robin Koch,10,44,Defense,0.0,0.0
+399,Ian Carlo Poveda-Ocampo,10,45,Midfield,0.0,0.0
+400,Pascal Struijk,10,44,Defense,0.0,0.0
+401,Jack Harrison,10,58,Midfield,0.0,0.0
+402,Kristoffer Klaesson,10,45,Goalkeeper,0.0,0.0
+403,Sam Greenwood,10,45,Striker,0.0,0.0
+404,Crysencio Summerville,10,45,Midfield,0.0,0.0
+405,Adam Forshaw,10,45,Midfield,0.0,0.0
+406,Cody Drameh,10,40,Defense,0.0,0.0
+407,Charlie Cresswell,10,40,Defense,0.0,0.0
+408,Liam McCarron,10,45,Midfield,0.0,0.0
+409,Joe Gelhardt,10,45,Striker,0.0,0.0
+410,Nohan Kenneh,10,45,Midfield,0.0,0.0
+411,Stuart McKinstry,10,45,Midfield,0.0,0.0
+412,James Milner,11,49,Midfield,0.0,0.0
+413,Adrián San Miguel del Castillo,11,44,Goalkeeper,0.0,0.0
+414,Thiago Alcántara do Nascimento,11,54,Midfield,0.0,0.0
+415,Xherdan Shaqiri,11,59,Midfield,0.0,0.0
+416,Alex Oxlade-Chamberlain,11,58,Midfield,0.0,0.0
+417,Roberto Firmino,11,88,Striker,0.0,0.0
+418,Divock Origi,11,49,Striker,0.0,0.0
+419,Takumi Minamino,11,52,Midfield,0.0,0.0
+420,Joseph Gomez,11,48,Defense,0.0,0.0
+421,Nathaniel Phillips,11,43,Defense,0.0,0.0
+422,Caoimhin Kelleher,11,44,Goalkeeper,0.0,0.0
+423,Ibrahima Konaté,11,52,Defense,0.0,0.0
+424,Curtis Jones,11,50,Midfield,0.0,0.0
+425,Konstantinos Tsimikas,11,40,Defense,0.0,0.0
+426,Neco Williams,11,40,Defense,0.0,0.0
+427,Rhys Williams,11,44,Defense,0.0,0.0
+428,Ben Davies,11,40,Defense,0.0,0.0
+429,Harvey Elliott,11,55,Midfield,0.0,0.0
+430,Ben Woodburn,11,45,Midfield,0.0,0.0
+431,John Stones,12,53,Defense,0.0,0.0
+432,Benjamin Mendy,12,53,Defense,0.0,0.0
+433,Riyad Mahrez,12,88,Midfield,0.0,0.0
+434,Raheem Sterling,12,108,Midfield,0.0,0.0
+435,Aymeric Laporte,12,56,Defense,0.0,0.0
+436,Zack Steffen,12,45,Goalkeeper,0.0,0.0
+437,Bernardo Mota Veiga de Carvalho e Silva,12,69,Midfield,0.0,0.0
+438,Oleksandr Zinchenko,12,53,Defense,0.0,0.0
+439,Phil Foden,12,79,Midfield,0.0,0.0
+440,Rodrigo Hernandez,12,55,Midfield,0.0,0.0
+441,Cole Palmer,12,45,Midfield,0.0,0.0
+442,Samuel Edozie,12,49,Midfield,0.0,0.0
+443,Tommy Doyle,12,45,Midfield,0.0,0.0
+444,Scott Carson,12,40,Goalkeeper,0.0,0.0
+445,Luke Mbete,12,40,Defense,0.0,0.0
+446,Joshua Wilson-Esbrand,12,40,Defense,0.0,0.0
+447,Romeo Lavia,12,45,Midfield,0.0,0.0
+448,Edinson Cavani,13,84,Striker,0.0,0.0
+449,Nemanja Matic,13,45,Midfield,0.0,0.0
+450,Jesse Lingard,13,69,Midfield,0.0,0.0
+451,Anthony Martial,13,77,Striker,0.0,0.0
+452,Alex Nicolao Telles,13,50,Defense,0.0,0.0
+453,Dean Henderson,13,49,Goalkeeper,0.0,0.0
+454,Marcus Rashford,13,94,Midfield,0.0,0.0
+455,Donny van de Beek,13,58,Midfield,0.0,0.0
+456,Victor Lindelöf,13,49,Defense,0.0,0.0
+457,Eric Bailly,13,49,Defense,0.0,0.0
+458,Juan Mata,13,49,Midfield,0.0,0.0
+459,Jadon Sancho,13,91,Midfield,0.0,0.0
+460,Tom Heaton,13,40,Goalkeeper,0.0,0.0
+461,José Diogo Dalot Teixeira,13,44,Defense,0.0,0.0
+462,Andreas Pereira,13,50,Midfield,0.0,0.0
+463,Anthony Elanga,13,49,Midfield,0.0,0.0
+464,Raphaël Varane,13,55,Defense,0.0,0.0
+465,Jonjo Shelvey,14,53,Midfield,0.0,0.0
+466,Martin Dubravka,14,44,Goalkeeper,0.0,0.0
+467,Callum Wilson,14,74,Striker,0.0,0.0
+468,Jeff Hendrick,14,49,Midfield,0.0,0.0
+469,Ryan Fraser,14,54,Midfield,0.0,0.0
+470,Dwight Gayle,14,54,Striker,0.0,0.0
+471,Paul Dummett,14,45,Defense,0.0,0.0
+472,Emil Krafth,14,44,Defense,0.0,0.0
+473,Jacob Murphy,14,50,Midfield,0.0,0.0
+474,Fabian Schär,14,44,Defense,0.0,0.0
+475,Jamal Lewis,14,44,Defense,0.0,0.0
+476,Matthew Longstaff,14,45,Midfield,0.0,0.0
+477,Federico Fernández,14,44,Defense,0.0,0.0
+478,Freddie Woodman,14,45,Goalkeeper,0.0,0.0
+479,Mark Gillespie,14,40,Goalkeeper,0.0,0.0
+480,Joe White,14,45,Midfield,0.0,0.0
+481,Michael McGovern,15,40,Goalkeeper,0.0,0.0
+482,Marco Stiepermann,15,50,Midfield,0.0,0.0
+483,Lukas Rupp,15,45,Midfield,0.0,0.0
+484,Onel Hernández,15,49,Midfield,0.0,0.0
+485,Sam Byram,15,44,Defense,0.0,0.0
+486,Jordan Hugill,15,54,Striker,0.0,0.0
+487,Kieran Dowell,15,53,Midfield,0.0,0.0
+488,Christoph Zimmermann,15,44,Defense,0.0,0.0
+489,Jacob Sørensen,15,44,Defense,0.0,0.0
+490,Przemyslaw Placheta,15,49,Midfield,0.0,0.0
+491,Adam Idah,15,50,Striker,0.0,0.0
+492,Josh Martin,15,50,Midfield,0.0,0.0
+493,Andrew Omobamidele,15,39,Defense,0.0,0.0
+494,Angus Gunn,15,40,Goalkeeper,0.0,0.0
+495,Ben Gibson,15,44,Defense,0.0,0.0
+496,Dimitris Giannoulis,15,44,Defense,0.0,0.0
+497,Pierre Lees-Melou,15,50,Midfield,0.0,0.0
+498,Bali Mumba,15,40,Defense,0.0,0.0
+499,Joshua Sargent,15,54,Striker,0.0,0.0
+500,Christos Tzolis,15,50,Midfield,0.0,0.0
+501,Ozan Kabak,15,45,Defense,0.0,0.0
+502,Mathias Normann,15,45,Midfield,0.0,0.0
+503,Theo Walcott,16,58,Midfield,0.0,0.0
+504,Fraser Forster,16,44,Goalkeeper,0.0,0.0
+505,Jack Stephens,16,45,Defense,0.0,0.0
+506,Stuart Armstrong,16,58,Midfield,0.0,0.0
+507,Daniel N'Lundulu,16,45,Striker,0.0,0.0
+508,Nathan Tella,16,48,Midfield,0.0,0.0
+509,William Smallbone,16,45,Midfield,0.0,0.0
+510,Michael Obafemi,16,45,Striker,0.0,0.0
+511,Ibrahima Diallo,16,45,Midfield,0.0,0.0
+512,Moussa Djenepo,16,54,Midfield,0.0,0.0
+513,Romain Perraud,16,49,Defense,0.0,0.0
+514,Tino Livramento,16,42,Defense,0.0,0.0
+515,Mohamed Elyounoussi,16,55,Midfield,0.0,0.0
+516,Armando Broja,16,50,Striker,0.0,0.0
+517,Shane Long,16,55,Striker,0.0,0.0
+518,Adam Armstrong,16,60,Striker,0.0,0.0
+519,Yan Valery,16,40,Defense,0.0,0.0
+520,Lyanco Evangelista Silveira Neves Vojnovic,16,45,Defense,0.0,0.0
+521,Joe Hart,17,45,Goalkeeper,0.0,0.0
+522,Toby Alderweireld,17,50,Defense,0.0,0.0
+523,Erik Lamela,17,60,Midfield,0.0,0.0
+524,Serge Aurier,17,49,Defense,0.0,0.0
+525,Matt Doherty,17,48,Defense,0.0,0.0
+526,Lucas Rodrigues Moura da Silva,17,65,Midfield,0.0,0.0
+527,Ben Davies,17,44,Defense,0.0,0.0
+528,Davinson Sánchez,17,45,Defense,0.0,0.0
+529,Ryan Sessegnon,17,44,Defense,0.0,0.0
+530,Steven Bergwijn,17,60,Midfield,0.0,0.0
 531,Oliver Skipp,17,45,Midfield,0.0,0.0
 532,Joe Rodon,17,44,Defense,0.0,0.0
-533,Pierluigi Gollini,17,44,Goalkeeper,0.0,0.0
-534,Bryan Gil Salvatierra,17,58,Midfield,0.0,0.0
-535,Cristian Romero,17,49,Defense,0.0,0.0
-536,Dane Scarlett,17,45,Striker,0.0,0.0
-537,Emerson Aparecido Leite de Souza Junior,17,50,Defense,0.0,0.0
-538,Dilan Markanday,17,45,Midfield,0.0,0.0
-539,Tobi Omole,17,40,Defense,0.0,0.0
-540,Dan Gosling,18,49,Midfield,0.0,0.0
-541,Troy Deeney,18,54,Striker,0.0,0.0
-542,Andre Gray,18,54,Striker,0.0,0.0
-543,Christian Kabasele,18,44,Defense,0.0,0.0
-544,Nathaniel Chalobah,18,50,Midfield,0.0,0.0
-545,Stipe Perica,18,45,Striker,0.0,0.0
-546,Daniel Bachmann,18,45,Goalkeeper,0.0,0.0
-547,Adam Masina,18,45,Defense,0.0,0.0
-548,Ken Sema,18,53,Midfield,0.0,0.0
-549,Philip Zinckernagel,18,55,Midfield,0.0,0.0
-550,Isaac Success Ajayi,18,50,Striker,0.0,0.0
-551,Ayotomiwa Dele-Bashiru,18,45,Midfield,0.0,0.0
-552,Ashley Fletcher,18,49,Striker,0.0,0.0
-553,Francisco Sierralta,18,44,Defense,0.0,0.0
-554,Domingos Quina,18,45,Midfield,0.0,0.0
-555,Marc Navarro,18,40,Defense,0.0,0.0
-556,Jeremy Ngakia,18,44,Defense,0.0,0.0
-557,Ben Wilmot,18,45,Defense,0.0,0.0
-558,Joseph Hungbo,18,45,Midfield,0.0,0.0
-559,Imrân Louza,18,53,Midfield,0.0,0.0
-560,João Pedro Junqueira de Jesus,18,54,Striker,0.0,0.0
-561,Kwadwo Baah,18,45,Midfield,0.0,0.0
-562,Emmanuel Dennis,18,52,Striker,0.0,0.0
-563,Matthew Pollock,18,40,Defense,0.0,0.0
-564,Oghenekaro Peter Etebo,18,45,Midfield,0.0,0.0
-565,Adedapo Awokoya-Mebude,18,45,Striker,0.0,0.0
-566,Juan Camilo Hernández Suárez,18,50,Striker,0.0,0.0
-567,Juraj Kucka,18,55,Midfield,0.0,0.0
-568,Ozan Tufan,18,50,Midfield,0.0,0.0
-569,Robert Elliot,18,40,Goalkeeper,0.0,0.0
-570,Mark Noble,19,45,Midfield,0.0,0.0
-571,Darren Randolph,19,45,Goalkeeper,0.0,0.0
-572,Winston Reid,19,40,Defense,0.0,0.0
-573,Andriy Yarmolenko,19,53,Midfield,0.0,0.0
-574,Michail Antonio,19,79,Striker,0.0,0.0
+533,Tanguy Ndombele,17,58,Midfield,0.0,0.0
+534,Pierluigi Gollini,17,44,Goalkeeper,0.0,0.0
+535,Bryan Gil Salvatierra,17,58,Midfield,0.0,0.0
+536,Cristian Romero,17,49,Defense,0.0,0.0
+537,Dane Scarlett,17,45,Striker,0.0,0.0
+538,Emerson Aparecido Leite de Souza Junior,17,50,Defense,0.0,0.0
+539,Dilan Markanday,17,45,Midfield,0.0,0.0
+540,Tobi Omole,17,40,Defense,0.0,0.0
+541,Dan Gosling,18,49,Midfield,0.0,0.0
+542,Troy Deeney,18,54,Striker,0.0,0.0
+543,Andre Gray,18,54,Striker,0.0,0.0
+544,Christian Kabasele,18,44,Defense,0.0,0.0
+545,Nathaniel Chalobah,18,50,Midfield,0.0,0.0
+546,Stipe Perica,18,45,Striker,0.0,0.0
+547,Daniel Bachmann,18,45,Goalkeeper,0.0,0.0
+548,Adam Masina,18,44,Defense,0.0,0.0
+549,Ken Sema,18,53,Midfield,0.0,0.0
+550,Philip Zinckernagel,18,55,Midfield,0.0,0.0
+551,Isaac Success Ajayi,18,50,Striker,0.0,0.0
+552,Ayotomiwa Dele-Bashiru,18,45,Midfield,0.0,0.0
+553,Ashley Fletcher,18,49,Striker,0.0,0.0
+554,Francisco Sierralta,18,44,Defense,0.0,0.0
+555,Domingos Quina,18,45,Midfield,0.0,0.0
+556,Marc Navarro,18,40,Defense,0.0,0.0
+557,Jeremy Ngakia,18,44,Defense,0.0,0.0
+558,Ben Wilmot,18,45,Defense,0.0,0.0
+559,Joseph Hungbo,18,45,Midfield,0.0,0.0
+560,Imrân Louza,18,53,Midfield,0.0,0.0
+561,João Pedro Junqueira de Jesus,18,54,Striker,0.0,0.0
+562,Kwadwo Baah,18,45,Midfield,0.0,0.0
+563,Emmanuel Dennis,18,52,Striker,0.0,0.0
+564,Matthew Pollock,18,40,Defense,0.0,0.0
+565,Oghenekaro Peter Etebo,18,45,Midfield,0.0,0.0
+566,Adedapo Awokoya-Mebude,18,45,Striker,0.0,0.0
+567,Juan Camilo Hernández Suárez,18,50,Striker,0.0,0.0
+568,Juraj Kucka,18,55,Midfield,0.0,0.0
+569,Ozan Tufan,18,50,Midfield,0.0,0.0
+570,Robert Elliot,18,40,Goalkeeper,0.0,0.0
+571,Mark Noble,19,45,Midfield,0.0,0.0
+572,Darren Randolph,19,45,Goalkeeper,0.0,0.0
+573,Winston Reid,19,40,Defense,0.0,0.0
+574,Andriy Yarmolenko,19,53,Midfield,0.0,0.0
 575,Craig Dawson,19,50,Defense,0.0,0.0
 576,Ryan Fredericks,19,44,Defense,0.0,0.0
 577,Manuel Lanzini,19,58,Midfield,0.0,0.0
